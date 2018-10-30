@@ -11,6 +11,9 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "peerDependencies": {
+    "luxon": "^1.4.4"
+  },
   "devDependencies": {
     "@date-io/core": "1.0.0",
     "@types/luxon": "^1.4.0",

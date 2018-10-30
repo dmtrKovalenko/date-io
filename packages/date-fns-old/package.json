@@ -11,9 +11,12 @@
   "keywords": [],
   "author": "",
   "license": "MIT",
+  "peerDependencies": {
+    "date-fns": "=2.0.0-alpha.7"
+  },
   "devDependencies": {
     "@date-io/core": "1.0.0",
-    "date-fns": "^2.0.0-alpha.7",
+    "date-fns": "=2.0.0-alpha.7",
     "rollup": "^0.66.6"
   }
 }
