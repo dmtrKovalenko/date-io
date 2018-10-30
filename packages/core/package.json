@@ -1,0 +1,16 @@
+{
+  "name": "@date-io/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/date-fns": "^2.6.0",
+    "date-fns": "^1.29.0"
+  }
+}

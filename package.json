@@ -1,0 +1,29 @@
+{
+  "name": "date-io",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "lerna": "^3.3.0",
+    "husky": "^1.1.2",
+    "lint-staged": "^8.0.3",
+    "prettier": "^1.14.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

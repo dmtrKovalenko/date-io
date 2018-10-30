@@ -1,0 +1,17 @@
+{
+  "name": "@date-io/luxon",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@date-io/core": "1.0.0",
+    "@types/luxon": "^1.4.0",
+    "luxon": "^1.4.4"
+  }
+}
