@@ -193,8 +193,8 @@ export default class DateFnsUtils implements IUtils<Date> {
   }
 
   public getYearRange(start: Date, end: Date) {
-    const startDate = startOfYear(new Date(start));
-    const endDate = endOfYear(new Date(end));
+    const startDate = startOfYear(start);
+    const endDate = endOfYear(end);
     const years = [];
 
     let current = startDate;
