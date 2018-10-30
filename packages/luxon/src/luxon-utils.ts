@@ -180,7 +180,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       .toObject();
 
     const weeks: DateTime[][] = [];
-    new Array(Math.round(days!))
+    new Array<number>(Math.round(days!))
       .fill(0)
       .map((_, i) => i)
       .map(day =>
@@ -209,7 +209,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return [];
     }
 
-    return new Array(Math.round(years))
+    return new Array<number>(Math.round(years))
       .fill(0)
       .map((num, i) => i)
       .map(year => start.plus({ years: year }));

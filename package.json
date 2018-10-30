@@ -8,12 +8,15 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
-    "lerna": "^3.3.0",
     "husky": "^1.1.2",
+    "lerna": "^3.3.0",
     "lint-staged": "^8.0.3",
-    "prettier": "^1.14.3"
+    "prettier": "^1.14.3",
+    "rollup": "^0.66.6",
+    "rollup-plugin-typescript": "^1.0.0",
+    "typescript": "^3.1.4"
   },
   "husky": {
     "hooks": {
@@ -25,5 +28,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "devDependencies": {
+    "rollup-plugin-node-resolve": "^3.4.0"
   }
 }

@@ -2,15 +2,18 @@
   "name": "@date-io/moment",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "build/index.js",
+  "module": "build/index.esm.js",
+  "typings": "build/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "rollup -c && tsc -p tsconfig.declaration.json"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "@date-io/core": "1.0.0",
-    "moment": "^2.22.2"
+    "moment": "^2.22.2",
+    "rollup": "^0.66.6"
   }
 }
