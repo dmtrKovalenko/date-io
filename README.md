@@ -2,9 +2,12 @@
 Abstraction over common javascript date management libraries 
 
 The project expose abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v2](https://github.com/date-fns/date-fns) and [moment](https://momentjs.com/).
-Which can be easily used by any ui date or time components to use the same date managment lib as project use.
+Which can be easily used by any ui date or time components to use the same date managment lib as user's project use. 
 
 This simplifies timezones management, makes your code return exactly the same type that user expect and work with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar)) 
+
+Projects, which already build over `date-fns`: 
+* [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers)
 
 ### Usage example
 ```js
