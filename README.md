@@ -6,7 +6,7 @@ Which can be easily used by any ui date or time components to use the same date 
 
 This simplifies timezones management, makes your code return exactly the same type that user expect and work with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar)) 
 
-Projects, which already build over `date-fns`: 
+Projects, which already build over `date-io`: 
 * [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers)
 
 ### Usage example
