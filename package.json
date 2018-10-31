@@ -1,13 +1,24 @@
 {
   "name": "date-io",
   "version": "1.0.0",
-  "description": "",
+  "description": "Abstraction over common javascript date management libraries",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "date",
+    "time",
+    "date-io",
+    "picker",
+    "date-fns",
+    "moment",
+    "luxon"
+  ],
+  "author": {
+    "name": "Dmitriy Kovalenko",
+    "email": "dmtr.kovalenko@outlook.com"
+  },
   "license": "MIT",
   "dependencies": {
     "husky": "^1.1.2",

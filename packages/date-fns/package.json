@@ -1,15 +1,33 @@
 {
   "name": "@date-io/date-fns",
   "version": "1.0.0",
-  "description": "",
+  "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "typings": "build/index.d.ts",
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
   },
-  "keywords": [],
-  "author": "",
+  "bugs": {
+    "url": "https://github.com/dmtrKovalenko/date-io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmtrKovalenko/date-io"
+  },
+  "keywords": [
+    "date",
+    "time",
+    "date-io",
+    "picker",
+    "date-fns",
+    "moment",
+    "luxon"
+  ],
+  "author": {
+    "name": "Dmitriy Kovalenko",
+    "email": "dmtr.kovalenko@outlook.com"
+  },
   "license": "MIT",
   "peerDependencies": {
     "date-fns": "2.0.0-alpha.21"
