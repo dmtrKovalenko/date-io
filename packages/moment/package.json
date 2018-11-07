@@ -8,6 +8,9 @@
   "peerDependencies": {
     "moment": "^2.22.2"
   },
+  "dependencies": {
+    "@date-io/core": "^0.0.1"
+  },
   "devDependencies": {
     "@date-io/core": "^0.0.1",
     "moment": "^2.22.2",

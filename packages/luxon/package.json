@@ -11,8 +11,10 @@
   "peerDependencies": {
     "luxon": "^1.4.4"
   },
+  "dependencies": {
+    "@date-io/core": "^0.0.1"
+  },
   "devDependencies": {
-    "@date-io/core": "^0.0.1",
     "@types/luxon": "^1.4.0",
     "luxon": "^1.4.4",
     "rollup": "^0.66.6"

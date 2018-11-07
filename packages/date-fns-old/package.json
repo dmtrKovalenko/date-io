@@ -11,8 +11,10 @@
   "peerDependencies": {
     "date-fns": "=2.0.0-alpha.7"
   },
+  "dependencies": {
+    "@date-io/core": "^0.0.1"
+  },
   "devDependencies": {
-    "@date-io/core": "^0.0.1",
     "date-fns": "=2.0.0-alpha.7",
     "rollup": "^0.66.6"
   },
