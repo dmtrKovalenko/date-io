@@ -150,6 +150,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public mergeDateAndTime(date: DateTime, time: DateTime) {
+    if (!date) {
+      return null;
+    }
+
     return this.setMinutes(
       this.setHours(date, this.getHours(time)),
       this.getMinutes(time)
