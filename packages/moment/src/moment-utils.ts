@@ -28,6 +28,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public parse(value: string, format: string) {
+    if (value === "") {
+      return null;
+    }
+
     return this.moment(value, format, true);
   }
 
@@ -36,10 +40,18 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public isValid(date: Moment) {
+    if (!date) {
+      return false;
+    }
+
     return date.isValid();
   }
 
   public isNull(date: Moment) {
+    if (date === null) {
+      return true;
+    }
+
     return date.parsingFlags().nullInput;
   }
 
