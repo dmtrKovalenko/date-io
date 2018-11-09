@@ -11,7 +11,7 @@ Projects, which already build over `date-io`:
 
 ### Usage example
 ```js
-import LuxonUtils from '@date-io/date-fns'
+import LuxonUtils from '@date-io/luxon'
 import DateFnsUtils from '@date-io/date-fns'
 
 const luxon = new LuxonUtils('fr') // pass french locale 
