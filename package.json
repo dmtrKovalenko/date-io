@@ -1,5 +1,6 @@
 {
   "name": "date-io",
+  "private": true,
   "version": "1.0.0",
   "description": "Abstraction over common javascript date management libraries",
   "main": "index.js",
