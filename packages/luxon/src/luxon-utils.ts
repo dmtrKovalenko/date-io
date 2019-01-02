@@ -64,28 +64,28 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value > comparing;
   }
 
-  public isAfterDay(value: DateTime, comparing: DateTime) {
-    const diff = value.diff(comparing, "days").toObject();
-    return diff.days! > 0;
-  }
-
-  public isAfterYear(value: DateTime, comparing: DateTime) {
-    const diff = value.diff(comparing, "years").toObject();
-    return diff.years! > 0;
-  }
-
   public isBefore(value: DateTime, comparing: DateTime) {
     return value < comparing;
   }
 
   public isBeforeDay(value: DateTime, comparing: DateTime) {
-    const diff = value.diff(comparing, "days").toObject();
+    const diff = value.diff(comparing.startOf("day"), "days").toObject();
     return diff.days! < 0;
   }
 
+  public isAfterDay(value: DateTime, comparing: DateTime) {
+    const diff = value.diff(comparing.endOf("year"), "days").toObject();
+    return diff.days! > 0;
+  }
+
   public isBeforeYear(value: DateTime, comparing: DateTime) {
-    const diff = value.diff(comparing, "years").toObject();
+    const diff = value.diff(comparing.startOf("year"), "years").toObject();
     return diff.years! < 0;
+  }
+
+  public isAfterYear(value: DateTime, comparing: DateTime) {
+    const diff = value.diff(comparing.endOf("year"), "years").toObject();
+    return diff.years! > 0;
   }
 
   public getDiff(value: DateTime, comparing: DateTime) {
