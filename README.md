@@ -118,6 +118,4 @@ export interface IUtils<TDate> {
   getSecondText(date: TDate): string;
   getYearText(date: TDate): string;
 }
-
-}
 ```
