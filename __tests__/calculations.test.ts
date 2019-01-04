@@ -1,4 +1,4 @@
-import { utilsTest, formats } from "./test-utils";
+import { utilsTest, formats, TEST_TIMESTAMP } from "./test-utils";
 
 describe("DateTime calculations", () => {
   utilsTest("addDays", (date, utils, lib) => {
@@ -39,6 +39,46 @@ describe("DateTime calculations", () => {
     expect(utils.format(utils.getNextMonth(date), formats.dateTime[lib])).toBe(
       "2018-11-30 13:44"
     );
+  });
+
+  utilsTest("getHours", (date, utils) => {
+    expect(utils.getHours(date)).toBe(new Date(TEST_TIMESTAMP).getHours());
+  });
+
+  utilsTest("getMinutes", (date, utils) => {
+    expect(utils.getMinutes(date)).toBe(44);
+  });
+
+  utilsTest("getSeconds", (date, utils) => {
+    expect(utils.getSeconds(date)).toBe(0);
+  });
+
+  utilsTest("getYear", (date, utils) => {
+    expect(utils.getYear(date)).toBe(2018);
+  });
+
+  utilsTest("setHours", (date, utils, lib) => {
+    const updatedTime = utils.format(utils.setHours(date, 0), formats.dateTime[lib]);
+    expect(updatedTime).toBe("2018-10-30 00:44");
+  });
+
+  utilsTest("setMinutes", (date, utils, lib) => {
+    const updatedTime = utils.format(utils.setMinutes(date, 12), formats.dateTime[lib]);
+    expect(updatedTime).toBe("2018-10-30 13:12");
+  });
+
+  utilsTest("setMinutes", (date, utils, lib) => {
+    const updatedTime = utils.format(utils.setMinutes(date, 12), formats.dateTime[lib]);
+    expect(updatedTime).toBe("2018-10-30 13:12");
+  });
+
+  utilsTest("setYear", (date, utils, lib) => {
+    const updatedTime = utils.format(utils.setYear(date, 2011), formats.dateTime[lib]);
+    expect(updatedTime).toBe("2011-10-30 13:44");
+  });
+
+  utilsTest("setSeconds", (date, utils) => {
+    expect(utils.setSeconds(date, 11)).toBeTruthy();
   });
 
   utilsTest("isAfter", (date, utils, lib) => {
