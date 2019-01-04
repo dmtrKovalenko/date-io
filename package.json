@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "build": "lerna run build --parallel"
   },
   "keywords": [
     "date",
@@ -23,6 +24,7 @@
   "license": "MIT",
   "dependencies": {
     "@types/jest": "^23.3.11",
+    "codecov": "^3.1.0",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
     "lerna": "^3.3.0",
