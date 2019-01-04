@@ -74,7 +74,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public isAfterDay(value: DateTime, comparing: DateTime) {
-    const diff = value.diff(comparing.endOf("year"), "days").toObject();
+    const diff = value.diff(comparing.endOf("day"), "days").toObject();
     return diff.days! > 0;
   }
 
