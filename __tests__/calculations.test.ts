@@ -31,13 +31,13 @@ describe("DateTime calculations", () => {
 
   utilsTest("getPreviousMonth", (date, utils, lib) => {
     expect(utils.format(utils.getPreviousMonth(date), formats.dateTime[lib])).toBe(
-      "2018-09-30 13:44"
+      "2018-09-30 11:44"
     );
   });
 
   utilsTest("getNextMonth", (date, utils, lib) => {
     expect(utils.format(utils.getNextMonth(date), formats.dateTime[lib])).toBe(
-      "2018-11-30 13:44"
+      "2018-11-30 11:44"
     );
   });
 
@@ -64,17 +64,17 @@ describe("DateTime calculations", () => {
 
   utilsTest("setMinutes", (date, utils, lib) => {
     const updatedTime = utils.format(utils.setMinutes(date, 12), formats.dateTime[lib]);
-    expect(updatedTime).toBe("2018-10-30 13:12");
+    expect(updatedTime).toBe("2018-10-30 11:12");
   });
 
   utilsTest("setMinutes", (date, utils, lib) => {
     const updatedTime = utils.format(utils.setMinutes(date, 12), formats.dateTime[lib]);
-    expect(updatedTime).toBe("2018-10-30 13:12");
+    expect(updatedTime).toBe("2018-10-30 11:12");
   });
 
   utilsTest("setYear", (date, utils, lib) => {
     const updatedTime = utils.format(utils.setYear(date, 2011), formats.dateTime[lib]);
-    expect(updatedTime).toBe("2011-10-30 13:44");
+    expect(updatedTime).toBe("2011-10-30 11:44");
   });
 
   utilsTest("setSeconds", (date, utils) => {

@@ -6,7 +6,7 @@ describe("DateTime formatting", () => {
 
     expect(formattedDateTime).toBe(
       // luxon doesn't support relative time (30th)
-      lib === "Luxon" ? "October 30 13:44" : "October 30th 13:44"
+      lib === "Luxon" ? "October 30 11:44" : "October 30th 11:44"
     );
   });
 
@@ -19,13 +19,13 @@ describe("DateTime formatting", () => {
   utilsTest("Should properly format to time 24h", (date, utils) => {
     const formattedDate = utils.format(date, utils.time24hFormat);
 
-    expect(formattedDate).toBe("13:44");
+    expect(formattedDate).toBe("11:44");
   });
 
   utilsTest("Should properly format to time 12h", (date, utils) => {
     const formattedDate = utils.format(date, utils.time12hFormat);
 
-    expect(formattedDate).toBe("01:44 PM");
+    expect(formattedDate).toBe("11:44 AM");
   });
 
   utilsTest("getWeekdays", (_, utils) => {

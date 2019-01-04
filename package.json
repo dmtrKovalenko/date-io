@@ -5,8 +5,8 @@
   "description": "Abstraction over common javascript date management libraries",
   "main": "index.js",
   "scripts": {
-    "test": "jest --watch",
-    "test:coverage": "jest --coverage",
+    "test": "TZ=UTC jest --watch",
+    "test:coverage": "TZ=UTC jest --coverage",
     "build": "lerna run build --parallel"
   },
   "keywords": [
