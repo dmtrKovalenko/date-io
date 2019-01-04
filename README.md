@@ -5,13 +5,25 @@ Abstraction over common javascript date management libraries.
 The project expose abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v2](https://github.com/date-fns/date-fns) and [moment](https://momentjs.com/).
 Which can be easily used by any ui date or time components to use the same date managment lib as user's project use.
 
-This simplifies timezones management, makes your code return exactly the same type that user expect and work with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar))
+That simplifies timezones management, makes your code return exactly the same type that user expect and work with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar))
 
-Projects, which already build over `date-io`:
+### Projects
+
+| Library           |                                                                                                               Downloads |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------: |
+| @date-io/moment   |     [![npm download](https://img.shields.io/npm/dm/@date-io/moment.svg)](https://www.npmjs.org/package/@date-io/moment) |
+| @date-io/date-fns | [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns.svg)](https://www.npmjs.org/package/@date-io/date-fns) |
+| @date-io/luxon    |       [![npm download](https://img.shields.io/npm/dm/@date-io/luxon.svg)](https://www.npmjs.org/package/@date-io/luxon) |
+
+Projects, which are already built over `date-io`:
 
 - [material-ui-pickers](https://github.com/dmtrKovalenko/material-ui-pickers)
 
 ### Usage example
+
+````js
+import LuxonUtils from '@date-io/luxon'
+import DateFnsUtils from '@date-io/date-fns'
 
 ```js
 import LuxonUtils from "@date-io/date-fns";
@@ -25,7 +37,7 @@ const initialDateFnsDate = dateFns.date();
 
 const updatedLuxonDate = luxon.addDays(initialLuxonDate, 2);
 const updatedDateFnsDate = dateFns.addDays(initialDateFnsDate, 2);
-```
+````
 
 ### Interface
 
