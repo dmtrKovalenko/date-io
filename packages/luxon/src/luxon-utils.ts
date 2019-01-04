@@ -8,13 +8,13 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
   public dateTime12hFormat = "ff";
 
-  public dateTime24hFormat = "f";
+  public dateTime24hFormat = "LLLL dd T";
 
-  public time12hFormat = "t";
+  public time12hFormat = "hh:mm a";
 
   public time24hFormat = "T";
 
-  public dateFormat = "DD";
+  public dateFormat = "LLLL dd";
 
   constructor({ locale }: { locale?: string } = {}) {
     this.locale = locale || "en";
@@ -64,28 +64,28 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value > comparing;
   }
 
-  public isAfterDay(value: DateTime, comparing: DateTime) {
-    const diff = value.diff(comparing, "days").toObject();
-    return diff.days! > 0;
-  }
-
-  public isAfterYear(value: DateTime, comparing: DateTime) {
-    const diff = value.diff(comparing, "years").toObject();
-    return diff.years! > 0;
-  }
-
   public isBefore(value: DateTime, comparing: DateTime) {
     return value < comparing;
   }
 
   public isBeforeDay(value: DateTime, comparing: DateTime) {
-    const diff = value.diff(comparing, "days").toObject();
+    const diff = value.diff(comparing.startOf("day"), "days").toObject();
     return diff.days! < 0;
   }
 
+  public isAfterDay(value: DateTime, comparing: DateTime) {
+    const diff = value.diff(comparing.endOf("day"), "days").toObject();
+    return diff.days! > 0;
+  }
+
   public isBeforeYear(value: DateTime, comparing: DateTime) {
-    const diff = value.diff(comparing, "years").toObject();
+    const diff = value.diff(comparing.startOf("year"), "years").toObject();
     return diff.years! < 0;
+  }
+
+  public isAfterYear(value: DateTime, comparing: DateTime) {
+    const diff = value.diff(comparing.endOf("year"), "years").toObject();
+    return diff.years! > 0;
   }
 
   public getDiff(value: DateTime, comparing: DateTime) {
@@ -160,8 +160,12 @@ export default class LuxonUtils implements IUtils<DateTime> {
     );
   }
 
-  public getStartOfMonth(value: DateTime) {
+  public startOfMonth(value: DateTime) {
     return value.startOf("month");
+  }
+
+  public endOfMonth(value: DateTime) {
+    return value.endOf("month");
   }
 
   public getNextMonth(value: DateTime) {
