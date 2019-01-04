@@ -4,7 +4,6 @@ import addYears from "date-fns/addYears";
 import differenceInMilliseconds from "date-fns/differenceInMilliseconds";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 import endOfDay from "date-fns/endOfDay";
-import endOfMonth from "date-fns/endOfMonth";
 import endOfWeek from "date-fns/endOfWeek";
 import endOfYear from "date-fns/endOfYear";
 import format from "date-fns/format";
@@ -23,6 +22,7 @@ import setSeconds from "date-fns/setSeconds";
 import setYear from "date-fns/setYear";
 import startOfDay from "date-fns/startOfDay";
 import startOfMonth from "date-fns/startOfMonth";
+import endOfMonth from "date-fns/endOfMonth";
 import startOfWeek from "date-fns/startOfWeek";
 import startOfYear from "date-fns/startOfYear";
 
@@ -104,8 +104,12 @@ export default class DateFnsUtils implements IUtils<Date> {
     return isSameDay(value, comparing);
   }
 
-  public getStartOfMonth(value: Date) {
+  public startOfMonth(value: Date) {
     return startOfMonth(value);
+  }
+
+  public endOfMonth(value: Date) {
+    return endOfMonth(value);
   }
 
   public getYear(value: Date) {

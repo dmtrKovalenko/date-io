@@ -28,7 +28,11 @@ export interface IUtils<TDate> {
   isBeforeYear(value: TDate, comparing: TDate): boolean;
   isBefore(value: TDate, comparing: TDate): boolean;
 
+  startOfMonth(value: TDate): TDate;
+  endOfMonth(value: TDate): TDate;
+
   addDays(value: TDate, count: number): TDate;
+
   startOfDay(value: TDate): TDate;
   endOfDay(value: TDate): TDate;
 
@@ -37,18 +41,21 @@ export interface IUtils<TDate> {
 
   getHours(value: TDate): number;
   setHours(value: TDate, count: number): TDate;
+
   getMinutes(value: TDate): number;
   setMinutes(value: TDate, count: number): TDate;
+
   getSeconds(value: TDate): number;
   setSeconds(value: TDate, count: number): TDate;
-  getMonth(value: TDate): number;
-  getYear(value: TDate): number;
-  setYear(value: TDate, count: number): TDate;
-  mergeDateAndTime(date: TDate, time: TDate): TDate;
 
-  getStartOfMonth(value: TDate): TDate;
+  getMonth(value: TDate): number;
   getNextMonth(value: TDate): TDate;
   getPreviousMonth(value: TDate): TDate;
+
+  getYear(value: TDate): number;
+  setYear(value: TDate, count: number): TDate;
+
+  mergeDateAndTime(date: TDate, time: TDate): TDate;
 
   getWeekdays(): string[];
   getWeekArray(date: TDate): TDate[][];

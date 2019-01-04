@@ -141,8 +141,12 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return ampm === "am" ? "AM" : "PM";
   }
 
-  public getStartOfMonth(date: Moment) {
+  public startOfMonth(date: Moment) {
     return date.clone().startOf("month");
+  }
+
+  public endOfMonth(date: Moment) {
+    return date.clone().endOf("month");
   }
 
   public getNextMonth(date: Moment) {
