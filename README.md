@@ -2,6 +2,11 @@
 
 Abstraction over common javascript date management libraries.
 
+[![codecov](https://codecov.io/gh/dmtrKovalenko/date-io/branch/master/graph/badge.svg)](https://codecov.io/gh/dmtrKovalenko/date-io)
+[![typescript](https://img.shields.io/badge/typescript-first-blue.svg)](https://github.com/dmtrKovalenko/date-io)
+[![travis](https://travis-ci.org/dmtrKovalenko/material-ui-pickers.svg?branch=develop)](https://codecov.io/gh/dmtrKovalenko/date-io)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 The project expose abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v2](https://github.com/date-fns/date-fns) and [moment](https://momentjs.com/).
 Which can be easily used by any ui date or time components to use the same date managment lib as user's project use.
 
