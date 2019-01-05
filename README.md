@@ -30,7 +30,6 @@ Projects, which are already built over `date-io`:
 import LuxonUtils from '@date-io/luxon'
 import DateFnsUtils from '@date-io/date-fns'
 
-```js
 import LuxonUtils from "@date-io/date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 
