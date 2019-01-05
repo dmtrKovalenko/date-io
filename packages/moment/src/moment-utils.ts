@@ -35,15 +35,15 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return this.moment(value, format, true);
   }
 
-  public date(value?: Moment) {
+  public date(value?: any) {
+    if (value === null) {
+      return null;
+    }
+
     return this.moment(value);
   }
 
   public isValid(date: Moment) {
-    if (!date) {
-      return false;
-    }
-
     return date.isValid();
   }
 

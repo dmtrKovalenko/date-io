@@ -8,7 +8,7 @@ export const TEST_TIMESTAMP = "2018-10-30T11:44:00.000Z";
 export type TestLib = "Luxon" | "Moment" | "DateFns";
 
 const allUtils = [
-  ["Luxon", new LuxonUtils({ locale: "en-US" })],
+  ["Luxon", new LuxonUtils()],
   ["DateFns", new DateFnsUtils()],
   ["Moment", new MomentUtils()]
 ];

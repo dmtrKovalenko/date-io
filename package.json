@@ -5,8 +5,8 @@
   "description": "Abstraction over common javascript date management libraries",
   "main": "index.js",
   "scripts": {
-    "test": "TZ=UTC jest --watch",
-    "test:coverage": "TZ=UTC jest --coverage",
+    "test": "TZ=UTC NODE_ICU_DATA='./node_modules/full-icu' jest --watch",
+    "test:coverage": "TZ=UTC NODE_ICU_DATA='./node_modules/full-icu' jest --coverage",
     "build": "lerna run build --parallel"
   },
   "keywords": [
@@ -26,6 +26,7 @@
   "dependencies": {
     "@types/jest": "^23.3.11",
     "codecov": "^3.1.0",
+    "full-icu": "^1.2.1",
     "husky": "^1.1.2",
     "jest": "^23.6.0",
     "lerna": "^3.3.0",

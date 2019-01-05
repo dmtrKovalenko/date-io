@@ -4,8 +4,6 @@ import { IUtils } from "@date-io/core/IUtils";
 export default class LuxonUtils implements IUtils<DateTime> {
   public locale: string;
 
-  public parse = DateTime.fromFormat;
-
   public dateTime12hFormat = "ff";
 
   public dateTime24hFormat = "LLLL dd T";
@@ -21,6 +19,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public date(value?: any) {
+    if (value === null) {
+      return null;
+    }
+
     if (value instanceof Date) {
       return DateTime.fromJSDate(value);
     }
@@ -34,6 +36,14 @@ export default class LuxonUtils implements IUtils<DateTime> {
     }
 
     return DateTime.local();
+  }
+
+  public parse(value: string, formatString: string) {
+    if (value === "") {
+      return null;
+    }
+
+    return DateTime.fromFormat(value, formatString);
   }
 
   public addDays(date: DateTime, count: number) {
@@ -53,7 +63,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return true;
     }
 
-    return value === comparing;
+    return value.equals(comparing);
   }
 
   public isSameDay(value: DateTime, comparing: DateTime) {
@@ -150,10 +160,6 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public mergeDateAndTime(date: DateTime, time: DateTime) {
-    if (!date) {
-      return null;
-    }
-
     return this.setMinutes(
       this.setHours(date, this.getHours(time)),
       this.getMinutes(time)

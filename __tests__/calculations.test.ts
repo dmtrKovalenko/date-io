@@ -1,6 +1,24 @@
 import { utilsTest, formats, TEST_TIMESTAMP } from "./test-utils";
 
 describe("DateTime calculations", () => {
+  utilsTest("date", (date, utils) => {
+    // ISO string
+    expect(utils.isEqual(date, utils.date(TEST_TIMESTAMP))).toBeTruthy();
+    // native Date
+    expect(utils.isEqual(date, utils.date(new Date(TEST_TIMESTAMP)))).toBeTruthy();
+    // parse already date-specific object
+    expect(utils.isEqual(date, utils.date(utils.date(TEST_TIMESTAMP)))).toBeTruthy();
+    // parse null inputs
+    expect(utils.date(null)).toBeNull();
+  });
+
+  utilsTest("isValid", (date, utils) => {
+    const invalidDate = utils.date("2018-42-30T11:60:00.000Z");
+
+    expect(utils.isValid(date)).toBeTruthy();
+    expect(utils.isValid(invalidDate)).toBeFalsy();
+  });
+
   utilsTest("addDays", (date, utils, lib) => {
     expect(utils.format(utils.addDays(date, 1), formats.day[lib])).toBe("31");
   });
@@ -55,6 +73,10 @@ describe("DateTime calculations", () => {
 
   utilsTest("getYear", (date, utils) => {
     expect(utils.getYear(date)).toBe(2018);
+  });
+
+  utilsTest("getMonth", (date, utils) => {
+    expect(utils.getMonth(date)).toBe(9);
   });
 
   utilsTest("setHours", (date, utils, lib) => {
@@ -129,9 +151,52 @@ describe("DateTime calculations", () => {
   });
 
   utilsTest("getYearRange", (date, utils) => {
-    const getYearRange = utils.getYearRange(date, utils.setYear(date, 2024));
+    const yearRange = utils.getYearRange(date, utils.setYear(date, 2024));
 
-    expect(getYearRange).toHaveLength(7);
-    expect(utils.getYear(getYearRange[getYearRange.length - 1])).toBe(2024);
+    expect(yearRange).toHaveLength(7);
+    expect(utils.getYear(yearRange[yearRange.length - 1])).toBe(2024);
+
+    const emptyYearRange = utils.getYearRange(
+      date,
+      utils.setYear(date, utils.getYear(date) - 1)
+    );
+
+    expect(emptyYearRange).toHaveLength(0);
+  });
+
+  utilsTest("getDiff", (date, utils) => {
+    expect(utils.getDiff(date, "2018-10-29T11:44:00.000Z")).toBe(86400000);
+    expect(utils.getDiff(date, "2018-10-31T11:44:00.000Z")).toBe(-86400000);
+    expect(utils.getDiff(date, utils.date("2018-10-31T11:44:00.000Z"))).toBe(-86400000);
+  });
+
+  utilsTest("mergeDateAndTime", (date, utils, lib) => {
+    const mergedDate = utils.mergeDateAndTime(
+      date,
+      utils.date("2018-01-01T14:00:00.000Z")
+    );
+
+    expect(utils.format(mergedDate, formats.dateTime[lib])).toBe("2018-10-30 14:00");
+  });
+
+  utilsTest("isEqual", (date, utils) => {
+    expect(utils.isEqual(utils.date(null), null)).toBeTruthy();
+    expect(utils.isEqual(date, utils.date(TEST_TIMESTAMP))).toBeTruthy();
+  });
+
+  utilsTest("parse", (date, utils, lib) => {
+    const parsedDate = utils.parse("2018-10-30 11:44", formats.dateTime[lib]);
+
+    expect(utils.isEqual(parsedDate, date)).toBeTruthy();
+    expect(utils.parse("", formats.dateTime[lib])).toBeNull();
+  });
+
+  utilsTest("isNull", (date, utils, lib) => {
+    expect(utils.isNull(null)).toBeTruthy();
+    expect(utils.isNull(date)).toBeFalsy();
+  });
+
+  utilsTest("isSameDay", (date, utils, lib) => {
+    expect(utils.isSameDay(date, utils.date("2018-10-30T00:00:00.000Z"))).toBeTruthy();
   });
 });
