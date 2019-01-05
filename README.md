@@ -26,7 +26,7 @@ Projects, which are already built over `date-io`:
 
 ### Usage example
 
-````js
+```js
 import LuxonUtils from '@date-io/luxon'
 import DateFnsUtils from '@date-io/date-fns'
 
