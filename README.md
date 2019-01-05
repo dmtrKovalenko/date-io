@@ -42,7 +42,7 @@ const initialDateFnsDate = dateFns.date();
 
 const updatedLuxonDate = luxon.addDays(initialLuxonDate, 2);
 const updatedDateFnsDate = dateFns.addDays(initialDateFnsDate, 2);
-````
+```
 
 ### Interface
 
