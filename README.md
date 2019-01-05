@@ -30,17 +30,17 @@ Projects, which are already built over `date-io`:
 import LuxonUtils from '@date-io/luxon'
 import DateFnsUtils from '@date-io/date-fns'
 
-import LuxonUtils from "@date-io/date-fns";
-import DateFnsUtils from "@date-io/date-fns";
-
-const luxon = new LuxonUtils("fr"); // pass french locale
 const dateFns = new DateFnsUtils();
+const luxon = new LuxonUtils({ locale: "fr" }); // pass french locale
 
-const initialLuxonDate = luxon.date();
-const initialDateFnsDate = dateFns.date();
+const initialLuxonDate = luxon.date("2018-10-28T11:44:00.000Z");
+const initialDateFnsDate = dateFns.date("2018-10-28T11:44:00.000Z");
 
 const updatedLuxonDate = luxon.addDays(initialLuxonDate, 2);
 const updatedDateFnsDate = dateFns.addDays(initialDateFnsDate, 2);
+
+luxon.format(updatedLuxonDate, utils.dateTime24hFormat) // "octobre 30 11:44"
+dateFns.format(updatedLuxonDate, utils.dateTime24hFormat) // "October 30th 11:44"
 ```
 
 ### Interface
