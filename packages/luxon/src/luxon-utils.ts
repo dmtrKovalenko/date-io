@@ -54,16 +54,20 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return date.plus({ days: count });
   }
 
-  public isValid(date: DateTime) {
-    return date.isValid;
+  public isValid(value: any) {
+    if (value instanceof DateTime) {
+      return value.isValid;
+    }
+
+    return this.date(value).isValid;
   }
 
-  public isEqual(value: DateTime, comparing: DateTime) {
+  public isEqual(value: any, comparing: any) {
     if (value === null && comparing === null) {
       return true;
     }
 
-    return value.equals(comparing);
+    return this.date(value).equals(this.date(comparing));
   }
 
   public isSameDay(value: DateTime, comparing: DateTime) {

@@ -15,9 +15,9 @@ export interface IUtils<TDate> {
   parse(value: string, format: string): TDate | null;
 
   isNull(value: TDate | null): boolean;
-  isValid(value: TDate): boolean;
+  isValid(value: any): boolean;
   getDiff(value: TDate, comparing: TDate): number;
-  isEqual(value: TDate, comparing: TDate): boolean;
+  isEqual(value: any, comparing: any): boolean;
   isSameDay(value: TDate, comparing: TDate): boolean;
 
   isAfter(value: TDate, comparing: TDate): boolean;

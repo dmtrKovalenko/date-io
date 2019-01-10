@@ -56,7 +56,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     return addDays(value, count);
   }
 
-  public isValid(value: Date) {
+  public isValid(value: any) {
     return isValid(value);
   }
 
@@ -144,7 +144,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     return format(date, formatString, { locale: this.locale });
   }
 
-  public isEqual(date: Date, comparing: Date) {
+  public isEqual(date: any, comparing: any) {
     if (date === null && comparing === null) {
       return true;
     }

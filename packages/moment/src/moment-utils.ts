@@ -10,6 +10,7 @@ type Moment = defaultMoment.Moment;
 
 export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public moment: typeof defaultMoment;
+
   public locale?: string;
 
   public dateTime12hFormat = "MMMM Do hh:mm a";
@@ -43,8 +44,8 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return this.moment(value);
   }
 
-  public isValid(date: Moment) {
-    return date.isValid();
+  public isValid(value: any) {
+    return this.moment(value).isValid();
   }
 
   public isNull(date: Moment) {
@@ -180,7 +181,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     );
   }
 
-  public isEqual(value: Moment, comparing: Moment) {
+  public isEqual(value: any, comparing: any) {
     if (value === null && comparing === null) {
       return true;
     }
