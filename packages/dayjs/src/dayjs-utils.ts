@@ -174,7 +174,11 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public getWeekdays() {
-    return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek => this.dayjs().format("dddd"));
+    return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
+      this.dayjs()
+        .set("day", dayOfWeek)
+        .format("dd")
+    );
   }
 
   public isEqual(value: any, comparing: any) {
