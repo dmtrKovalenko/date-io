@@ -18,6 +18,7 @@ import isValid from "date-fns/isValid";
 import dateFnsParse from "date-fns/parse";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
+import setMonth from "date-fns/setMonth";
 import setSeconds from "date-fns/setSeconds";
 import setYear from "date-fns/setYear";
 import startOfDay from "date-fns/startOfDay";
@@ -34,6 +35,10 @@ type Locale = typeof SampleLocale;
 
 export default class DateFnsUtils implements IUtils<Date> {
   public locale?: Locale;
+
+  public yearFormat = "yyyy";
+
+  public yearMonthFormat = "MMMM yyyy";
 
   public dateTime12hFormat = "MMMM do hh:mm aaaa";
 
@@ -184,6 +189,10 @@ export default class DateFnsUtils implements IUtils<Date> {
     return date.getMonth();
   }
 
+  public setMonth(date: Date, count: number) {
+    return setMonth(date, count);
+  }
+
   public getMeridiemText(ampm: "am" | "pm") {
     return ampm === "am" ? "AM" : "PM";
   }
@@ -194,6 +203,18 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   public getPreviousMonth(date: Date) {
     return addMonths(date, -1);
+  }
+
+  public getMonthArray(date: Date) {
+    const firstMonth = startOfYear(date);
+    const monthArray = [firstMonth];
+
+    while (monthArray.length < 12) {
+      const prevMonth = monthArray[monthArray.length - 1];
+      monthArray.push(this.getNextMonth(prevMonth));
+    }
+
+    return monthArray;
   }
 
   public mergeDateAndTime(date: Date, time: Date) {
@@ -249,7 +270,7 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   // displaying methpds
   public getCalendarHeaderText(date: Date) {
-    return format(date, "MMMM yyyy", { locale: this.locale });
+    return format(date, this.yearMonthFormat, { locale: this.locale });
   }
 
   public getYearText(date: Date) {
@@ -262,6 +283,10 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   public getDateTimePickerHeaderText(date: Date) {
     return format(date, "MMM d", { locale: this.locale });
+  }
+
+  public getMonthText(date: Date) {
+    return format(date, "MMMM", { locale: this.locale });
   }
 
   public getDayText(date: Date) {

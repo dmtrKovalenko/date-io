@@ -17,6 +17,10 @@ describe("Display methods", () => {
     expect(utils.getDateTimePickerHeaderText(date)).toBe("Oct 30");
   });
 
+  utilsTest("getMonthText", (date, utils) => {
+    expect(utils.getMonthText(date)).toBe("October");
+  });
+
   utilsTest("getDayText", (date, utils) => {
     expect(utils.getDayText(date)).toBe("30");
   });

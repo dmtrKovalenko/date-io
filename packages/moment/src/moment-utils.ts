@@ -13,6 +13,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   public locale?: string;
 
+  public yearFormat = "YYYY";
+
+  public yearMonthFormat = "MMMM YYYY";
+
   public dateTime12hFormat = "MMMM Do hh:mm a";
 
   public dateTime24hFormat = "MMMM Do HH:mm";
@@ -138,6 +142,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.isSame(comparing, "day");
   }
 
+  public setMonth(date: Moment, count: number) {
+    return date.clone().month(count);
+  }
+
   public getMeridiemText(ampm: "am" | "pm") {
     return ampm === "am" ? "AM" : "PM";
   }
@@ -156,6 +164,18 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   public getPreviousMonth(date: Moment) {
     return date.clone().subtract(1, "month");
+  }
+
+  public getMonthArray(date: Moment) {
+    const firstMonth = date.clone().startOf("year");
+    const monthArray = [firstMonth];
+
+    while (monthArray.length < 12) {
+      const prevMonth = monthArray[monthArray.length - 1];
+      monthArray.push(this.getNextMonth(prevMonth));
+    }
+
+    return monthArray;
   }
 
   public getYear(date: Moment) {
@@ -231,7 +251,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   // displaying methods
   public getCalendarHeaderText(date: Moment) {
-    return date.format("MMMM YYYY");
+    return date.format(this.yearMonthFormat);
   }
 
   public getYearText(date: Moment) {
@@ -244,6 +264,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   public getDateTimePickerHeaderText(date: Moment) {
     return date.format("MMM D");
+  }
+
+  public getMonthText(date: Moment) {
+    return date.format("MMMM");
   }
 
   public getDayText(date: Moment) {
