@@ -4,6 +4,10 @@ import { IUtils } from "@date-io/core/IUtils";
 export default class LuxonUtils implements IUtils<DateTime> {
   public locale: string;
 
+  public yearFormat = "yyyy";
+
+  public yearMonthFormat = "MMMM yyyy";
+
   public dateTime12hFormat = "ff";
 
   public dateTime24hFormat = "LLLL dd T";
@@ -155,6 +159,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value.get("month") - 1;
   }
 
+  public setMonth(value: DateTime, count: number) {
+    return value.set({ month: count + 1 });
+  }
+
   public getYear(value: DateTime) {
     return value.get("year");
   }
@@ -184,6 +192,18 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
   public getPreviousMonth(value: DateTime) {
     return value.minus({ months: 1 });
+  }
+
+  public getMonthArray(date: DateTime) {
+    const firstMonth = this.date(date).startOf("year");
+    const monthArray = [firstMonth];
+
+    while (monthArray.length < 12) {
+      const prevMonth = monthArray[monthArray.length - 1];
+      monthArray.push(this.getNextMonth(prevMonth));
+    }
+
+    return monthArray;
   }
 
   public getWeekdays() {
@@ -240,7 +260,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public getCalendarHeaderText(date: DateTime) {
-    return this.format(date, "MMMM yyyy");
+    return this.format(date, this.yearMonthFormat);
   }
 
   public getDatePickerHeaderText(date: DateTime) {
@@ -249,6 +269,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
   public getDateTimePickerHeaderText(date: DateTime) {
     return this.format(date, "MMM d");
+  }
+
+  public getMonthText(date: DateTime) {
+    return this.format(date, "LLLL");
   }
 
   public getDayText(date: DateTime) {

@@ -28,8 +28,8 @@ Projects, which are already built over `date-io`:
 ### Usage example
 
 ```js
-import LuxonUtils from '@date-io/luxon'
-import DateFnsUtils from '@date-io/date-fns'
+import LuxonUtils from "@date-io/luxon";
+import DateFnsUtils from "@date-io/date-fns";
 
 const dateFns = new DateFnsUtils();
 const luxon = new LuxonUtils({ locale: "fr" }); // pass french locale
@@ -40,8 +40,8 @@ const initialDateFnsDate = dateFns.date("2018-10-28T11:44:00.000Z");
 const updatedLuxonDate = luxon.addDays(initialLuxonDate, 2);
 const updatedDateFnsDate = dateFns.addDays(initialDateFnsDate, 2);
 
-luxon.format(updatedLuxonDate, utils.dateTime24hFormat) // "octobre 30 11:44"
-dateFns.format(updatedLuxonDate, utils.dateTime24hFormat) // "October 30th 11:44"
+luxon.format(updatedLuxonDate, utils.dateTime24hFormat); // "octobre 30 11:44"
+dateFns.format(updatedLuxonDate, utils.dateTime24hFormat); // "October 30th 11:44"
 ```
 
 ### Interface
@@ -52,6 +52,9 @@ Implemented interface for now. If you can not find needed method please let us k
 export interface IUtils<TDate> {
   locale?: any;
   moment?: any;
+
+  yearFormat: string;
+  yearMonthFormat: string;
 
   dateTime12hFormat: string;
   dateTime24hFormat: string;
@@ -66,9 +69,9 @@ export interface IUtils<TDate> {
   parse(value: string, format: string): TDate | null;
 
   isNull(value: TDate | null): boolean;
-  isValid(value: TDate): boolean;
+  isValid(value: any): boolean;
   getDiff(value: TDate, comparing: TDate): number;
-  isEqual(value: TDate, comparing: TDate): boolean;
+  isEqual(value: any, comparing: any): boolean;
   isSameDay(value: TDate, comparing: TDate): boolean;
 
   isAfter(value: TDate, comparing: TDate): boolean;
@@ -100,8 +103,11 @@ export interface IUtils<TDate> {
   setSeconds(value: TDate, count: number): TDate;
 
   getMonth(value: TDate): number;
+  setMonth(value: TDate, count: number): TDate;
   getNextMonth(value: TDate): TDate;
   getPreviousMonth(value: TDate): TDate;
+
+  getMonthArray(value: TDate): TDate[];
 
   getYear(value: TDate): number;
   setYear(value: TDate, count: number): TDate;
@@ -117,6 +123,7 @@ export interface IUtils<TDate> {
   getCalendarHeaderText(date: TDate): string;
   getDatePickerHeaderText(date: TDate): string;
   getDateTimePickerHeaderText(date: TDate): string;
+  getMonthText(date: TDate): string;
   getDayText(date: TDate): string;
   getHourText(date: TDate, ampm: boolean): string;
   getMinuteText(date: TDate): string;

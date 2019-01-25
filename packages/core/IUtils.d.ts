@@ -2,6 +2,9 @@ export interface IUtils<TDate> {
   locale?: any;
   moment?: any;
 
+  yearFormat: string;
+  yearMonthFormat: string;
+
   dateTime12hFormat: string;
   dateTime24hFormat: string;
 
@@ -49,8 +52,11 @@ export interface IUtils<TDate> {
   setSeconds(value: TDate, count: number): TDate;
 
   getMonth(value: TDate): number;
+  setMonth(value: TDate, count: number): TDate;
   getNextMonth(value: TDate): TDate;
   getPreviousMonth(value: TDate): TDate;
+
+  getMonthArray(value: TDate): TDate[];
 
   getYear(value: TDate): number;
   setYear(value: TDate, count: number): TDate;
@@ -66,6 +72,7 @@ export interface IUtils<TDate> {
   getCalendarHeaderText(date: TDate): string;
   getDatePickerHeaderText(date: TDate): string;
   getDateTimePickerHeaderText(date: TDate): string;
+  getMonthText(date: TDate): string;
   getDayText(date: TDate): string;
   getHourText(date: TDate, ampm: boolean): string;
   getMinuteText(date: TDate): string;

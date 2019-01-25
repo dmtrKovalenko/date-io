@@ -10,6 +10,18 @@ describe("DateTime formatting", () => {
     );
   });
 
+  utilsTest("Should properly format year", (date, utils) => {
+    const formattedDateTime = utils.format(date, utils.yearFormat);
+
+    expect(formattedDateTime).toBe("2018");
+  });
+
+  utilsTest("Should properly format year&month", (date, utils) => {
+    const formattedDateTime = utils.format(date, utils.yearMonthFormat);
+
+    expect(formattedDateTime).toBe("October 2018");
+  });
+
   utilsTest("Should properly format to date", (date, utils, lib) => {
     const formattedDate = utils.format(date, utils.dateFormat);
 
