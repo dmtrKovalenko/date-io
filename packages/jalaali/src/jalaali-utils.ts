@@ -22,7 +22,7 @@ interface Opts {
 
 type Moment = jMoment.Moment;
 
-export default class MomentUtils extends DefaultMomentUtils implements IUtils<Moment> {
+export default class MomentUtils extends DefaultMomentUtils {
   public moment: typeof jMoment;
 
   public locale?: string;
