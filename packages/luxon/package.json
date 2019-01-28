@@ -17,7 +17,8 @@
   "devDependencies": {
     "@types/luxon": "^1.4.0",
     "luxon": "^1.4.4",
-    "rollup": "^0.66.6"
+    "rollup": "^0.66.6",
+    "typescript": "^3.2.4"
   },
   "bugs": {
     "url": "https://github.com/dmtrKovalenko/date-io/issues"
