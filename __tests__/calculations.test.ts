@@ -192,7 +192,7 @@ describe("DateTime calculations", () => {
   utilsTest("getDiff", (date, utils) => {
     expect(utils.getDiff(date, utils.date("2018-10-29T11:44:00.000Z"))).toBe(86400000);
     expect(utils.getDiff(date, utils.date("2018-10-31T11:44:00.000Z"))).toBe(-86400000);
-    expect(utils.getDiff(date, utils.date("2018-10-31T11:44:00.000Z"))).toBe(-86400000);
+    expect(utils.getDiff(date, "2018-10-31T11:44:00.000Z")).toBe(-86400000);
   });
 
   utilsTest("mergeDateAndTime", (date, utils, lib) => {

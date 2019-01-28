@@ -109,7 +109,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return diff.years! > 0;
   }
 
-  public getDiff(value: DateTime, comparing: DateTime) {
+  public getDiff(value: DateTime, comparing: DateTime | string) {
     if (typeof comparing === "string") {
       comparing = DateTime.fromJSDate(new Date(comparing));
     }

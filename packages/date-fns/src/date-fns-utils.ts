@@ -65,8 +65,8 @@ export default class DateFnsUtils implements IUtils<Date> {
     return isValid(this.date(value));
   }
 
-  public getDiff(value: Date, comparing: Date) {
-    return differenceInMilliseconds(value, comparing);
+  public getDiff(value: Date, comparing: Date | string) {
+    return differenceInMilliseconds(value, this.date(comparing));
   }
 
   public isAfter(value: Date, comparing: Date) {

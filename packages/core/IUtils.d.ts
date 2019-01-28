@@ -19,7 +19,7 @@ export interface IUtils<TDate> {
 
   isNull(value: TDate | null): boolean;
   isValid(value: any): boolean;
-  getDiff(value: TDate, comparing: TDate): number;
+  getDiff(value: TDate, comparing: TDate | string): number;
   isEqual(value: any, comparing: any): boolean;
   isSameDay(value: TDate, comparing: TDate): boolean;
 
