@@ -60,7 +60,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.parsingFlags().nullInput;
   }
 
-  public getDiff(date: Moment, comparing: Moment) {
+  public getDiff(date: Moment, comparing: Moment | string) {
     return date.diff(comparing);
   }
 

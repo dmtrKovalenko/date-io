@@ -14,7 +14,8 @@
   "devDependencies": {
     "@date-io/core": "^0.0.1",
     "moment": "^2.22.2",
-    "rollup": "^0.66.6"
+    "rollup": "^0.66.6",
+    "typescript": "^3.2.4"
   },
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"

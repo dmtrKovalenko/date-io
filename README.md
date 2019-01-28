@@ -70,7 +70,7 @@ export interface IUtils<TDate> {
 
   isNull(value: TDate | null): boolean;
   isValid(value: any): boolean;
-  getDiff(value: TDate, comparing: TDate): number;
+  getDiff(value: TDate, comparing: TDate | string): number;
   isEqual(value: any, comparing: any): boolean;
   isSameDay(value: TDate, comparing: TDate): boolean;
 
@@ -133,13 +133,14 @@ export interface IUtils<TDate> {
 ```
 
 ### Typescript
+
 The project itself written in typescript, so we are providing our own typescript defenitions. But for the **moment** users its required to add `esModuleIntertop` and `allowSyntheticDefaultImports` to your `tsconfig.json`
 
- ```json
- {
-   "compilerOptions": {
-     "esModuleIntertop": true,
-     "allowSyntheticDefaultImports": true
-   }
- }
- ```
+```json
+{
+  "compilerOptions": {
+    "esModuleIntertop": true,
+    "allowSyntheticDefaultImports": true
+  }
+}
+```
