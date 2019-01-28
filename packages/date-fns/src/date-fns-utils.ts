@@ -55,14 +55,14 @@ export default class DateFnsUtils implements IUtils<Date> {
   }
 
   // Note: date-fns input types are more lenient than this adapter, so we need to expose our more
-  //  strict signature and delegate to the more lenient sigtature.  Otherwise, we have downstream type errors upon usage.
+  // strict signature and delegate to the more lenient signature. Otherwise, we have downstream type errors upon usage.
 
   public addDays(value: Date, count: number) {
     return addDays(value, count);
   }
 
   public isValid(value: any) {
-    return isValid(value);
+    return isValid(this.date(value));
   }
 
   public getDiff(value: Date, comparing: Date) {
@@ -226,13 +226,10 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   public getWeekdays() {
     const now = new Date();
-    return eachDayOfInterval(
-      {
-        start: startOfWeek(now, { locale: this.locale }),
-        end: endOfWeek(now, { locale: this.locale })
-      },
-      { locale: this.locale }
-    ).map(day => format(day, "EEEEEE", { locale: this.locale }));
+    return eachDayOfInterval({
+      start: startOfWeek(now, { locale: this.locale }),
+      end: endOfWeek(now, { locale: this.locale })
+    }).map(day => format(day, "EEEEEE", { locale: this.locale }));
   }
 
   public getWeekArray(date: Date) {
