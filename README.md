@@ -131,3 +131,15 @@ export interface IUtils<TDate> {
   getYearText(date: TDate): string;
 }
 ```
+
+### Typescript
+The project itself written in typescript, so we are providing our own typescript defenitions. But for the **moment** users its required to add `esModuleIntertop` and `allowSyntheticDefaultImports` to your `tsconfig.json`
+
+ ```json
+ {
+   "compilerOptions": {
+     "esModuleIntertop": true,
+     "allowSyntheticDefaultImports": true
+   }
+ }
+ ```
