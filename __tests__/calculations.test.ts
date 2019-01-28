@@ -207,6 +207,7 @@ describe("DateTime calculations", () => {
   utilsTest("isEqual", (date, utils) => {
     expect(utils.isEqual(utils.date(null), null)).toBeTruthy();
     expect(utils.isEqual(date, utils.date(TEST_TIMESTAMP))).toBeTruthy();
+    expect(utils.isEqual(null, utils.date(TEST_TIMESTAMP))).toBeFalsy();
   });
 
   utilsTest("parse", (date, utils, lib) => {

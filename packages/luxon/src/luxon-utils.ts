@@ -71,7 +71,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return true;
     }
 
-    return this.date(value).equals(this.date(comparing));
+    const date = this.date(value);
+    if (!date) return false;
+
+    return date.equals(this.date(comparing));
   }
 
   public isSameDay(value: DateTime, comparing: DateTime) {
