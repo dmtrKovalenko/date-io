@@ -71,6 +71,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return true;
     }
 
+    if (value === null || comparing === null) {
+      return false;
+    }
+
     const date = this.date(value);
     if (!date) return false;
 
