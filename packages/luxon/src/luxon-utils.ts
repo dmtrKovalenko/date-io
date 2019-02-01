@@ -31,10 +31,6 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return null;
     }
 
-    if (value instanceof Date) {
-      return DateTime.fromJSDate(value);
-    }
-
     if (typeof value === "string") {
       return DateTime.fromJSDate(new Date(value));
     }
@@ -43,7 +39,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return value;
     }
 
-    return DateTime.local();
+    return DateTime.fromJSDate(value);
   }
 
   public parse(value: string, formatString: string) {
@@ -83,10 +79,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return false;
     }
 
-    const date = this.date(value);
-    if (!date) return false;
-
-    return date.equals(this.date(comparing));
+    return this.date(value).equals(this.date(comparing));
   }
 
   public isSameDay(value: DateTime, comparing: DateTime) {
