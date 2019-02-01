@@ -23,6 +23,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public date(value?: any) {
+    if (typeof value === "undefined") {
+      return DateTime.local();
+    }
+
     if (value === null) {
       return null;
     }
@@ -61,6 +65,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
   public isValid(value: any) {
     if (value instanceof DateTime) {
       return value.isValid;
+    }
+
+    if (value === null) {
+      return false;
     }
 
     return this.date(value).isValid;
