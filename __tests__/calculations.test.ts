@@ -10,6 +10,8 @@ describe("DateTime calculations", () => {
     expect(utils.isEqual(date, utils.date(utils.date(TEST_TIMESTAMP)))).toBeTruthy();
     // parse null inputs
     expect(utils.date(null)).toBeNull();
+    // undefined
+    expect(utils.date(undefined)).toBeTruthy();
   });
 
   utilsTest("isValid", (date, utils) => {
