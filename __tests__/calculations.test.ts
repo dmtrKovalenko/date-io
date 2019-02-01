@@ -17,6 +17,8 @@ describe("DateTime calculations", () => {
 
     expect(utils.isValid(date)).toBeTruthy();
     expect(utils.isValid(invalidDate)).toBeFalsy();
+    expect(utils.isValid(undefined)).toBeTruthy();
+    expect(utils.isValid(null)).toBeFalsy();
     expect(utils.isValid("2018-42-30T11:60:00.000Z")).toBeFalsy();
   });
 
