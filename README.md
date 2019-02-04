@@ -134,12 +134,12 @@ export interface IUtils<TDate> {
 
 ### Typescript
 
-The project itself written in typescript, so we are providing our own typescript defenitions. But for the **moment** users its required to add `esModuleIntertop` and `allowSyntheticDefaultImports` to your `tsconfig.json`
+The project itself written in typescript, so we are providing our own typescript defenitions. But for the **moment** users its required to add `esModuleInterop` and `allowSyntheticDefaultImports` to your `tsconfig.json`
 
 ```json
 {
   "compilerOptions": {
-    "esModuleIntertop": true,
+    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true
   }
 }
