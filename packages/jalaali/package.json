@@ -1,6 +1,6 @@
 {
   "name": "@date-io/jalaali",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -10,8 +10,8 @@
     "moment-jalaali": "^0.7.4"
   },
   "dependencies": {
-    "@date-io/core": "^1.0.2",
-    "@date-io/moment": "^1.0.2"
+    "@date-io/core": "^1.0.3",
+    "@date-io/moment": "^1.0.3"
   },
   "devDependencies": {
     "@date-io/core": "^0.0.1",
