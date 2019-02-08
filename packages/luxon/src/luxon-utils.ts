@@ -75,6 +75,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return true;
     }
 
+    // make sure that null will not be passed to this.date
     if (value === null || comparing === null) {
       return false;
     }
