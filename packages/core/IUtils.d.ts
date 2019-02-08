@@ -1,6 +1,7 @@
 export interface IUtils<TDate> {
   locale?: any;
   moment?: any;
+  dayjs?: any;
 
   yearFormat: string;
   yearMonthFormat: string;

@@ -16,7 +16,8 @@
     "picker",
     "date-fns",
     "moment",
-    "luxon"
+    "luxon",
+    "dayjs"
   ],
   "author": {
     "name": "Dmitriy Kovalenko",
