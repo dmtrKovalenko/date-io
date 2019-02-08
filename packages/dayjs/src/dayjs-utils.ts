@@ -1,9 +1,10 @@
 import defaultDayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import advancedFormat from "dayjs/plugin/advancedFormat";
+import { IUtils } from "@date-io/core/IUtils";
+
 defaultDayjs.extend(customParseFormat);
 defaultDayjs.extend(advancedFormat);
-import { IUtils } from "@date-io/core/IUtils";
 
 interface Opts {
   locale?: string;
