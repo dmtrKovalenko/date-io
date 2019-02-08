@@ -1,4 +1,8 @@
 import defaultDayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+import advancedFormat from "dayjs/plugin/advancedFormat";
+defaultDayjs.extend(customParseFormat);
+defaultDayjs.extend(advancedFormat);
 import { IUtils } from "@date-io/core/IUtils";
 
 interface Opts {
@@ -12,6 +16,10 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   public dayjs: typeof defaultDayjs;
 
   public locale?: string;
+
+  public yearFormat = "YYYY";
+
+  public yearMonthFormat = "MMMM YYYY";
 
   public dateTime12hFormat = "MMMM Do hh:mm a";
 
@@ -110,6 +118,10 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
       : date.clone().add(count, "day");
   }
 
+  public setMonth(date: Dayjs, count: number) {
+    return date.clone().set("month", count);
+  }
+
   public setHours(date: Dayjs, count: number) {
     return date.clone().set("hour", count);
   }
@@ -156,6 +168,22 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   public getPreviousMonth(date: Dayjs) {
     return date.clone().subtract(1, "month");
+  }
+
+  public getMonthArray(date: Dayjs) {
+    const firstMonth = date.clone().startOf("year");
+    const monthArray = [firstMonth];
+
+    while (monthArray.length < 12) {
+      const prevMonth = monthArray[monthArray.length - 1];
+      monthArray.push(this.getNextMonth(prevMonth));
+    }
+
+    return monthArray;
+  }
+
+  public getMonthText(date: Dayjs) {
+    return date.format("MMMM");
   }
 
   public getYear(date: Dayjs) {

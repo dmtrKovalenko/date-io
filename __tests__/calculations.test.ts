@@ -10,6 +10,8 @@ describe("DateTime calculations", () => {
     expect(utils.isEqual(date, utils.date(utils.date(TEST_TIMESTAMP)))).toBeTruthy();
     // parse null inputs
     expect(utils.date(null)).toBeNull();
+    // undefined
+    expect(utils.date(undefined)).toBeTruthy();
   });
 
   utilsTest("isValid", (date, utils) => {
@@ -17,6 +19,8 @@ describe("DateTime calculations", () => {
 
     expect(utils.isValid(date)).toBeTruthy();
     expect(utils.isValid(invalidDate)).toBeFalsy();
+    expect(utils.isValid(undefined)).toBeTruthy();
+    expect(utils.isValid(null)).toBeFalsy();
     expect(utils.isValid("2018-42-30T11:60:00.000Z")).toBeFalsy();
   });
 
@@ -54,6 +58,25 @@ describe("DateTime calculations", () => {
     );
   });
 
+  utilsTest("getMonthArray", (date, utils, lib) => {
+    expect(
+      utils.getMonthArray(date).map(date => utils.format(date, formats.dateTime[lib]))
+    ).toEqual([
+      "2018-01-01 00:00",
+      "2018-02-01 00:00",
+      "2018-03-01 00:00",
+      "2018-04-01 00:00",
+      "2018-05-01 00:00",
+      "2018-06-01 00:00",
+      "2018-07-01 00:00",
+      "2018-08-01 00:00",
+      "2018-09-01 00:00",
+      "2018-10-01 00:00",
+      "2018-11-01 00:00",
+      "2018-12-01 00:00"
+    ]);
+  });
+
   utilsTest("getNextMonth", (date, utils, lib) => {
     expect(utils.format(utils.getNextMonth(date), formats.dateTime[lib])).toBe(
       "2018-11-30 11:44"
@@ -78,6 +101,11 @@ describe("DateTime calculations", () => {
 
   utilsTest("getMonth", (date, utils) => {
     expect(utils.getMonth(date)).toBe(9);
+  });
+
+  utilsTest("setMonth", (date, utils, lib) => {
+    const updatedTime = utils.format(utils.setMonth(date, 4), formats.dateTime[lib]);
+    expect(updatedTime).toBe("2018-05-30 11:44");
   });
 
   utilsTest("setHours", (date, utils, lib) => {
@@ -166,9 +194,9 @@ describe("DateTime calculations", () => {
   });
 
   utilsTest("getDiff", (date, utils) => {
-    expect(utils.getDiff(date, "2018-10-29T11:44:00.000Z")).toBe(86400000);
-    expect(utils.getDiff(date, "2018-10-31T11:44:00.000Z")).toBe(-86400000);
+    expect(utils.getDiff(date, utils.date("2018-10-29T11:44:00.000Z"))).toBe(86400000);
     expect(utils.getDiff(date, utils.date("2018-10-31T11:44:00.000Z"))).toBe(-86400000);
+    expect(utils.getDiff(date, "2018-10-31T11:44:00.000Z")).toBe(-86400000);
   });
 
   utilsTest("mergeDateAndTime", (date, utils, lib) => {
@@ -183,6 +211,7 @@ describe("DateTime calculations", () => {
   utilsTest("isEqual", (date, utils) => {
     expect(utils.isEqual(utils.date(null), null)).toBeTruthy();
     expect(utils.isEqual(date, utils.date(TEST_TIMESTAMP))).toBeTruthy();
+    expect(utils.isEqual(null, utils.date(TEST_TIMESTAMP))).toBeFalsy();
   });
 
   utilsTest("parse", (date, utils, lib) => {

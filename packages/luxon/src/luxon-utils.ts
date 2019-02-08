@@ -4,6 +4,10 @@ import { IUtils } from "@date-io/core/IUtils";
 export default class LuxonUtils implements IUtils<DateTime> {
   public locale: string;
 
+  public yearFormat = "yyyy";
+
+  public yearMonthFormat = "MMMM yyyy";
+
   public dateTime12hFormat = "ff";
 
   public dateTime24hFormat = "LLLL dd T";
@@ -19,12 +23,12 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public date(value?: any) {
-    if (value === null) {
-      return null;
+    if (typeof value === "undefined") {
+      return DateTime.local();
     }
 
-    if (value instanceof Date) {
-      return DateTime.fromJSDate(value);
+    if (value === null) {
+      return null;
     }
 
     if (typeof value === "string") {
@@ -35,7 +39,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return value;
     }
 
-    return DateTime.local();
+    return DateTime.fromJSDate(value);
   }
 
   public parse(value: string, formatString: string) {
@@ -59,12 +63,21 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return value.isValid;
     }
 
+    if (value === null) {
+      return false;
+    }
+
     return this.date(value).isValid;
   }
 
   public isEqual(value: any, comparing: any) {
     if (value === null && comparing === null) {
       return true;
+    }
+
+    // make sure that null will not be passed to this.date
+    if (value === null || comparing === null) {
+      return false;
     }
 
     return this.date(value).equals(this.date(comparing));
@@ -102,7 +115,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return diff.years! > 0;
   }
 
-  public getDiff(value: DateTime, comparing: DateTime) {
+  public getDiff(value: DateTime, comparing: DateTime | string) {
     if (typeof comparing === "string") {
       comparing = DateTime.fromJSDate(new Date(comparing));
     }
@@ -155,6 +168,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value.get("month") - 1;
   }
 
+  public setMonth(value: DateTime, count: number) {
+    return value.set({ month: count + 1 });
+  }
+
   public getYear(value: DateTime) {
     return value.get("year");
   }
@@ -184,6 +201,18 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
   public getPreviousMonth(value: DateTime) {
     return value.minus({ months: 1 });
+  }
+
+  public getMonthArray(date: DateTime) {
+    const firstMonth = this.date(date).startOf("year");
+    const monthArray = [firstMonth];
+
+    while (monthArray.length < 12) {
+      const prevMonth = monthArray[monthArray.length - 1];
+      monthArray.push(this.getNextMonth(prevMonth));
+    }
+
+    return monthArray;
   }
 
   public getWeekdays() {
@@ -240,7 +269,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public getCalendarHeaderText(date: DateTime) {
-    return this.format(date, "MMMM yyyy");
+    return this.format(date, this.yearMonthFormat);
   }
 
   public getDatePickerHeaderText(date: DateTime) {
@@ -249,6 +278,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
   public getDateTimePickerHeaderText(date: DateTime) {
     return this.format(date, "MMM d");
+  }
+
+  public getMonthText(date: DateTime) {
+    return this.format(date, "LLLL");
   }
 
   public getDayText(date: DateTime) {

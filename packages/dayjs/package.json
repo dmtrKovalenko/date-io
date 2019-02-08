@@ -1,20 +1,20 @@
 {
   "name": "@date-io/dayjs",
-  "version": "1.0.0",
+  "version": "1.0.4",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
   "typings": "build/index.d.ts",
   "peerDependencies": {
-    "moment": "^1.8.0"
+    "dayjs": "^1.8.0"
   },
   "dependencies": {
-    "@date-io/core": "^1.0.1"
+    "@date-io/core": "^1.0.4"
   },
   "devDependencies": {
-    "@date-io/core": "^0.0.1",
     "dayjs": "^1.8.0",
-    "rollup": "^0.66.6"
+    "rollup": "^0.66.6",
+    "typescript": "^3.2.4"
   },
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
@@ -33,7 +33,8 @@
     "picker",
     "date-fns",
     "moment",
-    "luxon"
+    "luxon",
+    "dayjs"
   ],
   "author": {
     "name": "Dmitriy Kovalenko",
