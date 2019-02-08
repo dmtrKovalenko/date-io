@@ -1,6 +1,6 @@
 {
   "name": "@date-io/moment",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -9,7 +9,7 @@
     "moment": "^2.22.2"
   },
   "dependencies": {
-    "@date-io/core": "^1.0.3"
+    "@date-io/core": "^1.0.4"
   },
   "devDependencies": {
     "@date-io/core": "^0.0.1",
