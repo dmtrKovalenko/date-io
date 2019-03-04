@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0",
+  "private": true,
+  "name": "date-io-benchmark",
+  "scripts": {
+    "benchmark:formats": "node formats.js",
+    "benchmark:calculations": "node calculations.js",
+    "benchmark": "npm run benchmark:formats && npm run benchmark:calculations"
+  },
+  "dependencies": {
+    "@date-io/date-fns": "*",
+    "@date-io/dayjs": "*",
+    "@date-io/luxon": "*",
+    "@date-io/moment": "*",
+    "benchmark": "^2.1.4"
+  }
+}
