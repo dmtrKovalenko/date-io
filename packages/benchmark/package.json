@@ -3,9 +3,10 @@
   "private": true,
   "name": "date-io-benchmark",
   "scripts": {
-    "benchmark:formats": "node formats.js",
-    "benchmark:calculations": "node calculations.js",
-    "benchmark": "npm run benchmark:formats && npm run benchmark:calculations"
+    "benchmark:parse": "node ./operations/parse.js",
+    "benchmark:formats": "node ./operations/formats.js",
+    "benchmark:calculations": "node /operations/calculations.js",
+    "benchmark": "npm run benchmark:formats && npm run benchmark:calculations && npm run benchmark:parse"
   },
   "dependencies": {
     "@date-io/date-fns": "*",

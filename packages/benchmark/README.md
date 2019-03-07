@@ -23,3 +23,14 @@ date-fns x 82,449 ops/sec ±1.19% (89 runs sampled)
 
 Fastest is date-fns
 ```
+
+### Parsing
+
+```
+day-js x 31,283 ops/sec ±0.49% (87 runs sampled)
+luxon x 52,773 ops/sec ±1.27% (86 runs sampled)
+moment x 19,193 ops/sec ±0.94% (87 runs sampled)
+date-fns x 55,709 ops/sec ±0.86% (85 runs sampled)
+
+Fastest is date-fns
+```
