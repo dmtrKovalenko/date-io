@@ -28,7 +28,7 @@ import startOfWeek from "date-fns/startOfWeek";
 import startOfYear from "date-fns/startOfYear";
 
 // Locale is not exported from date-fns, so we need to workaround that https://github.com/date-fns/date-fns/issues/932
-import SampleLocale from "date-fns/locale/en-US";
+import * as SampleLocale from "date-fns/locale/en-US";
 import { IUtils } from "@date-io/core/IUtils";
 
 type Locale = typeof SampleLocale;
