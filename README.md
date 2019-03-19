@@ -10,7 +10,7 @@ Abstraction over common javascript date management libraries.
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 The project expose abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v2](https://github.com/date-fns/date-fns), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
-Which can be easily used by any ui date or time components to use the same date managment lib as user's project use.
+Which can be easily used by any ui date or time components to use the same date management lib as user's project use.
 
 That simplifies timezones management, makes your code return exactly the same type that user expect and work with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar))
 
@@ -22,7 +22,7 @@ That simplifies timezones management, makes your code return exactly the same ty
 | @date-io/date-fns | [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns.svg)](https://www.npmjs.org/package/@date-io/date-fns) |
 | @date-io/luxon    |       [![npm download](https://img.shields.io/npm/dm/@date-io/luxon.svg)](https://www.npmjs.org/package/@date-io/luxon) |
 | @date-io/dayjs    |       [![npm download](https://img.shields.io/npm/dm/@date-io/dayjs.svg)](https://www.npmjs.org/package/@date-io/dayjs) |
-| @date-io/jalaali  |       [![npm download](https://img.shields.io/npm/dm/@date-io/jalaali.svg)](https://www.npmjs.org/package/@date-io/dayjs) |
+| @date-io/jalaali  |     [![npm download](https://img.shields.io/npm/dm/@date-io/jalaali.svg)](https://www.npmjs.org/package/@date-io/dayjs) |
 
 Projects, which are already built over `date-io`:
 
@@ -137,7 +137,7 @@ export interface IUtils<TDate> {
 
 ### Typescript
 
-The project itself written in typescript, so we are providing our own typescript defenitions. But for the **moment** users its required to add `esModuleInterop` and `allowSyntheticDefaultImports` to your `tsconfig.json`
+The project itself written in typescript, so we are providing our own typescript definitions. But for the **moment** and **date-fns** users it is required to add `esModuleInterop` and `allowSyntheticDefaultImports` to your `tsconfig.json`
 
 ```json
 {
