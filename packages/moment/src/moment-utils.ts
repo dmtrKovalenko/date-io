@@ -53,11 +53,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public isNull(date: Moment) {
-    if (date === null) {
-      return true;
-    }
-
-    return date.parsingFlags().nullInput;
+    return date === null;
   }
 
   public getDiff(date: Moment, comparing: Moment | string) {
