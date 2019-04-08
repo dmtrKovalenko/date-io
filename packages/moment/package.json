@@ -8,14 +8,12 @@
   "peerDependencies": {
     "moment": "^2.22.2"
   },
-  "dependencies": {
-    "@date-io/core": "^1.1.0"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@date-io/core": "^0.0.1",
-    "moment": "^2.22.2",
+    "@date-io/core": "^1.1.0",
+    "moment": "^2.24.0",
     "rollup": "^0.66.6",
-    "typescript": "^3.2.4"
+    "typescript": "^3.4.1"
   },
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
