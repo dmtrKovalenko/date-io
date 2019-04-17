@@ -6,17 +6,17 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
   public yearFormat = "yyyy";
 
-  public yearMonthFormat = "MMMM yyyy";
+  public yearMonthFormat = "LLLL yyyy";
 
   public dateTime12hFormat = "ff";
 
-  public dateTime24hFormat = "LLLL dd T";
+  public dateTime24hFormat = "MMMM dd T";
 
-  public time12hFormat = "hh:mm a";
+  public time12hFormat = "t";
 
   public time24hFormat = "T";
 
-  public dateFormat = "LLLL dd";
+  public dateFormat = "MMMM dd";
 
   constructor({ locale }: { locale?: string } = {}) {
     this.locale = locale || "en";
