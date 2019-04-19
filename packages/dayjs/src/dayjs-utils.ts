@@ -7,7 +7,11 @@ defaultDayjs.extend(customParseFormat);
 defaultDayjs.extend(advancedFormat);
 
 interface Opts {
+  /** Locale string, only for consistency and rerendering */
   locale?: string;
+  /** Make sure that your dayjs instance extends customParseFormat and advancedFormat */
+  instance?: typeof defaultDayjs;
+  /** @deprecated */
   dayjs?: typeof defaultDayjs;
 }
 
@@ -32,8 +36,8 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   public dateFormat = "MMMM Do";
 
-  constructor({ locale, dayjs }: Opts = {}) {
-    this.dayjs = dayjs || defaultDayjs;
+  constructor({ locale, instance, dayjs }: Opts = {}) {
+    this.dayjs = instance || dayjs || defaultDayjs;
     this.locale = locale;
   }
 
