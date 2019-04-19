@@ -3,6 +3,8 @@ import { IUtils } from "@date-io/core/IUtils";
 
 interface Opts {
   locale?: string;
+  instance?: typeof defaultMoment;
+  /** @deprecated */
   moment?: typeof defaultMoment;
 }
 
