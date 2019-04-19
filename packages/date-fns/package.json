@@ -38,7 +38,7 @@
   "devDependencies": {
     "date-fns": "^2.0.0-alpha.27",
     "rollup": "^0.66.6",
-    "typescript": "^3.2.4"
+    "typescript": "^3.4.4"
   },
   "gitHead": "75f08408e702874235295cf283747ed5c02193f0"
 }
