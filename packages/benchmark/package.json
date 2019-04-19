@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.2.0",
   "private": true,
   "name": "date-io-benchmark",
   "scripts": {
@@ -9,10 +9,10 @@
     "benchmark": "npm run benchmark:formats && npm run benchmark:calculations && npm run benchmark:parse"
   },
   "dependencies": {
-    "@date-io/date-fns": "^1.1.0",
-    "@date-io/dayjs": "^1.1.0",
-    "@date-io/luxon": "^1.1.0",
-    "@date-io/moment": "^1.1.0",
+    "@date-io/date-fns": "^1.2.0",
+    "@date-io/dayjs": "^1.2.0",
+    "@date-io/luxon": "^1.2.0",
+    "@date-io/moment": "^1.2.0",
     "benchmark": "^2.1.4"
   }
 }
