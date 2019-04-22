@@ -29,8 +29,8 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   public dateFormat = "MMMM Do";
 
-  constructor({ locale, moment }: Opts = {}) {
-    this.moment = moment || defaultMoment;
+  constructor({ locale, instance, moment }: Opts = {}) {
+    this.moment = instance || moment || defaultMoment;
     this.locale = locale;
   }
 
