@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "declaration": true,
+    "esModuleInterop": true,
+    "emitDeclarationOnly": true,
+    "moduleResolution": "node",
+    "declarationDir": "build"
+  },
+  "include": ["./**/*.ts"],
+  "exclude": ["./**/*.d.ts"]
+}

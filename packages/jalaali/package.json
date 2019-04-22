@@ -20,7 +20,7 @@
     "typescript": "^3.4.4"
   },
   "scripts": {
-    "build": "rollup -c && tsc -p tsconfig.declaration.json"
+    "build": "rollup -c && tsc -p tsconfig.json"
   },
   "bugs": {
     "url": "https://github.com/dmtrKovalenko/date-io/issues"

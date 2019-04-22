@@ -6,7 +6,7 @@
   "module": "build/index.esm.js",
   "typings": "build/index.d.ts",
   "scripts": {
-    "build": "rollup -c && tsc -p tsconfig.declaration.json"
+    "build": "rollup -c && tsc -p tsconfig.json"
   },
   "peerDependencies": {
     "luxon": "^1.4.4"
