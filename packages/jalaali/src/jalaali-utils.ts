@@ -1,7 +1,6 @@
 import Moment from "moment";
 import jMoment from "moment-jalaali";
 import DefaultMomentUtils from "@date-io/moment";
-import { IUtils } from "@date-io/core/IUtils";
 
 var symbolMap = {
   1: "۱",
@@ -17,7 +16,9 @@ var symbolMap = {
 };
 
 interface Opts {
+  /** @deprecated */
   moment?: typeof jMoment;
+  instance?: typeof jMoment;
 }
 
 type Moment = jMoment.Moment;
@@ -37,10 +38,10 @@ export default class MomentUtils extends DefaultMomentUtils {
 
   public dateFormat = "jMMMM jD";
 
-  constructor({ moment }: Opts = {}) {
+  constructor({ moment, instance }: Opts = {}) {
     super({ locale: "fa", moment });
 
-    this.moment = moment || jMoment;
+    this.moment = instance || moment || jMoment;
     this.locale = "fa";
   }
 
