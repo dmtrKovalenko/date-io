@@ -12,9 +12,9 @@
     "@date-io/core": "^1.2.0"
   },
   "devDependencies": {
-    "dayjs": "^1.8.12",
+    "dayjs": "^1.8.14",
     "rollup": "^0.66.6",
-    "typescript": "^3.4.4"
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
