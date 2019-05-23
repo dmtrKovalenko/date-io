@@ -12,7 +12,7 @@
     "@date-io/core": "^1.2.0",
     "moment": "^2.24.0",
     "rollup": "^0.66.6",
-    "typescript": "^3.4.4"
+    "typescript": "^3.4.5"
   },
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
