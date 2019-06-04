@@ -142,7 +142,7 @@ export default class DateFnsUtils implements IUtils<Date> {
       return null;
     }
 
-    return dateFnsParse(value, formatString, new Date());
+    return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
   }
 
   public format(date: Date, formatString: string) {
