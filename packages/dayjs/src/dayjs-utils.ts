@@ -105,8 +105,12 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public format(date: Dayjs, formatString: string) {
+<<<<<<< HEAD
     date.locale(this.locale);
     return date.format(formatString);
+=======
+    return date.locale(this.locale).format(formatString);
+>>>>>>> Make dayjs and moment utils use local translation instead of global
   }
 
   public formatNumber(numberToFormat: string) {
@@ -188,7 +192,11 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public getMonthText(date: Dayjs) {
+<<<<<<< HEAD
     return this.format(date, "MMMM");
+=======
+    return date.locale(this.locale).format("MMMM");
+>>>>>>> Make dayjs and moment utils use local translation instead of global
   }
 
   public getYear(date: Dayjs) {
@@ -208,7 +216,14 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   public getWeekdays() {
     return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
+<<<<<<< HEAD
       this.format(this.dayjs().set("day", dayOfWeek), "dd")
+=======
+      this.dayjs()
+        .set("day", dayOfWeek)
+        .locale(this.locale)
+        .format("dd")
+>>>>>>> Make dayjs and moment utils use local translation instead of global
     );
   }
 
@@ -262,6 +277,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   // displaying methods
   public getCalendarHeaderText(date: Dayjs) {
+<<<<<<< HEAD
     return this.format(date, "MMMM YYYY");
   }
 
@@ -291,5 +307,36 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   public getSecondText(date: Dayjs) {
     return this.format(date, "ss");
+=======
+    return date.locale(this.locale).format("MMMM YYYY");
+  }
+
+  public getYearText(date: Dayjs) {
+    return date.locale(this.locale).format("YYYY");
+  }
+
+  public getDatePickerHeaderText(date: Dayjs) {
+    return date.locale(this.locale).format("ddd, MMM D");
+  }
+
+  public getDateTimePickerHeaderText(date: Dayjs) {
+    return date.locale(this.locale).format("MMM D");
+  }
+
+  public getDayText(date: Dayjs) {
+    return date.locale(this.locale).format("D");
+  }
+
+  public getHourText(date: Dayjs, ampm: boolean) {
+    return date.locale(this.locale).format(ampm ? "hh" : "HH");
+  }
+
+  public getMinuteText(date: Dayjs) {
+    return date.locale(this.locale).format("mm");
+  }
+
+  public getSecondText(date: Dayjs) {
+    return date.locale(this.locale).format("ss");
+>>>>>>> Make dayjs and moment utils use local translation instead of global
   }
 }
