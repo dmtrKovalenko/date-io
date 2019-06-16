@@ -7,7 +7,6 @@ defaultDayjs.extend(customParseFormat);
 defaultDayjs.extend(advancedFormat);
 
 interface Opts {
-  /** Locale string, only for consistency and rerendering */
   locale?: string;
   /** Make sure that your dayjs instance extends customParseFormat and advancedFormat */
   instance?: typeof defaultDayjs;
@@ -106,6 +105,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public format(date: Dayjs, formatString: string) {
+    date.locale(this.locale);
     return date.format(formatString);
   }
 
@@ -188,7 +188,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public getMonthText(date: Dayjs) {
-    return date.format("MMMM");
+    return this.format(date, "MMMM");
   }
 
   public getYear(date: Dayjs) {
@@ -208,9 +208,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   public getWeekdays() {
     return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
-      this.dayjs()
-        .set("day", dayOfWeek)
-        .format("dd")
+      this.format(this.dayjs().set("day", dayOfWeek), "dd")
     );
   }
 
@@ -264,34 +262,34 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   // displaying methods
   public getCalendarHeaderText(date: Dayjs) {
-    return date.format("MMMM YYYY");
+    return this.format(date, "MMMM YYYY");
   }
 
   public getYearText(date: Dayjs) {
-    return date.format("YYYY");
+    return this.format(date, "YYYY");
   }
 
   public getDatePickerHeaderText(date: Dayjs) {
-    return date.format("ddd, MMM D");
+    return this.format(date, "ddd, MMM D");
   }
 
   public getDateTimePickerHeaderText(date: Dayjs) {
-    return date.format("MMM D");
+    return this.format(date, "MMM D");
   }
 
   public getDayText(date: Dayjs) {
-    return date.format("D");
+    return this.format(date, "D");
   }
 
   public getHourText(date: Dayjs, ampm: boolean) {
-    return date.format(ampm ? "hh" : "HH");
+    return this.format(date, ampm ? "hh" : "HH");
   }
 
   public getMinuteText(date: Dayjs) {
-    return date.format("mm");
+    return this.format(date, "mm");
   }
 
   public getSecondText(date: Dayjs) {
-    return date.format("ss");
+    return this.format(date, "ss");
   }
 }
