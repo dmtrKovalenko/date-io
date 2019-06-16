@@ -95,12 +95,8 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public format(date: Moment, formatString: string) {
-<<<<<<< HEAD
     date.locale(this.locale);
     return date.format(formatString);
-=======
-    return date.locale(this.locale).format(formatString);
->>>>>>> Make dayjs and moment utils use local translation instead of global
   }
 
   public formatNumber(numberToFormat: string) {
@@ -198,14 +194,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   public getWeekdays() {
     return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
-<<<<<<< HEAD
       this.format(this.moment().weekday(dayOfWeek), "dd")
-=======
-      this.moment()
-        .weekday(dayOfWeek)
-        .locale(this.locale)
-        .format("dd")
->>>>>>> Make dayjs and moment utils use local translation instead of global
     );
   }
 
@@ -259,7 +248,6 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   // displaying methods
   public getCalendarHeaderText(date: Moment) {
-<<<<<<< HEAD
     return this.format(date, this.yearMonthFormat);
   }
 
@@ -293,40 +281,5 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   public getSecondText(date: Moment) {
     return this.format(date, "ss");
-=======
-    return date.locale(this.locale).format(this.yearMonthFormat);
-  }
-
-  public getYearText(date: Moment) {
-    return date.locale(this.locale).format("YYYY");
-  }
-
-  public getDatePickerHeaderText(date: Moment) {
-    return date.locale(this.locale).format("ddd, MMM D");
-  }
-
-  public getDateTimePickerHeaderText(date: Moment) {
-    return date.locale(this.locale).format("MMM D");
-  }
-
-  public getMonthText(date: Moment) {
-    return date.locale(this.locale).format("MMMM");
-  }
-
-  public getDayText(date: Moment) {
-    return date.locale(this.locale).format("D");
-  }
-
-  public getHourText(date: Moment, ampm: boolean) {
-    return date.locale(this.locale).format(ampm ? "hh" : "HH");
-  }
-
-  public getMinuteText(date: Moment) {
-    return date.locale(this.locale).format("mm");
-  }
-
-  public getSecondText(date: Moment) {
-    return date.locale(this.locale).format("ss");
->>>>>>> Make dayjs and moment utils use local translation instead of global
   }
 }
