@@ -95,7 +95,8 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public format(date: Moment, formatString: string) {
-    return date.locale(this.locale).format(formatString);
+    date.locale(this.locale);
+    return date.format(formatString);
   }
 
   public formatNumber(numberToFormat: string) {
@@ -193,10 +194,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   public getWeekdays() {
     return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
-      this.moment()
-        .weekday(dayOfWeek)
-        .locale(this.locale)
-        .format("dd")
+      this.format(this.moment().weekday(dayOfWeek), "dd")
     );
   }
 
@@ -250,38 +248,38 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   // displaying methods
   public getCalendarHeaderText(date: Moment) {
-    return date.locale(this.locale).format(this.yearMonthFormat);
+    return this.format(date, this.yearMonthFormat);
   }
 
   public getYearText(date: Moment) {
-    return date.locale(this.locale).format("YYYY");
+    return this.format(date, "YYYY");
   }
 
   public getDatePickerHeaderText(date: Moment) {
-    return date.locale(this.locale).format("ddd, MMM D");
+    return this.format(date, "ddd, MMM D");
   }
 
   public getDateTimePickerHeaderText(date: Moment) {
-    return date.locale(this.locale).format("MMM D");
+    return this.format(date, "MMM D");
   }
 
   public getMonthText(date: Moment) {
-    return date.locale(this.locale).format("MMMM");
+    return this.format(date, "MMMM");
   }
 
   public getDayText(date: Moment) {
-    return date.locale(this.locale).format("D");
+    return this.format(date, "D");
   }
 
   public getHourText(date: Moment, ampm: boolean) {
-    return date.locale(this.locale).format(ampm ? "hh" : "HH");
+    return this.format(date, ampm ? "hh" : "HH");
   }
 
   public getMinuteText(date: Moment) {
-    return date.locale(this.locale).format("mm");
+    return this.format(date, "mm");
   }
 
   public getSecondText(date: Moment) {
-    return date.locale(this.locale).format("ss");
+    return this.format(date, "ss");
   }
 }
