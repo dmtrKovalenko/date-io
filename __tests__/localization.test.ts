@@ -4,6 +4,17 @@ import advancedDayJsFormat from "dayjs/plugin/advancedFormat";
 import LuxonUtils from "../packages/luxon/src";
 import { TEST_TIMESTAMP } from "./test-utils";
 import DayjsUtils from "../packages/dayjs/src";
+import ruLocale from "date-fns/locale/ru";
+import DateFnsUtils from "../packages/date-fns/src";
+
+describe("DateFns -- Localization", () => {
+  const dateFnsUtils = new DateFnsUtils({ locale: ruLocale });
+  const date = dateFnsUtils.date(TEST_TIMESTAMP);
+
+  it("Should display localized datapicker text", () => {
+    expect(dateFnsUtils.getDatePickerHeaderText(date)).toBe("втр, окт. 30");
+  });
+});
 
 describe("Luxon -- Localization", () => {
   describe("in French", () => {
