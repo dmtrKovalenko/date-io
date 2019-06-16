@@ -7,7 +7,6 @@ defaultDayjs.extend(customParseFormat);
 defaultDayjs.extend(advancedFormat);
 
 interface Opts {
-  /** Locale string, only for consistency and rerendering */
   locale?: string;
   /** Make sure that your dayjs instance extends customParseFormat and advancedFormat */
   instance?: typeof defaultDayjs;
@@ -106,7 +105,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public format(date: Dayjs, formatString: string) {
-    return date.format(formatString);
+    return date.locale(this.locale).format(formatString);
   }
 
   public formatNumber(numberToFormat: string) {
@@ -188,7 +187,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public getMonthText(date: Dayjs) {
-    return date.format("MMMM");
+    return date.locale(this.locale).format("MMMM");
   }
 
   public getYear(date: Dayjs) {
@@ -210,6 +209,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
       this.dayjs()
         .set("day", dayOfWeek)
+        .locale(this.locale)
         .format("dd")
     );
   }
@@ -264,34 +264,34 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   // displaying methods
   public getCalendarHeaderText(date: Dayjs) {
-    return date.format("MMMM YYYY");
+    return date.locale(this.locale).format("MMMM YYYY");
   }
 
   public getYearText(date: Dayjs) {
-    return date.format("YYYY");
+    return date.locale(this.locale).format("YYYY");
   }
 
   public getDatePickerHeaderText(date: Dayjs) {
-    return date.format("ddd, MMM D");
+    return date.locale(this.locale).format("ddd, MMM D");
   }
 
   public getDateTimePickerHeaderText(date: Dayjs) {
-    return date.format("MMM D");
+    return date.locale(this.locale).format("MMM D");
   }
 
   public getDayText(date: Dayjs) {
-    return date.format("D");
+    return date.locale(this.locale).format("D");
   }
 
   public getHourText(date: Dayjs, ampm: boolean) {
-    return date.format(ampm ? "hh" : "HH");
+    return date.locale(this.locale).format(ampm ? "hh" : "HH");
   }
 
   public getMinuteText(date: Dayjs) {
-    return date.format("mm");
+    return date.locale(this.locale).format("mm");
   }
 
   public getSecondText(date: Dayjs) {
-    return date.format("ss");
+    return date.locale(this.locale).format("ss");
   }
 }

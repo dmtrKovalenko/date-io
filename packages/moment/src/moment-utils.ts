@@ -95,7 +95,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public format(date: Moment, formatString: string) {
-    return date.format(formatString);
+    return date.locale(this.locale).format(formatString);
   }
 
   public formatNumber(numberToFormat: string) {
@@ -195,6 +195,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
       this.moment()
         .weekday(dayOfWeek)
+        .locale(this.locale)
         .format("dd")
     );
   }
@@ -249,38 +250,38 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   // displaying methods
   public getCalendarHeaderText(date: Moment) {
-    return date.format(this.yearMonthFormat);
+    return date.locale(this.locale).format(this.yearMonthFormat);
   }
 
   public getYearText(date: Moment) {
-    return date.format("YYYY");
+    return date.locale(this.locale).format("YYYY");
   }
 
   public getDatePickerHeaderText(date: Moment) {
-    return date.format("ddd, MMM D");
+    return date.locale(this.locale).format("ddd, MMM D");
   }
 
   public getDateTimePickerHeaderText(date: Moment) {
-    return date.format("MMM D");
+    return date.locale(this.locale).format("MMM D");
   }
 
   public getMonthText(date: Moment) {
-    return date.format("MMMM");
+    return date.locale(this.locale).format("MMMM");
   }
 
   public getDayText(date: Moment) {
-    return date.format("D");
+    return date.locale(this.locale).format("D");
   }
 
   public getHourText(date: Moment, ampm: boolean) {
-    return date.format(ampm ? "hh" : "HH");
+    return date.locale(this.locale).format(ampm ? "hh" : "HH");
   }
 
   public getMinuteText(date: Moment) {
-    return date.format("mm");
+    return date.locale(this.locale).format("mm");
   }
 
   public getSecondText(date: Moment) {
-    return date.format("ss");
+    return date.locale(this.locale).format("ss");
   }
 }
