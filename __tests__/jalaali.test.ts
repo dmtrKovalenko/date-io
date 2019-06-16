@@ -1,6 +1,6 @@
 import JalaaliUtils from "../packages/jalaali/src";
 import { TEST_TIMESTAMP } from "./test-utils";
-import jMoment from "../packages/jalaali/node_modules/moment-jalaali";
+import jMoment from "moment-jalaali";
 
 jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 

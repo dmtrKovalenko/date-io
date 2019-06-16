@@ -3,6 +3,6 @@ node_js:
   - "10"
 
 install:
-  - npm install && npx lerna bootstrap
+  - yarn
 script:
   - npm run build && npm run test:coverage && npx codecov && npm run benchmark

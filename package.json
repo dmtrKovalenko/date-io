@@ -4,6 +4,9 @@
   "version": "1.0.0",
   "description": "Abstraction over common javascript date management libraries",
   "main": "index.js",
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
     "test": "TZ=UTC NODE_ICU_DATA='./node_modules/full-icu' jest --watch",
     "test:coverage": "TZ=UTC NODE_ICU_DATA='./node_modules/full-icu' jest --coverage",
