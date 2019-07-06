@@ -1964,7 +1964,7 @@ dateformat@^3.0.0:
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-3.0.3.tgz#a6e37499a4d9a9cf85ef5872044d62901c9889ae"
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
-dayjs@^1.8.12, dayjs@^1.8.14:
+dayjs@^1.8.14:
   version "1.8.14"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.8.14.tgz#43e4f62830c2c3342c3fcd25934dc9162dbe6f38"
   integrity sha512-AVhDmRTe541iWirnoeFSSDDGvCT6HWaNQ4z2WmmzXMGZj6ph6ydao2teKq/eUtR43GPJXlYFD+C/SotG1P9wUQ==
