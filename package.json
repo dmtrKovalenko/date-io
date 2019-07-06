@@ -39,7 +39,7 @@
     "lerna": "^3.15.0",
     "lint-staged": "^8.1.0",
     "prettier": "^1.18.2",
-    "rollup": "^0.66.6",
+    "rollup": "^0.68.2",
     "rollup-plugin-typescript": "^1.0.0",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.2"
