@@ -1,0 +1,12 @@
+{
+  "extends": ["config:base"],
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "prHourlyLimit": 2,
+  "updateNotScheduled": false,
+  "timezone": "Europe/Kiev",
+  "lockFileMaintenance": { "enabled": false },
+  "schedule": ["every weekend"]
+}
