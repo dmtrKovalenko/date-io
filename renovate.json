@@ -4,7 +4,7 @@
   "major": {
     "automerge": false
   },
-  "prHourlyLimit": 2,
+  "prHourlyLimit": 10,
   "updateNotScheduled": false,
   "timezone": "Europe/Kiev",
   "lockFileMaintenance": { "enabled": false },
