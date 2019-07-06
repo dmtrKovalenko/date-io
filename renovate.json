@@ -4,6 +4,7 @@
   "major": {
     "automerge": false
   },
+  "rangeStrategy": "bump",
   "prHourlyLimit": 10,
   "updateNotScheduled": false,
   "timezone": "Europe/Kiev",
