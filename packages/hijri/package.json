@@ -17,7 +17,7 @@
     "moment": "^2.24.0",
     "moment-hijri": "^2.1.2",
     "rollup": "^1.16.6",
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.3"
   },
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
