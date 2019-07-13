@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "dayjs": "^1.8.15",
-    "rollup": "^1.16.6",
+    "rollup": "^1.16.7",
     "typescript": "^3.5.3"
   },
   "scripts": {
