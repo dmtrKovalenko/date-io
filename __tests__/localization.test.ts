@@ -12,7 +12,7 @@ describe("DateFns -- Localization", () => {
   const date = dateFnsUtils.date(TEST_TIMESTAMP);
 
   it("Should display localized datapicker text", () => {
-    expect(dateFnsUtils.getDatePickerHeaderText(date)).toBe("втр, окт. 30");
+    expect(dateFnsUtils.getDatePickerHeaderText(date)).toBe("втр, окт. 30 d");
   });
 });
 

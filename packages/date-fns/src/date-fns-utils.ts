@@ -229,7 +229,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     return eachDayOfInterval({
       start: startOfWeek(now, { locale: this.locale }),
       end: endOfWeek(now, { locale: this.locale })
-    }).map(day => format(day, "EEEEEE", { locale: this.locale }));
+    }).map(day => this.format(day, "EEEEEE"));
   }
 
   public getWeekArray(date: Date) {
@@ -267,38 +267,38 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   // displaying methpds
   public getCalendarHeaderText(date: Date) {
-    return format(date, this.yearMonthFormat, { locale: this.locale });
+    return this.format(date, this.yearMonthFormat);
   }
 
   public getYearText(date: Date) {
-    return format(date, "yyyy", { locale: this.locale });
+    return this.format(date, "yyyy");
   }
 
   public getDatePickerHeaderText(date: Date) {
-    return format(date, "EEE, MMM d", { locale: this.locale });
+    return this.format(date, "EEE, MMM d");
   }
 
   public getDateTimePickerHeaderText(date: Date) {
-    return format(date, "MMM d", { locale: this.locale });
+    return this.format(date, "MMM d");
   }
 
   public getMonthText(date: Date) {
-    return format(date, "MMMM", { locale: this.locale });
+    return this.format(date, "MMMM");
   }
 
   public getDayText(date: Date) {
-    return format(date, "d", { locale: this.locale });
+    return this.format(date, "d");
   }
 
   public getHourText(date: Date, ampm: boolean) {
-    return format(date, ampm ? "hh" : "HH", { locale: this.locale });
+    return this.format(date, ampm ? "hh" : "HH");
   }
 
   public getMinuteText(date: Date) {
-    return format(date, "mm", { locale: this.locale });
+    return this.format(date, "mm");
   }
 
   public getSecondText(date: Date) {
-    return format(date, "ss", { locale: this.locale });
+    return this.format(date, "ss");
   }
 }
