@@ -48,4 +48,8 @@ describe("Dayjs -- Localization", () => {
       "октябрь 30 11:44 am"
     );
   });
+
+  it("Should return weekdays according to the locale", () => {
+    expect(dayjsUtils.getWeekdays()).toEqual(["пн", "вт", "ср", "чт", "пт", "сб", "вс"]);
+  });
 });
