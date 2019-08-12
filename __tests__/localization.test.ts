@@ -68,12 +68,17 @@ describe("Dayjs -- Localization", () => {
   const date = dayjsUtils.date(TEST_TIMESTAMP);
 
   it("Should display localized text", () => {
-    expect(dayjsUtils.format(date, dayjsUtils.dateTime12hFormat)).toBe(
-      "октябрь 30 11:44 am"
-    );
+    const result = dayjsUtils.format(date, dayjsUtils.dateTime12hFormat);
+    expect(result).toBe("октябрь 30 11:44 am");
   });
 
-  it("Should return weekdays starting with monday", () => {
-    expect(dayjsUtils.getWeekdays()).toEqual(["пн", "вт", "ср", "чт", "пт", "сб", "вс"]);
+  it("getWeekdays: should start from monday", () => {
+    const result = dayjsUtils.getWeekdays();
+    expect(result).toEqual(["пн", "вт", "ср", "чт", "пт", "сб", "вс"]);
+  });
+
+  it("getWeekArray: week should start from monday", () => {
+    const result = dayjsUtils.getWeekArray(date);
+    expect(result[0][0].format("dd")).toBe("пн");
   });
 });
