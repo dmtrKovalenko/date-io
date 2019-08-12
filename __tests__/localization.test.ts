@@ -14,6 +14,18 @@ describe("DateFns -- Localization", () => {
   it("Should display localized datapicker text", () => {
     expect(dateFnsUtils.getDatePickerHeaderText(date)).toBe("втр, окт. 30");
   });
+
+  it("Should return weekdays starting with monday", () => {
+    expect(dateFnsUtils.getWeekdays()).toEqual([
+      "пн",
+      "вт",
+      "ср",
+      "чт",
+      "пт",
+      "сб",
+      "вс"
+    ]);
+  });
 });
 
 describe("Luxon -- Localization", () => {
@@ -33,6 +45,18 @@ describe("Luxon -- Localization", () => {
     it("Should display localized text", () => {
       expect(luxonUtils.getCalendarHeaderText(date)).toBe("октябрь 2018");
     });
+
+    it("Should return weekdays starting with monday", () => {
+      expect(luxonUtils.getWeekdays()).toEqual([
+        "пн",
+        "вт",
+        "ср",
+        "чт",
+        "пт",
+        "сб",
+        "вс"
+      ]);
+    });
   });
 });
 
@@ -49,7 +73,7 @@ describe("Dayjs -- Localization", () => {
     );
   });
 
-  it("Should return weekdays according to the locale", () => {
+  it("Should return weekdays starting with monday", () => {
     expect(dayjsUtils.getWeekdays()).toEqual(["пн", "вт", "ср", "чт", "пт", "сб", "вс"]);
   });
 });

@@ -209,7 +209,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   public getWeekdays() {
     const start = this.dayjs().startOf("week");
     return [0, 1, 2, 3, 4, 5, 6].map(diff =>
-      this.format(this.dayjs(start).add(diff, "day"), "dd")
+      this.format(start.clone().add(diff, "day"), "dd")
     );
   }
 
