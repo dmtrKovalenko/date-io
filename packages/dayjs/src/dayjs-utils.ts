@@ -15,9 +15,13 @@ interface Opts {
 }
 
 type Dayjs = defaultDayjs.Dayjs;
+type Constructor = (...args: Parameters<typeof defaultDayjs>) => Dayjs;
+
+const withLocale = (dayjs: typeof defaultDayjs, locale?: string): Constructor =>
+  !locale ? dayjs : (...args) => dayjs(...args).locale(locale);
 
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
-  public dayjs: typeof defaultDayjs;
+  public dayjs: Constructor;
 
   public locale?: string;
 
@@ -36,7 +40,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   public dateFormat = "MMMM Do";
 
   constructor({ locale, instance, dayjs }: Opts = {}) {
-    this.dayjs = instance || dayjs || defaultDayjs;
+    this.dayjs = withLocale(instance || dayjs || defaultDayjs, locale);
     this.locale = locale;
   }
 
@@ -61,11 +65,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public isNull(date: Dayjs) {
-    if (date === null) {
-      return true;
-    }
-
-    return false;
+    return date === null;
   }
 
   public getDiff(date: Dayjs, comparing: Dayjs, units?: any, float?: any) {
@@ -105,8 +105,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public format(date: Dayjs, formatString: string) {
-    date.locale(this.locale);
-    return date.format(formatString);
+    return this.dayjs(date).format(formatString);
   }
 
   public formatNumber(numberToFormat: string) {
@@ -207,9 +206,8 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public getWeekdays() {
-    return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
-      this.format(this.dayjs().set("day", dayOfWeek), "dd")
-    );
+    const start = this.dayjs().startOf("week");
+    return [0, 1, 2, 3, 4, 5, 6].map(diff => this.format(start.add(diff, "day"), "dd"));
   }
 
   public isEqual(value: any, comparing: any) {
@@ -221,11 +219,11 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public getWeekArray(date: Dayjs) {
-    const start = date
+    const start = this.dayjs(date)
       .clone()
       .startOf("month")
       .startOf("week");
-    const end = date
+    const end = this.dayjs(date)
       .clone()
       .endOf("month")
       .endOf("week");
