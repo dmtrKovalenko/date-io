@@ -32,6 +32,8 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   constructor({ locale, instance, moment }: Opts = {}) {
     this.moment = instance || moment || defaultMoment;
     this.locale = locale;
+
+    this.moment.locale(locale); // set our instance to use passed locale
   }
 
   public parse(value: string, format: string) {
@@ -193,9 +195,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public getWeekdays() {
-    return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
-      this.format(this.moment().weekday(dayOfWeek), "dd")
-    );
+    return this.moment.weekdaysShort(true);
   }
 
   public isEqual(value: any, comparing: any) {
