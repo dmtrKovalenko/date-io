@@ -32,8 +32,6 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   constructor({ locale, instance, moment }: Opts = {}) {
     this.moment = instance || moment || defaultMoment;
     this.locale = locale;
-
-    this.moment.locale(locale); // set our instance to use passed locale
   }
 
   public parse(value: string, format: string) {
@@ -49,7 +47,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
       return null;
     }
 
-    return this.moment(value);
+    const moment = this.moment(value);
+    moment.locale(this.locale);
+
+    return moment;
   }
 
   public isValid(value: any) {
