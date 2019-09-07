@@ -6,6 +6,8 @@ import { TEST_TIMESTAMP } from "./test-utils";
 import DayjsUtils from "../packages/dayjs/src";
 import ruLocale from "date-fns/locale/ru";
 import DateFnsUtils from "../packages/date-fns/src";
+import MomentUtils from "../packages/moment/src";
+import moment from "moment";
 
 describe("DateFns -- Localization", () => {
   const dateFnsUtils = new DateFnsUtils({ locale: ruLocale });
@@ -42,6 +44,46 @@ describe("Luxon -- Localization", () => {
     it("Should return weekdays starting with monday", () => {
       const result = luxonUtils.getWeekdays();
       expect(result).toEqual(["пн", "вт", "ср", "чт", "пт", "сб", "вс"]);
+    });
+  });
+});
+
+describe("Moment -- localization", () => {
+  describe("Russian", () => {
+    const momentUtils = new MomentUtils({ locale: "ru" });
+    const date = momentUtils.date(TEST_TIMESTAMP);
+
+    it("Should display localized text", () => {
+      moment.locale("ru");
+      const result = momentUtils.format(date, momentUtils.dateFormat);
+      expect(result).toBe("октябрь 30-го");
+    });
+
+    it("getWeekdays: should start from monday", () => {
+      moment.locale("ru");
+      const result = momentUtils.getWeekdays();
+      expect(result).toEqual(["пн", "вт", "ср", "чт", "пт", "сб", "вс"]);
+    });
+
+    it("getWeekArray: week should start from monday", () => {
+      moment.locale("ru");
+      const result = momentUtils.getWeekArray(date);
+      expect(result[0][0].format("dd")).toBe("пн");
+    });
+  });
+
+  describe.skip("English", () => {
+    const momentUtils = new MomentUtils({ locale: "en" });
+    const date = momentUtils.date(TEST_TIMESTAMP);
+
+    it("getWeekdays: should start from monday", () => {
+      const result = momentUtils.getWeekdays();
+      expect(result).toEqual(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]);
+    });
+
+    it("getWeekArray: week should start from monday", () => {
+      const result = momentUtils.getWeekArray(date);
+      expect(result[0][0].format("dd")).toBe("Su");
     });
   });
 });

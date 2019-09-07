@@ -47,7 +47,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
       return null;
     }
 
-    return this.moment(value);
+    const moment = this.moment(value);
+    moment.locale(this.locale);
+
+    return moment;
   }
 
   public isValid(value: any) {
@@ -193,9 +196,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public getWeekdays() {
-    return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek =>
-      this.format(this.moment().weekday(dayOfWeek), "dd")
-    );
+    return this.moment.weekdaysShort(true);
   }
 
   public isEqual(value: any, comparing: any) {
