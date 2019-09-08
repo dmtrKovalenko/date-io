@@ -17,7 +17,7 @@
   "devDependencies": {
     "@types/luxon": "^1.15.2",
     "luxon": "^1.17.2",
-    "rollup": "^1.20.3",
+    "rollup": "^1.21.0",
     "typescript": "^3.6.2"
   },
   "bugs": {
