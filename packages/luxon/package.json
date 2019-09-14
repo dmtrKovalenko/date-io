@@ -18,7 +18,7 @@
     "@types/luxon": "^1.15.2",
     "luxon": "^1.17.3",
     "rollup": "^1.21.2",
-    "typescript": "^3.6.2"
+    "typescript": "^3.6.3"
   },
   "bugs": {
     "url": "https://github.com/dmtrKovalenko/date-io/issues"
