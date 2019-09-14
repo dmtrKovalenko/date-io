@@ -28,7 +28,7 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "rollup": "^1.21.2",
+    "rollup": "^1.21.3",
     "typescript": "^3.6.3"
   },
   "gitHead": "b288f4a6e493cefa32226e9363adea4fe1184168"
