@@ -4497,10 +4497,10 @@ lru-cache@^5.1.1:
   dependencies:
     yallist "^3.0.2"
 
-luxon@^1.18.2:
-  version "1.18.2"
-  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.18.2.tgz#0f03d5f1f5fdd6ab74c2407533ffc12cd06827eb"
-  integrity sha512-Vanyg+CjU9mkSCYA+OZqh3VG3Cucy3ybw66RwVBTrHzCS3v/LZYsmxW14IyNPVhp1U7TIr7ogMKA1+PHzQasiQ==
+luxon@^1.19.0:
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/luxon/-/luxon-1.19.0.tgz#8b7d9087284bb1b1a02602449587edfc05a05fe4"
+  integrity sha512-8e+PTZI5+SyHGQE2kvd07lEm3nArzhueSjfHkZGJyFMlKpNKP0V6xjSGLwW+ZlujS71pmTYl+/dDXdzM0DvkUQ==
 
 macos-release@^2.2.0:
   version "2.3.0"
