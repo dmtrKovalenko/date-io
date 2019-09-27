@@ -9,14 +9,14 @@
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
   },
   "peerDependencies": {
-    "luxon": "^1.19.0"
+    "luxon": "^1.19.3"
   },
   "dependencies": {
     "@date-io/core": "^1.3.11"
   },
   "devDependencies": {
     "@types/luxon": "^1.15.2",
-    "luxon": "^1.19.0",
+    "luxon": "^1.19.3",
     "rollup": "^1.21.4",
     "typescript": "^3.6.3"
   },
