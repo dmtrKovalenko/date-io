@@ -2208,10 +2208,10 @@ data-urls@^1.0.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-date-fns@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.4.0.tgz#e02d1d08ce80ae1db3de40a0028c9f54203d034b"
-  integrity sha512-xS547fK1omgCgOGbyU0fBY2pdeXQ9/WO/PMsVgX1jtF56dXNHrV3Z+GKWIOE7IG+UEeu+fTyTlnIvBKbxXxdSw==
+date-fns@2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-2.4.1.tgz#b53f9bb65ae6bd9239437035710e01cf383b625e"
+  integrity sha512-2RhmH/sjDSCYW2F3ZQxOUx/I7PvzXpi89aQL2d3OAxSTwLx6NilATeUbe0menFE3Lu5lFkOFci36ivimwYHHxw==
 
 date-fns@^1.27.2:
   version "1.30.1"
