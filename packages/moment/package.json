@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "moment": "^2.24.0",
-    "rollup": "^1.21.4",
+    "rollup": "^1.22.0",
     "typescript": "^3.6.3"
   },
   "scripts": {
