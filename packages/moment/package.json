@@ -14,7 +14,7 @@
   "devDependencies": {
     "moment": "^2.24.0",
     "rollup": "^1.23.1",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"

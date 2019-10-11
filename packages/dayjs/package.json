@@ -14,7 +14,7 @@
   "devDependencies": {
     "dayjs": "^1.8.16",
     "rollup": "^1.23.1",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.4"
   },
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
