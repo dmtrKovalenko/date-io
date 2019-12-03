@@ -13,7 +13,7 @@ const allUtils = [
   ["DateFns", new DateFnsUtils()],
   ["Moment", new MomentUtils()],
   ["Dayjs", new DayJSUtils()]
-];
+] as const;
 
 export const utilsTest = (
   name: string,
