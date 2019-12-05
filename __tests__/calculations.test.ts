@@ -228,7 +228,7 @@ describe("DateTime calculations", () => {
 
   utilsTest("isSameDay", (date, utils, lib) => {
     expect(utils.isSameDay(date, utils.date("2018-10-30T00:00:00.000Z"))).toBeTruthy();
-    expect(utils.isSameDay(date, utils.date("2019-10-30T00:00:00.000Z"))).toBeTruthy();
+    expect(utils.isSameDay(date, utils.date("2019-10-30T00:00:00.000Z"))).toBeFalsy();
   });
 
   utilsTest("isSameMonth", (date, utils, lib) => {
