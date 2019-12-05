@@ -22,7 +22,11 @@ export interface IUtils<TDate> {
   isValid(value: any): boolean;
   getDiff(value: TDate, comparing: TDate | string): number;
   isEqual(value: any, comparing: any): boolean;
+
   isSameDay(value: TDate, comparing: TDate): boolean;
+  isSameMonth(value: TDate, comparing: TDate): boolean;
+  isSameYear(value: TDate, comparing: TDate): boolean;
+  isSameHour(value: TDate, comparing: TDate): boolean;
 
   isAfter(value: TDate, comparing: TDate): boolean;
   isAfterDay(value: TDate, comparing: TDate): boolean;

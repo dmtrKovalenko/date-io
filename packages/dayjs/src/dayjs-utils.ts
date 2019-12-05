@@ -154,6 +154,18 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return date.isSame(comparing, "day");
   }
 
+  public isSameMonth(date: Dayjs, comparing: Dayjs) {
+    return date.isSame(comparing, "month");
+  }
+
+  public isSameYear(date: Dayjs, comparing: Dayjs) {
+    return date.isSame(comparing, "year");
+  }
+
+  public isSameHour(date: Dayjs, comparing: Dayjs) {
+    return date.isSame(comparing, "hour");
+  }
+
   public getMeridiemText(ampm: "am" | "pm") {
     return ampm === "am" ? "AM" : "PM";
   }

@@ -228,5 +228,23 @@ describe("DateTime calculations", () => {
 
   utilsTest("isSameDay", (date, utils, lib) => {
     expect(utils.isSameDay(date, utils.date("2018-10-30T00:00:00.000Z"))).toBeTruthy();
+    expect(utils.isSameDay(date, utils.date("2019-10-30T00:00:00.000Z"))).toBeTruthy();
+  });
+
+  utilsTest("isSameMonth", (date, utils, lib) => {
+    expect(utils.isSameMonth(date, utils.date("2018-10-01T00:00:00.000Z"))).toBeTruthy();
+    expect(utils.isSameMonth(date, utils.date("2019-10-01T00:00:00.000Z"))).toBeFalsy();
+  });
+
+  utilsTest("isSameYear", (date, utils, lib) => {
+    expect(utils.isSameYear(date, utils.date("2018-10-01T00:00:00.000Z"))).toBeTruthy();
+    expect(utils.isSameYear(date, utils.date("2019-10-01T00:00:00.000Z"))).toBeFalsy();
+  });
+
+  utilsTest("isSameHour", (date, utils, lib) => {
+    expect(utils.isSameHour(date, utils.date(TEST_TIMESTAMP))).toBeTruthy();
+    expect(
+      utils.isSameHour(date, utils.addDays(utils.date(TEST_TIMESTAMP), 5))
+    ).toBeFalsy();
   });
 });

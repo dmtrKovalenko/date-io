@@ -83,8 +83,20 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return this.date(value).equals(this.date(comparing));
   }
 
-  public isSameDay(value: DateTime, comparing: DateTime) {
-    return value.hasSame(comparing, "day");
+  public isSameDay(date: DateTime, comparing: DateTime) {
+    return date.hasSame(comparing, "day");
+  }
+
+  public isSameMonth(date: DateTime, comparing: DateTime) {
+    return date.hasSame(comparing, "month");
+  }
+
+  public isSameYear(date: DateTime, comparing: DateTime) {
+    return date.hasSame(comparing, "year");
+  }
+
+  public isSameHour(date: DateTime, comparing: DateTime) {
+    return date.hasSame(comparing, "hour");
   }
 
   public isAfter(value: DateTime, comparing: DateTime) {
