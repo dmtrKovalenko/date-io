@@ -144,6 +144,18 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.isSame(comparing, "day");
   }
 
+  public isSameMonth(date: Moment, comparing: Moment) {
+    return date.isSame(comparing, "month");
+  }
+
+  public isSameYear(date: Moment, comparing: Moment) {
+    return date.isSame(comparing, "year");
+  }
+
+  public isSameHour(date: Moment, comparing: Moment) {
+    return date.isSame(comparing, "hour");
+  }
+
   public setMonth(date: Moment, count: number) {
     return date.clone().month(count);
   }

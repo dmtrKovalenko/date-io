@@ -14,6 +14,9 @@ import isAfter from "date-fns/isAfter";
 import isBefore from "date-fns/isBefore";
 import isEqual from "date-fns/isEqual";
 import isSameDay from "date-fns/isSameDay";
+import isSameYear from "date-fns/isSameYear";
+import isSameMonth from "date-fns/isSameMonth";
+import isSameHour from "date-fns/isSameHour";
 import isValid from "date-fns/isValid";
 import dateFnsParse from "date-fns/parse";
 import setHours from "date-fns/setHours";
@@ -107,6 +110,18 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   public isSameDay(value: Date, comparing: Date) {
     return isSameDay(value, comparing);
+  }
+
+  public isSameMonth(value: Date, comparing: Date) {
+    return isSameMonth(value, comparing);
+  }
+
+  public isSameYear(value: Date, comparing: Date) {
+    return isSameYear(value, comparing);
+  }
+
+  public isSameHour(value: Date, comparing: Date) {
+    return isSameHour(value, comparing);
   }
 
   public startOfMonth(value: Date) {
