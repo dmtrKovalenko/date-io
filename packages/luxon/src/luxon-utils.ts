@@ -1,28 +1,36 @@
 import { DateTime, Info } from "luxon";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
+const defaultFormats: DateIOFormats = {
+  fullDate: "yyyy, MMMM d",
+  shortDate: "EEE, MMM d",
+  monthAndDate: "MMMM d",
+  dayOfMonth: "d",
+  year: "yyyy",
+  month: "MMMM",
+  minutes: "mm",
+  hours12h: "hh",
+  hours24h: "HH",
+  seconds: "ss",
+  fullTime12h: "t",
+  fullTime24h: "T",
+  fullDateTime12h: "yyyy, MMM d t",
+  fullDateTime24h: "yyyy, MMM d T"
+};
+
 export default class LuxonUtils implements IUtils<DateTime> {
   public locale: string;
+  public formats: DateIOFormats;
 
-  formats: DateIOFormats = {
-    fullDate: "yyyy, MMMM d",
-    shortDate: "EEE, MMM d",
-    monthAndDate: "MMMM d",
-    dayOfMonth: "d",
-    year: "yyyy",
-    month: "MMMM",
-    minutes: "mm",
-    hours12h: "hh",
-    hours24h: "HH",
-    seconds: "ss",
-    fullTime12h: "t",
-    fullTime24h: "T",
-    fullDateTime12h: "yyyy, MMM d t",
-    fullDateTime24h: "yyyy, MMM d T"
-  };
-
-  constructor({ locale }: { locale?: string } = {}) {
+  constructor({
+    locale,
+    formats
+  }: { formats?: Partial<DateIOFormats>; locale?: string } = {}) {
     this.locale = locale || "en";
+    this.formats = {
+      ...defaultFormats,
+      ...formats
+    };
   }
 
   public date(value?: any) {

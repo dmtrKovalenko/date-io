@@ -2,12 +2,23 @@ import "dayjs/locale/ru";
 import dayjs from "dayjs";
 import advancedDayJsFormat from "dayjs/plugin/advancedFormat";
 import LuxonUtils from "../packages/luxon/src";
-import { TEST_TIMESTAMP } from "./test-utils";
+import { TEST_TIMESTAMP, utilsTest } from "./test-utils";
 import DayjsUtils from "../packages/dayjs/src";
 import ruLocale from "date-fns/locale/ru";
 import DateFnsUtils from "../packages/date-fns/src";
 import MomentUtils from "../packages/moment/src";
 import moment from "moment";
+
+describe("Localization helpers", () => {
+  utilsTest("formatNumber", (date, utils) => {
+    expect(utils.formatNumber("1")).toBe("1");
+  });
+
+  utilsTest("getMeridiemText", (date, utils) => {
+    expect(utils.getMeridiemText("am")).toBe("AM");
+    expect(utils.getMeridiemText("pm")).toBe("PM");
+  });
+});
 
 describe("DateFns -- Localization", () => {
   const dateFnsUtils = new DateFnsUtils({ locale: ruLocale });

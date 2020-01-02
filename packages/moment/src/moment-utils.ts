@@ -4,36 +4,40 @@ import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 interface Opts {
   locale?: string;
   instance?: typeof defaultMoment;
-  /** @deprecated */
-  moment?: typeof defaultMoment;
+  formats?: Partial<DateIOFormats>;
 }
 
 type Moment = defaultMoment.Moment;
+const defaultFormats: DateIOFormats = {
+  fullDate: "YYYY, MMMM Do",
+  shortDate: "ddd, MMM Do",
+  monthAndDate: "MMMM Do",
+  dayOfMonth: "D",
+  year: "YYYY",
+  month: "MMMM",
+  minutes: "mm",
+  hours12h: "hh",
+  hours24h: "HH",
+  seconds: "ss",
+  fullTime12h: "hh:mm A",
+  fullTime24h: "HH:mm",
+  fullDateTime12h: "YYYY, MMM Do hh:mm A",
+  fullDateTime24h: "YYYY, MMM Do HH:mm"
+};
 
 export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public moment: typeof defaultMoment;
   public locale?: string;
+  public formats: DateIOFormats;
 
-  formats: DateIOFormats = {
-    fullDate: "YYYY, MMMM Do",
-    shortDate: "ddd, MMM Do",
-    monthAndDate: "MMMM Do",
-    dayOfMonth: "D",
-    year: "YYYY",
-    month: "MMMM",
-    minutes: "mm",
-    hours12h: "hh",
-    hours24h: "HH",
-    seconds: "ss",
-    fullTime12h: "hh:mm A",
-    fullTime24h: "HH:mm",
-    fullDateTime12h: "YYYY, MMM Do hh:mm A",
-    fullDateTime24h: "YYYY, MMM Do HH:mm"
-  };
-
-  constructor({ locale, instance, moment }: Opts = {}) {
-    this.moment = instance || moment || defaultMoment;
+  constructor({ locale, formats, instance }: Opts = {}) {
+    this.moment = instance || defaultMoment;
     this.locale = locale;
+
+    this.formats = {
+      ...defaultFormats,
+      ...formats
+    };
   }
 
   public parse(value: string, format: string) {

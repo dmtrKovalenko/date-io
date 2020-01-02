@@ -8,8 +8,8 @@ test.each`
   ${"month"}           | ${"January"}                | ${null}
   ${"monthAndDate"}    | ${"January 1st"}            | ${"January 1"}
   ${"dayOfMonth"}      | ${"1"}                      | ${null}
-  ${"fullTime12h"}     | ${"11:44 PM"}               | ${"11:44 PM"}
-  ${"fullTime24h"}     | ${"23:44"}                  | ${"23:44"}
+  ${"fullTime12h"}     | ${"11:44 PM"}               | ${null}
+  ${"fullTime24h"}     | ${"23:44"}                  | ${null}
   ${"hours12h"}        | ${"11"}                     | ${null}
   ${"hours24h"}        | ${"23"}                     | ${null}
   ${"minutes"}         | ${"44"}                     | ${null}
