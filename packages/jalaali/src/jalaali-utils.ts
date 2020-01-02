@@ -42,6 +42,7 @@ const defaultFormats: DateIOFormats = {
 export default class MomentUtils extends DefaultMomentUtils {
   public moment: typeof jMoment;
   public locale?: string;
+  public formats: DateIOFormats;
 
   constructor({ formats, instance }: Opts = {}) {
     super({ locale: "fa", instance });
