@@ -37,7 +37,10 @@ const defaultFormats: DateIOFormats = {
   fullTime12h: "hh:mm A",
   fullTime24h: "HH:mm",
   fullDateTime12h: "iD iMMMM hh:mm A",
-  fullDateTime24h: "iD iMMMM HH:mm"
+  fullDateTime24h: "iD iMMMM HH:mm",
+  keyboardDate: "iYYYY/iMM/dd",
+  keyboardDateTime12h: "iYYYY/iMM/iDD hh:mm A",
+  keyboardDateTime24h: "iYYYY/iMM/iDD HH:mm"
 };
 
 export default class MomentUtils extends DefaultMomentUtils {

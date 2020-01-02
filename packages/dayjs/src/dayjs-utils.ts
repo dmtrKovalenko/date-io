@@ -33,7 +33,10 @@ const defaultFormats: DateIOFormats = {
   fullTime12h: "hh:mm A",
   fullTime24h: "HH:mm",
   fullDateTime12h: "YYYY, MMM Do hh:mm A",
-  fullDateTime24h: "YYYY, MMM Do HH:mm"
+  fullDateTime24h: "YYYY, MMM Do HH:mm",
+  keyboardDate: "YYYY/MM/DD",
+  keyboardDateTime12h: "YYYY/MM/DD hh:mm A",
+  keyboardDateTime24h: "YYYY/MM/DD HH:mm"
 };
 
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {

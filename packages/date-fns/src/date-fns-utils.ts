@@ -47,7 +47,10 @@ const defaultFormats: DateIOFormats = {
   fullTime12h: "hh:mm aaa",
   fullTime24h: "HH:mm",
   fullDateTime12h: "yyyy, MMM do hh:mm aaa",
-  fullDateTime24h: "yyyy, MMM do HH:mm"
+  fullDateTime24h: "yyyy, MMM do HH:mm",
+  keyboardDate: "yyyy/MM/dd",
+  keyboardDateTime12h: "yyyy/MM/dd hh:mm aaa",
+  keyboardDateTime24h: "yyyy/MM/dd HH:mm"
 };
 
 export default class DateFnsUtils implements IUtils<Date> {

@@ -11,7 +11,7 @@ export interface DateIOFormats {
   monthAndDate: string;
   /** Day format string @example "12" */
   dayOfMonth: string;
-  /** Full time format string @example "11:44 AM" */
+  /** Full time format string @example "11:44 PM" */
   fullTime12h: string;
   /** Full time format string @example "23:59" */
   fullTime24h: string;
@@ -23,10 +23,16 @@ export interface DateIOFormats {
   minutes: string;
   /** Seconds format string @example "59" */
   seconds: string;
-  /** Date & Time format string @example "2018, Jan 1st 11:44 AM" */
+  /** Date & Time format string @example "2018, Jan 1st 11:44 PM" */
   fullDateTime12h: string;
   /** Date & Time format string @example "2018, Jan 1st 23:44" */
   fullDateTime24h: string;
+  /** Keyboard input friendly date format @example "2019/01/01" */
+  keyboardDate: string;
+  /** Keyboard input friendly date/time 12h format @example "2019/01/01 23:44" */
+  keyboardDateTime12h: string;
+  /** Keyboard input friendly date/time 24h format @example "2019/01/01 11:44 PM" */
+  keyboardDateTime24h: string;
 }
 
 export interface IUtils<TDate> {
