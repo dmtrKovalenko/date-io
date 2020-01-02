@@ -1,5 +1,5 @@
 import defaultMoment from "moment";
-import { IUtils } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 interface Opts {
   locale?: string;
@@ -12,22 +12,24 @@ type Moment = defaultMoment.Moment;
 
 export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public moment: typeof defaultMoment;
-
   public locale?: string;
 
-  public yearFormat = "YYYY";
-
-  public yearMonthFormat = "MMMM YYYY";
-
-  public dateTime12hFormat = "MMMM Do hh:mm a";
-
-  public dateTime24hFormat = "MMMM Do HH:mm";
-
-  public time12hFormat = "hh:mm A";
-
-  public time24hFormat = "HH:mm";
-
-  public dateFormat = "MMMM Do";
+  formats: DateIOFormats = {
+    fullDate: "YYYY, MMMM Do",
+    shortDate: "ddd, MMM Do",
+    monthAndDate: "MMMM Do",
+    dayOfMonth: "D",
+    year: "YYYY",
+    month: "MMMM",
+    minutes: "mm",
+    hours12h: "hh",
+    hours24h: "HH",
+    seconds: "ss",
+    fullTime12h: "hh:mm A",
+    fullTime24h: "HH:mm",
+    fullDateTime12h: "YYYY, MMM Do hh:mm A",
+    fullDateTime24h: "YYYY, MMM Do HH:mm"
+  };
 
   constructor({ locale, instance, moment }: Opts = {}) {
     this.moment = instance || moment || defaultMoment;
@@ -257,42 +259,5 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     }
 
     return years;
-  }
-
-  // displaying methods
-  public getCalendarHeaderText(date: Moment) {
-    return this.format(date, this.yearMonthFormat);
-  }
-
-  public getYearText(date: Moment) {
-    return this.format(date, "YYYY");
-  }
-
-  public getDatePickerHeaderText(date: Moment) {
-    return this.format(date, "ddd, MMM D");
-  }
-
-  public getDateTimePickerHeaderText(date: Moment) {
-    return this.format(date, "MMM D");
-  }
-
-  public getMonthText(date: Moment) {
-    return this.format(date, "MMMM");
-  }
-
-  public getDayText(date: Moment) {
-    return this.format(date, "D");
-  }
-
-  public getHourText(date: Moment, ampm: boolean) {
-    return this.format(date, ampm ? "hh" : "HH");
-  }
-
-  public getMinuteText(date: Moment) {
-    return this.format(date, "mm");
-  }
-
-  public getSecondText(date: Moment) {
-    return this.format(date, "ss");
   }
 }

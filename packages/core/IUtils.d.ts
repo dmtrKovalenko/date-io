@@ -1,18 +1,40 @@
+export interface DateIOFormats {
+  /** Full date, useful for accessibility @example "2019, January 1st" */
+  fullDate: string;
+  /** Day format string extremely required to localize @example "Wed, Jan 1st" for US, "January 1st" for Europe */
+  shortDate: string;
+  /** Year format string @example "2019" */
+  year: string;
+  /** Month format string @example "January" */
+  month: string;
+  /** Month with date format string @example "January 1st" */
+  monthAndDate: string;
+  /** Day format string @example "12" */
+  dayOfMonth: string;
+  /** Full time format string @example "11:44 AM" */
+  fullTime12h: string;
+  /** Full time format string @example "23:59" */
+  fullTime24h: string;
+  /** Hours format string @example "11" */
+  hours12h: string;
+  /** Hours format string @example "23" */
+  hours24h: string;
+  /** Minutes format string @example "59" */
+  minutes: string;
+  /** Seconds format string @example "59" */
+  seconds: string;
+  /** Date & Time format string @example "2018, Jan 1st 11:44 AM" */
+  fullDateTime12h: string;
+  /** Date & Time format string @example "2018, Jan 1st 23:44" */
+  fullDateTime24h: string;
+}
+
 export interface IUtils<TDate> {
+  formats: DateIOFormats;
   locale?: any;
   moment?: any;
   dayjs?: any;
 
-  yearFormat: string;
-  yearMonthFormat: string;
-
-  dateTime12hFormat: string;
-  dateTime24hFormat: string;
-
-  time12hFormat: string;
-  time24hFormat: string;
-
-  dateFormat: string;
   // constructor (options?: { locale?: any, moment?: any });
 
   date(value?: any): TDate | null;
@@ -72,15 +94,6 @@ export interface IUtils<TDate> {
   getWeekArray(date: TDate): TDate[][];
   getYearRange(start: TDate, end: TDate): TDate[];
 
-  // displaying methods
+  /** Allow to customize displaying "am/pm" strings */
   getMeridiemText(ampm: "am" | "pm"): string;
-  getCalendarHeaderText(date: TDate): string;
-  getDatePickerHeaderText(date: TDate): string;
-  getDateTimePickerHeaderText(date: TDate): string;
-  getMonthText(date: TDate): string;
-  getDayText(date: TDate): string;
-  getHourText(date: TDate, ampm: boolean): string;
-  getMinuteText(date: TDate): string;
-  getSecondText(date: TDate): string;
-  getYearText(date: TDate): string;
 }

@@ -1,22 +1,25 @@
 import { DateTime, Info } from "luxon";
-import { IUtils } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 export default class LuxonUtils implements IUtils<DateTime> {
   public locale: string;
 
-  public yearFormat = "yyyy";
-
-  public yearMonthFormat = "LLLL yyyy";
-
-  public dateTime12hFormat = "ff";
-
-  public dateTime24hFormat = "MMMM dd T";
-
-  public time12hFormat = "t";
-
-  public time24hFormat = "T";
-
-  public dateFormat = "MMMM dd";
+  formats: DateIOFormats = {
+    fullDate: "yyyy, MMMM d",
+    shortDate: "EEE, MMM d",
+    monthAndDate: "MMMM d",
+    dayOfMonth: "d",
+    year: "yyyy",
+    month: "MMMM",
+    minutes: "mm",
+    hours12h: "hh",
+    hours24h: "HH",
+    seconds: "ss",
+    fullTime12h: "t",
+    fullTime24h: "T",
+    fullDateTime12h: "yyyy, MMM d t",
+    fullDateTime24h: "yyyy, MMM d T"
+  };
 
   constructor({ locale }: { locale?: string } = {}) {
     this.locale = locale || "en";
@@ -270,7 +273,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
     return new Array<number>(Math.round(years))
       .fill(0)
-      .map((num, i) => i)
+      .map((_, i) => i)
       .map(year => start.plus({ years: year }));
   }
 
@@ -278,46 +281,6 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return Info.meridiems({ locale: this.locale }).find(
       v => v.toLowerCase() === ampm.toLowerCase()
     )!;
-  }
-
-  public getCalendarHeaderText(date: DateTime) {
-    return this.format(date, this.yearMonthFormat);
-  }
-
-  public getDatePickerHeaderText(date: DateTime) {
-    return this.format(date, "ccc, MMM d");
-  }
-
-  public getDateTimePickerHeaderText(date: DateTime) {
-    return this.format(date, "MMM d");
-  }
-
-  public getMonthText(date: DateTime) {
-    return this.format(date, "LLLL");
-  }
-
-  public getDayText(date: DateTime) {
-    return this.format(date, "d");
-  }
-
-  public getHourText(date: DateTime, ampm: boolean) {
-    if (ampm) {
-      return date.toFormat("hh");
-    }
-
-    return date.toFormat("HH");
-  }
-
-  public getMinuteText(date: DateTime) {
-    return date.toFormat("mm");
-  }
-
-  public getSecondText(date: DateTime) {
-    return date.toFormat("ss");
-  }
-
-  public getYearText(date: DateTime) {
-    return date.toFormat("yyyy");
   }
 
   public isNull(date: DateTime | null) {

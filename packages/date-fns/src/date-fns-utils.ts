@@ -29,32 +29,40 @@ import startOfMonth from "date-fns/startOfMonth";
 import endOfMonth from "date-fns/endOfMonth";
 import startOfWeek from "date-fns/startOfWeek";
 import startOfYear from "date-fns/startOfYear";
+import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
-// Locale is not exported from date-fns, so we need to workaround that https://github.com/date-fns/date-fns/issues/932
-import SampleLocale from "date-fns/locale/en-US";
-import { IUtils } from "@date-io/core/IUtils";
+type Locale = typeof import("date-fns/locale/en-US").default;
 
-type Locale = typeof SampleLocale;
+const defaultFormats: DateIOFormats = {
+  fullDate: "yyyy, MMMM do",
+  shortDate: "EEE, MMM do",
+  monthAndDate: "MMMM do",
+  dayOfMonth: "d",
+  year: "yyyy",
+  month: "MMMM",
+  minutes: "mm",
+  hours12h: "hh",
+  hours24h: "HH",
+  seconds: "ss",
+  fullTime12h: "hh:mm aaa",
+  fullTime24h: "HH:mm",
+  fullDateTime12h: "yyyy, MMM do hh:mm aaa",
+  fullDateTime24h: "yyyy, MMM do HH:mm"
+};
 
 export default class DateFnsUtils implements IUtils<Date> {
   public locale?: Locale;
+  public formats: DateIOFormats;
 
-  public yearFormat = "yyyy";
-
-  public yearMonthFormat = "MMMM yyyy";
-
-  public dateTime12hFormat = "MMMM do hh:mm aaaa";
-
-  public dateTime24hFormat = "MMMM do HH:mm";
-
-  public time12hFormat = "hh:mm a";
-
-  public time24hFormat = "HH:mm";
-
-  public dateFormat = "MMMM do";
-
-  constructor({ locale }: { locale?: Locale } = {}) {
+  constructor({
+    locale,
+    formats
+  }: { formats?: Partial<DateIOFormats>; locale?: Locale } = {}) {
     this.locale = locale;
+    this.formats = {
+      ...defaultFormats,
+      ...formats
+    };
   }
 
   // Note: date-fns input types are more lenient than this adapter, so we need to expose our more
@@ -278,42 +286,5 @@ export default class DateFnsUtils implements IUtils<Date> {
     }
 
     return years;
-  }
-
-  // displaying methpds
-  public getCalendarHeaderText(date: Date) {
-    return this.format(date, this.yearMonthFormat);
-  }
-
-  public getYearText(date: Date) {
-    return this.format(date, "yyyy");
-  }
-
-  public getDatePickerHeaderText(date: Date) {
-    return this.format(date, "EEE, MMM d");
-  }
-
-  public getDateTimePickerHeaderText(date: Date) {
-    return this.format(date, "MMM d");
-  }
-
-  public getMonthText(date: Date) {
-    return this.format(date, "MMMM");
-  }
-
-  public getDayText(date: Date) {
-    return this.format(date, "d");
-  }
-
-  public getHourText(date: Date, ampm: boolean) {
-    return this.format(date, ampm ? "hh" : "HH");
-  }
-
-  public getMinuteText(date: Date) {
-    return this.format(date, "mm");
-  }
-
-  public getSecondText(date: Date) {
-    return this.format(date, "ss");
   }
 }

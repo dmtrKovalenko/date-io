@@ -1,7 +1,7 @@
 import defaultDayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import { IUtils } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 defaultDayjs.extend(customParseFormat);
 defaultDayjs.extend(advancedFormat);
@@ -22,22 +22,24 @@ const withLocale = (dayjs: typeof defaultDayjs, locale?: string): Constructor =>
 
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   public dayjs: Constructor;
-
   public locale?: string;
 
-  public yearFormat = "YYYY";
-
-  public yearMonthFormat = "MMMM YYYY";
-
-  public dateTime12hFormat = "MMMM Do hh:mm a";
-
-  public dateTime24hFormat = "MMMM Do HH:mm";
-
-  public time12hFormat = "hh:mm A";
-
-  public time24hFormat = "HH:mm";
-
-  public dateFormat = "MMMM Do";
+  formats: DateIOFormats = {
+    fullDate: "YYYY, MMMM Do",
+    shortDate: "ddd, MMM Do",
+    monthAndDate: "MMMM Do",
+    dayOfMonth: "D",
+    year: "YYYY",
+    month: "MMMM",
+    minutes: "mm",
+    hours12h: "hh",
+    hours24h: "HH",
+    seconds: "ss",
+    fullTime12h: "hh:mm A",
+    fullTime24h: "HH:mm",
+    fullDateTime12h: "YYYY, MMM Do hh:mm A",
+    fullDateTime24h: "YYYY, MMM Do HH:mm"
+  };
 
   constructor({ locale, instance, dayjs }: Opts = {}) {
     this.dayjs = withLocale(instance || dayjs || defaultDayjs, locale);

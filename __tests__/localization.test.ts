@@ -11,11 +11,6 @@ import moment from "moment";
 
 describe("DateFns -- Localization", () => {
   const dateFnsUtils = new DateFnsUtils({ locale: ruLocale });
-  const date = dateFnsUtils.date(TEST_TIMESTAMP);
-
-  it("Should display localized datapicker text", () => {
-    expect(dateFnsUtils.getDatePickerHeaderText(date)).toBe("втр, окт. 30");
-  });
 
   it("Should return weekdays starting with monday", () => {
     const result = dateFnsUtils.getWeekdays();
@@ -27,19 +22,11 @@ describe("Luxon -- Localization", () => {
   describe("in French", () => {
     let luxonUtils = new LuxonUtils({ locale: "fr" });
     const date = luxonUtils.date(TEST_TIMESTAMP);
-
-    it("Should display localized text", () => {
-      expect(luxonUtils.getCalendarHeaderText(date)).toBe("octobre 2018");
-    });
   });
 
   describe("in Russian", () => {
     let luxonUtils = new LuxonUtils({ locale: "ru" });
     const date = luxonUtils.date(TEST_TIMESTAMP);
-
-    it("Should display localized text", () => {
-      expect(luxonUtils.getCalendarHeaderText(date)).toBe("октябрь 2018");
-    });
 
     it("Should return weekdays starting with monday", () => {
       const result = luxonUtils.getWeekdays();
@@ -52,12 +39,6 @@ describe("Moment -- localization", () => {
   describe("Russian", () => {
     const momentUtils = new MomentUtils({ locale: "ru" });
     const date = momentUtils.date(TEST_TIMESTAMP);
-
-    it("Should display localized text", () => {
-      moment.locale("ru");
-      const result = momentUtils.format(date, momentUtils.dateFormat);
-      expect(result).toBe("октябрь 30-го");
-    });
 
     it("getWeekdays: should start from monday", () => {
       moment.locale("ru");
@@ -95,11 +76,6 @@ describe("Dayjs -- Localization", () => {
     let dayjsUtils = new DayjsUtils({ instance: dayjs, locale: "ru" });
     const date = dayjsUtils.date(TEST_TIMESTAMP);
 
-    it("Should display localized text", () => {
-      const result = dayjsUtils.format(date, dayjsUtils.dateTime12hFormat);
-      expect(result).toBe("октябрь 30 11:44 am");
-    });
-
     it("getWeekdays: should start from monday", () => {
       const result = dayjsUtils.getWeekdays();
       expect(result).toEqual(["пн", "вт", "ср", "чт", "пт", "сб", "вс"]);
@@ -114,11 +90,6 @@ describe("Dayjs -- Localization", () => {
   describe("English", () => {
     let dayjsUtils = new DayjsUtils({ instance: dayjs, locale: "en" });
     const date = dayjsUtils.date(TEST_TIMESTAMP);
-
-    it("Should display localized text", () => {
-      const result = dayjsUtils.format(date, dayjsUtils.dateTime12hFormat);
-      expect(result).toBe("October 30th 11:44 am");
-    });
 
     it("getWeekdays: should start from sunday", () => {
       const result = dayjsUtils.getWeekdays();
