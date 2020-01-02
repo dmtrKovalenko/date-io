@@ -1,6 +1,7 @@
 import Moment from "moment";
 import jMoment from "moment-jalaali";
 import DefaultMomentUtils from "@date-io/moment";
+import { DateIOFormats } from "@date-io/core/IUtils";
 
 var symbolMap = {
   1: "۱",
@@ -16,33 +17,42 @@ var symbolMap = {
 };
 
 interface Opts {
-  /** @deprecated */
-  moment?: typeof jMoment;
   instance?: typeof jMoment;
+  formats?: Partial<DateIOFormats>;
 }
 
 type Moment = jMoment.Moment;
+const defaultFormats: DateIOFormats = {
+  fullDate: "YYYY, jMMMM Do",
+  shortDate: "dddd, jD jMMM",
+  monthAndDate: "jD iMMMM",
+  dayOfMonth: "jD",
+  year: "jYYYY",
+  month: "MMMM",
+  minutes: "mm",
+  hours12h: "hh",
+  hours24h: "HH",
+  seconds: "ss",
+  fullTime12h: "hh:mm A",
+  fullTime24h: "HH:mm",
+  fullDateTime12h: "jD jMMMM hh:mm A",
+  fullDateTime24h: "jD jMMMM HH:mm"
+};
 
 export default class MomentUtils extends DefaultMomentUtils {
   public moment: typeof jMoment;
-
   public locale?: string;
 
-  public dateTime12hFormat = "jMMMM jD hh:mm a";
+  constructor({ formats, instance }: Opts = {}) {
+    super({ locale: "fa", instance });
 
-  public dateTime24hFormat = "jMMMM jD HH:mm";
-
-  public time12hFormat = "hh:mm A";
-
-  public time24hFormat = "HH:mm";
-
-  public dateFormat = "jMMMM jD";
-
-  constructor({ moment, instance }: Opts = {}) {
-    super({ locale: "fa", moment });
-
-    this.moment = instance || moment || jMoment;
+    this.moment = instance || jMoment;
     this.locale = "fa";
+
+    this.formats = {
+      ...defaultFormats,
+      ...formats
+    };
   }
 
   private toJMoment(date?: any) {
@@ -170,26 +180,5 @@ export default class MomentUtils extends DefaultMomentUtils {
     }
 
     return years;
-  }
-
-  // displaying methods
-  public getCalendarHeaderText(date: Moment) {
-    return date.format("jMMMM jYYYY");
-  }
-
-  public getYearText(date: Moment) {
-    return date.format("jYYYY");
-  }
-
-  public getDatePickerHeaderText(date: Moment) {
-    return date.format("ddd, jMMM jD");
-  }
-
-  public getDateTimePickerHeaderText(date: Moment) {
-    return date.format("jMMM jD");
-  }
-
-  public getDayText(date: Moment) {
-    return date.format("jD");
   }
 }

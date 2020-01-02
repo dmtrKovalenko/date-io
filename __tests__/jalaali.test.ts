@@ -7,19 +7,13 @@ jMoment.loadPersian({ dialect: "persian-modern", usePersianDigits: true });
 describe("Jalaali", () => {
   const jalaaliUtils = new JalaaliUtils();
 
-  it("Should properly format jalaali date", () => {
-    const date = jalaaliUtils.date(TEST_TIMESTAMP);
-
-    expect(jalaaliUtils.format(date, jalaaliUtils.dateFormat)).toBe("آبان ۸");
-    expect(jalaaliUtils.date(null)).toBeNull();
-  });
-
   it("Should properly render digits", () => {
     expect(jalaaliUtils.formatNumber("1")).toBe("۱");
     expect(jalaaliUtils.formatNumber("2")).toBe("۲");
   });
 
   it("Should properly parse dates", () => {
+    expect(jalaaliUtils.date(null)).toBeNull();
     expect(jalaaliUtils.parse("", "jYYYY/jM/jD")).toBeNull();
     expect(jalaaliUtils.parse("01/01/1395", "jYYYY/jM/jD")).toBeTruthy();
   });
@@ -165,13 +159,25 @@ describe("Jalaali", () => {
     expect(yearRange).toHaveLength(4);
   });
 
-  it("Jalaali -- display functions", () => {
-    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+  test.each`
+    format               | expected
+    ${"fullDate"}        | ${"۲۰۲۰، دی ۱م"}
+    ${"shortDate"}       | ${"چهارشنبه، ۱۱ دی"}
+    ${"year"}            | ${"۱۳۹۸"}
+    ${"month"}           | ${"ژانویه"}
+    ${"monthAndDate"}    | ${"۱۱ iژانویه"}
+    ${"dayOfMonth"}      | ${"۱۱"}
+    ${"fullTime12h"}     | ${"۱۱:۴۴ ب.ظ"}
+    ${"fullTime24h"}     | ${"۲۳:۴۴"}
+    ${"hours12h"}        | ${"۱۱"}
+    ${"hours24h"}        | ${"۲۳"}
+    ${"minutes"}         | ${"۴۴"}
+    ${"seconds"}         | ${"۰۰"}
+    ${"fullDateTime12h"} | ${"۱۱ دی ۱۱:۴۴ ب.ظ"}
+    ${"fullDateTime24h"} | ${"۱۱ دی ۲۳:۴۴"}
+  `("Correctly formats jalaali format $format", ({ format, expected }) => {
+    const date = jalaaliUtils.date("2020-01-01T23:44:00.000Z");
 
-    expect(jalaaliUtils.getCalendarHeaderText(date)).toBe("آبان ۱۳۹۷");
-    expect(jalaaliUtils.getYearText(date)).toBe("۱۳۹۷");
-    expect(jalaaliUtils.getDatePickerHeaderText(date)).toBe("سه‌شنبه، آبا ۸");
-    expect(jalaaliUtils.getDateTimePickerHeaderText(date)).toBe("آبا ۸");
-    expect(jalaaliUtils.getDayText(date)).toBe("۸");
+    expect(jalaaliUtils.format(date as any, format)).toBe(expected);
   });
 });
