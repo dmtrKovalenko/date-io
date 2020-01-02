@@ -90,7 +90,7 @@ export interface IUtils<TDate> {
   moment?: any;
   dayjs?: any;
 
-  // constructor (options?: { locale?: any, moment?: any });
+  // constructor (options?: { formats?: DateIOFormats, locale?: any, instance?: any });
 
   date(value?: any): TDate | null;
   parse(value: string, format: string): TDate | null;
