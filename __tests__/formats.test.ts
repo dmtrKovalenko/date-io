@@ -19,7 +19,7 @@ test.each`
 `("Correctly formats with provided formats", ({ format, expected, expectedLuxon }) => {
   allUtils.forEach(([libName, utils]) => {
     const date = utils.date("2020-01-01T23:44:00.000Z");
-    const result = utils.format(date as any, utils.formats[format]);
+    const result = utils.format(date as any, format);
     const expectedResult = libName === "Luxon" ? expectedLuxon || expected : expected;
 
     if (result !== expectedResult) {

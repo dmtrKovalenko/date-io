@@ -168,7 +168,11 @@ export default class DateFnsUtils implements IUtils<Date> {
     return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
   }
 
-  public format(date: Date, formatString: string) {
+  public format(date: Date, formatKey: keyof DateIOFormats) {
+    return this.formatByString(date, this.formats[formatKey]);
+  }
+
+  public formatByString(date: Date, formatString: string) {
     return format(date, formatString, { locale: this.locale });
   }
 
@@ -252,7 +256,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     return eachDayOfInterval({
       start: startOfWeek(now, { locale: this.locale }),
       end: endOfWeek(now, { locale: this.locale })
-    }).map(day => this.format(day, "EEEEEE"));
+    }).map(day => this.formatByString(day, "EEEEEE"));
   }
 
   public getWeekArray(date: Date) {

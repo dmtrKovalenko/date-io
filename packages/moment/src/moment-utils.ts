@@ -103,7 +103,11 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.clone().endOf("day");
   }
 
-  public format(date: Moment, formatString: string) {
+  public format(date: Moment, formatKey: keyof DateIOFormats) {
+    return this.formatByString(date, this.formats[formatKey]);
+  }
+
+  public formatByString(date: Moment, formatString: string) {
     date.locale(this.locale);
     return date.format(formatString);
   }

@@ -66,7 +66,8 @@ export interface IUtils<TDate> {
   startOfDay(value: TDate): TDate;
   endOfDay(value: TDate): TDate;
 
-  format(value: TDate, formatString: string): string;
+  format(value: TDate, formatKey: keyof DateIOFormats): string;
+  formatByString(value: TDate, formatString: string): string;
   formatNumber(numberToFormat: string): string;
 
   getHours(value: TDate): number;

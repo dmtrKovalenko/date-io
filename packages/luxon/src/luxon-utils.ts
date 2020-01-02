@@ -154,7 +154,11 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value.endOf("day");
   }
 
-  public format(date: DateTime, format: string) {
+  public format(date: DateTime, formatKey: keyof DateIOFormats) {
+    return this.formatByString(date, this.formats[formatKey]);
+  }
+
+  public formatByString(date: DateTime, format: string) {
     return date.setLocale(this.locale).toFormat(format);
   }
 

@@ -111,7 +111,11 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return date.clone().endOf("day");
   }
 
-  public format(date: Dayjs, formatString: string) {
+  public format(date: Dayjs, formatKey: keyof DateIOFormats) {
+    return this.formatByString(date, this.formats[formatKey]);
+  }
+
+  public formatByString(date: Dayjs, formatString: string) {
     return this.dayjs(date).format(formatString);
   }
 
@@ -222,7 +226,9 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   public getWeekdays() {
     const start = this.dayjs().startOf("week");
-    return [0, 1, 2, 3, 4, 5, 6].map(diff => this.format(start.add(diff, "day"), "dd"));
+    return [0, 1, 2, 3, 4, 5, 6].map(diff =>
+      this.formatByString(start.add(diff, "day"), "dd")
+    );
   }
 
   public isEqual(value: any, comparing: any) {
