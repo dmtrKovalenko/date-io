@@ -44,8 +44,8 @@ const initialDateFnsDate = dateFns.date("2018-10-28T11:44:00.000Z");
 const updatedLuxonDate = luxon.addDays(initialLuxonDate, 2);
 const updatedDateFnsDate = dateFns.addDays(initialDateFnsDate, 2);
 
-luxon.format(updatedLuxonDate, utils.dateTime24hFormat); // "octobre 30 11:44"
-dateFns.format(updatedLuxonDate, utils.dateTime24hFormat); // "October 30th 11:44"
+luxon.format(updatedLuxonDate, "fullDateTime24h"); // "2018, octobre 30 11:44"
+dateFns.format(updatedLuxonDate, "fullDateTime24h"); // "2018, October 30th 11:44"
 ```
 
 ### Interface
