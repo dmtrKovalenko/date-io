@@ -1,37 +1,49 @@
 import defaultMoment from "moment";
-import { IUtils } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 interface Opts {
   locale?: string;
   instance?: typeof defaultMoment;
-  /** @deprecated */
-  moment?: typeof defaultMoment;
+  formats?: Partial<DateIOFormats>;
 }
 
 type Moment = defaultMoment.Moment;
+const defaultFormats: DateIOFormats = {
+  fullDate: "YYYY, MMMM Do",
+  normalDate: "ddd, MMM Do",
+  shortDate: "MMM Do",
+  monthAndDate: "MMMM Do",
+  dayOfMonth: "D",
+  year: "YYYY",
+  month: "MMMM",
+  monthShort: "MMM",
+  monthAndYear: "MMMM YYYY",
+  minutes: "mm",
+  hours12h: "hh",
+  hours24h: "HH",
+  seconds: "ss",
+  fullTime12h: "hh:mm A",
+  fullTime24h: "HH:mm",
+  fullDateTime12h: "YYYY, MMM Do hh:mm A",
+  fullDateTime24h: "YYYY, MMM Do HH:mm",
+  keyboardDate: "YYYY/MM/DD",
+  keyboardDateTime12h: "YYYY/MM/DD hh:mm A",
+  keyboardDateTime24h: "YYYY/MM/DD HH:mm"
+};
 
 export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public moment: typeof defaultMoment;
-
   public locale?: string;
+  public formats: DateIOFormats;
 
-  public yearFormat = "YYYY";
-
-  public yearMonthFormat = "MMMM YYYY";
-
-  public dateTime12hFormat = "MMMM Do hh:mm a";
-
-  public dateTime24hFormat = "MMMM Do HH:mm";
-
-  public time12hFormat = "hh:mm A";
-
-  public time24hFormat = "HH:mm";
-
-  public dateFormat = "MMMM Do";
-
-  constructor({ locale, instance, moment }: Opts = {}) {
-    this.moment = instance || moment || defaultMoment;
+  constructor({ locale, formats, instance }: Opts = {}) {
+    this.moment = instance || defaultMoment;
     this.locale = locale;
+
+    this.formats = {
+      ...defaultFormats,
+      ...formats
+    };
   }
 
   public parse(value: string, format: string) {
@@ -97,7 +109,11 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.clone().endOf("day");
   }
 
-  public format(date: Moment, formatString: string) {
+  public format(date: Moment, formatKey: keyof DateIOFormats) {
+    return this.formatByString(date, this.formats[formatKey]);
+  }
+
+  public formatByString(date: Moment, formatString: string) {
     date.locale(this.locale);
     return date.format(formatString);
   }
@@ -257,42 +273,5 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     }
 
     return years;
-  }
-
-  // displaying methods
-  public getCalendarHeaderText(date: Moment) {
-    return this.format(date, this.yearMonthFormat);
-  }
-
-  public getYearText(date: Moment) {
-    return this.format(date, "YYYY");
-  }
-
-  public getDatePickerHeaderText(date: Moment) {
-    return this.format(date, "ddd, MMM D");
-  }
-
-  public getDateTimePickerHeaderText(date: Moment) {
-    return this.format(date, "MMM D");
-  }
-
-  public getMonthText(date: Moment) {
-    return this.format(date, "MMMM");
-  }
-
-  public getDayText(date: Moment) {
-    return this.format(date, "D");
-  }
-
-  public getHourText(date: Moment, ampm: boolean) {
-    return this.format(date, ampm ? "hh" : "HH");
-  }
-
-  public getMinuteText(date: Moment) {
-    return this.format(date, "mm");
-  }
-
-  public getSecondText(date: Moment) {
-    return this.format(date, "ss");
   }
 }

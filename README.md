@@ -32,11 +32,11 @@ Projects, which are already built over `date-io`:
 ### Usage example
 
 ```js
-import LuxonUtils from "@date-io/luxon";
-import DateFnsUtils from "@date-io/date-fns";
+import LuxonAdapter from "@date-io/luxon";
+import DateFnsAdapter from "@date-io/date-fns";
 
-const dateFns = new DateFnsUtils();
-const luxon = new LuxonUtils({ locale: "fr" }); // pass french locale
+const dateFns = new DateFnsAdapter();
+const luxon = new LuxonAdapter({ locale: "fr" }); // pass french locale
 
 const initialLuxonDate = luxon.date("2018-10-28T11:44:00.000Z");
 const initialDateFnsDate = dateFns.date("2018-10-28T11:44:00.000Z");
@@ -44,8 +44,8 @@ const initialDateFnsDate = dateFns.date("2018-10-28T11:44:00.000Z");
 const updatedLuxonDate = luxon.addDays(initialLuxonDate, 2);
 const updatedDateFnsDate = dateFns.addDays(initialDateFnsDate, 2);
 
-luxon.format(updatedLuxonDate, utils.dateTime24hFormat); // "octobre 30 11:44"
-dateFns.format(updatedLuxonDate, utils.dateTime24hFormat); // "October 30th 11:44"
+luxon.format(updatedLuxonDate, "fullDateTime24h"); // "2018, octobre 30 11:44"
+dateFns.format(updatedLuxonDate, "fullDateTime24h"); // "2018, October 30th 11:44"
 ```
 
 ### Interface
@@ -53,21 +53,44 @@ dateFns.format(updatedLuxonDate, utils.dateTime24hFormat); // "October 30th 11:4
 Implemented interface for now. If you can not find needed method please let us know and we will add it!
 
 ```ts
+export interface DateIOFormats {
+  /** Full date, useful for accessibility @example "2019, January 1st" */
+  fullDate: string;
+  /** Day format string extremely required to localize @example "Wed, Jan 1st" for US, "January 1st" for Europe */
+  shortDate: string;
+  /** Year format string @example "2019" */
+  year: string;
+  /** Month format string @example "January" */
+  month: string;
+  /** Month with date format string @example "January 1st" */
+  monthAndDate: string;
+  /** Day format string @example "12" */
+  dayOfMonth: string;
+  /** Full time format string @example "11:44 AM" */
+  fullTime12h: string;
+  /** Full time format string @example "23:59" */
+  fullTime24h: string;
+  /** Hours format string @example "11" */
+  hours12h: string;
+  /** Hours format string @example "23" */
+  hours24h: string;
+  /** Minutes format string @example "59" */
+  minutes: string;
+  /** Seconds format string @example "59" */
+  seconds: string;
+  /** Date & Time format string @example "2018, Jan 1st 11:44 AM" */
+  fullDateTime12h: string;
+  /** Date & Time format string @example "2018, Jan 1st 23:44" */
+  fullDateTime24h: string;
+}
+
 export interface IUtils<TDate> {
+  formats: DateIOFormats;
   locale?: any;
   moment?: any;
+  dayjs?: any;
 
-  yearFormat: string;
-  yearMonthFormat: string;
-
-  dateTime12hFormat: string;
-  dateTime24hFormat: string;
-
-  time12hFormat: string;
-  time24hFormat: string;
-
-  dateFormat: string;
-  // constructor (options?: { locale?: any, moment?: any });
+  // constructor (options?: { formats?: DateIOFormats, locale?: any, instance?: any });
 
   date(value?: any): TDate | null;
   parse(value: string, format: string): TDate | null;
@@ -76,7 +99,11 @@ export interface IUtils<TDate> {
   isValid(value: any): boolean;
   getDiff(value: TDate, comparing: TDate | string): number;
   isEqual(value: any, comparing: any): boolean;
+
   isSameDay(value: TDate, comparing: TDate): boolean;
+  isSameMonth(value: TDate, comparing: TDate): boolean;
+  isSameYear(value: TDate, comparing: TDate): boolean;
+  isSameHour(value: TDate, comparing: TDate): boolean;
 
   isAfter(value: TDate, comparing: TDate): boolean;
   isAfterDay(value: TDate, comparing: TDate): boolean;
@@ -94,7 +121,8 @@ export interface IUtils<TDate> {
   startOfDay(value: TDate): TDate;
   endOfDay(value: TDate): TDate;
 
-  format(value: TDate, formatString: string): string;
+  format(value: TDate, formatKey: keyof DateIOFormats): string;
+  formatByString(value: TDate, formatString: string): string;
   formatNumber(numberToFormat: string): string;
 
   getHours(value: TDate): number;
@@ -122,17 +150,8 @@ export interface IUtils<TDate> {
   getWeekArray(date: TDate): TDate[][];
   getYearRange(start: TDate, end: TDate): TDate[];
 
-  // displaying methods
+  /** Allow to customize displaying "am/pm" strings */
   getMeridiemText(ampm: "am" | "pm"): string;
-  getCalendarHeaderText(date: TDate): string;
-  getDatePickerHeaderText(date: TDate): string;
-  getDateTimePickerHeaderText(date: TDate): string;
-  getMonthText(date: TDate): string;
-  getDayText(date: TDate): string;
-  getHourText(date: TDate, ampm: boolean): string;
-  getMinuteText(date: TDate): string;
-  getSecondText(date: TDate): string;
-  getYearText(date: TDate): string;
 }
 ```
 

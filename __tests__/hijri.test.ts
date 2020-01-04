@@ -4,19 +4,13 @@ import { TEST_TIMESTAMP } from "./test-utils";
 describe("Hijri", () => {
   const hijriiUtils = new HijriUtils();
 
-  it("Should properly format hijri date", () => {
-    const date = hijriiUtils.date(TEST_TIMESTAMP);
-
-    expect(hijriiUtils.format(date, hijriiUtils.dateFormat)).toBe("٢١ صفر");
-    expect(hijriiUtils.date(null)).toBeNull();
-  });
-
   it("Should properly render digits", () => {
     expect(hijriiUtils.formatNumber("1")).toBe("١");
     expect(hijriiUtils.formatNumber("2")).toBe("٢");
   });
 
   it("Should properly parse dates", () => {
+    expect(hijriiUtils.date(null)).toBeNull();
     expect(hijriiUtils.parse("", "iYYYY/iM/iD")).toBeNull();
     expect(hijriiUtils.parse("01/01/1395", "iYYYY/iM/iD")).toBeTruthy();
   });
@@ -172,13 +166,26 @@ describe("Hijri", () => {
     );
   });
 
-  it("Hijri -- display functions", () => {
-    const date = hijriiUtils.date(TEST_TIMESTAMP);
+  test.each`
+    format               | expected
+    ${"fullDate"}        | ${"٢٠٢٠، جمادى الأولى ١"}
+    ${"normalDate"}      | ${"الأربعاء، ٦ جمادى ١"}
+    ${"shortDate"}       | ${"٦ جمادى ١"}
+    ${"year"}            | ${"١٤٤١"}
+    ${"month"}           | ${"جمادى الأولى"}
+    ${"monthAndDate"}    | ${"٦ جمادى الأولى"}
+    ${"dayOfMonth"}      | ${"٦"}
+    ${"fullTime12h"}     | ${"١١:٤٤ م"}
+    ${"fullTime24h"}     | ${"٢٣:٤٤"}
+    ${"hours12h"}        | ${"١١"}
+    ${"hours24h"}        | ${"٢٣"}
+    ${"minutes"}         | ${"٤٤"}
+    ${"seconds"}         | ${"٠٠"}
+    ${"fullDateTime12h"} | ${"٦ جمادى الأولى ١١:٤٤ م"}
+    ${"fullDateTime24h"} | ${"٦ جمادى الأولى ٢٣:٤٤"}
+  `("Correctly formats jalaali format $format", ({ format, expected }) => {
+    const date = hijriiUtils.date("2020-01-01T23:44:00.000Z");
 
-    expect(hijriiUtils.getCalendarHeaderText(date)).toBe("صفر ١٤٤٠");
-    expect(hijriiUtils.getYearText(date)).toBe("١٤٤٠");
-    expect(hijriiUtils.getDatePickerHeaderText(date)).toBe("الثلاثاء، ٢١ صفر");
-    expect(hijriiUtils.getDateTimePickerHeaderText(date)).toBe("٢١ صفر");
-    expect(hijriiUtils.getDayText(date)).toBe("٢١");
+    expect(hijriiUtils.format(date as any, format)).toBe(expected);
   });
 });

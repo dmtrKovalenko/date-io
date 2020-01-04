@@ -8,7 +8,7 @@ import DayJSUtils from "../packages/dayjs/src";
 export const TEST_TIMESTAMP = "2018-10-30T11:44:00.000Z";
 export type TestLib = "Luxon" | "Moment" | "DateFns" | "Dayjs";
 
-const allUtils = [
+export const allUtils = [
   ["Luxon", new LuxonUtils()],
   ["DateFns", new DateFnsUtils()],
   ["Moment", new MomentUtils()],

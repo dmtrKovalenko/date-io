@@ -1,6 +1,7 @@
 import Moment from "moment";
 import iMoment from "moment-hijri";
 import DefaultMomentUtils from "@date-io/moment";
+import { DateIOFormats } from "@date-io/core/IUtils";
 
 var symbolMap = {
   1: "١",
@@ -16,33 +17,50 @@ var symbolMap = {
 };
 
 interface Opts {
-  /** @deprecated */
-  moment?: typeof iMoment;
   instance?: typeof iMoment;
+  formats?: Partial<DateIOFormats>;
 }
 
 type Moment = iMoment.Moment;
 
+const defaultFormats: DateIOFormats = {
+  fullDate: "YYYY, iMMMM Do",
+  normalDate: "dddd, iD iMMM",
+  shortDate: "iD iMMM",
+  monthAndDate: "iD iMMMM",
+  dayOfMonth: "iD",
+  year: "iYYYY",
+  month: "iMMMM",
+  monthShort: "iMMM",
+  monthAndYear: "iMMMM iYYYY",
+  minutes: "mm",
+  hours12h: "hh",
+  hours24h: "HH",
+  seconds: "ss",
+  fullTime12h: "hh:mm A",
+  fullTime24h: "HH:mm",
+  fullDateTime12h: "iD iMMMM hh:mm A",
+  fullDateTime24h: "iD iMMMM HH:mm",
+  keyboardDate: "iYYYY/iMM/dd",
+  keyboardDateTime12h: "iYYYY/iMM/iDD hh:mm A",
+  keyboardDateTime24h: "iYYYY/iMM/iDD HH:mm"
+};
+
 export default class MomentUtils extends DefaultMomentUtils {
   public moment: typeof iMoment;
-
   public locale?: string;
+  public formats: DateIOFormats;
 
-  public dateTime12hFormat = "iD iMMMM hh:mm a";
+  constructor({ instance, formats }: Opts = {}) {
+    super({ locale: "ar-SA", instance });
 
-  public dateTime24hFormat = "iD iMMMM HH:mm";
-
-  public time12hFormat = "hh:mm A";
-
-  public time24hFormat = "HH:mm";
-
-  public dateFormat = "iD iMMMM";
-
-  constructor({ moment, instance }: Opts = {}) {
-    super({ locale: "ar-SA", moment });
-
-    this.moment = instance || moment || iMoment;
+    this.moment = instance || iMoment;
     this.locale = "ar-SA";
+
+    this.formats = {
+      ...defaultFormats,
+      ...formats
+    };
   }
 
   private toIMoment(date?: any) {
@@ -104,11 +122,11 @@ export default class MomentUtils extends DefaultMomentUtils {
   public getMeridiemText(ampm: "am" | "pm") {
     return ampm === "am"
       ? this.toIMoment()
-        .hours(2)
-        .format("A")
+          .hours(2)
+          .format("A")
       : this.toIMoment()
-        .hours(14)
-        .format("A");
+          .hours(14)
+          .format("A");
   }
 
   public getWeekdays() {
@@ -179,26 +197,5 @@ export default class MomentUtils extends DefaultMomentUtils {
     }
 
     return years;
-  }
-
-  // displaying methods
-  public getCalendarHeaderText(date: Moment) {
-    return date.format("iMMMM iYYYY");
-  }
-
-  public getYearText(date: Moment) {
-    return date.format("iYYYY");
-  }
-
-  public getDatePickerHeaderText(date: Moment) {
-    return date.format("dddd, iD iMMM");
-  }
-
-  public getDateTimePickerHeaderText(date: Moment) {
-    return date.format("iD iMMM");
-  }
-
-  public getDayText(date: Moment) {
-    return date.format("iD");
   }
 }

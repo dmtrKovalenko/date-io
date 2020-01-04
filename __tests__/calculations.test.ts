@@ -25,42 +25,44 @@ describe("DateTime calculations", () => {
   });
 
   utilsTest("addDays", (date, utils, lib) => {
-    expect(utils.format(utils.addDays(date, 1), formats.day[lib])).toBe("31");
+    expect(utils.formatByString(utils.addDays(date, 1), formats.day[lib])).toBe("31");
   });
 
   utilsTest("startOfDay", (date, utils, lib) => {
-    expect(utils.format(utils.startOfDay(date), formats.dateTime[lib])).toBe(
+    expect(utils.formatByString(utils.startOfDay(date), formats.dateTime[lib])).toBe(
       "2018-10-30 00:00"
     );
   });
 
   utilsTest("endOfDay", (date, utils, lib) => {
-    expect(utils.format(utils.endOfDay(date), formats.dateTime[lib])).toBe(
+    expect(utils.formatByString(utils.endOfDay(date), formats.dateTime[lib])).toBe(
       "2018-10-30 23:59"
     );
   });
 
   utilsTest("startOfMonth", (date, utils, lib) => {
-    expect(utils.format(utils.startOfMonth(date), formats.dateTime[lib])).toBe(
+    expect(utils.formatByString(utils.startOfMonth(date), formats.dateTime[lib])).toBe(
       "2018-10-01 00:00"
     );
   });
 
   utilsTest("endOfMonth", (date, utils, lib) => {
-    expect(utils.format(utils.endOfMonth(date), formats.dateTime[lib])).toBe(
+    expect(utils.formatByString(utils.endOfMonth(date), formats.dateTime[lib])).toBe(
       "2018-10-31 23:59"
     );
   });
 
   utilsTest("getPreviousMonth", (date, utils, lib) => {
-    expect(utils.format(utils.getPreviousMonth(date), formats.dateTime[lib])).toBe(
-      "2018-09-30 11:44"
-    );
+    expect(
+      utils.formatByString(utils.getPreviousMonth(date), formats.dateTime[lib])
+    ).toBe("2018-09-30 11:44");
   });
 
   utilsTest("getMonthArray", (date, utils, lib) => {
     expect(
-      utils.getMonthArray(date).map(date => utils.format(date, formats.dateTime[lib]))
+      utils
+        .getMonthArray(date)
+        .map(date => utils.formatByString(date, formats.dateTime[lib]))
     ).toEqual([
       "2018-01-01 00:00",
       "2018-02-01 00:00",
@@ -78,7 +80,7 @@ describe("DateTime calculations", () => {
   });
 
   utilsTest("getNextMonth", (date, utils, lib) => {
-    expect(utils.format(utils.getNextMonth(date), formats.dateTime[lib])).toBe(
+    expect(utils.formatByString(utils.getNextMonth(date), formats.dateTime[lib])).toBe(
       "2018-11-30 11:44"
     );
   });
@@ -104,27 +106,42 @@ describe("DateTime calculations", () => {
   });
 
   utilsTest("setMonth", (date, utils, lib) => {
-    const updatedTime = utils.format(utils.setMonth(date, 4), formats.dateTime[lib]);
+    const updatedTime = utils.formatByString(
+      utils.setMonth(date, 4),
+      formats.dateTime[lib]
+    );
     expect(updatedTime).toBe("2018-05-30 11:44");
   });
 
   utilsTest("setHours", (date, utils, lib) => {
-    const updatedTime = utils.format(utils.setHours(date, 0), formats.dateTime[lib]);
+    const updatedTime = utils.formatByString(
+      utils.setHours(date, 0),
+      formats.dateTime[lib]
+    );
     expect(updatedTime).toBe("2018-10-30 00:44");
   });
 
   utilsTest("setMinutes", (date, utils, lib) => {
-    const updatedTime = utils.format(utils.setMinutes(date, 12), formats.dateTime[lib]);
+    const updatedTime = utils.formatByString(
+      utils.setMinutes(date, 12),
+      formats.dateTime[lib]
+    );
     expect(updatedTime).toBe("2018-10-30 11:12");
   });
 
   utilsTest("setMinutes", (date, utils, lib) => {
-    const updatedTime = utils.format(utils.setMinutes(date, 12), formats.dateTime[lib]);
+    const updatedTime = utils.formatByString(
+      utils.setMinutes(date, 12),
+      formats.dateTime[lib]
+    );
     expect(updatedTime).toBe("2018-10-30 11:12");
   });
 
   utilsTest("setYear", (date, utils, lib) => {
-    const updatedTime = utils.format(utils.setYear(date, 2011), formats.dateTime[lib]);
+    const updatedTime = utils.formatByString(
+      utils.setYear(date, 2011),
+      formats.dateTime[lib]
+    );
     expect(updatedTime).toBe("2011-10-30 11:44");
   });
 
@@ -205,7 +222,9 @@ describe("DateTime calculations", () => {
       utils.date("2018-01-01T14:00:00.000Z")
     );
 
-    expect(utils.format(mergedDate, formats.dateTime[lib])).toBe("2018-10-30 14:00");
+    expect(utils.formatByString(mergedDate, formats.dateTime[lib])).toBe(
+      "2018-10-30 14:00"
+    );
   });
 
   utilsTest("isEqual", (date, utils) => {

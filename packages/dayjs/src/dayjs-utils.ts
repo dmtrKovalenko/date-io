@@ -1,7 +1,7 @@
 import defaultDayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import advancedFormat from "dayjs/plugin/advancedFormat";
-import { IUtils } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 defaultDayjs.extend(customParseFormat);
 defaultDayjs.extend(advancedFormat);
@@ -10,8 +10,7 @@ interface Opts {
   locale?: string;
   /** Make sure that your dayjs instance extends customParseFormat and advancedFormat */
   instance?: typeof defaultDayjs;
-  /** @deprecated */
-  dayjs?: typeof defaultDayjs;
+  formats?: Partial<DateIOFormats>;
 }
 
 type Dayjs = defaultDayjs.Dayjs;
@@ -20,28 +19,42 @@ type Constructor = (...args: Parameters<typeof defaultDayjs>) => Dayjs;
 const withLocale = (dayjs: typeof defaultDayjs, locale?: string): Constructor =>
   !locale ? dayjs : (...args) => dayjs(...args).locale(locale);
 
+const defaultFormats: DateIOFormats = {
+  fullDate: "YYYY, MMMM Do",
+  normalDate: "ddd, MMM Do",
+  shortDate: "MMM Do",
+  monthAndDate: "MMMM Do",
+  dayOfMonth: "D",
+  year: "YYYY",
+  month: "MMMM",
+  monthShort: "MMM",
+  monthAndYear: "MMMM YYYY",
+  minutes: "mm",
+  hours12h: "hh",
+  hours24h: "HH",
+  seconds: "ss",
+  fullTime12h: "hh:mm A",
+  fullTime24h: "HH:mm",
+  fullDateTime12h: "YYYY, MMM Do hh:mm A",
+  fullDateTime24h: "YYYY, MMM Do HH:mm",
+  keyboardDate: "YYYY/MM/DD",
+  keyboardDateTime12h: "YYYY/MM/DD hh:mm A",
+  keyboardDateTime24h: "YYYY/MM/DD HH:mm"
+};
+
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   public dayjs: Constructor;
-
   public locale?: string;
+  public formats: DateIOFormats;
 
-  public yearFormat = "YYYY";
-
-  public yearMonthFormat = "MMMM YYYY";
-
-  public dateTime12hFormat = "MMMM Do hh:mm a";
-
-  public dateTime24hFormat = "MMMM Do HH:mm";
-
-  public time12hFormat = "hh:mm A";
-
-  public time24hFormat = "HH:mm";
-
-  public dateFormat = "MMMM Do";
-
-  constructor({ locale, instance, dayjs }: Opts = {}) {
-    this.dayjs = withLocale(instance || dayjs || defaultDayjs, locale);
+  constructor({ locale, formats, instance }: Opts = {}) {
+    this.dayjs = withLocale(instance || defaultDayjs, locale);
     this.locale = locale;
+
+    this.formats = {
+      ...defaultFormats,
+      ...formats
+    };
   }
 
   public parse(value: any, format: any) {
@@ -104,7 +117,11 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return date.clone().endOf("day");
   }
 
-  public format(date: Dayjs, formatString: string) {
+  public format(date: Dayjs, formatKey: keyof DateIOFormats) {
+    return this.formatByString(date, this.formats[formatKey]);
+  }
+
+  public formatByString(date: Dayjs, formatString: string) {
     return this.dayjs(date).format(formatString);
   }
 
@@ -198,10 +215,6 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return monthArray;
   }
 
-  public getMonthText(date: Dayjs) {
-    return this.format(date, "MMMM");
-  }
-
   public getYear(date: Dayjs) {
     return date.year();
   }
@@ -219,7 +232,9 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
 
   public getWeekdays() {
     const start = this.dayjs().startOf("week");
-    return [0, 1, 2, 3, 4, 5, 6].map(diff => this.format(start.add(diff, "day"), "dd"));
+    return [0, 1, 2, 3, 4, 5, 6].map(diff =>
+      this.formatByString(start.add(diff, "day"), "dd")
+    );
   }
 
   public isEqual(value: any, comparing: any) {
@@ -268,38 +283,5 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     }
 
     return years;
-  }
-
-  // displaying methods
-  public getCalendarHeaderText(date: Dayjs) {
-    return this.format(date, "MMMM YYYY");
-  }
-
-  public getYearText(date: Dayjs) {
-    return this.format(date, "YYYY");
-  }
-
-  public getDatePickerHeaderText(date: Dayjs) {
-    return this.format(date, "ddd, MMM D");
-  }
-
-  public getDateTimePickerHeaderText(date: Dayjs) {
-    return this.format(date, "MMM D");
-  }
-
-  public getDayText(date: Dayjs) {
-    return this.format(date, "D");
-  }
-
-  public getHourText(date: Dayjs, ampm: boolean) {
-    return this.format(date, ampm ? "hh" : "HH");
-  }
-
-  public getMinuteText(date: Dayjs) {
-    return this.format(date, "mm");
-  }
-
-  public getSecondText(date: Dayjs) {
-    return this.format(date, "ss");
   }
 }

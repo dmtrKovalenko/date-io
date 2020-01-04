@@ -1,25 +1,42 @@
 import { DateTime, Info } from "luxon";
-import { IUtils } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
+
+const defaultFormats: DateIOFormats = {
+  fullDate: "yyyy, MMMM d",
+  normalDate: "EEE, MMM d",
+  shortDate: "MMM d",
+  monthAndDate: "MMMM d",
+  dayOfMonth: "d",
+  year: "yyyy",
+  month: "MMMM",
+  monthShort: "MMM",
+  monthAndYear: "MMMM yyyy",
+  minutes: "mm",
+  hours12h: "hh",
+  hours24h: "HH",
+  seconds: "ss",
+  fullTime12h: "t",
+  fullTime24h: "T",
+  fullDateTime12h: "yyyy, MMM d t",
+  fullDateTime24h: "yyyy, MMM d T",
+  keyboardDate: "yyyy/MM/dd",
+  keyboardDateTime12h: "yyyy/MM/dd t",
+  keyboardDateTime24h: "yyyy/MM/dd T"
+};
 
 export default class LuxonUtils implements IUtils<DateTime> {
   public locale: string;
+  public formats: DateIOFormats;
 
-  public yearFormat = "yyyy";
-
-  public yearMonthFormat = "LLLL yyyy";
-
-  public dateTime12hFormat = "ff";
-
-  public dateTime24hFormat = "MMMM dd T";
-
-  public time12hFormat = "t";
-
-  public time24hFormat = "T";
-
-  public dateFormat = "MMMM dd";
-
-  constructor({ locale }: { locale?: string } = {}) {
+  constructor({
+    locale,
+    formats
+  }: { formats?: Partial<DateIOFormats>; locale?: string } = {}) {
     this.locale = locale || "en";
+    this.formats = {
+      ...defaultFormats,
+      ...formats
+    };
   }
 
   public date(value?: any) {
@@ -143,7 +160,11 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value.endOf("day");
   }
 
-  public format(date: DateTime, format: string) {
+  public format(date: DateTime, formatKey: keyof DateIOFormats) {
+    return this.formatByString(date, this.formats[formatKey]);
+  }
+
+  public formatByString(date: DateTime, format: string) {
     return date.setLocale(this.locale).toFormat(format);
   }
 
@@ -270,7 +291,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
     return new Array<number>(Math.round(years))
       .fill(0)
-      .map((num, i) => i)
+      .map((_, i) => i)
       .map(year => start.plus({ years: year }));
   }
 
@@ -278,46 +299,6 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return Info.meridiems({ locale: this.locale }).find(
       v => v.toLowerCase() === ampm.toLowerCase()
     )!;
-  }
-
-  public getCalendarHeaderText(date: DateTime) {
-    return this.format(date, this.yearMonthFormat);
-  }
-
-  public getDatePickerHeaderText(date: DateTime) {
-    return this.format(date, "ccc, MMM d");
-  }
-
-  public getDateTimePickerHeaderText(date: DateTime) {
-    return this.format(date, "MMM d");
-  }
-
-  public getMonthText(date: DateTime) {
-    return this.format(date, "LLLL");
-  }
-
-  public getDayText(date: DateTime) {
-    return this.format(date, "d");
-  }
-
-  public getHourText(date: DateTime, ampm: boolean) {
-    if (ampm) {
-      return date.toFormat("hh");
-    }
-
-    return date.toFormat("HH");
-  }
-
-  public getMinuteText(date: DateTime) {
-    return date.toFormat("mm");
-  }
-
-  public getSecondText(date: DateTime) {
-    return date.toFormat("ss");
-  }
-
-  public getYearText(date: DateTime) {
-    return date.toFormat("yyyy");
   }
 
   public isNull(date: DateTime | null) {

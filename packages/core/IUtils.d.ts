@@ -1,19 +1,53 @@
+export interface DateIOFormats {
+  /** Full date, useful for accessibility @example "2019, January 1st" */
+  fullDate: string;
+  /** Day format string extremely required to localize @example "Wed, Jan 1st" for US, "January 1st" for Europe */
+  normalDate: string;
+  /** Shorter day format @example "Jan 1st" */
+  shortDate: string;
+  /** Year format string @example "2019" */
+  year: string;
+  /** Month format string @example "January" */
+  month: string;
+  /** Short month format string @example "Jan" */
+  monthShort: string;
+  /** Short month format string @example "January 2018" */
+  monthAndYear: string;
+  /** Month with date format string @example "January 1st" */
+  monthAndDate: string;
+  /** Day format string @example "12" */
+  dayOfMonth: string;
+  /** Full time format string @example "11:44 PM" */
+  fullTime12h: string;
+  /** Full time format string @example "23:59" */
+  fullTime24h: string;
+  /** Hours format string @example "11" */
+  hours12h: string;
+  /** Hours format string @example "23" */
+  hours24h: string;
+  /** Minutes format string @example "59" */
+  minutes: string;
+  /** Seconds format string @example "59" */
+  seconds: string;
+  /** Date & Time format string @example "2018, Jan 1st 11:44 PM" */
+  fullDateTime12h: string;
+  /** Date & Time format string @example "2018, Jan 1st 23:44" */
+  fullDateTime24h: string;
+  /** Keyboard input friendly date format @example "2019/01/01" */
+  keyboardDate: string;
+  /** Keyboard input friendly date/time 12h format @example "2019/01/01 23:44" */
+  keyboardDateTime12h: string;
+  /** Keyboard input friendly date/time 24h format @example "2019/01/01 11:44 PM" */
+  keyboardDateTime24h: string;
+}
+
 export interface IUtils<TDate> {
+  formats: DateIOFormats;
   locale?: any;
   moment?: any;
   dayjs?: any;
 
-  yearFormat: string;
-  yearMonthFormat: string;
-
-  dateTime12hFormat: string;
-  dateTime24hFormat: string;
-
-  time12hFormat: string;
-  time24hFormat: string;
-
-  dateFormat: string;
-  // constructor (options?: { locale?: any, moment?: any });
+  // constructor (options?: { formats?: DateIOFormats, locale?: any, instance?: any });
 
   date(value?: any): TDate | null;
   parse(value: string, format: string): TDate | null;
@@ -44,7 +78,8 @@ export interface IUtils<TDate> {
   startOfDay(value: TDate): TDate;
   endOfDay(value: TDate): TDate;
 
-  format(value: TDate, formatString: string): string;
+  format(value: TDate, formatKey: keyof DateIOFormats): string;
+  formatByString(value: TDate, formatString: string): string;
   formatNumber(numberToFormat: string): string;
 
   getHours(value: TDate): number;
@@ -72,15 +107,6 @@ export interface IUtils<TDate> {
   getWeekArray(date: TDate): TDate[][];
   getYearRange(start: TDate, end: TDate): TDate[];
 
-  // displaying methods
+  /** Allow to customize displaying "am/pm" strings */
   getMeridiemText(ampm: "am" | "pm"): string;
-  getCalendarHeaderText(date: TDate): string;
-  getDatePickerHeaderText(date: TDate): string;
-  getDateTimePickerHeaderText(date: TDate): string;
-  getMonthText(date: TDate): string;
-  getDayText(date: TDate): string;
-  getHourText(date: TDate, ampm: boolean): string;
-  getMinuteText(date: TDate): string;
-  getSecondText(date: TDate): string;
-  getYearText(date: TDate): string;
 }

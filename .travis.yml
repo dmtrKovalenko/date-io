@@ -5,4 +5,4 @@ node_js:
 install:
   - yarn
 script:
-  - npm run build && npm run test:coverage && npx codecov && npm run benchmark
+  - yarn build && yarn test:coverage && npx codecov

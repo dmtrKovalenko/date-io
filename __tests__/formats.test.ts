@@ -1,50 +1,34 @@
-import { utilsTest } from "./test-utils";
+import { allUtils } from "./test-utils";
 
-describe("DateTime formatting", () => {
-  utilsTest("Should properly format to date&time", (date, utils, lib) => {
-    const formattedDateTime = utils.format(date, utils.dateTime24hFormat);
+test.each`
+  format                   | expected                    | expectedLuxon
+  ${"fullDate"}            | ${"2020, January 1st"}      | ${"2020, January 1"}
+  ${"normalDate"}          | ${"Wed, Jan 1st"}           | ${"Wed, Jan 1"}
+  ${"shortDate"}           | ${"Jan 1st"}                | ${"Jan 1"}
+  ${"year"}                | ${"2020"}                   | ${null}
+  ${"month"}               | ${"January"}                | ${null}
+  ${"monthAndDate"}        | ${"January 1st"}            | ${"January 1"}
+  ${"dayOfMonth"}          | ${"1"}                      | ${null}
+  ${"fullTime12h"}         | ${"11:44 PM"}               | ${null}
+  ${"fullTime24h"}         | ${"23:44"}                  | ${null}
+  ${"hours12h"}            | ${"11"}                     | ${null}
+  ${"hours24h"}            | ${"23"}                     | ${null}
+  ${"minutes"}             | ${"44"}                     | ${null}
+  ${"seconds"}             | ${"00"}                     | ${null}
+  ${"fullDateTime12h"}     | ${"2020, Jan 1st 11:44 PM"} | ${"2020, Jan 1 11:44 PM"}
+  ${"keyboardDate"}        | ${"2020/01/01"}             | ${null}
+  ${"keyboardDateTime12h"} | ${"2020/01/01 11:44 PM"}    | ${null}
+  ${"keyboardDateTime24h"} | ${"2020/01/01 23:44"}       | ${null}
+`("Correctly formats with provided formats", ({ format, expected, expectedLuxon }) => {
+  allUtils.forEach(([libName, utils]) => {
+    const date = utils.date("2020-01-01T23:44:00.000Z");
+    const result = utils.format(date as any, format);
+    const expectedResult = libName === "Luxon" ? expectedLuxon || expected : expected;
 
-    expect(formattedDateTime).toBe(
-      // luxon doesn't support relative time (30th)
-      lib === "Luxon" ? "October 30 11:44" : "October 30th 11:44"
-    );
-  });
-
-  utilsTest("Should properly format year", (date, utils) => {
-    const formattedDateTime = utils.format(date, utils.yearFormat);
-
-    expect(formattedDateTime).toBe("2018");
-  });
-
-  utilsTest("Should properly format year&month", (date, utils) => {
-    const formattedDateTime = utils.format(date, utils.yearMonthFormat);
-
-    expect(formattedDateTime).toBe("October 2018");
-  });
-
-  utilsTest("Should properly format to date", (date, utils, lib) => {
-    const formattedDate = utils.format(date, utils.dateFormat);
-
-    expect(formattedDate).toBe(lib === "Luxon" ? "October 30" : "October 30th");
-  });
-
-  utilsTest("Should properly format to time 24h", (date, utils) => {
-    const formattedDate = utils.format(date, utils.time24hFormat);
-
-    expect(formattedDate).toBe("11:44");
-  });
-
-  utilsTest("Should properly format to time 12h", (date, utils) => {
-    const formattedDate = utils.format(date, utils.time12hFormat);
-
-    expect(formattedDate).toBe("11:44 AM");
-  });
-
-  utilsTest("getWeekdays", (_, utils) => {
-    expect(utils.getWeekdays()).toHaveLength(7);
-  });
-
-  utilsTest("formatNumber", (_, utils) => {
-    expect(utils.formatNumber("12")).toBe("12");
+    if (result !== expectedResult) {
+      throw new Error(
+        `${libName} utils.formats.${format} results to "${result}", instead of "${expectedResult}"`
+      );
+    }
   });
 });
