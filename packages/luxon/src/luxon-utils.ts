@@ -3,7 +3,8 @@ import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 const defaultFormats: DateIOFormats = {
   fullDate: "yyyy, MMMM d",
-  shortDate: "EEE, MMM d",
+  normalDate: "EEE, MMM d",
+  shortDate: "MMM d",
   monthAndDate: "MMMM d",
   dayOfMonth: "d",
   year: "yyyy",

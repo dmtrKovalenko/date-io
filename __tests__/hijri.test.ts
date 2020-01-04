@@ -169,9 +169,10 @@ describe("Hijri", () => {
   test.each`
     format               | expected
     ${"fullDate"}        | ${"٢٠٢٠، جمادى الأولى ١"}
-    ${"shortDate"}       | ${"الأربعاء، ٦ جمادى ١"}
+    ${"normalDate"}      | ${"الأربعاء، ٦ جمادى ١"}
+    ${"shortDate"}       | ${"٦ جمادى ١"}
     ${"year"}            | ${"١٤٤١"}
-    ${"month"}           | ${"يناير"}
+    ${"month"}           | ${"جمادى الأولى"}
     ${"monthAndDate"}    | ${"٦ جمادى الأولى"}
     ${"dayOfMonth"}      | ${"٦"}
     ${"fullTime12h"}     | ${"١١:٤٤ م"}

@@ -25,7 +25,8 @@ type Moment = iMoment.Moment;
 
 const defaultFormats: DateIOFormats = {
   fullDate: "YYYY, iMMMM Do",
-  shortDate: "dddd, iD iMMM",
+  normalDate: "dddd, iD iMMM",
+  shortDate: "iD iMMM",
   monthAndDate: "iD iMMMM",
   dayOfMonth: "iD",
   year: "iYYYY",

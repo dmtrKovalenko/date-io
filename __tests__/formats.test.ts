@@ -3,7 +3,8 @@ import { allUtils } from "./test-utils";
 test.each`
   format                   | expected                    | expectedLuxon
   ${"fullDate"}            | ${"2020, January 1st"}      | ${"2020, January 1"}
-  ${"shortDate"}           | ${"Wed, Jan 1st"}           | ${"Wed, Jan 1"}
+  ${"normalDate"}          | ${"Wed, Jan 1st"}           | ${"Wed, Jan 1"}
+  ${"shortDate"}           | ${"Jan 1st"}                | ${"Jan 1"}
   ${"year"}                | ${"2020"}                   | ${null}
   ${"month"}               | ${"January"}                | ${null}
   ${"monthAndDate"}        | ${"January 1st"}            | ${"January 1"}

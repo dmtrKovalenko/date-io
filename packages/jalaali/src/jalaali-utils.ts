@@ -24,8 +24,9 @@ interface Opts {
 type Moment = jMoment.Moment;
 const defaultFormats: DateIOFormats = {
   fullDate: "YYYY, jMMMM Do",
-  shortDate: "dddd, jD jMMM",
-  monthAndDate: "jD iMMMM",
+  normalDate: "dddd, jD jMMM",
+  shortDate: "jD jMMM",
+  monthAndDate: "jD jMMMM",
   dayOfMonth: "jD",
   year: "jYYYY",
   month: "jMMMM",

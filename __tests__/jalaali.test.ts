@@ -162,10 +162,11 @@ describe("Jalaali", () => {
   test.each`
     format               | expected
     ${"fullDate"}        | ${"۲۰۲۰، دی ۱م"}
-    ${"shortDate"}       | ${"چهارشنبه، ۱۱ دی"}
+    ${"normalDate"}      | ${"چهارشنبه، ۱۱ دی"}
+    ${"shortDate"}       | ${"۱۱ دی"}
     ${"year"}            | ${"۱۳۹۸"}
-    ${"month"}           | ${"ژانویه"}
-    ${"monthAndDate"}    | ${"۱۱ iژانویه"}
+    ${"month"}           | ${"دی"}
+    ${"monthAndDate"}    | ${"۱۱ دی"}
     ${"dayOfMonth"}      | ${"۱۱"}
     ${"fullTime12h"}     | ${"۱۱:۴۴ ب.ظ"}
     ${"fullTime24h"}     | ${"۲۳:۴۴"}

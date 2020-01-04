@@ -2,6 +2,8 @@ export interface DateIOFormats {
   /** Full date, useful for accessibility @example "2019, January 1st" */
   fullDate: string;
   /** Day format string extremely required to localize @example "Wed, Jan 1st" for US, "January 1st" for Europe */
+  normalDate: string;
+  /** Shorter day format @example "Jan 1st" */
   shortDate: string;
   /** Year format string @example "2019" */
   year: string;
