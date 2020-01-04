@@ -7,6 +7,10 @@ export interface DateIOFormats {
   year: string;
   /** Month format string @example "January" */
   month: string;
+  /** Short month format string @example "Jan" */
+  monthShort: string;
+  /** Short month format string @example "January 2018" */
+  monthAndYear: string;
   /** Month with date format string @example "January 1st" */
   monthAndDate: string;
   /** Day format string @example "12" */

@@ -8,6 +8,8 @@ const defaultFormats: DateIOFormats = {
   dayOfMonth: "d",
   year: "yyyy",
   month: "MMMM",
+  monthShort: "MMM",
+  monthAndYear: "MMMM yyyy",
   minutes: "mm",
   hours12h: "hh",
   hours24h: "HH",
