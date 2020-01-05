@@ -35,9 +35,9 @@ type Locale = typeof import("date-fns/locale/en-US").default;
 
 const defaultFormats: DateIOFormats = {
   fullDate: "yyyy, MMMM do",
-  normalDate: "EEE, MMM do",
-  shortDate: "MMM do",
-  monthAndDate: "MMMM do",
+  normalDate: "EEE, MMM d",
+  shortDate: "MMM d",
+  monthAndDate: "MMMM d",
   dayOfMonth: "d",
   year: "yyyy",
   month: "MMMM",

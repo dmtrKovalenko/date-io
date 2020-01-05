@@ -15,13 +15,13 @@ const defaultFormats: DateIOFormats = {
   hours12h: "hh",
   hours24h: "HH",
   seconds: "ss",
-  fullTime12h: "t",
-  fullTime24h: "T",
+  fullTime12h: "hh:mm a",
+  fullTime24h: "HH:mm",
   fullDateTime12h: "yyyy, MMM d t",
   fullDateTime24h: "yyyy, MMM d T",
   keyboardDate: "yyyy/MM/dd",
-  keyboardDateTime12h: "yyyy/MM/dd t",
-  keyboardDateTime24h: "yyyy/MM/dd T"
+  keyboardDateTime12h: "yyyy/MM/dd hh:mm a",
+  keyboardDateTime24h: "yyyy/MM/dd HH:mm"
 };
 
 export default class LuxonUtils implements IUtils<DateTime> {

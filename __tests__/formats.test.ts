@@ -3,11 +3,13 @@ import { allUtils } from "./test-utils";
 test.each`
   format                   | expected                    | expectedLuxon
   ${"fullDate"}            | ${"2020, January 1st"}      | ${"2020, January 1"}
-  ${"normalDate"}          | ${"Wed, Jan 1st"}           | ${"Wed, Jan 1"}
-  ${"shortDate"}           | ${"Jan 1st"}                | ${"Jan 1"}
+  ${"fullDateTime12h"}     | ${"2020, Jan 1st 11:44 PM"} | ${"2020, Jan 1 11:44 PM"}
+  ${"fullDateTime24h"}     | ${"2020, Jan 1st 23:44"}    | ${"2020, Jan 1 23:44"}
+  ${"normalDate"}          | ${"Wed, Jan 1"}             | ${null}
+  ${"shortDate"}           | ${"Jan 1"}                  | ${null}
   ${"year"}                | ${"2020"}                   | ${null}
   ${"month"}               | ${"January"}                | ${null}
-  ${"monthAndDate"}        | ${"January 1st"}            | ${"January 1"}
+  ${"monthAndDate"}        | ${"January 1"}              | ${null}
   ${"dayOfMonth"}          | ${"1"}                      | ${null}
   ${"fullTime12h"}         | ${"11:44 PM"}               | ${null}
   ${"fullTime24h"}         | ${"23:44"}                  | ${null}
@@ -15,7 +17,6 @@ test.each`
   ${"hours24h"}            | ${"23"}                     | ${null}
   ${"minutes"}             | ${"44"}                     | ${null}
   ${"seconds"}             | ${"00"}                     | ${null}
-  ${"fullDateTime12h"}     | ${"2020, Jan 1st 11:44 PM"} | ${"2020, Jan 1 11:44 PM"}
   ${"keyboardDate"}        | ${"2020/01/01"}             | ${null}
   ${"keyboardDateTime12h"} | ${"2020/01/01 11:44 PM"}    | ${null}
   ${"keyboardDateTime24h"} | ${"2020/01/01 23:44"}       | ${null}
