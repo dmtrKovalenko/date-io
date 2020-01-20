@@ -42,6 +42,14 @@ const defaultFormats: DateIOFormats = {
   keyboardDateTime24h: "YYYY/MM/DD HH:mm"
 };
 
+const localizedFormats = {
+  fullTime12h: "LT",
+  fullTime24h: "LT",
+  keyboardDate: "L",
+  keyboardDateTime12h: "L LT",
+  keyboardDateTime24h: "L LT"
+}
+
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   public dayjs: Constructor;
   public locale?: string;

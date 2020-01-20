@@ -2,6 +2,7 @@ import defaultMoment from "moment";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 interface Opts {
+  useLocalizedFormats?: boolean;
   locale?: string;
   instance?: typeof defaultMoment;
   formats?: Partial<DateIOFormats>;
@@ -31,17 +32,30 @@ const defaultFormats: DateIOFormats = {
   keyboardDateTime24h: "YYYY/MM/DD HH:mm"
 };
 
+const localizedFormats = {
+  ...defaultFormats,
+  fullTime12h: "LT",
+  fullTime24h: "LT",
+  keyboardDate: "L",
+  keyboardDateTime12h: "L LT",
+  keyboardDateTime24h: "L LT"
+};
+
 export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public moment: typeof defaultMoment;
   public locale?: string;
   public formats: DateIOFormats;
 
-  constructor({ locale, formats, instance }: Opts = {}) {
+  constructor(
+    { locale, formats, instance, useLocalizedFormats }: Opts = {
+      useLocalizedFormats: false
+    }
+  ) {
     this.moment = instance || defaultMoment;
     this.locale = locale;
 
     this.formats = {
-      ...defaultFormats,
+      ...(useLocalizedFormats ? localizedFormats : defaultFormats),
       ...formats
     };
   }

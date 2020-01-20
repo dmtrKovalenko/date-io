@@ -1,4 +1,8 @@
 import { allUtils } from "./test-utils";
+import LuxonUtils from "../packages/luxon/src";
+import DateFnsUtils from "../packages/date-fns/src";
+import MomentUtils from "../packages/moment/src";
+import DayjsUtils from "../packages/dayjs/src";
 
 test.each`
   format                   | expected                    | expectedLuxon
@@ -33,3 +37,31 @@ test.each`
     }
   });
 });
+
+test.each`
+  format                   | expected              | expectedLuxon
+  ${"keyboardDate"}        | ${"01.01.2020"}       | ${null}
+  ${"keyboardDateTime12h"} | ${"01.01.2020 23:44"} | ${null}
+  ${"keyboardDateTime24h"} | ${"01.01.2020 23:44"} | ${null}
+`(
+  "Correctly formats with provided localized formats",
+  ({ format, expected, expectedLuxon }) => {
+    const allUtils = [
+      // ["Luxon", new LuxonUtils()],
+      // ["DateFns", new DateFnsUtils()],
+      ["Moment", new MomentUtils({ locale: "ru", useLocalizedFormats: true })]
+      // ["Dayjs", new DayjsUtils()]
+    ] as const;
+
+    allUtils.forEach(([libName, utils]) => {
+      const date = utils.date("2020-01-01T23:44:00.000Z");
+      const result = utils.format(date as any, format);
+
+      if (result !== expected) {
+        throw new Error(
+          `${libName} utils.formats.${format} results to "${result}", instead of "${expected}"`
+        );
+      }
+    });
+  }
+);
