@@ -60,6 +60,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     };
   }
 
+  public is12HourCycleInCurrentLocale() {
+    return /A|a/.test(this.moment().localeData().longDateFormat('LT'))
+  }
+
   public parse(value: string, format: string) {
     if (value === "") {
       return null;

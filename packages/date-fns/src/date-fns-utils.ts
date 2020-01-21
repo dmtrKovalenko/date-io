@@ -73,6 +73,14 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   // Note: date-fns input types are more lenient than this adapter, so we need to expose our more
   // strict signature and delegate to the more lenient signature. Otherwise, we have downstream type errors upon usage.
+  public is12HourCycleInCurrentLocale() {
+    if (this.locale) {
+      return /a/.test(this.locale.formatLong.time())
+    }
+
+    // By default date-fns is using en-US locale with am/pm enabled
+    return true
+  }
 
   public addDays(value: Date, count: number) {
     return addDays(value, count);

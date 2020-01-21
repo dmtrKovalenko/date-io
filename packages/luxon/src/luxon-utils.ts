@@ -67,6 +67,14 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return DateTime.fromFormat(value, formatString);
   }
 
+  public is12HourCycleInCurrentLocale() {
+    if (typeof Intl === 'undefined') {
+      return true // Luxon defaults to en-US if Intl not found
+    }
+
+    return new Intl.DateTimeFormat(this.locale, { hour: 'numeric'}).resolvedOptions().hour12
+  }
+
   public addDays(date: DateTime, count: number) {
     if (count < 0) {
       return date.minus({ days: Math.abs(count) });

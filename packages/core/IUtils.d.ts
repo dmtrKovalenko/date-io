@@ -51,6 +51,7 @@ export interface IUtils<TDate> {
 
   date(value?: any): TDate | null;
   parse(value: string, format: string): TDate | null;
+  is12HourCycleInCurrentLocale(): boolean;
 
   isNull(value: TDate | null): boolean;
   isValid(value: any): boolean;

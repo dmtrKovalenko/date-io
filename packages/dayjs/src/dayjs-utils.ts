@@ -1,10 +1,10 @@
 import defaultDayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
-import advancedFormat from "dayjs/plugin/advancedFormat";
+import localizedFormat from "dayjs/plugin/localizedFormat";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 defaultDayjs.extend(customParseFormat);
-defaultDayjs.extend(advancedFormat);
+defaultDayjs.extend(localizedFormat);
 
 interface Opts {
   locale?: string;
@@ -51,18 +51,24 @@ const localizedFormats = {
 }
 
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
+  public rawDayJsInstance: typeof defaultDayjs;
   public dayjs: Constructor;
   public locale?: string;
   public formats: DateIOFormats;
 
   constructor({ locale, formats, instance }: Opts = {}) {
-    this.dayjs = withLocale(instance || defaultDayjs, locale);
+    this.rawDayJsInstance = instance || defaultDayjs
+    this.dayjs = withLocale(this.rawDayJsInstance, locale);
     this.locale = locale;
 
     this.formats = {
       ...defaultFormats,
       ...formats
     };
+  }
+
+  public is12HourCycleInCurrentLocale() {
+    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale || 'en']?.formats?.LT)
   }
 
   public parse(value: any, format: any) {
