@@ -68,11 +68,13 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public is12HourCycleInCurrentLocale() {
-    if (typeof Intl === 'undefined') {
-      return true // Luxon defaults to en-US if Intl not found
+    if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined") {
+      return true; // Luxon defaults to en-US if Intl not found
     }
 
-    return new Intl.DateTimeFormat(this.locale, { hour: 'numeric'}).resolvedOptions().hour12
+    return Boolean(
+      new Intl.DateTimeFormat(this.locale, { hour: "numeric" })?.resolvedOptions()?.hour12
+    );
   }
 
   public addDays(date: DateTime, count: number) {
