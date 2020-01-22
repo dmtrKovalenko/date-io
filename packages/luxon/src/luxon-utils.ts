@@ -68,7 +68,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public is12HourCycleInCurrentLocale() {
-    if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined") {
+    if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined" ) {
       return true; // Luxon defaults to en-US if Intl not found
     }
 
