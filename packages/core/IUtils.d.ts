@@ -85,9 +85,9 @@ export interface IUtils<TDate> {
   startOfDay(value: TDate): TDate;
   endOfDay(value: TDate): TDate;
 
-  format(value: TDate, formatKey: keyof DateIOFormats): TLibFormatToken;
-  formatByString(value: TDate, formatString: string): TLibFormatToken;
-  formatNumber(numberToFormat: string): TLibFormatToken;
+  format(value: TDate, formatKey: keyof DateIOFormats): string;
+  formatByString(value: TDate, formatString: string): string;
+  formatNumber(numberToFormat: string): string;
 
   getHours(value: TDate): number;
   setHours(value: TDate, count: number): TDate;
@@ -115,5 +115,5 @@ export interface IUtils<TDate> {
   getYearRange(start: TDate, end: TDate): TDate[];
 
   /** Allow to customize displaying "am/pm" strings */
-  getMeridiemText(ampm: "am" | "pm"): TLibFormatToken;
+  getMeridiemText(ampm: "am" | "pm"): string;
 }
