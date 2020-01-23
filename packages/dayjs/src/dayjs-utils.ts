@@ -51,10 +51,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     this.dayjs = withLocale(instance || defaultDayjs, locale);
     this.locale = locale;
 
-    this.formats = {
-      ...defaultFormats,
-      ...formats
-    };
+    this.formats = Object.assign({}, defaultFormats, formats);
   }
 
   public parse(value: any, format: any) {

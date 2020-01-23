@@ -65,10 +65,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     formats
   }: { formats?: Partial<DateIOFormats>; locale?: Locale } = {}) {
     this.locale = locale;
-    this.formats = {
-      ...defaultFormats,
-      ...formats
-    };
+    this.formats = Object.assign({}, defaultFormats, formats);
   }
 
   // Note: date-fns input types are more lenient than this adapter, so we need to expose our more

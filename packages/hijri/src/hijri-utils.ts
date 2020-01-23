@@ -57,10 +57,7 @@ export default class MomentUtils extends DefaultMomentUtils {
     this.moment = instance || iMoment;
     this.locale = "ar-SA";
 
-    this.formats = {
-      ...defaultFormats,
-      ...formats
-    };
+    this.formats = Object.assign({}, defaultFormats, formats);
   }
 
   private toIMoment(date?: any) {
