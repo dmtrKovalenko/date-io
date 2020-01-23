@@ -51,7 +51,7 @@ const localizedFormats = {
   keyboardDate: "L",
   keyboardDateTime12h: "L LT",
   keyboardDateTime24h: "L LT"
-}
+};
 
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   public rawDayJsInstance: typeof defaultDayjs;
@@ -60,7 +60,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   public formats: DateIOFormats;
 
   constructor({ locale, formats, instance }: Opts = {}) {
-    this.rawDayJsInstance = instance || defaultDayjs
+    this.rawDayJsInstance = instance || defaultDayjs;
     this.dayjs = withLocale(this.rawDayJsInstance, locale);
     this.locale = locale;
 
@@ -71,7 +71,8 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public is12HourCycleInCurrentLocale() {
-    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale || 'en']?.formats?.LT)
+    /* istanbul ignore next */
+    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale || "en"]?.formats?.LT);
   }
 
   public parse(value: any, format: any) {

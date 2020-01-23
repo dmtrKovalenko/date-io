@@ -70,6 +70,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return DateTime.fromFormat(value, formatString);
   }
 
+  /* istanbul ignore next */
   public is12HourCycleInCurrentLocale() {
     if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined") {
       return true; // Luxon defaults to en-US if Intl not found
