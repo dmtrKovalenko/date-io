@@ -197,10 +197,10 @@ describe("DateTime calculations", () => {
   });
 
   utilsTest("getYearRange", (date, utils) => {
-    const yearRange = utils.getYearRange(date, utils.setYear(date, 2024));
+    const yearRange = utils.getYearRange(date, utils.setYear(date, 2124));
 
-    expect(yearRange).toHaveLength(7);
-    expect(utils.getYear(yearRange[yearRange.length - 1])).toBe(2024);
+    expect(yearRange).toHaveLength(107);
+    expect(utils.getYear(yearRange[yearRange.length - 1])).toBe(2124);
 
     const emptyYearRange = utils.getYearRange(
       date,
