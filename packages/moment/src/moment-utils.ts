@@ -40,10 +40,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     this.moment = instance || defaultMoment;
     this.locale = locale;
 
-    this.formats = {
-      ...defaultFormats,
-      ...formats
-    };
+    this.formats = Object.assign({}, defaultFormats, formats);
   }
 
   public parse(value: string, format: string) {

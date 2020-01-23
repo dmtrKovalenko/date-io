@@ -56,10 +56,7 @@ export default class MomentUtils extends DefaultMomentUtils {
     this.moment = instance || jMoment;
     this.locale = "fa";
 
-    this.formats = {
-      ...defaultFormats,
-      ...formats
-    };
+    this.formats = Object.assign({}, defaultFormats, formats);
   }
 
   private toJMoment(date?: any) {

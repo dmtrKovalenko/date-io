@@ -33,10 +33,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     formats
   }: { formats?: Partial<DateIOFormats>; locale?: string } = {}) {
     this.locale = locale || "en";
-    this.formats = {
-      ...defaultFormats,
-      ...formats
-    };
+    this.formats = Object.assign({}, defaultFormats, formats);
   }
 
   public date(value?: any) {
