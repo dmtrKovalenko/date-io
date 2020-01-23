@@ -279,17 +279,18 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public getYearRange(start: DateTime, end: DateTime) {
-    start = this.date(start);
-    end = this.date(end).plus({ years: 1 });
-    const { years } = end.diff(start, "years").toObject();
-    if (!years || years <= 0) {
-      return [];
+    const startDate = this.date(start).startOf("year");
+    const endDate = this.date(end).endOf("year");
+
+    let current = startDate;
+    const years: DateTime[] = [];
+
+    while (current < endDate) {
+      years.push(current);
+      current = current.plus({ year: 1 });
     }
 
-    return new Array<number>(Math.round(years))
-      .fill(0)
-      .map((_, i) => i)
-      .map(year => start.plus({ years: year }));
+    return years;
   }
 
   public getMeridiemText(ampm: "am" | "pm") {
