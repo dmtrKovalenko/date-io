@@ -168,7 +168,7 @@ describe("Hijri", () => {
 
   test.each`
     format               | expected
-    ${"fullDate"}        | ${"٢٠٢٠، جمادى الأولى ١"}
+    ${"fullDate"}        | ${"١٤٤١، جمادى الأولى ١"}
     ${"normalDate"}      | ${"الأربعاء، ٦ جمادى ١"}
     ${"shortDate"}       | ${"٦ جمادى ١"}
     ${"year"}            | ${"١٤٤١"}
