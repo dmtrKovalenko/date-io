@@ -2,7 +2,6 @@ import defaultMoment from "moment";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 interface Opts {
-  useLocalizedFormats?: boolean;
   locale?: string;
   instance?: typeof defaultMoment;
   formats?: Partial<DateIOFormats>;
@@ -10,7 +9,6 @@ interface Opts {
 
 type Moment = defaultMoment.Moment;
 const defaultFormats: DateIOFormats = {
-  fullDate: "YYYY, MMMM Do",
   normalDate: "ddd, MMM D",
   shortDate: "MMM D",
   monthAndDate: "MMMM D",
@@ -23,22 +21,17 @@ const defaultFormats: DateIOFormats = {
   hours12h: "hh",
   hours24h: "HH",
   seconds: "ss",
+  fullTime: "LT",
   fullTime12h: "hh:mm A",
   fullTime24h: "HH:mm",
-  fullDateTime12h: "YYYY, MMM Do hh:mm A",
-  fullDateTime24h: "YYYY, MMM Do HH:mm",
-  keyboardDate: "YYYY/MM/DD",
-  keyboardDateTime12h: "YYYY/MM/DD hh:mm A",
-  keyboardDateTime24h: "YYYY/MM/DD HH:mm"
-};
-
-const localizedFormats = {
-  ...defaultFormats,
-  fullTime12h: "LT",
-  fullTime24h: "LT",
+  fullDate: "ll",
+  fullDateTime: "lll",
+  fullDateTime12h: "ll hh:mm A",
+  fullDateTime24h: "ll HH:mm",
   keyboardDate: "L",
-  keyboardDateTime12h: "L LT",
-  keyboardDateTime24h: "L LT"
+  keyboardDateTime: "L LT",
+  keyboardDateTime12h: "L hh:mm A",
+  keyboardDateTime24h: "L HH:mm"
 };
 
 export default class MomentUtils implements IUtils<defaultMoment.Moment> {
@@ -46,22 +39,22 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public locale?: string;
   public formats: DateIOFormats;
 
-  constructor(
-    { locale, formats, instance, useLocalizedFormats }: Opts = {
-      useLocalizedFormats: false
-    }
-  ) {
+  constructor({ locale, formats, instance }: Opts = {}) {
     this.moment = instance || defaultMoment;
     this.locale = locale;
 
     this.formats = {
-      ...(useLocalizedFormats ? localizedFormats : defaultFormats),
+      ...defaultFormats,
       ...formats
     };
   }
 
   public is12HourCycleInCurrentLocale() {
-    return /A|a/.test(this.moment().localeData().longDateFormat('LT'))
+    return /A|a/.test(
+      this.moment()
+        .localeData()
+        .longDateFormat("LT")
+    );
   }
 
   public parse(value: string, format: string) {

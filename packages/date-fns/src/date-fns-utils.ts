@@ -34,26 +34,29 @@ import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 type Locale = typeof import("date-fns/locale/en-US").default;
 
 const defaultFormats: DateIOFormats = {
-  fullDate: "yyyy, MMMM do",
-  normalDate: "EEE, MMM d",
-  shortDate: "MMM d",
-  monthAndDate: "MMMM d",
   dayOfMonth: "d",
-  year: "yyyy",
-  month: "MMMM",
-  monthShort: "MMM",
-  monthAndYear: "MMMM yyyy",
-  minutes: "mm",
-  hours12h: "hh",
-  hours24h: "HH",
-  seconds: "ss",
+  fullDate: "PP",
+  fullDateTime: 'PP p',
+  fullDateTime12h: "PP hh:mm aaa",
+  fullDateTime24h: "PP HH:mm",
+  fullTime: "p",
   fullTime12h: "hh:mm aaa",
   fullTime24h: "HH:mm",
-  fullDateTime12h: "yyyy, MMM do hh:mm aaa",
-  fullDateTime24h: "yyyy, MMM do HH:mm",
-  keyboardDate: "yyyy/MM/dd",
-  keyboardDateTime12h: "yyyy/MM/dd hh:mm aaa",
-  keyboardDateTime24h: "yyyy/MM/dd HH:mm"
+  hours12h: "hh",
+  hours24h: "HH",
+  keyboardDate: "P",
+  keyboardDateTime: "P p",
+  keyboardDateTime12h: "P hh:mm aaa",
+  keyboardDateTime24h: "P HH:mm",
+  minutes: "mm",
+  month: "MMMM",
+  monthAndDate: "MMMM d",
+  monthAndYear: "MMMM yyyy",
+  monthShort: "MMM",
+  normalDate: "EEE, MMM d",
+  seconds: "ss",
+  shortDate: "MMM d",
+  year: "yyyy"
 };
 
 export default class DateFnsUtils implements IUtils<Date> {
@@ -75,11 +78,11 @@ export default class DateFnsUtils implements IUtils<Date> {
   // strict signature and delegate to the more lenient signature. Otherwise, we have downstream type errors upon usage.
   public is12HourCycleInCurrentLocale() {
     if (this.locale) {
-      return /a/.test(this.locale.formatLong.time())
+      return /a/.test(this.locale.formatLong.time());
     }
 
     // By default date-fns is using en-US locale with am/pm enabled
-    return true
+    return true;
   }
 
   public addDays(value: Date, count: number) {

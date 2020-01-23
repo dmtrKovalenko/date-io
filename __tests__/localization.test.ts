@@ -84,6 +84,11 @@ describe("Moment -- localization", () => {
       expect(result[0][0].format("dd")).toBe("пн");
     });
 
+    it("format: should use localized format token", () => {
+      const result = momentUtils.format(date, 'fullTime');
+      expect(result).toBe("11:44");
+    });
+
     it("is12HourCycleInCurrentLocale: properly determine should use meridiem or not", () => {
       expect(momentUtils.is12HourCycleInCurrentLocale()).toBe(false);
     });

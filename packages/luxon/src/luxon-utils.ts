@@ -1,32 +1,35 @@
 import { DateTime, Info } from "luxon";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
-const defaultFormats: DateIOFormats = {
-  fullDate: "yyyy, MMMM d",
-  normalDate: "EEE, MMM d",
-  shortDate: "MMM d",
-  monthAndDate: "MMMM d",
+const defaultFormats: DateIOFormats<string | Intl.DateTimeFormatOptions> = {
   dayOfMonth: "d",
-  year: "yyyy",
-  month: "MMMM",
-  monthShort: "MMM",
-  monthAndYear: "MMMM yyyy",
-  minutes: "mm",
-  hours12h: "hh",
-  hours24h: "HH",
-  seconds: "ss",
+  fullDate: DateTime.DATE_MED,
+  fullDateTime: DateTime.DATETIME_MED,
+  fullDateTime12h: "DD, hh:mm a",
+  fullDateTime24h: "DD, T",
+  fullTime: DateTime.TIME_SIMPLE,
   fullTime12h: "hh:mm a",
   fullTime24h: "HH:mm",
-  fullDateTime12h: "yyyy, MMM d t",
-  fullDateTime24h: "yyyy, MMM d T",
-  keyboardDate: "yyyy/MM/dd",
-  keyboardDateTime12h: "yyyy/MM/dd hh:mm a",
-  keyboardDateTime24h: "yyyy/MM/dd HH:mm"
+  hours12h: "hh",
+  hours24h: "HH",
+  keyboardDate: DateTime.DATE_SHORT,
+  keyboardDateTime: "D t",
+  keyboardDateTime12h: "D hh:mm a",
+  keyboardDateTime24h: "D T",
+  minutes: "mm",
+  month: "MMMM",
+  monthAndDate: "MMMM d",
+  monthAndYear: "MMMM yyyy",
+  monthShort: "MMM",
+  normalDate: "EEE, MMM d",
+  seconds: "ss",
+  shortDate: "MMM d",
+  year: "yyyy"
 };
 
 export default class LuxonUtils implements IUtils<DateTime> {
   public locale: string;
-  public formats: DateIOFormats;
+  public formats: DateIOFormats<string | Intl.DateTimeFormatOptions>;
 
   constructor({
     locale,
@@ -68,7 +71,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public is12HourCycleInCurrentLocale() {
-    if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined" ) {
+    if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined") {
       return true; // Luxon defaults to en-US if Intl not found
     }
 
@@ -174,8 +177,12 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return this.formatByString(date, this.formats[formatKey]);
   }
 
-  public formatByString(date: DateTime, format: string) {
-    return date.setLocale(this.locale).toFormat(format);
+  public formatByString(date: DateTime, format: string | Intl.DateTimeFormatOptions) {
+    if (typeof format === "string") {
+      return date.setLocale(this.locale).toFormat(format);
+    }
+
+    return date.setLocale(this.locale).toLocaleString(format);
   }
 
   public formatNumber(numberToFormat: string) {

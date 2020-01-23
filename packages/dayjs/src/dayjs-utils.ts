@@ -1,12 +1,10 @@
 import defaultDayjs from "dayjs";
 import customParseFormatPlugin from "dayjs/plugin/customParseFormat";
 import localizedFormatPlugin from "dayjs/plugin/localizedFormat";
-import advancedFormatPlugin from "dayjs/plugin/advancedFormat";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
-defaultDayjs.extend(advancedFormatPlugin)
 
 interface Opts {
   locale?: string;
@@ -22,7 +20,6 @@ const withLocale = (dayjs: typeof defaultDayjs, locale?: string): Constructor =>
   !locale ? dayjs : (...args) => dayjs(...args).locale(locale);
 
 const defaultFormats: DateIOFormats = {
-  fullDate: "YYYY, MMMM Do",
   normalDate: "ddd, MMM D",
   shortDate: "MMM D",
   monthAndDate: "MMMM D",
@@ -35,13 +32,17 @@ const defaultFormats: DateIOFormats = {
   hours12h: "hh",
   hours24h: "HH",
   seconds: "ss",
+  fullTime: "LT",
   fullTime12h: "hh:mm A",
   fullTime24h: "HH:mm",
-  fullDateTime12h: "YYYY, MMM Do hh:mm A",
-  fullDateTime24h: "YYYY, MMM Do HH:mm",
-  keyboardDate: "YYYY/MM/DD",
-  keyboardDateTime12h: "YYYY/MM/DD hh:mm A",
-  keyboardDateTime24h: "YYYY/MM/DD HH:mm"
+  fullDate: "ll",
+  fullDateTime: "lll",
+  fullDateTime12h: "ll hh:mm A",
+  fullDateTime24h: "ll HH:mm",
+  keyboardDate: "L",
+  keyboardDateTime: "L LT",
+  keyboardDateTime12h: "L hh:mm A",
+  keyboardDateTime24h: "L HH:mm"
 };
 
 const localizedFormats = {
