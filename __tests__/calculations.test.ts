@@ -266,4 +266,8 @@ describe("DateTime calculations", () => {
       utils.isSameHour(date, utils.addDays(utils.date(TEST_TIMESTAMP), 5))
     ).toBeFalsy();
   });
+
+  utilsTest("getCurrentLocaleCode: returns default locale", (date, utils, lib) => {
+    expect(utils.getCurrentLocaleCode()).toMatch(/en/);
+  });
 });

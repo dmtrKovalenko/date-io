@@ -36,7 +36,7 @@ type Locale = typeof import("date-fns/locale/en-US").default;
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "d",
   fullDate: "PP",
-  fullDateTime: 'PP p',
+  fullDateTime: "PP p",
   fullDateTime12h: "PP hh:mm aaa",
   fullDateTime24h: "PP HH:mm",
   fullTime: "p",
@@ -83,6 +83,10 @@ export default class DateFnsUtils implements IUtils<Date> {
 
     // By default date-fns is using en-US locale with am/pm enabled
     return true;
+  }
+
+  public getCurrentLocaleCode() {
+    return this.locale?.code || "en-US";
   }
 
   public addDays(value: Date, count: number) {

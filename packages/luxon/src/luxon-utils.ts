@@ -1,4 +1,4 @@
-import { DateTime, Info } from "luxon";
+import { DateTime, Settings, Info } from "luxon";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 const defaultFormats: DateIOFormats<string | Intl.DateTimeFormatOptions> = {
@@ -79,6 +79,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return Boolean(
       new Intl.DateTimeFormat(this.locale, { hour: "numeric" })?.resolvedOptions()?.hour12
     );
+  }
+
+  public getCurrentLocaleCode() {
+    return this.locale || Settings.defaultLocale;
   }
 
   public addDays(date: DateTime, count: number) {

@@ -57,6 +57,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     );
   }
 
+  public getCurrentLocaleCode() {
+    return this.locale || this.moment.locale();
+  }
+
   public parse(value: string, format: string) {
     if (value === "") {
       return null;

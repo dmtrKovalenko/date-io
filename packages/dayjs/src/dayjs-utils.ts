@@ -75,6 +75,10 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return /A|a/.test(this.rawDayJsInstance.Ls[this.locale || "en"]?.formats?.LT);
   }
 
+  public getCurrentLocaleCode() {
+    return this.locale || "en";
+  }
+
   public parse(value: any, format: any) {
     if (value === "") {
       return null;

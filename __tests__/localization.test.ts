@@ -24,7 +24,7 @@ describe("Localization helpers", () => {
 });
 
 describe("DateFns -- Localization", () => {
-  const enAuDateFnsUtils = new DateFnsUtils({ locale: enAuLocale })
+  const enAuDateFnsUtils = new DateFnsUtils({ locale: enAuLocale });
   const RuDateFnsUtils = new DateFnsUtils({ locale: ruLocale });
 
   it("Should return weekdays starting with monday", () => {
@@ -32,12 +32,15 @@ describe("DateFns -- Localization", () => {
     expect(result).toEqual(["пн", "вт", "ср", "чт", "пт", "сб", "вс"]);
   });
 
-
   it("is12HourCycleInCurrentLocale: properly determine should use meridiem or not", () => {
-    expect(enAuDateFnsUtils.is12HourCycleInCurrentLocale()).toBe(true)
+    expect(enAuDateFnsUtils.is12HourCycleInCurrentLocale()).toBe(true);
     expect(RuDateFnsUtils.is12HourCycleInCurrentLocale()).toBe(false);
     // default behavior
-    expect(new DateFnsUtils().is12HourCycleInCurrentLocale()).toBe(true)
+    expect(new DateFnsUtils().is12HourCycleInCurrentLocale()).toBe(true);
+  });
+
+  it("getCurrentLocaleCode: returns locale code", () => {
+    expect(RuDateFnsUtils.getCurrentLocaleCode()).toBe("ru");
   });
 });
 
@@ -46,7 +49,7 @@ describe("Luxon -- Localization", () => {
     let luxonEnUtils = new LuxonUtils({ locale: "en-US" });
 
     it("is12HourCycleInCurrentLocale: properly determine should use meridiem or not", () => {
-      expect(luxonEnUtils.is12HourCycleInCurrentLocale()).toBe(true)
+      expect(luxonEnUtils.is12HourCycleInCurrentLocale()).toBe(true);
     });
   });
 
@@ -60,7 +63,11 @@ describe("Luxon -- Localization", () => {
     });
 
     it("is12HourCycleInCurrentLocale: properly determine should use meridiem or not", () => {
-      expect(luxonUtils.is12HourCycleInCurrentLocale()).toBe(false)
+      expect(luxonUtils.is12HourCycleInCurrentLocale()).toBe(false);
+    });
+
+    it("getCurrentLocaleCode: returns locale code", () => {
+      expect(luxonUtils.getCurrentLocaleCode()).toBe("ru");
     });
   });
 });
@@ -85,12 +92,16 @@ describe("Moment -- localization", () => {
     });
 
     it("format: should use localized format token", () => {
-      const result = momentUtils.format(date, 'fullTime');
+      const result = momentUtils.format(date, "fullTime");
       expect(result).toBe("11:44");
     });
 
     it("is12HourCycleInCurrentLocale: properly determine should use meridiem or not", () => {
       expect(momentUtils.is12HourCycleInCurrentLocale()).toBe(false);
+    });
+
+    it("getCurrentLocaleCode: returns locale code", () => {
+      expect(momentUtils.getCurrentLocaleCode()).toBe("ru");
     });
   });
 
@@ -137,6 +148,10 @@ describe("Dayjs -- Localization", () => {
 
     it("is12HourCycleInCurrentLocale: properly determine should use meridiem or not", () => {
       expect(dayjsUtils.is12HourCycleInCurrentLocale()).toBe(false);
+    });
+
+    it("getCurrentLocaleCode: returns locale code", () => {
+      expect(dayjsUtils.getCurrentLocaleCode()).toBe("ru");
     });
   });
 
