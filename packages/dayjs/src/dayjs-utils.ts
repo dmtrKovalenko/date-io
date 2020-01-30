@@ -1,10 +1,10 @@
 import defaultDayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-import advancedFormat from "dayjs/plugin/advancedFormat";
+import customParseFormatPlugin from "dayjs/plugin/customParseFormat";
+import localizedFormatPlugin from "dayjs/plugin/localizedFormat";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
-defaultDayjs.extend(customParseFormat);
-defaultDayjs.extend(advancedFormat);
+defaultDayjs.extend(customParseFormatPlugin);
+defaultDayjs.extend(localizedFormatPlugin);
 
 interface Opts {
   locale?: string;
@@ -20,9 +20,8 @@ const withLocale = (dayjs: typeof defaultDayjs, locale?: string): Constructor =>
   !locale ? dayjs : (...args) => dayjs(...args).locale(locale);
 
 const defaultFormats: DateIOFormats = {
-  fullDate: "YYYY, MMMM Do",
   normalDate: "ddd, MMM D",
-  shortDate: "MMM D",
+  shortDate: "DD MMMM",
   monthAndDate: "MMMM D",
   dayOfMonth: "D",
   year: "YYYY",
@@ -33,25 +32,48 @@ const defaultFormats: DateIOFormats = {
   hours12h: "hh",
   hours24h: "HH",
   seconds: "ss",
+  fullTime: "LT",
   fullTime12h: "hh:mm A",
   fullTime24h: "HH:mm",
-  fullDateTime12h: "YYYY, MMM Do hh:mm A",
-  fullDateTime24h: "YYYY, MMM Do HH:mm",
-  keyboardDate: "YYYY/MM/DD",
-  keyboardDateTime12h: "YYYY/MM/DD hh:mm A",
-  keyboardDateTime24h: "YYYY/MM/DD HH:mm"
+  fullDate: "ll",
+  fullDateTime: "lll",
+  fullDateTime12h: "ll hh:mm A",
+  fullDateTime24h: "ll HH:mm",
+  keyboardDate: "L",
+  keyboardDateTime: "L LT",
+  keyboardDateTime12h: "L hh:mm A",
+  keyboardDateTime24h: "L HH:mm"
+};
+
+const localizedFormats = {
+  fullTime12h: "LT",
+  fullTime24h: "LT",
+  keyboardDate: "L",
+  keyboardDateTime12h: "L LT",
+  keyboardDateTime24h: "L LT"
 };
 
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
+  public rawDayJsInstance: typeof defaultDayjs;
   public dayjs: Constructor;
   public locale?: string;
   public formats: DateIOFormats;
 
   constructor({ locale, formats, instance }: Opts = {}) {
-    this.dayjs = withLocale(instance || defaultDayjs, locale);
+    this.rawDayJsInstance = instance || defaultDayjs;
+    this.dayjs = withLocale(this.rawDayJsInstance, locale);
     this.locale = locale;
 
     this.formats = Object.assign({}, defaultFormats, formats);
+  }
+
+  public is12HourCycleInCurrentLocale() {
+    /* istanbul ignore next */
+    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale || "en"]?.formats?.LT);
+  }
+
+  public getCurrentLocaleCode() {
+    return this.locale || "en";
   }
 
   public parse(value: any, format: any) {

@@ -1,48 +1,54 @@
-export interface DateIOFormats {
-  /** Full date, useful for accessibility @example "2019, January 1st" */
-  fullDate: string;
+export interface DateIOFormats<TLibFormatToken = string> {
+  /** Localized full date, useful for accessibility @example "January 1st, 2019" */
+  fullDate: TLibFormatToken;
   /** Day format string extremely required to localize @example "Wed, Jan 1st" for US, "January 1st" for Europe */
-  normalDate: string;
-  /** Shorter day format @example "Jan 1st" */
-  shortDate: string;
+  normalDate: TLibFormatToken;
+  /** Shorter day format @example "1 January" */
+  shortDate: TLibFormatToken;
   /** Year format string @example "2019" */
-  year: string;
+  year: TLibFormatToken;
   /** Month format string @example "January" */
-  month: string;
+  month: TLibFormatToken;
   /** Short month format string @example "Jan" */
-  monthShort: string;
+  monthShort: TLibFormatToken;
   /** Short month format string @example "January 2018" */
-  monthAndYear: string;
+  monthAndYear: TLibFormatToken;
   /** Month with date format string @example "January 1st" */
-  monthAndDate: string;
+  monthAndDate: TLibFormatToken;
   /** Day format string @example "12" */
-  dayOfMonth: string;
-  /** Full time format string @example "11:44 PM" */
-  fullTime12h: string;
-  /** Full time format string @example "23:59" */
-  fullTime24h: string;
+  dayOfMonth: TLibFormatToken;
   /** Hours format string @example "11" */
-  hours12h: string;
+  hours12h: TLibFormatToken;
   /** Hours format string @example "23" */
-  hours24h: string;
+  hours24h: TLibFormatToken;
   /** Minutes format string @example "59" */
-  minutes: string;
+  minutes: TLibFormatToken;
   /** Seconds format string @example "59" */
-  seconds: string;
-  /** Date & Time format string @example "2018, Jan 1st 11:44 PM" */
-  fullDateTime12h: string;
-  /** Date & Time format string @example "2018, Jan 1st 23:44" */
-  fullDateTime24h: string;
-  /** Keyboard input friendly date format @example "2019/01/01" */
-  keyboardDate: string;
-  /** Keyboard input friendly date/time 12h format @example "2019/01/01 23:44" */
-  keyboardDateTime12h: string;
-  /** Keyboard input friendly date/time 24h format @example "2019/01/01 11:44 PM" */
-  keyboardDateTime24h: string;
+  seconds: TLibFormatToken;
+  /** Full time localized format string @example "11:44 PM" for US, "23:44" for Europe */
+  fullTime: TLibFormatToken;
+  /** Not localized full time format string @example "11:44 PM" */
+  fullTime12h: TLibFormatToken;
+  /** Not localized full time format string @example "23:59" */
+  fullTime24h: TLibFormatToken;
+  /** Date & time format string with localized time @example "2018, Jan 1st 11:44 PM" */
+  fullDateTime: TLibFormatToken;
+  /** Not localized date & Time format 12h @example "2018, Jan 1st 11:44 PM" */
+  fullDateTime12h: TLibFormatToken;
+  /** Not localized date & Time format 24h @example "2018, Jan 1st 23:44" */
+  fullDateTime24h: TLibFormatToken;
+  /** Localized keyboard input friendly date format @example "2019/01/01" */
+  keyboardDate: TLibFormatToken;
+  /** Localized keyboard input friendly date/time format @example "2019/01/01 23:44" */
+  keyboardDateTime: TLibFormatToken;
+  /** Not Localized keyboard input friendly date/time 12h format @example "2019/01/01 23:44" */
+  keyboardDateTime12h: TLibFormatToken;
+  /** Not localized keyboard input friendly date/time 24h format @example "2019/01/01 11:44 PM" */
+  keyboardDateTime24h: TLibFormatToken;
 }
 
 export interface IUtils<TDate> {
-  formats: DateIOFormats;
+  formats: DateIOFormats<any>;
   locale?: any;
   moment?: any;
   dayjs?: any;
@@ -51,6 +57,9 @@ export interface IUtils<TDate> {
 
   date(value?: any): TDate | null;
   parse(value: string, format: string): TDate | null;
+
+  getCurrentLocaleCode(): string;
+  is12HourCycleInCurrentLocale(): boolean;
 
   isNull(value: TDate | null): boolean;
   isValid(value: any): boolean;

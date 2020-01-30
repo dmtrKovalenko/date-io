@@ -161,7 +161,7 @@ describe("Jalaali", () => {
 
   test.each`
     format               | expected
-    ${"fullDate"}        | ${"۲۰۲۰، دی ۱م"}
+    ${"fullDate"}        | ${"۱۳۹۸، دی ۱م"}
     ${"normalDate"}      | ${"چهارشنبه، ۱۱ دی"}
     ${"shortDate"}       | ${"۱۱ دی"}
     ${"year"}            | ${"۱۳۹۸"}

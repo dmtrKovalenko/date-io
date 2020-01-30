@@ -24,27 +24,31 @@ interface Opts {
 type Moment = iMoment.Moment;
 
 const defaultFormats: DateIOFormats = {
-  fullDate: "YYYY, iMMMM Do",
-  normalDate: "dddd, iD iMMM",
-  shortDate: "iD iMMM",
-  monthAndDate: "iD iMMMM",
   dayOfMonth: "iD",
-  year: "iYYYY",
-  month: "iMMMM",
-  monthShort: "iMMM",
-  monthAndYear: "iMMMM iYYYY",
-  minutes: "mm",
-  hours12h: "hh",
-  hours24h: "HH",
-  seconds: "ss",
-  fullTime12h: "hh:mm A",
-  fullTime24h: "HH:mm",
+  fullDate: "iYYYY, iMMMM Do",
+  fullDateTime: "iYYYY, iMMMM Do, hh:mm A",
   fullDateTime12h: "iD iMMMM hh:mm A",
   fullDateTime24h: "iD iMMMM HH:mm",
+  fullTime: "LT",
+  fullTime12h: "hh:mm A",
+  fullTime24h: "HH:mm",
+  hours12h: "hh",
+  hours24h: "HH",
   keyboardDate: "iYYYY/iMM/dd",
+  keyboardDateTime: "iYYYY/iMM/iDD LT",
   keyboardDateTime12h: "iYYYY/iMM/iDD hh:mm A",
-  keyboardDateTime24h: "iYYYY/iMM/iDD HH:mm"
+  keyboardDateTime24h: "iYYYY/iMM/iDD HH:mm",
+  minutes: "mm",
+  month: "iMMMM",
+  monthAndDate: "iD iMMMM",
+  monthAndYear: "iMMMM iYYYY",
+  monthShort: "iMMM",
+  normalDate: "dddd, iD iMMM",
+  seconds: "ss",
+  shortDate: "iD iMMM",
+  year: "iYYYY",
 };
+
 
 export default class MomentUtils extends DefaultMomentUtils {
   public moment: typeof iMoment;

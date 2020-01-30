@@ -9,9 +9,8 @@ interface Opts {
 
 type Moment = defaultMoment.Moment;
 const defaultFormats: DateIOFormats = {
-  fullDate: "YYYY, MMMM Do",
   normalDate: "ddd, MMM D",
-  shortDate: "MMM D",
+  shortDate: "DD MMMM",
   monthAndDate: "MMMM D",
   dayOfMonth: "D",
   year: "YYYY",
@@ -22,13 +21,17 @@ const defaultFormats: DateIOFormats = {
   hours12h: "hh",
   hours24h: "HH",
   seconds: "ss",
+  fullTime: "LT",
   fullTime12h: "hh:mm A",
   fullTime24h: "HH:mm",
-  fullDateTime12h: "YYYY, MMM Do hh:mm A",
-  fullDateTime24h: "YYYY, MMM Do HH:mm",
-  keyboardDate: "YYYY/MM/DD",
-  keyboardDateTime12h: "YYYY/MM/DD hh:mm A",
-  keyboardDateTime24h: "YYYY/MM/DD HH:mm"
+  fullDate: "ll",
+  fullDateTime: "lll",
+  fullDateTime12h: "ll hh:mm A",
+  fullDateTime24h: "ll HH:mm",
+  keyboardDate: "L",
+  keyboardDateTime: "L LT",
+  keyboardDateTime12h: "L hh:mm A",
+  keyboardDateTime24h: "L HH:mm"
 };
 
 export default class MomentUtils implements IUtils<defaultMoment.Moment> {
@@ -41,6 +44,18 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     this.locale = locale;
 
     this.formats = Object.assign({}, defaultFormats, formats);
+  }
+
+  public is12HourCycleInCurrentLocale() {
+    return /A|a/.test(
+      this.moment()
+        .localeData()
+        .longDateFormat("LT")
+    );
+  }
+
+  public getCurrentLocaleCode() {
+    return this.locale || this.moment.locale();
   }
 
   public parse(value: string, format: string) {
