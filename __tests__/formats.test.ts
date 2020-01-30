@@ -10,7 +10,7 @@ import "dayjs/locale/ru";
 test.each`
   format            | expectedWithEn
   ${"normalDate"}   | ${"Wed, Jan 1"}
-  ${"shortDate"}    | ${"Jan 1"}
+  ${"shortDate"}    | ${"01 January"}
   ${"year"}         | ${"2020"}
   ${"month"}        | ${"January"}
   ${"monthAndDate"} | ${"January 1"}
