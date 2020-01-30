@@ -17,13 +17,13 @@ const defaultFormats: DateIOFormats<string | Intl.DateTimeFormatOptions> = {
   keyboardDateTime12h: "D hh:mm a",
   keyboardDateTime24h: "D T",
   minutes: "mm",
+  seconds: "ss",
   month: "MMMM",
   monthAndDate: "MMMM d",
   monthAndYear: "MMMM yyyy",
   monthShort: "MMM",
   normalDate: "EEE, MMM d",
-  seconds: "ss",
-  shortDate: "MMM d",
+  shortDate: "dd MMMM",
   year: "yyyy"
 };
 

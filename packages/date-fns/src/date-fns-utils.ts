@@ -55,7 +55,7 @@ const defaultFormats: DateIOFormats = {
   monthShort: "MMM",
   normalDate: "EEE, MMM d",
   seconds: "ss",
-  shortDate: "MMM d",
+  shortDate: "dd MMMM",
   year: "yyyy"
 };
 

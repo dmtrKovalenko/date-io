@@ -3,7 +3,7 @@ export interface DateIOFormats<TLibFormatToken = string> {
   fullDate: TLibFormatToken;
   /** Day format string extremely required to localize @example "Wed, Jan 1st" for US, "January 1st" for Europe */
   normalDate: TLibFormatToken;
-  /** Shorter day format @example "Jan 1st" */
+  /** Shorter day format @example "1 January" */
   shortDate: TLibFormatToken;
   /** Year format string @example "2019" */
   year: TLibFormatToken;
