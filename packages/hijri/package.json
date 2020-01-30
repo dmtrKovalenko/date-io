@@ -1,6 +1,6 @@
 {
   "name": "@date-io/hijri",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -10,10 +10,10 @@
     "moment-hijri": "^2.1.2"
   },
   "dependencies": {
-    "@date-io/moment": "^2.0.1"
+    "@date-io/moment": "^2.1.0"
   },
   "devDependencies": {
-    "@date-io/core": "^2.0.0",
+    "@date-io/core": "^2.1.0",
     "moment": "^2.24.0",
     "moment-hijri": "^2.1.2",
     "rollup": "^1.27.7",
