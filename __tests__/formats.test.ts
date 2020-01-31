@@ -8,19 +8,20 @@ import moment from "moment";
 import "dayjs/locale/ru";
 
 test.each`
-  format            | expectedWithEn
-  ${"normalDate"}   | ${"Wed, Jan 1"}
-  ${"shortDate"}    | ${"01 January"}
-  ${"year"}         | ${"2020"}
-  ${"month"}        | ${"January"}
-  ${"monthAndDate"} | ${"January 1"}
-  ${"dayOfMonth"}   | ${"1"}
-  ${"fullTime12h"}  | ${"11:44 PM"}
-  ${"fullTime24h"}  | ${"23:44"}
-  ${"hours12h"}     | ${"11"}
-  ${"hours24h"}     | ${"23"}
-  ${"minutes"}      | ${"44"}
-  ${"seconds"}      | ${"00"}
+  format                     | expectedWithEn
+  ${"normalDate"}            | ${"1 January"}
+  ${"normalDateWithWeekday"} | ${"Wed, Jan 1"}
+  ${"shortDate"}             | ${"Jan 1"}
+  ${"year"}                  | ${"2020"}
+  ${"month"}                 | ${"January"}
+  ${"monthAndDate"}          | ${"January 1"}
+  ${"dayOfMonth"}            | ${"1"}
+  ${"fullTime12h"}           | ${"11:44 PM"}
+  ${"fullTime24h"}           | ${"23:44"}
+  ${"hours12h"}              | ${"11"}
+  ${"hours24h"}              | ${"23"}
+  ${"minutes"}               | ${"44"}
+  ${"seconds"}               | ${"00"}
 `("Correctly format standalone hardcoded formats", ({ format, expectedWithEn }) => {
   allUtils.forEach(([libName, utils]) => {
     const date: any = utils.date("2020-01-01T23:44:00.000Z");

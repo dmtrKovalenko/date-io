@@ -20,8 +20,9 @@ const withLocale = (dayjs: typeof defaultDayjs, locale?: string): Constructor =>
   !locale ? dayjs : (...args) => dayjs(...args).locale(locale);
 
 const defaultFormats: DateIOFormats = {
-  normalDate: "ddd, MMM D",
-  shortDate: "DD MMMM",
+  normalDateWithWeekday: "ddd, MMM D",
+  normalDate: "D MMMM",
+  shortDate: "MMM D",
   monthAndDate: "MMMM D",
   dayOfMonth: "D",
   year: "YYYY",
