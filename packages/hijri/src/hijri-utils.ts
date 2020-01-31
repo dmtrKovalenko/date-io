@@ -44,11 +44,11 @@ const defaultFormats: DateIOFormats = {
   monthAndYear: "iMMMM iYYYY",
   monthShort: "iMMM",
   normalDate: "dddd, iD iMMM",
+  normalDateWithWeekday: "DD iMMMM",
   seconds: "ss",
   shortDate: "iD iMMM",
-  year: "iYYYY",
+  year: "iYYYY"
 };
-
 
 export default class MomentUtils extends DefaultMomentUtils {
   public moment: typeof iMoment;

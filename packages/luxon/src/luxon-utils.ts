@@ -18,12 +18,13 @@ const defaultFormats: DateIOFormats = {
   keyboardDateTime24h: "D T",
   minutes: "mm",
   seconds: "ss",
-  month: "MMMM",
+  month: "LLLL",
   monthAndDate: "MMMM d",
-  monthAndYear: "MMMM yyyy",
+  monthAndYear: "LLLL yyyy",
   monthShort: "MMM",
-  normalDate: "EEE, MMM d",
-  shortDate: "dd MMMM",
+  normalDate: "d MMMM",
+  normalDateWithWeekday: "EEE, MMM d",
+  shortDate: "MMM d",
   year: "yyyy"
 };
 

@@ -9,8 +9,9 @@ interface Opts {
 
 type Moment = defaultMoment.Moment;
 const defaultFormats: DateIOFormats = {
-  normalDate: "ddd, MMM D",
-  shortDate: "DD MMMM",
+  normalDateWithWeekday: "ddd, MMM D",
+  normalDate: "D MMMM",
+  shortDate: "MMM D",
   monthAndDate: "MMMM D",
   dayOfMonth: "D",
   year: "YYYY",
