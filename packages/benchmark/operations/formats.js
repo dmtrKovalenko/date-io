@@ -1,20 +1,12 @@
-const runBenchmark = require('../run')
+const runBenchmark = require("../run");
 
 const runFormats = Utils => () => {
   const utils = new Utils();
   const date = utils.date();
 
-  [
-    utils.yearFormat,
-    utils.yearMonthFormat,
-    utils.dateTime12hFormat,
-    utils.dateTime24hFormat,
-    utils.time12hFormat,
-    utils.time24hFormat,
-    utils.dateFormat
-  ].forEach(formatString => {
-    utils.format(date, formatString)
-  })
+  Object.keys(utils.formats).forEach(formatKey => {
+    utils.format(date, formatKey);
+  });
 };
 
-runBenchmark('formats', runFormats)
+runBenchmark("formats", runFormats);

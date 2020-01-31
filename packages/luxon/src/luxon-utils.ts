@@ -1,18 +1,18 @@
 import { DateTime, Settings, Info } from "luxon";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
-const defaultFormats: DateIOFormats<string | Intl.DateTimeFormatOptions> = {
+const defaultFormats: DateIOFormats = {
   dayOfMonth: "d",
-  fullDate: DateTime.DATE_MED,
-  fullDateTime: DateTime.DATETIME_MED,
+  fullDate: "DD",
+  fullDateTime: "ff",
   fullDateTime12h: "DD, hh:mm a",
   fullDateTime24h: "DD, T",
-  fullTime: DateTime.TIME_SIMPLE,
+  fullTime: "t",
   fullTime12h: "hh:mm a",
   fullTime24h: "HH:mm",
   hours12h: "hh",
   hours24h: "HH",
-  keyboardDate: DateTime.DATE_SHORT,
+  keyboardDate: "D",
   keyboardDateTime: "D t",
   keyboardDateTime12h: "D hh:mm a",
   keyboardDateTime24h: "D T",
@@ -29,7 +29,7 @@ const defaultFormats: DateIOFormats<string | Intl.DateTimeFormatOptions> = {
 
 export default class LuxonUtils implements IUtils<DateTime> {
   public locale: string;
-  public formats: DateIOFormats<string | Intl.DateTimeFormatOptions>;
+  public formats: DateIOFormats;
 
   constructor({
     locale,
@@ -179,12 +179,8 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return this.formatByString(date, this.formats[formatKey]);
   }
 
-  public formatByString(date: DateTime, format: string | Intl.DateTimeFormatOptions) {
-    if (typeof format === "string") {
-      return date.setLocale(this.locale).toFormat(format);
-    }
-
-    return date.setLocale(this.locale).toLocaleString(format);
+  public formatByString(date: DateTime, format: string) {
+    return date.setLocale(this.locale).toFormat(format);
   }
 
   public formatNumber(numberToFormat: string) {
