@@ -78,6 +78,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return moment;
   }
 
+  public toJsDate(value: Moment) {
+    return value.toDate();
+  }
+
   public isValid(value: any) {
     return this.moment(value).isValid();
   }

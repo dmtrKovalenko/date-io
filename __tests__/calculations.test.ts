@@ -270,4 +270,8 @@ describe("DateTime calculations", () => {
   utilsTest("getCurrentLocaleCode: returns default locale", (date, utils, lib) => {
     expect(utils.getCurrentLocaleCode()).toMatch(/en/);
   });
+
+  utilsTest("toJsDate: returns date object", (date, utils) => {
+    expect(utils.toJsDate(date)).toBeInstanceOf(Date);
+  });
 });

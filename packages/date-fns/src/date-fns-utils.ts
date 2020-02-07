@@ -179,6 +179,10 @@ export default class DateFnsUtils implements IUtils<Date> {
     return new Date(value);
   }
 
+  public toJsDate(value: Date) {
+    return value;
+  }
+
   public parse(value: string, formatString: string) {
     if (value === "") {
       return null;

@@ -58,6 +58,7 @@ export interface IUtils<TDate> {
   // constructor (options?: { formats?: DateIOFormats, locale?: any, instance?: any });
 
   date(value?: any): TDate | null;
+  toJsDate(value: TDate): Date;
   parse(value: string, format: string): TDate | null;
 
   getCurrentLocaleCode(): string;

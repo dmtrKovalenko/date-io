@@ -93,6 +93,10 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return this.dayjs(value);
   }
 
+  public toJsDate(value: Dayjs) {
+    return value.toDate();
+  }
+
   public isValid(value: any) {
     return this.dayjs(value).isValid();
   }

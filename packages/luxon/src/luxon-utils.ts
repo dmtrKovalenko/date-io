@@ -60,6 +60,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return DateTime.fromJSDate(value);
   }
 
+  public toJsDate(value: DateTime) {
+    return value.toJSDate();
+  }
+
   public parse(value: string, formatString: string) {
     if (value === "") {
       return null;
