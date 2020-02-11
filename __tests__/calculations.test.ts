@@ -52,6 +52,18 @@ describe("DateTime calculations", () => {
     );
   });
 
+  utilsTest("startOfWeek", (date, utils, lib) => {
+    expect(utils.formatByString(utils.startOfWeek(date), formats.dateTime[lib])).toBe(
+      lib === "Luxon" ? "2018-10-29 00:00" : "2018-10-28 00:00"
+    );
+  });
+
+  utilsTest("endOfWeek", (date, utils, lib) => {
+    expect(utils.formatByString(utils.endOfWeek(date), formats.dateTime[lib])).toBe(
+      lib === "Luxon" ? "2018-11-04 23:59" : "2018-11-03 23:59"
+    );
+  });
+
   utilsTest("getPreviousMonth", (date, utils, lib) => {
     expect(
       utils.formatByString(utils.getPreviousMonth(date), formats.dateTime[lib])

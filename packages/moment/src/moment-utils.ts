@@ -205,6 +205,14 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.clone().endOf("month");
   }
 
+  public startOfWeek(date: Moment) {
+    return date.clone().startOf("week");
+  }
+
+  public endOfWeek(date: Moment) {
+    return date.clone().endOf("week");
+  }
+
   public getNextMonth(date: Moment) {
     return date.clone().add(1, "month");
   }
