@@ -219,6 +219,14 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return date.clone().endOf("month");
   }
 
+  public startOfWeek(date: Dayjs) {
+    return date.clone().startOf("week");
+  }
+
+  public endOfWeek(date: Dayjs) {
+    return date.clone().endOf("week");
+  }
+
   public getNextMonth(date: Dayjs) {
     return date.clone().add(1, "month");
   }

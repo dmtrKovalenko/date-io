@@ -159,6 +159,14 @@ export default class DateFnsUtils implements IUtils<Date> {
     return endOfMonth(value);
   }
 
+  public startOfWeek(value: Date) {
+    return startOfWeek(value);
+  }
+
+  public endOfWeek(value: Date) {
+    return endOfWeek(value);
+  }
+
   public getYear(value: Date) {
     return getYear(value);
   }

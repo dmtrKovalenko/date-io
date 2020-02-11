@@ -248,6 +248,14 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value.endOf("month");
   }
 
+  public startOfWeek(value: DateTime) {
+    return value.startOf("week");
+  }
+
+  public endOfWeek(value: DateTime) {
+    return value.endOf("week");
+  }
+
   public getNextMonth(value: DateTime) {
     return value.plus({ months: 1 });
   }
