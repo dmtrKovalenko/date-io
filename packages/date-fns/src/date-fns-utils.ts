@@ -29,7 +29,9 @@ import startOfMonth from "date-fns/startOfMonth";
 import endOfMonth from "date-fns/endOfMonth";
 import startOfWeek from "date-fns/startOfWeek";
 import startOfYear from "date-fns/startOfYear";
+import isWithinRange from "date-fns/isWithinInterval";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
+import isWithinInterval from "date-fns/isWithinInterval";
 
 type Locale = typeof import("date-fns/locale/en-US").default;
 
@@ -233,6 +235,10 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   public isAfterYear(date: Date, value: Date) {
     return isAfter(date, endOfYear(value));
+  }
+
+  public isWithinRange(date: Date, [start, end]: [Date, Date]) {
+    return isWithinInterval(date, { start, end });
   }
 
   public formatNumber(numberToFormat: string) {

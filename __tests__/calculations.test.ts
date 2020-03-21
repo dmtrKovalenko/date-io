@@ -286,4 +286,20 @@ describe("DateTime calculations", () => {
   utilsTest("toJsDate: returns date object", (date, utils) => {
     expect(utils.toJsDate(date)).toBeInstanceOf(Date);
   });
+
+  utilsTest("isWithinRange: checks that dates isBetween 2 other dates", (date, utils) => {
+    expect(
+      utils.isWithinRange(utils.date("2019-10-01T00:00:00.000Z"), [
+        utils.date("2019-09-01T00:00:00.000Z"),
+        utils.date("2019-11-01T00:00:00.000Z")
+      ])
+    ).toBeTruthy();
+
+    expect(
+      utils.isWithinRange(utils.date("2019-12-01T00:00:00.000Z"), [
+        utils.date("2019-09-01T00:00:00.000Z"),
+        utils.date("2019-11-01T00:00:00.000Z")
+      ])
+    ).toBeFalsy();
+  });
 });

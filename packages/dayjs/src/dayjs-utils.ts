@@ -1,10 +1,12 @@
 import defaultDayjs from "dayjs";
 import customParseFormatPlugin from "dayjs/plugin/customParseFormat";
 import localizedFormatPlugin from "dayjs/plugin/localizedFormat";
+import isBetweenPlugin from "dayjs/plugin/isBetween";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
+defaultDayjs.extend(isBetweenPlugin);
 
 interface Opts {
   locale?: string;
@@ -315,5 +317,9 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     }
 
     return years;
+  }
+
+  public isWithinRange(date: Dayjs, [start, end]: [Dayjs, Dayjs]) {
+    return date.isBetween(start, end);
   }
 }
