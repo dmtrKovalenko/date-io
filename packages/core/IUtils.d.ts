@@ -82,6 +82,8 @@ export interface IUtils<TDate> {
   isBeforeYear(value: TDate, comparing: TDate): boolean;
   isBefore(value: TDate, comparing: TDate): boolean;
 
+  isWithinRange(value: TDate, range: [TDate, TDate]): boolean;
+
   startOfMonth(value: TDate): TDate;
   endOfMonth(value: TDate): TDate;
   startOfWeek(value: TDate): TDate;
