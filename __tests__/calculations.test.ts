@@ -25,7 +25,13 @@ describe("DateTime calculations", () => {
   });
 
   utilsTest("addDays", (date, utils, lib) => {
-    expect(utils.formatByString(utils.addDays(date, 1), formats.day[lib])).toBe("31");
+    expect(utils.format(utils.addDays(date, 1), "dayOfMonth")).toBe("31");
+  });
+
+  utilsTest("addMonths", (date, utils, lib) => {
+    const result = utils.addMonths(date, 2);
+
+    expect(utils.format(result, "monthAndYear")).toBe("December 2018");
   });
 
   utilsTest("startOfDay", (date, utils, lib) => {

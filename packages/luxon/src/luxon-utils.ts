@@ -88,11 +88,13 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public addDays(date: DateTime, count: number) {
-    if (count < 0) {
-      return date.minus({ days: Math.abs(count) });
-    }
+    return count < 0 ? date.minus({ days: Math.abs(count) }) : date.plus({ days: count });
+  }
 
-    return date.plus({ days: count });
+  public addMonths(date: DateTime, count: number) {
+    return count < 0
+      ? date.minus({ months: Math.abs(count) })
+      : date.plus({ months: count });
   }
 
   public isValid(value: any) {

@@ -93,6 +93,10 @@ export default class DateFnsUtils implements IUtils<Date> {
     return addDays(value, count);
   }
 
+  public addMonths(value: Date, count: number) {
+    return addMonths(value, count);
+  }
+
   public isValid(value: any) {
     return isValid(this.date(value));
   }
