@@ -90,6 +90,7 @@ export interface IUtils<TDate> {
   endOfWeek(value: TDate): TDate;
 
   addDays(value: TDate, count: number): TDate;
+  addMonths(value: TDate, count: number): TDate;
 
   startOfDay(value: TDate): TDate;
   endOfDay(value: TDate): TDate;

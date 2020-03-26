@@ -149,6 +149,12 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
       : date.clone().add(count, "days");
   }
 
+  public addMonths(date: Moment, count: number) {
+    return count < 0
+      ? date.clone().subtract(Math.abs(count), "months")
+      : date.clone().add(count, "months");
+  }
+
   public setHours(date: Moment, count: number) {
     return date.clone().hours(count);
   }
