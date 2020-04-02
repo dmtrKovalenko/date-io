@@ -308,4 +308,20 @@ describe("DateTime calculations", () => {
       ])
     ).toBeFalsy();
   });
+
+  utilsTest("isWithinRange: should use inclusivity of range", (date, utils) => {
+    expect(
+      utils.isWithinRange(utils.date("2019-09-01T00:00:00.000Z"), [
+        utils.date("2019-09-01T00:00:00.000Z"),
+        utils.date("2019-12-01T00:00:00.000Z")
+      ])
+    ).toBeTruthy();
+
+    expect(
+      utils.isWithinRange(utils.date("2019-12-01T00:00:00.000Z"), [
+        utils.date("2019-09-01T00:00:00.000Z"),
+        utils.date("2019-12-01T00:00:00.000Z")
+      ])
+    ).toBeTruthy();
+  });
 });

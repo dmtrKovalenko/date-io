@@ -337,6 +337,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public isWithinRange(date: DateTime, [start, end]: [DateTime, DateTime]) {
-    return this.isAfter(date, start) && this.isBefore(date, end);
+    return (
+      date.equals(start) ||
+      date.equals(end) ||
+      (this.isAfter(date, start) && this.isBefore(date, end))
+    );
   }
 }

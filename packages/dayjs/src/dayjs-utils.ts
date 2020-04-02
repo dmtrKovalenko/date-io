@@ -322,6 +322,6 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public isWithinRange(date: Dayjs, [start, end]: [Dayjs, Dayjs]) {
-    return date.isBetween(start, end);
+    return date.isBetween(start, end, null, "[]");
   }
 }
