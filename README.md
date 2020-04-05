@@ -107,7 +107,10 @@ export interface IUtils<TDate> {
   // constructor (options?: { formats?: DateIOFormats, locale?: any, instance?: any });
 
   date(value?: any): TDate | null;
+  toJsDate(value: TDate): Date;
   parse(value: string, format: string): TDate | null;
+
+  getCurrentLocaleCode(): string;
   is12HourCycleInCurrentLocale(): boolean;
 
   isNull(value: TDate | null): boolean;
@@ -128,10 +131,15 @@ export interface IUtils<TDate> {
   isBeforeYear(value: TDate, comparing: TDate): boolean;
   isBefore(value: TDate, comparing: TDate): boolean;
 
+  isWithinRange(value: TDate, range: [TDate, TDate]): boolean;
+
   startOfMonth(value: TDate): TDate;
   endOfMonth(value: TDate): TDate;
+  startOfWeek(value: TDate): TDate;
+  endOfWeek(value: TDate): TDate;
 
   addDays(value: TDate, count: number): TDate;
+  addMonths(value: TDate, count: number): TDate;
 
   startOfDay(value: TDate): TDate;
   endOfDay(value: TDate): TDate;
