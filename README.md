@@ -92,9 +92,9 @@ export interface DateIOFormats<TLibFormatToken = string> {
   keyboardDate: TLibFormatToken;
   /** Localized keyboard input friendly date/time format @example "2019/01/01 23:44" */
   keyboardDateTime: TLibFormatToken;
-  /** Not Localized keyboard input friendly date/time 12h format @example "2019/01/01 23:44" */
+  /** Not Localized keyboard input friendly date/time 12h format @example "2019/01/01 11:44 PM" */
   keyboardDateTime12h: TLibFormatToken;
-  /** Not localized keyboard input friendly date/time 24h format @example "2019/01/01 11:44 PM" */
+  /** Not localized keyboard input friendly date/time 24h format @example "2019/01/01 23:44" */
   keyboardDateTime24h: TLibFormatToken;
 }
 
