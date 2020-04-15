@@ -236,10 +236,11 @@ export default class LuxonUtils implements IUtils<DateTime> {
   }
 
   public mergeDateAndTime(date: DateTime, time: DateTime) {
-    return this.setMinutes(
-      this.setHours(date, this.getHours(time)),
-      this.getMinutes(time)
-    );
+    return date.set({
+      second: time.second,
+      hour: time.hour,
+      minute: time.minute
+    });
   }
 
   public startOfMonth(value: DateTime) {

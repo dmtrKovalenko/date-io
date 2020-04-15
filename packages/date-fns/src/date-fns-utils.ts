@@ -286,9 +286,9 @@ export default class DateFnsUtils implements IUtils<Date> {
   }
 
   public mergeDateAndTime(date: Date, time: Date) {
-    return this.setMinutes(
-      this.setHours(date, this.getHours(time)),
-      this.getMinutes(time)
+    return this.setSeconds(
+      this.setMinutes(this.setHours(date, this.getHours(time)), this.getMinutes(time)),
+      this.getSeconds(time)
     );
   }
 

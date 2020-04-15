@@ -248,10 +248,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public mergeDateAndTime(date: Moment, time: Moment) {
-    return this.setMinutes(
-      this.setHours(date, this.getHours(time)),
-      this.getMinutes(time)
-    );
+    return date
+      .hour(time.hour())
+      .minute(time.minute())
+      .second(time.second());
   }
 
   public getWeekdays() {
