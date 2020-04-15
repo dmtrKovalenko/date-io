@@ -260,10 +260,10 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public mergeDateAndTime(date: Dayjs, time: Dayjs) {
-    return this.setMinutes(
-      this.setHours(date, this.getHours(time)),
-      this.getMinutes(time)
-    );
+    return date
+      .hour(time.hour())
+      .minute(time.minute())
+      .second(time.second());
   }
 
   public getWeekdays() {

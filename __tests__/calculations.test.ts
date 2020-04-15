@@ -237,12 +237,10 @@ describe("DateTime calculations", () => {
   utilsTest("mergeDateAndTime", (date, utils, lib) => {
     const mergedDate = utils.mergeDateAndTime(
       date,
-      utils.date("2018-01-01T14:00:00.000Z")
+      utils.date("2018-01-01T14:15:16.000Z")
     );
 
-    expect(utils.formatByString(mergedDate, formats.dateTime[lib])).toBe(
-      "2018-10-30 14:00"
-    );
+    expect(utils.toJsDate(mergedDate).toISOString()).toBe("2018-10-30T14:15:16.000Z");
   });
 
   utilsTest("isEqual", (date, utils) => {
