@@ -176,26 +176,10 @@ describe("Dayjs -- Localization", () => {
 });
 
 describe("formatHelperText", () => {
-  it("DateFns -- getFormatHelperText", () => {
-    const utils = new DateFnsUtils();
-
-    expect(utils.getFormatHelperText(utils.formats.keyboardDate)).toBe("mm/dd/yyyy");
-    expect(utils.getFormatHelperText(utils.formats.keyboardDateTime12h)).toBe(
-      "mm/dd/yyyy hh:mm (a|p)m"
-    );
-  });
-
-  it("Moment -- getFormatHelperText", () => {
-    const utils = new MomentUtils();
-
-    expect(utils.getFormatHelperText(utils.formats.keyboardDate)).toBe("mm/dd/yyyy");
-    expect(utils.getFormatHelperText(utils.formats.keyboardDateTime12h)).toBe(
-      "mm/dd/yyyy hh:mm (a|p)m"
-    );
-  });
-
-  it("Dayjs -- getFormatHelperText", () => {
-    const utils = new DayjsUtils();
+  utilsTest("getFormatHelperText", (_, utils, lib) => {
+    if (lib === "Luxon") {
+      return;
+    }
 
     expect(utils.getFormatHelperText(utils.formats.keyboardDate)).toBe("mm/dd/yyyy");
     expect(utils.getFormatHelperText(utils.formats.keyboardDateTime12h)).toBe(
