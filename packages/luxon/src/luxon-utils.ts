@@ -88,6 +88,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return "";
   }
 
+  /* istanbul ignore next */
   public getCurrentLocaleCode() {
     return this.locale || Settings.defaultLocale;
   }

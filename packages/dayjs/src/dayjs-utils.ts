@@ -87,7 +87,8 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
       .map(token => {
         var firstCharacter = token[0];
         if (firstCharacter === "L") {
-          return this.rawDayJsInstance.Ls[this.locale || "en"]?.formats[token];
+          /* istanbul ignore next */
+          return this.rawDayJsInstance.Ls[this.locale || "en"]?.formats[token] ?? token;
         }
         return token;
       })

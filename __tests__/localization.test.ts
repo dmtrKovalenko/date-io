@@ -175,7 +175,7 @@ describe("Dayjs -- Localization", () => {
   });
 });
 
-describe.only("formatHelperText", () => {
+describe("formatHelperText", () => {
   it("DateFns -- getFormatHelperText", () => {
     const utils = new DateFnsUtils();
 
@@ -188,18 +188,18 @@ describe.only("formatHelperText", () => {
   it("Moment -- getFormatHelperText", () => {
     const utils = new MomentUtils();
 
-    expect(utils.getFormatHelperText(utils.formats.keyboardDate)).toBe("dd/mm/yyyy");
+    expect(utils.getFormatHelperText(utils.formats.keyboardDate)).toBe("mm/dd/yyyy");
     expect(utils.getFormatHelperText(utils.formats.keyboardDateTime12h)).toBe(
-      "dd/mm/yyyy hh:mm (a|p)m"
+      "mm/dd/yyyy hh:mm (a|p)m"
     );
   });
 
   it("Dayjs -- getFormatHelperText", () => {
-    const utils = new MomentUtils();
+    const utils = new DayjsUtils();
 
-    expect(utils.getFormatHelperText(utils.formats.keyboardDate)).toBe("dd/mm/yyyy");
+    expect(utils.getFormatHelperText(utils.formats.keyboardDate)).toBe("mm/dd/yyyy");
     expect(utils.getFormatHelperText(utils.formats.keyboardDateTime12h)).toBe(
-      "dd/mm/yyyy hh:mm (a|p)m"
+      "mm/dd/yyyy hh:mm (a|p)m"
     );
   });
 

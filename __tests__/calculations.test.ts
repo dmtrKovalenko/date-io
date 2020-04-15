@@ -29,9 +29,8 @@ describe("DateTime calculations", () => {
   });
 
   utilsTest("addMonths", (date, utils, lib) => {
-    const result = utils.addMonths(date, 2);
-
-    expect(utils.format(result, "monthAndYear")).toBe("December 2018");
+    expect(utils.format(utils.addMonths(date, 2), "monthAndYear")).toBe("December 2018");
+    expect(utils.format(utils.addMonths(date, -2), "monthAndYear")).toBe("August 2018");
   });
 
   utilsTest("startOfDay", (date, utils, lib) => {
