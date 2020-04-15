@@ -29,11 +29,12 @@ import startOfMonth from "date-fns/startOfMonth";
 import endOfMonth from "date-fns/endOfMonth";
 import startOfWeek from "date-fns/startOfWeek";
 import startOfYear from "date-fns/startOfYear";
-import isWithinRange from "date-fns/isWithinInterval";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 import isWithinInterval from "date-fns/isWithinInterval";
+import longFormatters from "date-fns/_lib/format/longFormatters";
+import defaultLocale from "date-fns/locale/en-US";
 
-type Locale = typeof import("date-fns/locale/en-US").default;
+type Locale = typeof defaultLocale;
 
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "d",
@@ -83,6 +84,25 @@ export default class DateFnsUtils implements IUtils<Date> {
 
     // By default date-fns is using en-US locale with am/pm enabled
     return true;
+  }
+
+  public getFormatHelperText(format: string) {
+    // @see https://github.com/date-fns/date-fns/blob/master/src/format/index.js#L31
+    const longFormatRegexp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
+    const locale = this.locale || defaultLocale;
+    return format
+      .match(longFormatRegexp)
+      .map(token => {
+        const firstCharacter = token[0];
+        if (firstCharacter === "p" || firstCharacter === "P") {
+          const longFormatter = longFormatters[firstCharacter];
+          return longFormatter(token, locale.formatLong, {});
+        }
+        return token;
+      })
+      .join("")
+      .replace(/(aaa|aa|a)/g, "(a|p)m")
+      .toLocaleLowerCase();
   }
 
   public getCurrentLocaleCode() {
