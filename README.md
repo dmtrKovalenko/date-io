@@ -52,9 +52,11 @@ Implemented interface for now. If you can not find needed method please let us k
 export interface DateIOFormats<TLibFormatToken = string> {
   /** Localized full date, useful for accessibility @example "January 1st, 2019" */
   fullDate: TLibFormatToken;
-  /** Day format string extremely required to localize @example "Wed, Jan 1st" for US, "January 1st" for Europe */
+  /** Date format string with month and day of month @example "01 January" */
   normalDate: TLibFormatToken;
-  /** Shorter day format @example "Jan 1st" */
+  /** Date format string with weekday, month and day of month @example "Wed, Jan 1st" */
+  normalDateWithWeekday: TLibFormatToken;
+  /** Shorter day format @example "1 January" */
   shortDate: TLibFormatToken;
   /** Year format string @example "2019" */
   year: TLibFormatToken;
@@ -112,6 +114,8 @@ export interface IUtils<TDate> {
 
   getCurrentLocaleCode(): string;
   is12HourCycleInCurrentLocale(): boolean;
+  /** Returns user readable format (taking into account localized format tokens), useful to render helper text for input (e.g. placeholder). For luxon always returns empty string. */
+  getFormatHelperText(format: string): string;
 
   isNull(value: TDate | null): boolean;
   isValid(value: any): boolean;
@@ -175,18 +179,5 @@ export interface IUtils<TDate> {
 
   /** Allow to customize displaying "am/pm" strings */
   getMeridiemText(ampm: "am" | "pm"): string;
-}
-```
-
-### Typescript
-
-The project itself written in typescript, so we are providing our own typescript definitions. But for the **moment** and **date-fns** users it is required to add `esModuleInterop` and `allowSyntheticDefaultImports` to your `tsconfig.json`
-
-```json
-{
-  "compilerOptions": {
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
-  }
 }
 ```

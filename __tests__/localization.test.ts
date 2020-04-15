@@ -174,3 +174,22 @@ describe("Dayjs -- Localization", () => {
     });
   });
 });
+
+describe("formatHelperText", () => {
+  utilsTest("getFormatHelperText", (_, utils, lib) => {
+    if (lib === "Luxon") {
+      return;
+    }
+
+    expect(utils.getFormatHelperText(utils.formats.keyboardDate)).toBe("mm/dd/yyyy");
+    expect(utils.getFormatHelperText(utils.formats.keyboardDateTime12h)).toBe(
+      "mm/dd/yyyy hh:mm (a|p)m"
+    );
+  });
+
+  it("Luxon -- getFormatHelperText should return empty string", () => {
+    const utils = new LuxonUtils();
+
+    expect(utils.getFormatHelperText(utils.formats.keyboardDate)).toBe("");
+  });
+});

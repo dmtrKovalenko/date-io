@@ -1,4 +1,4 @@
-import defaultMoment from "moment";
+import defaultMoment, { LongDateFormatKey } from "moment";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 
 interface Opts {
@@ -53,6 +53,24 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
         .localeData()
         .longDateFormat("LT")
     );
+  }
+
+  public getFormatHelperText(format: string) {
+    // @see https://github.com/moment/moment/blob/develop/src/lib/format/format.js#L6
+    const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})|./g;
+    return format
+      .match(localFormattingTokens)
+      .map(token => {
+        const firstCharacter = token[0];
+        if (firstCharacter === "L" || firstCharacter === ";") {
+          return this.moment.localeData().longDateFormat(token as LongDateFormatKey);
+        }
+
+        return token;
+      })
+      .join("")
+      .replace(/a/gi, "(a|p)m")
+      .toLocaleLowerCase();
   }
 
   public getCurrentLocaleCode() {

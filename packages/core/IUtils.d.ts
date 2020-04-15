@@ -63,6 +63,8 @@ export interface IUtils<TDate> {
 
   getCurrentLocaleCode(): string;
   is12HourCycleInCurrentLocale(): boolean;
+  /** Returns user readable format (taking into account localized format tokens), useful to render helper text for input (e.g. placeholder). For luxon always returns empty string. */
+  getFormatHelperText(format: string): string;
 
   isNull(value: TDate | null): boolean;
   isValid(value: any): boolean;

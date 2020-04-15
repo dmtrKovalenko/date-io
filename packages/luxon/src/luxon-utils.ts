@@ -83,6 +83,12 @@ export default class LuxonUtils implements IUtils<DateTime> {
     );
   }
 
+  public getFormatHelperText(format: string) {
+    // Unfortunately there is no way for luxon to retrieve readable formats from localized format
+    return "";
+  }
+
+  /* istanbul ignore next */
   public getCurrentLocaleCode() {
     return this.locale || Settings.defaultLocale;
   }
