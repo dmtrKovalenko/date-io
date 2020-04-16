@@ -42,6 +42,22 @@ describe("DateFns -- Localization", () => {
   it("getCurrentLocaleCode: returns locale code", () => {
     expect(RuDateFnsUtils.getCurrentLocaleCode()).toBe("ru");
   });
+  it("startOfWeek: returns correct start of week for locale", () => {
+    expect(
+      RuDateFnsUtils.formatByString(
+        RuDateFnsUtils.startOfWeek(RuDateFnsUtils.date(TEST_TIMESTAMP)),
+        "d"
+      )
+    ).toEqual("29");
+  });
+  it("endOfWeek: returns correct end of week for locale", () => {
+    expect(
+      RuDateFnsUtils.formatByString(
+        RuDateFnsUtils.endOfWeek(RuDateFnsUtils.date(TEST_TIMESTAMP)),
+        "d"
+      )
+    ).toEqual("4");
+  });
 });
 
 describe("Luxon -- Localization", () => {
