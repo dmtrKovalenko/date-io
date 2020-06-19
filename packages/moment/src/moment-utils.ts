@@ -149,8 +149,9 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public formatByString(date: Moment, formatString: string) {
-    date.locale(this.locale);
-    return date.format(formatString);
+    const clonedDate = date.clone();
+    clonedDate.locale(this.locale);
+    return clonedDate.format(formatString);
   }
 
   public formatNumber(numberToFormat: string) {
