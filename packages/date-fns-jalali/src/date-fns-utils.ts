@@ -1,57 +1,59 @@
-import addDays from "date-fns/addDays";
-import addMonths from "date-fns/addMonths";
-import addYears from "date-fns/addYears";
-import differenceInMilliseconds from "date-fns/differenceInMilliseconds";
-import eachDayOfInterval from "date-fns/eachDayOfInterval";
-import endOfDay from "date-fns/endOfDay";
-import endOfWeek from "date-fns/endOfWeek";
-import endOfYear from "date-fns/endOfYear";
-import format from "date-fns/format";
-import getHours from "date-fns/getHours";
-import getSeconds from "date-fns/getSeconds";
-import getYear from "date-fns/getYear";
-import isAfter from "date-fns/isAfter";
-import isBefore from "date-fns/isBefore";
-import isEqual from "date-fns/isEqual";
-import isSameDay from "date-fns/isSameDay";
-import isSameYear from "date-fns/isSameYear";
-import isSameMonth from "date-fns/isSameMonth";
-import isSameHour from "date-fns/isSameHour";
-import isValid from "date-fns/isValid";
-import dateFnsParse from "date-fns/parse";
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
-import setMonth from "date-fns/setMonth";
-import setSeconds from "date-fns/setSeconds";
-import setYear from "date-fns/setYear";
-import startOfDay from "date-fns/startOfDay";
-import startOfMonth from "date-fns/startOfMonth";
-import endOfMonth from "date-fns/endOfMonth";
-import startOfWeek from "date-fns/startOfWeek";
-import startOfYear from "date-fns/startOfYear";
+import addDays from "date-fns-jalali/addDays";
+import addMonths from "date-fns-jalali/addMonths";
+import addYears from "date-fns-jalali/addYears";
+import differenceInMilliseconds from "date-fns-jalali/differenceInMilliseconds";
+import eachDayOfInterval from "date-fns-jalali/eachDayOfInterval";
+import endOfDay from "date-fns-jalali/endOfDay";
+import endOfWeek from "date-fns-jalali/endOfWeek";
+import endOfYear from "date-fns-jalali/endOfYear";
+import format from "date-fns-jalali/format";
+import getHours from "date-fns-jalali/getHours";
+import getSeconds from "date-fns-jalali/getSeconds";
+import getYear from "date-fns-jalali/getYear";
+import getMonth from "date-fns-jalali/getMonth";
+import getMinutes from "date-fns-jalali/getMinutes";
+import isAfter from "date-fns-jalali/isAfter";
+import isBefore from "date-fns-jalali/isBefore";
+import isEqual from "date-fns-jalali/isEqual";
+import isSameDay from "date-fns-jalali/isSameDay";
+import isSameYear from "date-fns-jalali/isSameYear";
+import isSameMonth from "date-fns-jalali/isSameMonth";
+import isSameHour from "date-fns-jalali/isSameHour";
+import isValid from "date-fns-jalali/isValid";
+import dateFnsParse from "date-fns-jalali/parse";
+import setHours from "date-fns-jalali/setHours";
+import setMinutes from "date-fns-jalali/setMinutes";
+import setMonth from "date-fns-jalali/setMonth";
+import setSeconds from "date-fns-jalali/setSeconds";
+import setYear from "date-fns-jalali/setYear";
+import startOfDay from "date-fns-jalali/startOfDay";
+import startOfMonth from "date-fns-jalali/startOfMonth";
+import endOfMonth from "date-fns-jalali/endOfMonth";
+import startOfWeek from "date-fns-jalali/startOfWeek";
+import startOfYear from "date-fns-jalali/startOfYear";
 
 // Locale is not exported from date-fns, so we need to workaround that https://github.com/date-fns/date-fns/issues/932
-import SampleLocale from "date-fns/locale/en-US";
+import SampleLocale from "date-fns-jalali/locale/fa-jalali-IR";
 import { IUtils } from "@date-io/core/IUtils";
 
 type Locale = typeof SampleLocale;
 
-export default class DateFnsUtils implements IUtils<Date> {
+export default class DateFnsJalaliUtils implements IUtils<Date> {
   public locale?: Locale;
 
   public yearFormat = "yyyy";
 
   public yearMonthFormat = "MMMM yyyy";
 
-  public dateTime12hFormat = "MMMM do hh:mm aaaa";
+  public dateTime12hFormat = "yyyy/MM/dd hh:mm aaaa";
 
-  public dateTime24hFormat = "MMMM do HH:mm";
+  public dateTime24hFormat = "yyyy/MM/dd HH:mm";
 
   public time12hFormat = "hh:mm a";
 
   public time24hFormat = "HH:mm";
 
-  public dateFormat = "MMMM do";
+  public dateFormat = "yyyy/MM/dd";
 
   constructor({ locale }: { locale?: Locale } = {}) {
     this.locale = locale;
@@ -140,6 +142,8 @@ export default class DateFnsUtils implements IUtils<Date> {
     return setYear(value, count);
   }
 
+  public date(value?: null): null;
+  public date(value?: string | number | Date): Date;
   public date(value?: any) {
     if (typeof value === "undefined") {
       return new Date();
@@ -197,11 +201,11 @@ export default class DateFnsUtils implements IUtils<Date> {
   }
 
   public getMinutes(date: Date) {
-    return date.getMinutes();
+    return getMinutes(date);
   }
 
   public getMonth(date: Date) {
-    return date.getMonth();
+    return getMonth(date);
   }
 
   public setMonth(date: Date, count: number) {
@@ -244,7 +248,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     return eachDayOfInterval({
       start: startOfWeek(now, { locale: this.locale }),
       end: endOfWeek(now, { locale: this.locale })
-    }).map(day => this.format(day, "EEEEEE"));
+    }).map(day => this.format(day, "EEEEE"));
   }
 
   public getWeekArray(date: Date) {
@@ -280,7 +284,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     return years;
   }
 
-  // displaying methpds
+  // displaying methods
   public getCalendarHeaderText(date: Date) {
     return this.format(date, this.yearMonthFormat);
   }
@@ -290,7 +294,7 @@ export default class DateFnsUtils implements IUtils<Date> {
   }
 
   public getDatePickerHeaderText(date: Date) {
-    return this.format(date, "EEE, MMM d");
+    return this.format(date, "EEE, d MMMM");
   }
 
   public getDateTimePickerHeaderText(date: Date) {
