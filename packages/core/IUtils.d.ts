@@ -1,7 +1,7 @@
 export interface DateIOFormats<TLibFormatToken = string> {
   /** Localized full date, useful for accessibility @example "January 1st, 2019" */
   fullDate: TLibFormatToken;
-  /** Localized full date with weekday, useful for accessibility @example "Tuesday, January 1st, 2019" */
+  /** Partly localized full date with weekday, useful for accessibility @example "Tuesday, January 1st, 2019" */
   fullDateWithWeekday: TLibFormatToken;
   /** Date format string with month and day of month @example "01 January" */
   normalDate: TLibFormatToken;
