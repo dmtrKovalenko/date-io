@@ -13,7 +13,7 @@ var symbolMap = {
   7: "٧",
   8: "٨",
   9: "٩",
-  0: "٠"
+  0: "٠",
 };
 
 interface Opts {
@@ -26,6 +26,7 @@ type Moment = iMoment.Moment;
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "iD",
   fullDate: "iYYYY, iMMMM Do",
+  fullDateWithWeekday: "iYYYY, iMMMM Do, dddd",
   fullDateTime: "iYYYY, iMMMM Do, hh:mm A",
   fullDateTime12h: "iD iMMMM hh:mm A",
   fullDateTime24h: "iD iMMMM HH:mm",
@@ -43,11 +44,13 @@ const defaultFormats: DateIOFormats = {
   monthAndDate: "iD iMMMM",
   monthAndYear: "iMMMM iYYYY",
   monthShort: "iMMM",
+  weekday: "dddd",
+  weekdayShort: "ddd",
   normalDate: "dddd, iD iMMM",
   normalDateWithWeekday: "DD iMMMM",
   seconds: "ss",
   shortDate: "iD iMMM",
-  year: "iYYYY"
+  year: "iYYYY",
 };
 
 export default class MomentUtils extends DefaultMomentUtils {
@@ -122,19 +125,13 @@ export default class MomentUtils extends DefaultMomentUtils {
 
   public getMeridiemText(ampm: "am" | "pm") {
     return ampm === "am"
-      ? this.toIMoment()
-          .hours(2)
-          .format("A")
-      : this.toIMoment()
-          .hours(14)
-          .format("A");
+      ? this.toIMoment().hours(2).format("A")
+      : this.toIMoment().hours(14).format("A");
   }
 
   public getWeekdays() {
-    return [0, 1, 2, 3, 4, 5, 6].map(dayOfWeek => {
-      return this.toIMoment()
-        .weekday(dayOfWeek)
-        .format("dd");
+    return [0, 1, 2, 3, 4, 5, 6].map((dayOfWeek) => {
+      return this.toIMoment().weekday(dayOfWeek).format("dd");
     });
   }
 
@@ -147,19 +144,13 @@ export default class MomentUtils extends DefaultMomentUtils {
   }
 
   public formatNumber(num: string) {
-    return num.replace(/\d/g, match => symbolMap[match]).replace(/,/g, "،");
+    return num.replace(/\d/g, (match) => symbolMap[match]).replace(/,/g, "،");
   }
 
   public getWeekArray(date: Moment) {
-    const start = date
-      .clone()
-      .startOf("iMonth")
-      .startOf("week");
+    const start = date.clone().startOf("iMonth").startOf("week");
 
-    const end = date
-      .clone()
-      .endOf("iMonth")
-      .endOf("week");
+    const end = date.clone().endOf("iMonth").endOf("week");
 
     let count = 0;
     let current = start;

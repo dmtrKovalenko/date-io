@@ -4,6 +4,7 @@ import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "d",
   fullDate: "DD",
+  fullDateWithWeekday: "DDDD",
   fullDateTime: "ff",
   fullDateTime12h: "DD, hh:mm a",
   fullDateTime24h: "DD, T",
@@ -22,10 +23,12 @@ const defaultFormats: DateIOFormats = {
   monthAndDate: "MMMM d",
   monthAndYear: "LLLL yyyy",
   monthShort: "MMM",
+  weekday: "cccc",
+  weekdayShort: "ccc",
   normalDate: "d MMMM",
   normalDateWithWeekday: "EEE, MMM d",
   shortDate: "MMM d",
-  year: "yyyy"
+  year: "yyyy",
 };
 
 export default class LuxonUtils implements IUtils<DateTime> {
@@ -34,7 +37,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
   constructor({
     locale,
-    formats
+    formats,
   }: { formats?: Partial<DateIOFormats>; locale?: string } = {}) {
     this.locale = locale || "en";
     this.formats = Object.assign({}, defaultFormats, formats);
@@ -245,7 +248,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return date.set({
       second: time.second,
       hour: time.hour,
-      minute: time.minute
+      minute: time.minute,
     });
   }
 
@@ -300,12 +303,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     new Array<number>(Math.round(days!))
       .fill(0)
       .map((_, i) => i)
-      .map(day =>
-        date
-          .startOf("month")
-          .startOf("week")
-          .plus({ days: day })
-      )
+      .map((day) => date.startOf("month").startOf("week").plus({ days: day }))
       .forEach((v, i) => {
         if (i === 0 || (i % 7 === 0 && i > 6)) {
           weeks.push([v]);
@@ -335,7 +333,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
 
   public getMeridiemText(ampm: "am" | "pm") {
     return Info.meridiems({ locale: this.locale }).find(
-      v => v.toLowerCase() === ampm.toLowerCase()
+      (v) => v.toLowerCase() === ampm.toLowerCase()
     )!;
   }
 

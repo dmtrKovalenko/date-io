@@ -102,7 +102,7 @@ describe("Jalaali", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
     const array = jalaaliUtils.getWeekArray(date);
 
-    expect(array.map(innerArray => innerArray.map(dt => dt.toISOString()))).toEqual([
+    expect(array.map((innerArray) => innerArray.map((dt) => dt.toISOString()))).toEqual([
       [
         "2018-10-20T00:00:00.000Z",
         "2018-10-21T00:00:00.000Z",
@@ -110,7 +110,7 @@ describe("Jalaali", () => {
         "2018-10-23T00:00:00.000Z",
         "2018-10-24T00:00:00.000Z",
         "2018-10-25T00:00:00.000Z",
-        "2018-10-26T00:00:00.000Z"
+        "2018-10-26T00:00:00.000Z",
       ],
       [
         "2018-10-27T00:00:00.000Z",
@@ -119,7 +119,7 @@ describe("Jalaali", () => {
         "2018-10-30T00:00:00.000Z",
         "2018-10-31T00:00:00.000Z",
         "2018-11-01T00:00:00.000Z",
-        "2018-11-02T00:00:00.000Z"
+        "2018-11-02T00:00:00.000Z",
       ],
       [
         "2018-11-03T00:00:00.000Z",
@@ -128,7 +128,7 @@ describe("Jalaali", () => {
         "2018-11-06T00:00:00.000Z",
         "2018-11-07T00:00:00.000Z",
         "2018-11-08T00:00:00.000Z",
-        "2018-11-09T00:00:00.000Z"
+        "2018-11-09T00:00:00.000Z",
       ],
       [
         "2018-11-10T00:00:00.000Z",
@@ -137,7 +137,7 @@ describe("Jalaali", () => {
         "2018-11-13T00:00:00.000Z",
         "2018-11-14T00:00:00.000Z",
         "2018-11-15T00:00:00.000Z",
-        "2018-11-16T00:00:00.000Z"
+        "2018-11-16T00:00:00.000Z",
       ],
       [
         "2018-11-17T00:00:00.000Z",
@@ -146,8 +146,8 @@ describe("Jalaali", () => {
         "2018-11-20T00:00:00.000Z",
         "2018-11-21T00:00:00.000Z",
         "2018-11-22T00:00:00.000Z",
-        "2018-11-23T00:00:00.000Z"
-      ]
+        "2018-11-23T00:00:00.000Z",
+      ],
     ]);
   });
 
@@ -160,22 +160,25 @@ describe("Jalaali", () => {
   });
 
   test.each`
-    format               | expected
-    ${"fullDate"}        | ${"۱۳۹۸، دی ۱م"}
-    ${"normalDate"}      | ${"چهارشنبه، ۱۱ دی"}
-    ${"shortDate"}       | ${"۱۱ دی"}
-    ${"year"}            | ${"۱۳۹۸"}
-    ${"month"}           | ${"دی"}
-    ${"monthAndDate"}    | ${"۱۱ دی"}
-    ${"dayOfMonth"}      | ${"۱۱"}
-    ${"fullTime12h"}     | ${"۱۱:۴۴ ب.ظ"}
-    ${"fullTime24h"}     | ${"۲۳:۴۴"}
-    ${"hours12h"}        | ${"۱۱"}
-    ${"hours24h"}        | ${"۲۳"}
-    ${"minutes"}         | ${"۴۴"}
-    ${"seconds"}         | ${"۰۰"}
-    ${"fullDateTime12h"} | ${"۱۱ دی ۱۱:۴۴ ب.ظ"}
-    ${"fullDateTime24h"} | ${"۱۱ دی ۲۳:۴۴"}
+    format                   | expected
+    ${"fullDate"}            | ${"۱۳۹۸، دی ۱م"}
+    ${"fullDateWithWeekday"} | ${"۱۳۹۸، دی ۱م، چهارشنبه"}
+    ${"normalDate"}          | ${"چهارشنبه، ۱۱ دی"}
+    ${"shortDate"}           | ${"۱۱ دی"}
+    ${"year"}                | ${"۱۳۹۸"}
+    ${"month"}               | ${"دی"}
+    ${"monthAndDate"}        | ${"۱۱ دی"}
+    ${"weekday"}             | ${"چهارشنبه"}
+    ${"weekdayShort"}        | ${"چهارشنبه"}
+    ${"dayOfMonth"}          | ${"۱۱"}
+    ${"fullTime12h"}         | ${"۱۱:۴۴ ب.ظ"}
+    ${"fullTime24h"}         | ${"۲۳:۴۴"}
+    ${"hours12h"}            | ${"۱۱"}
+    ${"hours24h"}            | ${"۲۳"}
+    ${"minutes"}             | ${"۴۴"}
+    ${"seconds"}             | ${"۰۰"}
+    ${"fullDateTime12h"}     | ${"۱۱ دی ۱۱:۴۴ ب.ظ"}
+    ${"fullDateTime24h"}     | ${"۱۱ دی ۲۳:۴۴"}
   `("Correctly formats jalaali format $format", ({ format, expected }) => {
     const date = jalaaliUtils.date("2020-01-01T23:44:00.000Z");
 

@@ -91,7 +91,7 @@ describe("Hijri", () => {
     const date = hijriiUtils.date(TEST_TIMESTAMP);
     const array = hijriiUtils.getWeekArray(date);
 
-    expect(array.map(innerArray => innerArray.map(dt => dt.toISOString()))).toEqual([
+    expect(array.map((innerArray) => innerArray.map((dt) => dt.toISOString()))).toEqual([
       [
         "2018-10-07T00:00:00.000Z",
         "2018-10-08T00:00:00.000Z",
@@ -99,7 +99,7 @@ describe("Hijri", () => {
         "2018-10-10T00:00:00.000Z",
         "2018-10-11T00:00:00.000Z",
         "2018-10-12T00:00:00.000Z",
-        "2018-10-13T00:00:00.000Z"
+        "2018-10-13T00:00:00.000Z",
       ],
       [
         "2018-10-14T00:00:00.000Z",
@@ -108,7 +108,7 @@ describe("Hijri", () => {
         "2018-10-17T00:00:00.000Z",
         "2018-10-18T00:00:00.000Z",
         "2018-10-19T00:00:00.000Z",
-        "2018-10-20T00:00:00.000Z"
+        "2018-10-20T00:00:00.000Z",
       ],
       [
         "2018-10-21T00:00:00.000Z",
@@ -117,7 +117,7 @@ describe("Hijri", () => {
         "2018-10-24T00:00:00.000Z",
         "2018-10-25T00:00:00.000Z",
         "2018-10-26T00:00:00.000Z",
-        "2018-10-27T00:00:00.000Z"
+        "2018-10-27T00:00:00.000Z",
       ],
       [
         "2018-10-28T00:00:00.000Z",
@@ -126,7 +126,7 @@ describe("Hijri", () => {
         "2018-10-31T00:00:00.000Z",
         "2018-11-01T00:00:00.000Z",
         "2018-11-02T00:00:00.000Z",
-        "2018-11-03T00:00:00.000Z"
+        "2018-11-03T00:00:00.000Z",
       ],
       [
         "2018-11-04T00:00:00.000Z",
@@ -135,8 +135,8 @@ describe("Hijri", () => {
         "2018-11-07T00:00:00.000Z",
         "2018-11-08T00:00:00.000Z",
         "2018-11-09T00:00:00.000Z",
-        "2018-11-10T00:00:00.000Z"
-      ]
+        "2018-11-10T00:00:00.000Z",
+      ],
     ]);
   });
 
@@ -167,23 +167,26 @@ describe("Hijri", () => {
   });
 
   test.each`
-    format               | expected
-    ${"fullDate"}        | ${"١٤٤١، جمادى الأولى ١"}
-    ${"normalDate"}      | ${"الأربعاء، ٦ جمادى ١"}
-    ${"shortDate"}       | ${"٦ جمادى ١"}
-    ${"year"}            | ${"١٤٤١"}
-    ${"month"}           | ${"جمادى الأولى"}
-    ${"monthAndDate"}    | ${"٦ جمادى الأولى"}
-    ${"dayOfMonth"}      | ${"٦"}
-    ${"fullTime12h"}     | ${"١١:٤٤ م"}
-    ${"fullTime24h"}     | ${"٢٣:٤٤"}
-    ${"hours12h"}        | ${"١١"}
-    ${"hours24h"}        | ${"٢٣"}
-    ${"minutes"}         | ${"٤٤"}
-    ${"seconds"}         | ${"٠٠"}
-    ${"fullDateTime12h"} | ${"٦ جمادى الأولى ١١:٤٤ م"}
-    ${"fullDateTime24h"} | ${"٦ جمادى الأولى ٢٣:٤٤"}
-  `("Correctly formats jalaali format $format", ({ format, expected }) => {
+    format                   | expected
+    ${"fullDate"}            | ${"١٤٤١، جمادى الأولى ١"}
+    ${"fullDateWithWeekday"} | ${"١٤٤١، جمادى الأولى ١، الأربعاء"}
+    ${"normalDate"}          | ${"الأربعاء، ٦ جمادى ١"}
+    ${"shortDate"}           | ${"٦ جمادى ١"}
+    ${"year"}                | ${"١٤٤١"}
+    ${"month"}               | ${"جمادى الأولى"}
+    ${"monthAndDate"}        | ${"٦ جمادى الأولى"}
+    ${"weekday"}             | ${"الأربعاء"}
+    ${"weekdayShort"}        | ${"أربعاء"}
+    ${"dayOfMonth"}          | ${"٦"}
+    ${"fullTime12h"}         | ${"١١:٤٤ م"}
+    ${"fullTime24h"}         | ${"٢٣:٤٤"}
+    ${"hours12h"}            | ${"١١"}
+    ${"hours24h"}            | ${"٢٣"}
+    ${"minutes"}             | ${"٤٤"}
+    ${"seconds"}             | ${"٠٠"}
+    ${"fullDateTime12h"}     | ${"٦ جمادى الأولى ١١:٤٤ م"}
+    ${"fullDateTime24h"}     | ${"٦ جمادى الأولى ٢٣:٤٤"}
+  `("Correctly formats Hijri format $format", ({ format, expected }) => {
     const date = hijriiUtils.date("2020-01-01T23:44:00.000Z");
 
     expect(hijriiUtils.format(date as any, format)).toBe(expected);
