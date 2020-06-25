@@ -1,6 +1,6 @@
 # date-io
 
-Abstraction over common javascript date management libraries.
+Abstraction over common JavaScript date management libraries.
 
 [![npm package](https://img.shields.io/npm/v/@date-io/core.svg)](https://www.npmjs.org/package/@date-io/core)
 [![codecov](https://codecov.io/gh/dmtrKovalenko/date-io/branch/master/graph/badge.svg)](https://codecov.io/gh/dmtrKovalenko/date-io)
@@ -9,10 +9,10 @@ Abstraction over common javascript date management libraries.
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-The project expose abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v2](https://github.com/date-fns/date-fns), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
-Which can be easily used by any ui date or time components to use the same date management lib as user's project use.
+The project exposes an abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v2](https://github.com/date-fns/date-fns), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
+It allows you to build any UI date or time components, whilst utilizing the same date management library in use within your user's project.
 
-That simplifies timezones management, makes your code return exactly the same type that user expect and work with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar))
+It simplifies timezone management, allows your code to return the exact same type that your user expects and works with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar))
 
 ### Projects
 
@@ -46,19 +46,22 @@ dateFns.format(updatedLuxonDate, "fullDateTime24h"); // "2018, October 30th 11:4
 
 ### Interface
 
-Implemented interface for now. If you can not find needed method please let us know and we will add it!
+The implemented interface. If you cannot find the method you require, please let us know, and we will add it!
+
+Localized output will of course vary based on the locale and date library used. Inline examples here are based on using
+`moment` with the `en-US` locale.
 
 ```ts
 export interface DateIOFormats<TLibFormatToken = string> {
-  /** Localized full date, useful for accessibility @example "January 1st, 2019" */
+  /** Localized full date @example "Jan 1, 2019" */
   fullDate: TLibFormatToken;
-  /** Partly localized full date with weekday, useful for accessibility @example "Tuesday, January 1st, 2019" */
+  /** Partially localized full date with weekday, useful for text-to-speech accessibility @example "Tuesday, January 1, 2019" */
   fullDateWithWeekday: TLibFormatToken;
-  /** Date format string with month and day of month @example "01 January" */
+  /** Date format string with month and day of month @example "1 January" */
   normalDate: TLibFormatToken;
-  /** Date format string with weekday, month and day of month @example "Wed, Jan 1st" */
+  /** Date format string with weekday, month and day of month @example "Wed, Jan 1" */
   normalDateWithWeekday: TLibFormatToken;
-  /** Shorter day format @example "1 January" */
+  /** Shorter day format @example "Jan 1" */
   shortDate: TLibFormatToken;
   /** Year format string @example "2019" */
   year: TLibFormatToken;
@@ -68,41 +71,41 @@ export interface DateIOFormats<TLibFormatToken = string> {
   monthShort: TLibFormatToken;
   /** Short month format string @example "January 2018" */
   monthAndYear: TLibFormatToken;
-  /** Month with date format string @example "January 1st" */
+  /** Month with date format string @example "January 1" */
   monthAndDate: TLibFormatToken;
   /** Weekday format string @example "Wednesday" */
   weekday: TLibFormatToken;
   /** Short weekday format string @example "Wed" */
   weekdayShort: TLibFormatToken;
-  /** Day format string @example "12" */
+  /** Day format string @example "1" */
   dayOfMonth: TLibFormatToken;
   /** Hours format string @example "11" */
   hours12h: TLibFormatToken;
   /** Hours format string @example "23" */
   hours24h: TLibFormatToken;
-  /** Minutes format string @example "59" */
+  /** Minutes format string @example "44" */
   minutes: TLibFormatToken;
-  /** Seconds format string @example "59" */
+  /** Seconds format string @example "00" */
   seconds: TLibFormatToken;
   /** Full time localized format string @example "11:44 PM" for US, "23:44" for Europe */
   fullTime: TLibFormatToken;
   /** Not localized full time format string @example "11:44 PM" */
   fullTime12h: TLibFormatToken;
-  /** Not localized full time format string @example "23:59" */
+  /** Not localized full time format string @example "23:44" */
   fullTime24h: TLibFormatToken;
-  /** Date & time format string with localized time @example "2018, Jan 1st 11:44 PM" */
+  /** Date & time format string with localized time @example "Jan 1st, 2018 11:44 PM" */
   fullDateTime: TLibFormatToken;
-  /** Not localized date & Time format 12h @example "2018, Jan 1st 11:44 PM" */
+  /** Not localized date & Time format 12h @example "Jan 1, 2018 11:44 PM" */
   fullDateTime12h: TLibFormatToken;
-  /** Not localized date & Time format 24h @example "2018, Jan 1st 23:44" */
+  /** Not localized date & Time format 24h @example "Jan 1, 2018 23:44" */
   fullDateTime24h: TLibFormatToken;
-  /** Localized keyboard input friendly date format @example "2019/01/01" */
+  /** Localized keyboard input friendly date format @example "02/01/2020 */
   keyboardDate: TLibFormatToken;
-  /** Localized keyboard input friendly date/time format @example "2019/01/01 23:44" */
+  /** Localized keyboard input friendly date/time format @example "02/01/2020 23:44" */
   keyboardDateTime: TLibFormatToken;
-  /** Not Localized keyboard input friendly date/time 12h format @example "2019/01/01 11:44 PM" */
+  /** Partially localized keyboard input friendly date/time 12h format @example "02/01/2020 11:44 PM" */
   keyboardDateTime12h: TLibFormatToken;
-  /** Not localized keyboard input friendly date/time 24h format @example "2019/01/01 23:44" */
+  /** Partially localized keyboard input friendly date/time 24h format @example "02/01/2020 23:44" */
   keyboardDateTime24h: TLibFormatToken;
 }
 
