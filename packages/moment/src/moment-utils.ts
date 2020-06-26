@@ -32,7 +32,7 @@ const defaultFormats: DateIOFormats = {
   keyboardDate: "L",
   keyboardDateTime: "L LT",
   keyboardDateTime12h: "L hh:mm A",
-  keyboardDateTime24h: "L HH:mm"
+  keyboardDateTime24h: "L HH:mm",
 };
 
 export default class MomentUtils implements IUtils<defaultMoment.Moment> {
@@ -48,11 +48,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public is12HourCycleInCurrentLocale() {
-    return /A|a/.test(
-      this.moment()
-        .localeData()
-        .longDateFormat("LT")
-    );
+    return /A|a/.test(this.moment().localeData().longDateFormat("LT"));
   }
 
   public getFormatHelperText(format: string) {
@@ -60,7 +56,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})|./g;
     return format
       .match(localFormattingTokens)
-      .map(token => {
+      .map((token) => {
         const firstCharacter = token[0];
         if (firstCharacter === "L" || firstCharacter === ";") {
           return this.moment.localeData().longDateFormat(token as LongDateFormatKey);
@@ -80,6 +76,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public parse(value: string, format: string) {
     if (value === "") {
       return null;
+    }
+
+    if (this.locale) {
+      return this.moment(value, format, this.locale, true);
     }
 
     return this.moment(value, format, true);
@@ -267,10 +267,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public mergeDateAndTime(date: Moment, time: Moment) {
-    return date
-      .hour(time.hour())
-      .minute(time.minute())
-      .second(time.second());
+    return date.hour(time.hour()).minute(time.minute()).second(time.second());
   }
 
   public getWeekdays() {
@@ -286,14 +283,8 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public getWeekArray(date: Moment) {
-    const start = date
-      .clone()
-      .startOf("month")
-      .startOf("week");
-    const end = date
-      .clone()
-      .endOf("month")
-      .endOf("week");
+    const start = date.clone().startOf("month").startOf("week");
+    const end = date.clone().endOf("month").endOf("week");
 
     let count = 0;
     let current = start;
