@@ -119,6 +119,14 @@ describe("Moment -- localization", () => {
     it("getCurrentLocaleCode: returns locale code", () => {
       expect(momentUtils.getCurrentLocaleCode()).toBe("ru");
     });
+
+    it("parse: should parse localized dates", () => {
+      const format = "ddd-MMMM-DD-YYYY";
+      const dateString = "вт-октябрь-30-2018";
+      expect(
+        momentUtils.formatByString(momentUtils.parse(dateString, format), format)
+      ).toBe(dateString);
+    });
   });
 
   describe("English", () => {

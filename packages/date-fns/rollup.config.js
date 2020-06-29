@@ -1,4 +1,4 @@
-import typescript from 'typescript'
-import { createRollupConfig } from '@date-io/core/dev-utils'
+import typescript from "typescript";
+import { createRollupConfig } from "@date-io/core/dev-utils";
 
-export default createRollupConfig(typescript)
+export default createRollupConfig(typescript);
