@@ -45,7 +45,7 @@ const defaultFormats: DateIOFormats = {
   keyboardDate: "L",
   keyboardDateTime: "L LT",
   keyboardDateTime12h: "L hh:mm A",
-  keyboardDateTime24h: "L HH:mm"
+  keyboardDateTime24h: "L HH:mm",
 };
 
 const localizedFormats = {
@@ -53,7 +53,7 @@ const localizedFormats = {
   fullTime24h: "LT",
   keyboardDate: "L",
   keyboardDateTime12h: "L LT",
-  keyboardDateTime24h: "L LT"
+  keyboardDateTime24h: "L LT",
 };
 
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
@@ -84,7 +84,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?)|./g;
     return format
       .match(localFormattingTokens)
-      .map(token => {
+      .map((token) => {
         var firstCharacter = token[0];
         if (firstCharacter === "L") {
           /* istanbul ignore next */
@@ -101,8 +101,8 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     if (value === "") {
       return null;
     }
-
-    return this.dayjs(value, format);
+    console.log("recieved a value ", value);
+    return this.dayjs(value, format, this.locale);
   }
 
   public date(value?: any) {
@@ -118,6 +118,8 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public isValid(value: any) {
+    console.log("running isValid ", value);
+    return false;
     return this.dayjs(value).isValid();
   }
 
@@ -278,15 +280,12 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public mergeDateAndTime(date: Dayjs, time: Dayjs) {
-    return date
-      .hour(time.hour())
-      .minute(time.minute())
-      .second(time.second());
+    return date.hour(time.hour()).minute(time.minute()).second(time.second());
   }
 
   public getWeekdays() {
     const start = this.dayjs().startOf("week");
-    return [0, 1, 2, 3, 4, 5, 6].map(diff =>
+    return [0, 1, 2, 3, 4, 5, 6].map((diff) =>
       this.formatByString(start.add(diff, "day"), "dd")
     );
   }
@@ -300,14 +299,8 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public getWeekArray(date: Dayjs) {
-    const start = this.dayjs(date)
-      .clone()
-      .startOf("month")
-      .startOf("week");
-    const end = this.dayjs(date)
-      .clone()
-      .endOf("month")
-      .endOf("week");
+    const start = this.dayjs(date).clone().startOf("month").startOf("week");
+    const end = this.dayjs(date).clone().endOf("month").endOf("week");
 
     let count = 0;
     let current = start;
