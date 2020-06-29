@@ -101,7 +101,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     if (value === "") {
       return null;
     }
-    console.log("recieved a value ", value);
+
     return this.dayjs(value, format, this.locale);
   }
 
@@ -118,8 +118,6 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   }
 
   public isValid(value: any) {
-    console.log("running isValid ", value);
-    return false;
     return this.dayjs(value).isValid();
   }
 
