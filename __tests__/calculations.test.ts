@@ -79,7 +79,7 @@ describe("DateTime calculations", () => {
     expect(
       utils
         .getMonthArray(date)
-        .map(date => utils.formatByString(date, formats.dateTime[lib]))
+        .map((date) => utils.formatByString(date, formats.dateTime[lib]))
     ).toEqual([
       "2018-01-01 00:00",
       "2018-02-01 00:00",
@@ -92,7 +92,7 @@ describe("DateTime calculations", () => {
       "2018-09-01 00:00",
       "2018-10-01 00:00",
       "2018-11-01 00:00",
-      "2018-12-01 00:00"
+      "2018-12-01 00:00",
     ]);
   });
 
@@ -255,6 +255,13 @@ describe("DateTime calculations", () => {
     expect(utils.parse("", formats.dateTime[lib])).toBeNull();
   });
 
+  utilsTest("parse invalid inputs", (date, utils, lib) => {
+    const parsedDate = utils.parse("99-99-9999", formats.dateTime[lib]);
+
+    // expect(utils.isValid(parsedDateMoreText)).toBe(false);
+    expect(utils.isValid(parsedDate)).toBe(false);
+  });
+
   utilsTest("isNull", (date, utils, lib) => {
     expect(utils.isNull(null)).toBeTruthy();
     expect(utils.isNull(date)).toBeFalsy();
@@ -294,14 +301,14 @@ describe("DateTime calculations", () => {
     expect(
       utils.isWithinRange(utils.date("2019-10-01T00:00:00.000Z"), [
         utils.date("2019-09-01T00:00:00.000Z"),
-        utils.date("2019-11-01T00:00:00.000Z")
+        utils.date("2019-11-01T00:00:00.000Z"),
       ])
     ).toBeTruthy();
 
     expect(
       utils.isWithinRange(utils.date("2019-12-01T00:00:00.000Z"), [
         utils.date("2019-09-01T00:00:00.000Z"),
-        utils.date("2019-11-01T00:00:00.000Z")
+        utils.date("2019-11-01T00:00:00.000Z"),
       ])
     ).toBeFalsy();
   });
@@ -310,14 +317,14 @@ describe("DateTime calculations", () => {
     expect(
       utils.isWithinRange(utils.date("2019-09-01T00:00:00.000Z"), [
         utils.date("2019-09-01T00:00:00.000Z"),
-        utils.date("2019-12-01T00:00:00.000Z")
+        utils.date("2019-12-01T00:00:00.000Z"),
       ])
     ).toBeTruthy();
 
     expect(
       utils.isWithinRange(utils.date("2019-12-01T00:00:00.000Z"), [
         utils.date("2019-09-01T00:00:00.000Z"),
-        utils.date("2019-12-01T00:00:00.000Z")
+        utils.date("2019-12-01T00:00:00.000Z"),
       ])
     ).toBeTruthy();
   });
