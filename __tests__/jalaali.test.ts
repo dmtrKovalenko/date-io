@@ -162,7 +162,7 @@ describe("Jalaali", () => {
   test.each`
     format                   | expected
     ${"fullDate"}            | ${"۱۳۹۸، دی ۱م"}
-    ${"fullDateWithWeekday"} | ${"۱۳۹۸، دی ۱م، چهارشنبه"}
+    ${"fullDateWithWeekday"} | ${"چهارشنبه، ۱م دی ۱۳۹۸"}
     ${"normalDate"}          | ${"چهارشنبه، ۱۱ دی"}
     ${"shortDate"}           | ${"۱۱ دی"}
     ${"year"}                | ${"۱۳۹۸"}

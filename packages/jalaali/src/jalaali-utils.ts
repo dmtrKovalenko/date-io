@@ -25,7 +25,7 @@ type Moment = jMoment.Moment;
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "jD",
   fullDate: "jYYYY, jMMMM Do",
-  fullDateWithWeekday: "jYYYY, jMMMM Do, dddd",
+  fullDateWithWeekday: "dddd Do jMMMM jYYYY",
   fullDateTime: "jYYYY, jMMMM Do, hh:mm A",
   fullDateTime12h: "jD jMMMM hh:mm A",
   fullDateTime24h: "jD jMMMM HH:mm",
