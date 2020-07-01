@@ -12,7 +12,8 @@
     "test:coverage": "TZ=UTC NODE_ICU_DATA='./node_modules/full-icu' jest --coverage",
     "benchmark": "lerna run benchmark",
     "release": "yarn test:coverage && yarn build && lerna publish",
-    "build": "lerna run build --parallel"
+    "build": "lerna run build --parallel",
+    "prettier": "prettier --write './packages/**/*.{js,jsx,ts,tsx,json,css,md,mdx}'"
   },
   "keywords": [
     "date",

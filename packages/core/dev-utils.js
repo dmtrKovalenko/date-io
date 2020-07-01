@@ -1,5 +1,5 @@
-const nodeResolve = require("rollup-plugin-node-resolve")
-const typescriptPlugin = require("rollup-plugin-typescript")
+const nodeResolve = require("rollup-plugin-node-resolve");
+const typescriptPlugin = require("rollup-plugin-typescript");
 
 exports.createRollupConfig = typescript => {
   const extensions = [".ts", ".tsx"];

@@ -60,7 +60,7 @@ const defaultFormats: DateIOFormats = {
   normalDateWithWeekday: "EEE, MMM d",
   seconds: "ss",
   shortDate: "MMM d",
-  year: "yyyy",
+  year: "yyyy"
 };
 
 export default class DateFnsUtils implements IUtils<Date> {
@@ -69,7 +69,7 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   constructor({
     locale,
-    formats,
+    formats
   }: { formats?: Partial<DateIOFormats>; locale?: Locale } = {}) {
     this.locale = locale;
     this.formats = Object.assign({}, defaultFormats, formats);
@@ -92,7 +92,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     const locale = this.locale || defaultLocale;
     return format
       .match(longFormatRegexp)
-      .map((token) => {
+      .map(token => {
         const firstCharacter = token[0];
         if (firstCharacter === "p" || firstCharacter === "P") {
           const longFormatter = longFormatters[firstCharacter];
@@ -316,8 +316,8 @@ export default class DateFnsUtils implements IUtils<Date> {
     const now = new Date();
     return eachDayOfInterval({
       start: startOfWeek(now, { locale: this.locale }),
-      end: endOfWeek(now, { locale: this.locale }),
-    }).map((day) => this.formatByString(day, "EEEEEE"));
+      end: endOfWeek(now, { locale: this.locale })
+    }).map(day => this.formatByString(day, "EEEEEE"));
   }
 
   public getWeekArray(date: Date) {

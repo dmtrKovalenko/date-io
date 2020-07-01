@@ -5,7 +5,7 @@ const MomentUtils = require("@date-io/moment");
 const DateFnsUtils = require("@date-io/date-fns");
 
 module.exports = (name, operation) => {
-  const suite = new Benchmark.Suite('formats', {
+  const suite = new Benchmark.Suite("formats", {
     minSamples: 1000,
     onError: event => console.log(event.target.error)
   });
@@ -23,4 +23,4 @@ module.exports = (name, operation) => {
     })
     .on("error", console.log)
     .run({ async: true });
-}
+};
