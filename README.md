@@ -99,13 +99,13 @@ export interface DateIOFormats<TLibFormatToken = string> {
   fullDateTime12h: TLibFormatToken;
   /** Not localized date & Time format 24h @example "Jan 1, 2018 23:44" */
   fullDateTime24h: TLibFormatToken;
-  /** Localized keyboard input friendly date format @example "02/01/2020 */
+  /** Localized keyboard input friendly date format @example "02/13/2020 */
   keyboardDate: TLibFormatToken;
-  /** Localized keyboard input friendly date/time format @example "02/01/2020 23:44" */
+  /** Localized keyboard input friendly date/time format @example "02/13/2020 23:44" */
   keyboardDateTime: TLibFormatToken;
-  /** Partially localized keyboard input friendly date/time 12h format @example "02/01/2020 11:44 PM" */
+  /** Partially localized keyboard input friendly date/time 12h format @example "02/13/2020 11:44 PM" */
   keyboardDateTime12h: TLibFormatToken;
-  /** Partially localized keyboard input friendly date/time 24h format @example "02/01/2020 23:44" */
+  /** Partially localized keyboard input friendly date/time 24h format @example "02/13/2020 23:44" */
   keyboardDateTime24h: TLibFormatToken;
 }
 
