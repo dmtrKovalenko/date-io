@@ -1,6 +1,6 @@
 const runBenchmark = require("../run");
 
-const runCalculations = Utils => () => {
+const runCalculations = (Utils) => () => {
   const utils = new Utils();
   const date = utils.date();
 

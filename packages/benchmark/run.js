@@ -7,7 +7,7 @@ const DateFnsUtils = require("@date-io/date-fns");
 module.exports = (name, operation) => {
   const suite = new Benchmark.Suite("formats", {
     minSamples: 1000,
-    onError: event => console.log(event.target.error)
+    onError: (event) => console.log(event.target.error),
   });
 
   suite
@@ -15,10 +15,10 @@ module.exports = (name, operation) => {
     .add("luxon", operation(LuxonUtils))
     .add("moment", operation(MomentUtils))
     .add("date-fns", operation(DateFnsUtils))
-    .on("cycle", event => {
+    .on("cycle", (event) => {
       console.log(String(event.target));
     })
-    .on("complete", function() {
+    .on("complete", function () {
       console.log("Fastest is " + this.filter("fastest").map("name"));
     })
     .on("error", console.log)

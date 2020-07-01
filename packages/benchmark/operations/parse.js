@@ -1,6 +1,6 @@
 const runBenchmark = require("../run");
 
-const runFormats = Utils => () => {
+const runFormats = (Utils) => () => {
   const utils = new Utils();
 
   utils.parse("2018", utils.formats.year);
