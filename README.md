@@ -93,7 +93,7 @@ export interface DateIOFormats<TLibFormatToken = string> {
   fullTime12h: TLibFormatToken;
   /** Not localized full time format string @example "23:44" */
   fullTime24h: TLibFormatToken;
-  /** Date & time format string with localized time @example "Jan 1st, 2018 11:44 PM" */
+  /** Date & time format string with localized time @example "Jan 1, 2018 11:44 PM" */
   fullDateTime: TLibFormatToken;
   /** Not localized date & Time format 12h @example "Jan 1, 2018 11:44 PM" */
   fullDateTime12h: TLibFormatToken;
