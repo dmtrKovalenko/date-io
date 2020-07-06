@@ -39,6 +39,7 @@ type Locale = typeof defaultLocale;
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "d",
   fullDate: "PP",
+  fullDateWithWeekday: "PPPP",
   fullDateTime: "PP p",
   fullDateTime12h: "PP hh:mm aaa",
   fullDateTime24h: "PP HH:mm",
@@ -56,6 +57,8 @@ const defaultFormats: DateIOFormats = {
   monthAndDate: "MMMM d",
   monthAndYear: "LLLL yyyy",
   monthShort: "MMM",
+  weekday: "EEEE",
+  weekdayShort: "EEE",
   normalDate: "d MMMM",
   normalDateWithWeekday: "EEE, MMM d",
   seconds: "ss",

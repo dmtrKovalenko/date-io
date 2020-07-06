@@ -15,6 +15,8 @@ test.each`
   ${"year"}                  | ${"2020"}
   ${"month"}                 | ${"January"}
   ${"monthAndDate"}          | ${"January 1"}
+  ${"weekday"}               | ${"Wednesday"}
+  ${"weekdayShort"}          | ${"Wed"}
   ${"dayOfMonth"}            | ${"1"}
   ${"fullTime12h"}           | ${"11:44 PM"}
   ${"fullTime24h"}           | ${"23:44"}
@@ -36,15 +38,16 @@ test.each`
 
 describe("Localized formats", () => {
   test.each`
-    format                   | expectedWithEn            | expectedWithRu
-    ${"fullDate"}            | ${"Feb 1, 2020"}          | ${"1 февр. 2020 г."}
-    ${"fullDateTime"}        | ${"Feb 1, 2020 11:44 PM"} | ${"1 февр. 2020 г., 23:44"}
-    ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"} | ${"1 февр. 2020 г. 11:44 вечера"}
-    ${"fullDateTime24h"}     | ${"Feb 1, 2020 23:44"}    | ${"1 февр. 2020 г. 23:44"}
-    ${"keyboardDate"}        | ${"02/01/2020"}           | ${"01.02.2020"}
-    ${"keyboardDateTime"}    | ${"02/01/2020 11:44 PM"}  | ${"01.02.2020 23:44"}
-    ${"keyboardDateTime12h"} | ${"02/01/2020 11:44 PM"}  | ${"01.02.2020 11:44 вечера"}
-    ${"keyboardDateTime24h"} | ${"02/01/2020 23:44"}     | ${"01.02.2020 23:44"}
+    format                   | expectedWithEn                  | expectedWithRu
+    ${"fullDate"}            | ${"Feb 1, 2020"}                | ${"1 февр. 2020 г."}
+    ${"fullDateWithWeekday"} | ${"Saturday, February 1, 2020"} | ${"суббота, 1 февраля 2020 г."}
+    ${"fullDateTime"}        | ${"Feb 1, 2020 11:44 PM"}       | ${"1 февр. 2020 г., 23:44"}
+    ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"}       | ${"1 февр. 2020 г. 11:44 вечера"}
+    ${"fullDateTime24h"}     | ${"Feb 1, 2020 23:44"}          | ${"1 февр. 2020 г. 23:44"}
+    ${"keyboardDate"}        | ${"02/01/2020"}                 | ${"01.02.2020"}
+    ${"keyboardDateTime"}    | ${"02/01/2020 11:44 PM"}        | ${"01.02.2020 23:44"}
+    ${"keyboardDateTime12h"} | ${"02/01/2020 11:44 PM"}        | ${"01.02.2020 11:44 вечера"}
+    ${"keyboardDateTime24h"} | ${"02/01/2020 23:44"}           | ${"01.02.2020 23:44"}
   `("Moment localized $format", ({ format, expectedWithEn, expectedWithRu }) => {
     const momentUtils = new MomentUtils({ instance: moment, locale: "en-US" });
     const momentRuUtils = new MomentUtils({ instance: moment, locale: "ru" });
@@ -55,15 +58,16 @@ describe("Localized formats", () => {
   });
 
   test.each`
-    format                   | expectedWithEn            | expectedWithRu
-    ${"fullDate"}            | ${"Feb 1, 2020"}          | ${"1 февр. 2020 г."}
-    ${"fullDateTime"}        | ${"Feb 1, 2020 11:44 PM"} | ${"1 февр. 2020 г., 23:44"}
-    ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"} | ${"1 февр. 2020 г. 11:44 PM"}
-    ${"fullDateTime24h"}     | ${"Feb 1, 2020 23:44"}    | ${"1 февр. 2020 г. 23:44"}
-    ${"keyboardDate"}        | ${"02/01/2020"}           | ${"01.02.2020"}
-    ${"keyboardDateTime"}    | ${"02/01/2020 11:44 PM"}  | ${"01.02.2020 23:44"}
-    ${"keyboardDateTime12h"} | ${"02/01/2020 11:44 PM"}  | ${"01.02.2020 11:44 PM"}
-    ${"keyboardDateTime24h"} | ${"02/01/2020 23:44"}     | ${"01.02.2020 23:44"}
+    format                   | expectedWithEn                  | expectedWithRu
+    ${"fullDate"}            | ${"Feb 1, 2020"}                | ${"1 февр. 2020 г."}
+    ${"fullDateWithWeekday"} | ${"Saturday, February 1, 2020"} | ${"суббота, 1 февраля 2020 г."}
+    ${"fullDateTime"}        | ${"Feb 1, 2020 11:44 PM"}       | ${"1 февр. 2020 г., 23:44"}
+    ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"}       | ${"1 февр. 2020 г. 11:44 PM"}
+    ${"fullDateTime24h"}     | ${"Feb 1, 2020 23:44"}          | ${"1 февр. 2020 г. 23:44"}
+    ${"keyboardDate"}        | ${"02/01/2020"}                 | ${"01.02.2020"}
+    ${"keyboardDateTime"}    | ${"02/01/2020 11:44 PM"}        | ${"01.02.2020 23:44"}
+    ${"keyboardDateTime12h"} | ${"02/01/2020 11:44 PM"}        | ${"01.02.2020 11:44 PM"}
+    ${"keyboardDateTime24h"} | ${"02/01/2020 23:44"}           | ${"01.02.2020 23:44"}
   `("DayJS localized $format", ({ format, expectedWithEn, expectedWithRu }) => {
     const dayjsUtils = new DayjsUtils({ locale: "en-US" });
     const dayjsRuUtils = new DayjsUtils({ locale: "ru" });
@@ -74,15 +78,16 @@ describe("Localized formats", () => {
   });
 
   test.each`
-    format                   | expectedWithEn            | expectedWithRu
-    ${"fullDate"}            | ${"Feb 1, 2020"}          | ${"1 фев. 2020 г."}
-    ${"fullDateTime"}        | ${"Feb 1, 2020 11:44 PM"} | ${"1 фев. 2020 г. 23:44"}
-    ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"} | ${"1 фев. 2020 г. 11:44 ПП"}
-    ${"fullDateTime24h"}     | ${"Feb 1, 2020 23:44"}    | ${"1 фев. 2020 г. 23:44"}
-    ${"keyboardDate"}        | ${"02/01/2020"}           | ${"01.02.2020"}
-    ${"keyboardDateTime"}    | ${"02/01/2020 11:44 PM"}  | ${"01.02.2020 23:44"}
-    ${"keyboardDateTime12h"} | ${"02/01/2020 11:44 PM"}  | ${"01.02.2020 11:44 ПП"}
-    ${"keyboardDateTime24h"} | ${"02/01/2020 23:44"}     | ${"01.02.2020 23:44"}
+    format                   | expectedWithEn                    | expectedWithRu
+    ${"fullDate"}            | ${"Feb 1, 2020"}                  | ${"1 фев. 2020 г."}
+    ${"fullDateWithWeekday"} | ${"Saturday, February 1st, 2020"} | ${"суббота, 1-е февраля 2020 г."}
+    ${"fullDateTime"}        | ${"Feb 1, 2020 11:44 PM"}         | ${"1 фев. 2020 г. 23:44"}
+    ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"}         | ${"1 фев. 2020 г. 11:44 ПП"}
+    ${"fullDateTime24h"}     | ${"Feb 1, 2020 23:44"}            | ${"1 фев. 2020 г. 23:44"}
+    ${"keyboardDate"}        | ${"02/01/2020"}                   | ${"01.02.2020"}
+    ${"keyboardDateTime"}    | ${"02/01/2020 11:44 PM"}          | ${"01.02.2020 23:44"}
+    ${"keyboardDateTime12h"} | ${"02/01/2020 11:44 PM"}          | ${"01.02.2020 11:44 ПП"}
+    ${"keyboardDateTime24h"} | ${"02/01/2020 23:44"}             | ${"01.02.2020 23:44"}
   `("Date-fns localized $format", ({ format, expectedWithEn, expectedWithRu }) => {
     const dateFnsUtils = new DateFnsUtils();
     const dateFnsRuUtils = new DateFnsUtils({ locale: ruDateFnsLocale });
@@ -93,15 +98,16 @@ describe("Localized formats", () => {
   });
 
   test.each`
-    format                   | expectedWithEn             | expectedWithRu
-    ${"fullDate"}            | ${"Feb 1, 2020"}           | ${"1 февр. 2020 г."}
-    ${"fullDateTime"}        | ${"Feb 1, 2020, 11:44 PM"} | ${"1 февр. 2020 г., 23:44"}
-    ${"fullDateTime12h"}     | ${"Feb 1, 2020, 11:44 PM"} | ${"1 февр. 2020 г., 11:44 PM"}
-    ${"fullDateTime24h"}     | ${"Feb 1, 2020, 23:44"}    | ${"1 февр. 2020 г., 23:44"}
-    ${"keyboardDate"}        | ${"2/1/2020"}              | ${"01.02.2020"}
-    ${"keyboardDateTime"}    | ${"2/1/2020 11:44 PM"}     | ${"01.02.2020 23:44"}
-    ${"keyboardDateTime12h"} | ${"2/1/2020 11:44 PM"}     | ${"01.02.2020 11:44 PM"}
-    ${"keyboardDateTime24h"} | ${"2/1/2020 23:44"}        | ${"01.02.2020 23:44"}
+    format                   | expectedWithEn                  | expectedWithRu
+    ${"fullDate"}            | ${"Feb 1, 2020"}                | ${"1 февр. 2020 г."}
+    ${"fullDateWithWeekday"} | ${"Saturday, February 1, 2020"} | ${"суббота, 1 февраля 2020 г."}
+    ${"fullDateTime"}        | ${"Feb 1, 2020, 11:44 PM"}      | ${"1 февр. 2020 г., 23:44"}
+    ${"fullDateTime12h"}     | ${"Feb 1, 2020, 11:44 PM"}      | ${"1 февр. 2020 г., 11:44 PM"}
+    ${"fullDateTime24h"}     | ${"Feb 1, 2020, 23:44"}         | ${"1 февр. 2020 г., 23:44"}
+    ${"keyboardDate"}        | ${"2/1/2020"}                   | ${"01.02.2020"}
+    ${"keyboardDateTime"}    | ${"2/1/2020 11:44 PM"}          | ${"01.02.2020 23:44"}
+    ${"keyboardDateTime12h"} | ${"2/1/2020 11:44 PM"}          | ${"01.02.2020 11:44 PM"}
+    ${"keyboardDateTime24h"} | ${"2/1/2020 23:44"}             | ${"01.02.2020 23:44"}
   `("Luxon localized $format", ({ format, expectedWithEn, expectedWithRu }) => {
     const luxonUtils = new LuxonUtils({ locale: "en" });
     const luxonRuUtils = new LuxonUtils({ locale: "ru" });

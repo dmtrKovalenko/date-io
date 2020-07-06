@@ -26,6 +26,7 @@ type Moment = iMoment.Moment;
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "iD",
   fullDate: "iYYYY, iMMMM Do",
+  fullDateWithWeekday: "iYYYY, iMMMM Do, dddd",
   fullDateTime: "iYYYY, iMMMM Do, hh:mm A",
   fullDateTime12h: "iD iMMMM hh:mm A",
   fullDateTime24h: "iD iMMMM HH:mm",
@@ -43,6 +44,8 @@ const defaultFormats: DateIOFormats = {
   monthAndDate: "iD iMMMM",
   monthAndYear: "iMMMM iYYYY",
   monthShort: "iMMM",
+  weekday: "dddd",
+  weekdayShort: "ddd",
   normalDate: "dddd, iD iMMM",
   normalDateWithWeekday: "DD iMMMM",
   seconds: "ss",

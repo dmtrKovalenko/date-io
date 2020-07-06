@@ -25,6 +25,7 @@ type Moment = jMoment.Moment;
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "jD",
   fullDate: "jYYYY, jMMMM Do",
+  fullDateWithWeekday: "dddd Do jMMMM jYYYY",
   fullDateTime: "jYYYY, jMMMM Do, hh:mm A",
   fullDateTime12h: "jD jMMMM hh:mm A",
   fullDateTime24h: "jD jMMMM HH:mm",
@@ -42,6 +43,8 @@ const defaultFormats: DateIOFormats = {
   monthAndDate: "jD jMMMM",
   monthAndYear: "jMMMM jYYYY",
   monthShort: "jMMM",
+  weekday: "dddd",
+  weekdayShort: "ddd",
   normalDate: "dddd, jD jMMM",
   normalDateWithWeekday: "DD MMMM",
   seconds: "ss",

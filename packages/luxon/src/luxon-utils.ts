@@ -4,6 +4,7 @@ import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "d",
   fullDate: "DD",
+  fullDateWithWeekday: "DDDD",
   fullDateTime: "ff",
   fullDateTime12h: "DD, hh:mm a",
   fullDateTime24h: "DD, T",
@@ -22,6 +23,8 @@ const defaultFormats: DateIOFormats = {
   monthAndDate: "MMMM d",
   monthAndYear: "LLLL yyyy",
   monthShort: "MMM",
+  weekday: "cccc",
+  weekdayShort: "ccc",
   normalDate: "d MMMM",
   normalDateWithWeekday: "EEE, MMM d",
   shortDate: "MMM d",
