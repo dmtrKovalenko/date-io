@@ -81,6 +81,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
       return null;
     }
 
+    if (this.locale) {
+      return this.moment(value, format, this.locale, true);
+    }
+
     return this.moment(value, format, true);
   }
 

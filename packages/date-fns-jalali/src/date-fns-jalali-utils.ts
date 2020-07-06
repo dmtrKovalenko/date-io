@@ -1,48 +1,49 @@
-import addDays from "date-fns/addDays";
-import addMonths from "date-fns/addMonths";
-import addYears from "date-fns/addYears";
-import differenceInMilliseconds from "date-fns/differenceInMilliseconds";
-import eachDayOfInterval from "date-fns/eachDayOfInterval";
-import endOfDay from "date-fns/endOfDay";
-import endOfWeek from "date-fns/endOfWeek";
-import endOfYear from "date-fns/endOfYear";
-import format from "date-fns/format";
-import getHours from "date-fns/getHours";
-import getSeconds from "date-fns/getSeconds";
-import getYear from "date-fns/getYear";
-import isAfter from "date-fns/isAfter";
-import isBefore from "date-fns/isBefore";
-import isEqual from "date-fns/isEqual";
-import isSameDay from "date-fns/isSameDay";
-import isSameYear from "date-fns/isSameYear";
-import isSameMonth from "date-fns/isSameMonth";
-import isSameHour from "date-fns/isSameHour";
-import isValid from "date-fns/isValid";
-import dateFnsParse from "date-fns/parse";
-import setHours from "date-fns/setHours";
-import setMinutes from "date-fns/setMinutes";
-import setMonth from "date-fns/setMonth";
-import setSeconds from "date-fns/setSeconds";
-import setYear from "date-fns/setYear";
-import startOfDay from "date-fns/startOfDay";
-import startOfMonth from "date-fns/startOfMonth";
-import endOfMonth from "date-fns/endOfMonth";
-import startOfWeek from "date-fns/startOfWeek";
-import startOfYear from "date-fns/startOfYear";
+import addDays from "date-fns-jalali/addDays";
+import addMonths from "date-fns-jalali/addMonths";
+import addYears from "date-fns-jalali/addYears";
+import differenceInMilliseconds from "date-fns-jalali/differenceInMilliseconds";
+import eachDayOfInterval from "date-fns-jalali/eachDayOfInterval";
+import endOfDay from "date-fns-jalali/endOfDay";
+import endOfWeek from "date-fns-jalali/endOfWeek";
+import endOfYear from "date-fns-jalali/endOfYear";
+import format from "date-fns-jalali/format";
+import getHours from "date-fns-jalali/getHours";
+import getSeconds from "date-fns-jalali/getSeconds";
+import getYear from "date-fns-jalali/getYear";
+import getMonth from "date-fns-jalali/getMonth";
+import getMinutes from "date-fns-jalali/getMinutes";
+import isAfter from "date-fns-jalali/isAfter";
+import isBefore from "date-fns-jalali/isBefore";
+import isEqual from "date-fns-jalali/isEqual";
+import isSameDay from "date-fns-jalali/isSameDay";
+import isSameYear from "date-fns-jalali/isSameYear";
+import isSameMonth from "date-fns-jalali/isSameMonth";
+import isSameHour from "date-fns-jalali/isSameHour";
+import isValid from "date-fns-jalali/isValid";
+import dateFnsParse from "date-fns-jalali/parse";
+import setHours from "date-fns-jalali/setHours";
+import setMinutes from "date-fns-jalali/setMinutes";
+import setMonth from "date-fns-jalali/setMonth";
+import setSeconds from "date-fns-jalali/setSeconds";
+import setYear from "date-fns-jalali/setYear";
+import startOfDay from "date-fns-jalali/startOfDay";
+import startOfMonth from "date-fns-jalali/startOfMonth";
+import endOfMonth from "date-fns-jalali/endOfMonth";
+import startOfWeek from "date-fns-jalali/startOfWeek";
+import startOfYear from "date-fns-jalali/startOfYear";
 import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
-import isWithinInterval from "date-fns/isWithinInterval";
-import longFormatters from "date-fns/_lib/format/longFormatters";
-import defaultLocale from "date-fns/locale/en-US";
+import isWithinInterval from "date-fns-jalali/isWithinInterval";
+import longFormatters from "date-fns-jalali/_lib/format/longFormatters";
+import defaultLocale from "date-fns-jalali/locale/fa-jalali-IR";
 
 type Locale = typeof defaultLocale;
 
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "d",
-  fullDate: "PP",
-  fullDateWithWeekday: "PPPP",
-  fullDateTime: "PP p",
-  fullDateTime12h: "PP hh:mm aaa",
-  fullDateTime24h: "PP HH:mm",
+  fullDate: "PPP",
+  fullDateTime: "PPP p",
+  fullDateTime12h: "PPP hh:mm aaa",
+  fullDateTime24h: "PPP HH:mm",
   fullTime: "p",
   fullTime12h: "hh:mm aaa",
   fullTime24h: "HH:mm",
@@ -54,25 +55,36 @@ const defaultFormats: DateIOFormats = {
   keyboardDateTime24h: "P HH:mm",
   minutes: "mm",
   month: "LLLL",
-  monthAndDate: "MMMM d",
+  monthAndDate: "d MMMM",
   monthAndYear: "LLLL yyyy",
   monthShort: "MMM",
-  weekday: "EEEE",
-  weekdayShort: "EEE",
   normalDate: "d MMMM",
-  normalDateWithWeekday: "EEE, MMM d",
+  normalDateWithWeekday: "EEE, d MMMM",
   seconds: "ss",
-  shortDate: "MMM d",
-  year: "yyyy"
+  shortDate: "d MMM",
+  year: "yyyy",
 };
 
-export default class DateFnsUtils implements IUtils<Date> {
+var symbolMap = {
+  1: "۱",
+  2: "۲",
+  3: "۳",
+  4: "۴",
+  5: "۵",
+  6: "۶",
+  7: "۷",
+  8: "۸",
+  9: "۹",
+  0: "۰",
+};
+
+export default class DateFnsJalaliUtils implements IUtils<Date> {
   public locale?: Locale;
   public formats: DateIOFormats;
 
   constructor({
     locale,
-    formats
+    formats,
   }: { formats?: Partial<DateIOFormats>; locale?: Locale } = {}) {
     this.locale = locale;
     this.formats = Object.assign({}, defaultFormats, formats);
@@ -85,7 +97,7 @@ export default class DateFnsUtils implements IUtils<Date> {
       return /a/.test(this.locale.formatLong.time());
     }
 
-    // By default date-fns is using en-US locale with am/pm enabled
+    // By default date-fns-jalali is using fa-jalali-IR locale with am/pm enabled
     return true;
   }
 
@@ -95,7 +107,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     const locale = this.locale || defaultLocale;
     return format
       .match(longFormatRegexp)
-      .map(token => {
+      .map((token) => {
         const firstCharacter = token[0];
         if (firstCharacter === "p" || firstCharacter === "P") {
           const longFormatter = longFormatters[firstCharacter];
@@ -109,7 +121,7 @@ export default class DateFnsUtils implements IUtils<Date> {
   }
 
   public getCurrentLocaleCode() {
-    return this.locale?.code || "en-US";
+    return this.locale?.code || "fa-jalali-IR";
   }
 
   public addDays(value: Date, count: number) {
@@ -204,6 +216,8 @@ export default class DateFnsUtils implements IUtils<Date> {
     return setYear(value, count);
   }
 
+  public date(value?: null): null;
+  public date(value?: string | number | Date): Date;
   public date(value?: any) {
     if (typeof value === "undefined") {
       return new Date();
@@ -269,15 +283,15 @@ export default class DateFnsUtils implements IUtils<Date> {
   }
 
   public formatNumber(numberToFormat: string) {
-    return numberToFormat;
+    return numberToFormat.replace(/\d/g, (match) => symbolMap[match]).replace(/,/g, "،");
   }
 
   public getMinutes(date: Date) {
-    return date.getMinutes();
+    return getMinutes(date);
   }
 
   public getMonth(date: Date) {
-    return date.getMonth();
+    return getMonth(date);
   }
 
   public setMonth(date: Date, count: number) {
@@ -285,7 +299,10 @@ export default class DateFnsUtils implements IUtils<Date> {
   }
 
   public getMeridiemText(ampm: "am" | "pm") {
-    return ampm === "am" ? "AM" : "PM";
+    if (ampm === "am") {
+      return "ق.ظ.";
+    }
+    return "ب.ظ.";
   }
 
   public getNextMonth(date: Date) {
@@ -319,8 +336,8 @@ export default class DateFnsUtils implements IUtils<Date> {
     const now = new Date();
     return eachDayOfInterval({
       start: startOfWeek(now, { locale: this.locale }),
-      end: endOfWeek(now, { locale: this.locale })
-    }).map(day => this.formatByString(day, "EEEEEE"));
+      end: endOfWeek(now, { locale: this.locale }),
+    }).map((day) => this.formatByString(day, "EEEEEE"));
   }
 
   public getWeekArray(date: Date) {

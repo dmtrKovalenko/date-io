@@ -39,7 +39,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     locale,
     formats,
   }: { formats?: Partial<DateIOFormats>; locale?: string } = {}) {
-    this.locale = locale || "en";
+    this.locale = locale || "en-US";
     this.formats = Object.assign({}, defaultFormats, formats);
   }
 
@@ -72,7 +72,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return null;
     }
 
-    return DateTime.fromFormat(value, formatString);
+    return DateTime.fromFormat(value, formatString, { locale: this.locale });
   }
 
   /* istanbul ignore next */
