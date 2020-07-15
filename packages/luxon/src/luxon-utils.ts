@@ -32,6 +32,7 @@ const defaultFormats: DateIOFormats = {
 };
 
 export default class LuxonUtils implements IUtils<DateTime> {
+  public lib = "luxon";
   public locale: string;
   public formats: DateIOFormats;
 

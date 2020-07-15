@@ -1,3 +1,5 @@
+import { SupportOptionRange } from "prettier";
+
 /**
  * Localized output will of course vary based on the locale and date library used. Inline examples here are based on
  * using `moment` with the `en-US` locale.
@@ -64,6 +66,8 @@ export interface IUtils<TDate> {
   locale?: any;
   moment?: any;
   dayjs?: any;
+  /** Name of the library that is used right now */
+  lib: string;
 
   // constructor (options?: { formats?: DateIOFormats, locale?: any, instance?: any });
 

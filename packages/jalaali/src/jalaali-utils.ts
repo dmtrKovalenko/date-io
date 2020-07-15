@@ -53,6 +53,7 @@ const defaultFormats: DateIOFormats = {
 };
 
 export default class MomentUtils extends DefaultMomentUtils {
+  public lib = "moment-jalaali";
   public moment: typeof jMoment;
   public locale?: string;
   public formats: DateIOFormats;

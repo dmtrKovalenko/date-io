@@ -55,6 +55,7 @@ const defaultFormats: DateIOFormats = {
 
 export default class MomentUtils extends DefaultMomentUtils {
   public moment: typeof iMoment;
+  public lib = "moment=hijiri";
   public locale?: string;
   public formats: DateIOFormats;
 

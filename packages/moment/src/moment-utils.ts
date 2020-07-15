@@ -40,6 +40,7 @@ const defaultFormats: DateIOFormats = {
 
 export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public moment: typeof defaultMoment;
+  public lib = "moment";
   public locale?: string;
   public formats: DateIOFormats;
 
