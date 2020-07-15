@@ -82,6 +82,7 @@ var symbolMap = {
 };
 
 export default class DateFnsJalaliUtils implements IUtils<Date> {
+  public lib = "date-fns-jalali";
   public locale?: Locale;
   public formats: DateIOFormats;
 

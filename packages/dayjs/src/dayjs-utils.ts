@@ -61,6 +61,7 @@ const localizedFormats = {
 
 export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
   public rawDayJsInstance: typeof defaultDayjs;
+  public lib = "dayjs";
   public dayjs: Constructor;
   public locale?: string;
   public formats: DateIOFormats;
