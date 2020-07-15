@@ -66,6 +66,7 @@ export interface IUtils<TDate> {
   locale?: any;
   moment?: any;
   dayjs?: any;
+  /** Name of the library that is used right now */
   lib: string;
 
   // constructor (options?: { formats?: DateIOFormats, locale?: any, instance?: any });
