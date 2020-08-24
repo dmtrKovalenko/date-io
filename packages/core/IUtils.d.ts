@@ -125,6 +125,7 @@ export interface IUtils<TDate> {
   setSeconds(value: TDate, count: number): TDate;
 
   getMonth(value: TDate): number;
+  getDaysInMonth(value: TDate): number;
   setMonth(value: TDate, count: number): TDate;
   getNextMonth(value: TDate): TDate;
   getPreviousMonth(value: TDate): TDate;

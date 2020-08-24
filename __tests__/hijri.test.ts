@@ -31,6 +31,12 @@ describe("Hijri", () => {
     expect(hijriiUtils.getMonth(date)).toBe(1);
   });
 
+  it("Should properly work with hijri days in month", () => {
+    const date = hijriiUtils.date(TEST_TIMESTAMP);
+
+    expect(hijriiUtils.getDaysInMonth(date)).toBe(31);
+  });
+
   it("Should properly render meridiem", () => {
     expect(hijriiUtils.getMeridiemText("am")).toBe("ص");
     expect(hijriiUtils.getMeridiemText("pm")).toBe("م");

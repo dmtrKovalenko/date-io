@@ -22,6 +22,7 @@ import dateFnsParse from "date-fns/parse";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import setMonth from "date-fns/setMonth";
+import getDaysInMonth from "date-fns/getDaysInMonth";
 import setSeconds from "date-fns/setSeconds";
 import setYear from "date-fns/setYear";
 import startOfDay from "date-fns/startOfDay";
@@ -279,6 +280,10 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   public getMonth(date: Date) {
     return date.getMonth();
+  }
+
+  public getDaysInMonth(date: Date) {
+    return getDaysInMonth(date);
   }
 
   public setMonth(date: Date, count: number) {

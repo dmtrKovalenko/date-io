@@ -233,6 +233,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value.get("month") - 1;
   }
 
+  public getDaysInMonth(value: DateTime) {
+    return value.daysInMonth;
+  }
+
   public setMonth(value: DateTime, count: number) {
     return value.set({ month: count + 1 });
   }

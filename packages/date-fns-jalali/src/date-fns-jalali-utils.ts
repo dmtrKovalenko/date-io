@@ -11,6 +11,7 @@ import getHours from "date-fns-jalali/getHours";
 import getSeconds from "date-fns-jalali/getSeconds";
 import getYear from "date-fns-jalali/getYear";
 import getMonth from "date-fns-jalali/getMonth";
+import getDaysInMonth from "date-fns-jalali/getDaysInMonth";
 import getMinutes from "date-fns-jalali/getMinutes";
 import isAfter from "date-fns-jalali/isAfter";
 import isBefore from "date-fns-jalali/isBefore";
@@ -296,6 +297,10 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
 
   public getMonth(date: Date) {
     return getMonth(date);
+  }
+
+  public getDaysInMonth(date: Date) {
+    return getDaysInMonth(date);
   }
 
   public setMonth(date: Date, count: number) {

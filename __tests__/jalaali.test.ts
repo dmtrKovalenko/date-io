@@ -28,10 +28,16 @@ describe("Jalaali", () => {
     expect(jalaaliUtils.getYear(date)).toBe(1397);
   });
 
-  it("Should proper work with jalaali years", () => {
+  it("Should proper work with jalaali month", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 
     expect(jalaaliUtils.getMonth(date)).toBe(7);
+  });
+
+  it("Should proper work with jalaali days in month", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.getDaysInMonth(date)).toBe(31);
   });
 
   it("Should properly render meridiem", () => {
