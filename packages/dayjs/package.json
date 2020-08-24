@@ -1,6 +1,6 @@
 {
   "name": "@date-io/dayjs",
-  "version": "2.8.0",
+  "version": "2.8.1",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -9,7 +9,7 @@
     "dayjs": "^1.8.17"
   },
   "dependencies": {
-    "@date-io/core": "^2.8.0"
+    "@date-io/core": "^2.8.1"
   },
   "devDependencies": {
     "dayjs": "^1.8.17",
