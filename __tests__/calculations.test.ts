@@ -122,6 +122,10 @@ describe("DateTime calculations", () => {
     expect(utils.getMonth(date)).toBe(9);
   });
 
+  utilsTest("getDaysInMonth", (date, utils) => {
+    expect(utils.getDaysInMonth(date)).toBe(31);
+  });
+
   utilsTest("setMonth", (date, utils, lib) => {
     const updatedTime = utils.formatByString(
       utils.setMonth(date, 4),
