@@ -54,14 +54,14 @@ export default class LuxonUtils implements IUtils<DateTime> {
     }
 
     if (typeof value === "string") {
-      return DateTime.fromJSDate(new Date(value));
+      return DateTime.fromJSDate(new Date(value), { locale: this.locale });
     }
 
     if (value instanceof DateTime) {
       return value;
     }
 
-    return DateTime.fromJSDate(value);
+    return DateTime.fromJSDate(value, { locale: this.locale });
   }
 
   public toJsDate(value: DateTime) {
