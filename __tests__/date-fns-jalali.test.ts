@@ -130,6 +130,10 @@ describe("DateFnsJalali", () => {
       expect(utils.getMonth(date)).toBe(7);
     });
 
+    it("DateFnsJalali -- getMonth", () => {
+      expect(utils.getDaysInMonth(date)).toBe(30);
+    });
+
     it("DateFnsJalali -- setMonth", () => {
       const updatedTime = utils.formatByString(utils.setMonth(date, 4), dateTimeFormat);
       expect(updatedTime).toBe("1397/05/08 11:44");

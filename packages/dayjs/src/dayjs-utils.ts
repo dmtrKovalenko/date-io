@@ -217,6 +217,10 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return date.month();
   }
 
+  public getDaysInMonth(date: Dayjs) {
+    return date.daysInMonth();
+  }
+
   public isSameDay(date: Dayjs, comparing: Dayjs) {
     return date.isSame(comparing, "day");
   }

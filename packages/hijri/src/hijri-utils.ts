@@ -100,6 +100,10 @@ export default class MomentUtils extends DefaultMomentUtils {
     return date.iMonth();
   }
 
+  public getDaysInMonth(date: Moment) {
+    return date.daysInMonth();
+  }
+
   public startOfMonth(date: Moment) {
     return date.clone().startOf("iMonth");
   }

@@ -202,6 +202,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.get("month");
   }
 
+  public getDaysInMonth(date: Moment) {
+    return date.daysInMonth();
+  }
+
   public isSameDay(date: Moment, comparing: Moment) {
     return date.isSame(comparing, "day");
   }
