@@ -134,7 +134,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     return isValid(this.date(value));
   }
 
-  public getDiff(value: Date, comparing: Date | string, unit: Unit) {
+  public getDiff(value: Date, comparing: Date | string, unit?: Unit) {
     switch (unit) {
       case "year":
         return differenceInYears(value, this.date(comparing));

@@ -234,6 +234,28 @@ describe("DateFnsJalali", () => {
       expect(utils.getDiff(date, utils.date("2018-10-29T11:44:00.000Z"))).toBe(86400000);
       expect(utils.getDiff(date, utils.date("2018-10-31T11:44:00.000Z"))).toBe(-86400000);
       expect(utils.getDiff(date, "2018-10-31T11:44:00.000Z")).toBe(-86400000);
+      expect(utils.getDiff(date, utils.date("2017-09-29T11:44:00.000Z"), "year")).toBe(1);
+      expect(utils.getDiff(date, utils.date("2018-08-29T11:44:00.000Z"), "month")).toBe(
+        2
+      );
+      expect(utils.getDiff(date, utils.date("2018-05-29T11:44:00.000Z"), "quarter")).toBe(
+        1
+      );
+
+      expect(utils.getDiff(date, utils.date("2018-09-29T11:44:00.000Z"), "day")).toBe(31);
+      expect(utils.getDiff(date, utils.date("2018-09-29T11:44:00.000Z"), "week")).toBe(4);
+      expect(utils.getDiff(date, utils.date("2018-09-29T11:44:00.000Z"), "hour")).toBe(
+        744
+      );
+      expect(utils.getDiff(date, utils.date("2018-09-29T11:44:00.000Z"), "minute")).toBe(
+        44640
+      );
+      expect(utils.getDiff(date, utils.date("2018-10-30T10:44:00.000Z"), "second")).toBe(
+        3600
+      );
+      expect(
+        utils.getDiff(date, utils.date("2018-10-30T10:44:00.000Z"), "millisecond")
+      ).toBe(3600000);
     });
 
     it("DateFnsJalali -- mergeDateAndTime", () => {
