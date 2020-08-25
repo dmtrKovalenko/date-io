@@ -1,5 +1,5 @@
 import { DateTime, Settings, Info } from "luxon";
-import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 
 const defaultFormats: DateIOFormats = {
   dayOfMonth: "d",
@@ -176,11 +176,14 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return diff.years! > 0;
   }
 
-  public getDiff(value: DateTime, comparing: DateTime | string) {
+  public getDiff(value: DateTime, comparing: DateTime | string, unit?: Unit) {
     if (typeof comparing === "string") {
       comparing = DateTime.fromJSDate(new Date(comparing));
     }
 
+    if (unit) {
+      return Math.floor(value.diff(comparing).as(unit));
+    }
     return value.diff(comparing).as("millisecond");
   }
 

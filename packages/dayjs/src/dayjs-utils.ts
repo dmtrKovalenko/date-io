@@ -2,7 +2,7 @@ import defaultDayjs from "dayjs";
 import customParseFormatPlugin from "dayjs/plugin/customParseFormat";
 import localizedFormatPlugin from "dayjs/plugin/localizedFormat";
 import isBetweenPlugin from "dayjs/plugin/isBetween";
-import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
@@ -129,7 +129,7 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return date === null;
   }
 
-  public getDiff(date: Dayjs, comparing: Dayjs, units?: any, float?: any) {
+  public getDiff(date: Dayjs, comparing: Dayjs, units?: Unit, float?: any) {
     return date.diff(comparing, units, float);
   }
 

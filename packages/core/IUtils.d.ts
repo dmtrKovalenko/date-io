@@ -59,6 +59,17 @@ export interface DateIOFormats<TLibFormatToken = string> {
   keyboardDateTime24h: TLibFormatToken;
 }
 
+export type Unit =
+  | "year"
+  | "quarter"
+  | "month"
+  | "week"
+  | "day"
+  | "hour"
+  | "minute"
+  | "second"
+  | "millisecond";
+
 export interface IUtils<TDate> {
   formats: DateIOFormats<any>;
   locale?: any;
@@ -80,7 +91,7 @@ export interface IUtils<TDate> {
 
   isNull(value: TDate | null): boolean;
   isValid(value: any): boolean;
-  getDiff(value: TDate, comparing: TDate | string): number;
+  getDiff(value: TDate, comparing: TDate | string, unit?: Unit): number;
   isEqual(value: any, comparing: any): boolean;
 
   isSameDay(value: TDate, comparing: TDate): boolean;

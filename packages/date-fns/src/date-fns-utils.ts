@@ -1,6 +1,14 @@
 import addDays from "date-fns/addDays";
 import addMonths from "date-fns/addMonths";
 import addYears from "date-fns/addYears";
+import differenceInYears from "date-fns/differenceInYears";
+import differenceInQuarters from "date-fns/differenceInQuarters";
+import differenceInMonths from "date-fns/differenceInMonths";
+import differenceInWeeks from "date-fns/differenceInWeeks";
+import differenceInDays from "date-fns/differenceInDays";
+import differenceInHours from "date-fns/differenceInHours";
+import differenceInMinutes from "date-fns/differenceInMinutes";
+import differenceInSeconds from "date-fns/differenceInSeconds";
 import differenceInMilliseconds from "date-fns/differenceInMilliseconds";
 import eachDayOfInterval from "date-fns/eachDayOfInterval";
 import endOfDay from "date-fns/endOfDay";
@@ -30,7 +38,7 @@ import startOfMonth from "date-fns/startOfMonth";
 import endOfMonth from "date-fns/endOfMonth";
 import startOfWeek from "date-fns/startOfWeek";
 import startOfYear from "date-fns/startOfYear";
-import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 import isWithinInterval from "date-fns/isWithinInterval";
 import longFormatters from "date-fns/_lib/format/longFormatters";
 import defaultLocale from "date-fns/locale/en-US";
@@ -126,8 +134,27 @@ export default class DateFnsUtils implements IUtils<Date> {
     return isValid(this.date(value));
   }
 
-  public getDiff(value: Date, comparing: Date | string) {
-    return differenceInMilliseconds(value, this.date(comparing));
+  public getDiff(value: Date, comparing: Date | string, unit: Unit) {
+    switch (unit) {
+      case "year":
+        return differenceInYears(value, this.date(comparing));
+      case "quarter":
+        return differenceInQuarters(value, this.date(comparing));
+      case "month":
+        return differenceInMonths(value, this.date(comparing));
+      case "week":
+        return differenceInWeeks(value, this.date(comparing));
+      case "day":
+        return differenceInDays(value, this.date(comparing));
+      case "hour":
+        return differenceInHours(value, this.date(comparing));
+      case "minute":
+        return differenceInMinutes(value, this.date(comparing));
+      case "second":
+        return differenceInSeconds(value, this.date(comparing));
+      default:
+        return differenceInMilliseconds(value, this.date(comparing));
+    }
   }
 
   public isAfter(value: Date, comparing: Date) {
