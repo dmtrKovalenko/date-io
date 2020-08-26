@@ -150,25 +150,24 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
   }
 
   public getDiff(value: Date, comparing: Date | string, unit?: Unit) {
-    switch (unit) {
-      case "year":
-        return differenceInYears(value, this.date(comparing));
-      case "quarter":
-        return differenceInQuarters(value, this.date(comparing));
-      case "month":
-        return differenceInMonths(value, this.date(comparing));
-      case "week":
-        return differenceInWeeks(value, this.date(comparing));
-      case "day":
-        return differenceInDays(value, this.date(comparing));
-      case "hour":
-        return differenceInHours(value, this.date(comparing));
-      case "minute":
-        return differenceInMinutes(value, this.date(comparing));
-      case "second":
-        return differenceInSeconds(value, this.date(comparing));
-      default:
-        return differenceInMilliseconds(value, this.date(comparing));
+    if (unit === "year" || unit === "years") {
+      return differenceInYears(value, this.date(comparing));
+    } else if (unit === "quarter" || unit === "quarters") {
+      return differenceInQuarters(value, this.date(comparing));
+    } else if (unit === "month" || unit === "months") {
+      return differenceInMonths(value, this.date(comparing));
+    } else if (unit === "week" || unit === "weeks") {
+      return differenceInWeeks(value, this.date(comparing));
+    } else if (unit === "day" || unit === "days") {
+      return differenceInDays(value, this.date(comparing));
+    } else if (unit === "hour" || unit === "hours") {
+      return differenceInHours(value, this.date(comparing));
+    } else if (unit === "minute" || unit === "minutes") {
+      return differenceInMinutes(value, this.date(comparing));
+    } else if (unit === "second" || unit === "seconds") {
+      return differenceInSeconds(value, this.date(comparing));
+    } else {
+      return differenceInMilliseconds(value, this.date(comparing));
     }
   }
 
