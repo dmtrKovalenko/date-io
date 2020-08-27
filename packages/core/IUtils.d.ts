@@ -60,23 +60,14 @@ export interface DateIOFormats<TLibFormatToken = string> {
 }
 
 export type Unit =
-  | "year"
   | "years"
-  | "quarter"
   | "quarters"
-  | "month"
   | "months"
-  | "week"
   | "weeks"
-  | "day"
   | "days"
-  | "hour"
   | "hours"
-  | "minute"
   | "minutes"
-  | "second"
   | "seconds"
-  | "millisecond"
   | "milliseconds";
 
 export interface IUtils<TDate> {
