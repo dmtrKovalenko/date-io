@@ -1,5 +1,5 @@
 import defaultMoment, { LongDateFormatKey } from "moment";
-import { IUtils, DateIOFormats } from "@date-io/core/IUtils";
+import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 
 interface Opts {
   locale?: string;
@@ -112,8 +112,8 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date === null;
   }
 
-  public getDiff(date: Moment, comparing: Moment | string) {
-    return date.diff(comparing);
+  public getDiff(date: Moment, comparing: Moment | string, unit?: Unit) {
+    return date.diff(comparing, unit);
   }
 
   public isAfter(date: Moment, value: Moment) {
