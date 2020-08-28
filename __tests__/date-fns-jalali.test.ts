@@ -32,8 +32,24 @@ describe("DateFnsJalali", () => {
       expect(utils.isValid("2018-42-30T11:60:00.000Z")).toBeFalsy();
     });
 
+    it("DateFnsJalali -- addSeconds", () => {
+      expect(utils.format(utils.addSeconds(date, 65), "seconds")).toBe("05");
+    });
+
+    it("DateFnsJalali -- addMinutes", () => {
+      expect(utils.format(utils.addMinutes(date, 65), "minutes")).toBe("49");
+    });
+
+    it("DateFnsJalali -- addHours", () => {
+      expect(utils.format(utils.addHours(date, 65), "hours24h")).toBe("04");
+    });
+
     it("DateFnsJalali -- addDays", () => {
       expect(utils.format(utils.addDays(date, 1), "dayOfMonth")).toBe("9");
+    });
+
+    it("DateFnsJalali -- addWeeks", () => {
+      expect(utils.getDiff(utils.addWeeks(date, 1), date, "weeks")).toBe(1);
     });
 
     it("DateFnsJalali -- addMonths", () => {

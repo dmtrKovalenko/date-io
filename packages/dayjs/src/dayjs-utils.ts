@@ -181,8 +181,28 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     return date.hour();
   }
 
+  public addSeconds(date: Dayjs, count: number) {
+    return count < 0
+      ? date.subtract(Math.abs(count), "second")
+      : date.add(count, "second");
+  }
+
+  public addMinutes(date: Dayjs, count: number) {
+    return count < 0
+      ? date.subtract(Math.abs(count), "minute")
+      : date.add(count, "minute");
+  }
+
+  public addHours(date: Dayjs, count: number) {
+    return count < 0 ? date.subtract(Math.abs(count), "hour") : date.add(count, "hour");
+  }
+
   public addDays(date: Dayjs, count: number) {
     return count < 0 ? date.subtract(Math.abs(count), "day") : date.add(count, "day");
+  }
+
+  public addWeeks(date: Dayjs, count: number) {
+    return count < 0 ? date.subtract(Math.abs(count), "week") : date.add(count, "week");
   }
 
   public addMonths(date: Dayjs, count: number) {

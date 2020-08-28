@@ -114,7 +114,11 @@ export interface IUtils<TDate> {
   startOfWeek(value: TDate): TDate;
   endOfWeek(value: TDate): TDate;
 
+  addSeconds(value: TDate, count: number): TDate;
+  addMinutes(value: TDate, count: number): TDate;
+  addHours(value: TDate, count: number): TDate;
   addDays(value: TDate, count: number): TDate;
+  addWeeks(value: TDate, count: number): TDate;
   addMonths(value: TDate, count: number): TDate;
 
   startOfDay(value: TDate): TDate;

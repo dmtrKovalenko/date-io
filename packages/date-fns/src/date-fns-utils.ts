@@ -1,4 +1,8 @@
 import addDays from "date-fns/addDays";
+import addSeconds from "date-fns/addSeconds";
+import addMinutes from "date-fns/addMinutes";
+import addHours from "date-fns/addHours";
+import addWeeks from "date-fns/addWeeks";
 import addMonths from "date-fns/addMonths";
 import addYears from "date-fns/addYears";
 import differenceInYears from "date-fns/differenceInYears";
@@ -122,8 +126,24 @@ export default class DateFnsUtils implements IUtils<Date> {
     return this.locale?.code || "en-US";
   }
 
+  public addSeconds(value: Date, count: number) {
+    return addSeconds(value, count);
+  }
+
+  public addMinutes(value: Date, count: number) {
+    return addMinutes(value, count);
+  }
+
+  public addHours(value: Date, count: number) {
+    return addHours(value, count);
+  }
+
   public addDays(value: Date, count: number) {
     return addDays(value, count);
+  }
+
+  public addWeeks(value: Date, count: number) {
+    return addWeeks(value, count);
   }
 
   public addMonths(value: Date, count: number) {

@@ -24,8 +24,24 @@ describe("DateTime calculations", () => {
     expect(utils.isValid("2018-42-30T11:60:00.000Z")).toBeFalsy();
   });
 
+  utilsTest("addSeconds", (date, utils, lib) => {
+    expect(utils.format(utils.addSeconds(date, 65), "seconds")).toBe("05");
+  });
+
+  utilsTest("addMinutes", (date, utils, lib) => {
+    expect(utils.format(utils.addMinutes(date, 65), "minutes")).toBe("49");
+  });
+
+  utilsTest("addHours", (date, utils, lib) => {
+    expect(utils.format(utils.addHours(date, 65), "hours24h")).toBe("04");
+  });
+
   utilsTest("addDays", (date, utils, lib) => {
     expect(utils.format(utils.addDays(date, 1), "dayOfMonth")).toBe("31");
+  });
+
+  utilsTest("addWeeks", (date, utils, lib) => {
+    expect(utils.getDiff(utils.addWeeks(date, 1), date, "weeks")).toBe(1);
   });
 
   utilsTest("addMonths", (date, utils, lib) => {

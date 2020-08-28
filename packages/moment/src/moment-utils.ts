@@ -166,10 +166,34 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.get("hours");
   }
 
+  public addSeconds(date: Moment, count: number) {
+    return count < 0
+      ? date.clone().subtract(Math.abs(count), "seconds")
+      : date.clone().add(count, "seconds");
+  }
+
+  public addMinutes(date: Moment, count: number) {
+    return count < 0
+      ? date.clone().subtract(Math.abs(count), "minutes")
+      : date.clone().add(count, "minutes");
+  }
+
+  public addHours(date: Moment, count: number) {
+    return count < 0
+      ? date.clone().subtract(Math.abs(count), "hours")
+      : date.clone().add(count, "hours");
+  }
+
   public addDays(date: Moment, count: number) {
     return count < 0
       ? date.clone().subtract(Math.abs(count), "days")
       : date.clone().add(count, "days");
+  }
+
+  public addWeeks(date: Moment, count: number) {
+    return count < 0
+      ? date.clone().subtract(Math.abs(count), "weeks")
+      : date.clone().add(count, "weeks");
   }
 
   public addMonths(date: Moment, count: number) {
