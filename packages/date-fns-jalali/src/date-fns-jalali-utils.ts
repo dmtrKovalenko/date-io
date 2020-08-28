@@ -1,4 +1,8 @@
+import addSeconds from "date-fns-jalali/addSeconds";
+import addMinutes from "date-fns-jalali/addMinutes";
+import addHours from "date-fns-jalali/addHours";
 import addDays from "date-fns-jalali/addDays";
+import addWeeks from "date-fns-jalali/addWeeks";
 import addMonths from "date-fns-jalali/addMonths";
 import addYears from "date-fns-jalali/addYears";
 import differenceInYears from "date-fns/differenceInYears";
@@ -137,8 +141,24 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
     return this.locale?.code || "fa-jalali-IR";
   }
 
+  public addSeconds(value: Date, count: number) {
+    return addSeconds(value, count);
+  }
+
+  public addMinutes(value: Date, count: number) {
+    return addMinutes(value, count);
+  }
+
+  public addHours(value: Date, count: number) {
+    return addHours(value, count);
+  }
+
   public addDays(value: Date, count: number) {
     return addDays(value, count);
+  }
+
+  public addWeeks(value: Date, count: number) {
+    return addWeeks(value, count);
   }
 
   public addMonths(value: Date, count: number) {

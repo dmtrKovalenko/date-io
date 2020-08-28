@@ -97,8 +97,32 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return this.locale || Settings.defaultLocale;
   }
 
+  public addSeconds(date: DateTime, count: number) {
+    return count < 0
+      ? date.minus({ seconds: Math.abs(count) })
+      : date.plus({ seconds: count });
+  }
+
+  public addMinutes(date: DateTime, count: number) {
+    return count < 0
+      ? date.minus({ minutes: Math.abs(count) })
+      : date.plus({ minutes: count });
+  }
+
+  public addHours(date: DateTime, count: number) {
+    return count < 0
+      ? date.minus({ hours: Math.abs(count) })
+      : date.plus({ hours: count });
+  }
+
   public addDays(date: DateTime, count: number) {
     return count < 0 ? date.minus({ days: Math.abs(count) }) : date.plus({ days: count });
+  }
+
+  public addWeeks(date: DateTime, count: number) {
+    return count < 0
+      ? date.minus({ weeks: Math.abs(count) })
+      : date.plus({ weeks: count });
   }
 
   public addMonths(date: DateTime, count: number) {
