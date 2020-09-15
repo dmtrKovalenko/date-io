@@ -1,6 +1,6 @@
 {
   "name": "@date-io/date-fns",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -33,7 +33,7 @@
     "date-fns": "^2.0.0"
   },
   "dependencies": {
-    "@date-io/core": "^2.10.0"
+    "@date-io/core": "^2.10.1"
   },
   "devDependencies": {
     "date-fns": "2.16.1",
