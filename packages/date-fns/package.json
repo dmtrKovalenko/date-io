@@ -33,7 +33,7 @@
     "date-fns": "^2.0.0"
   },
   "dependencies": {
-    "@date-io/core": "^2.9.0"
+    "@date-io/core": "^2.9.1"
   },
   "devDependencies": {
     "date-fns": "2.15.0",
