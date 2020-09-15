@@ -1,6 +1,6 @@
 {
   "name": "@date-io/core",
-  "version": "2.10.4",
+  "version": "2.10.5",
   "description": "Abstraction over common javascript date management libraries",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -31,5 +31,5 @@
     "rollup": "^2.0.2",
     "typescript": "^3.7.2"
   },
-  "gitHead": "3f828a7b5dfea73f3ab990954cb0f03c9c56dfc4"
+  "gitHead": "687eba751bd706e7d704a39a7caa3e0afbfa40aa"
 }
