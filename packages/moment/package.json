@@ -1,6 +1,6 @@
 {
   "name": "@date-io/moment",
-  "version": "2.10.1",
+  "version": "2.10.2",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -9,7 +9,7 @@
     "moment": "^2.24.0"
   },
   "dependencies": {
-    "@date-io/core": "^2.10.1"
+    "@date-io/core": "^2.10.2"
   },
   "devDependencies": {
     "moment": "^2.24.0",
@@ -40,5 +40,5 @@
     "email": "dmtr.kovalenko@outlook.com"
   },
   "license": "MIT",
-  "gitHead": "3b596e88e257510621c56883233ebc7676161e9f"
+  "gitHead": "2ae1fe887c558bfb958fc74986a3da061aa15b40"
 }
