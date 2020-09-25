@@ -23,7 +23,8 @@
     "date-fns",
     "moment",
     "luxon",
-    "dayjs"
+    "dayjs",
+    "buddhist"
   ],
   "author": {
     "name": "Dmitriy Kovalenko",
