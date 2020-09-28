@@ -251,7 +251,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public getMeridiemText(ampm: "am" | "pm") {
-    return this.moment.localeData().meridiem(ampm === "am" ? 0 : 13);
+    return this.moment.localeData().meridiem(ampm === "am" ? 0 : 13, 0, false);
   }
 
   public startOfMonth(date: Moment) {
