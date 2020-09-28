@@ -135,6 +135,19 @@ describe("Moment -- localization", () => {
     });
   });
 
+  describe("Korean", () => {
+    const momentUtils = new MomentUtils({ locale: "ko" });
+
+    beforeEach(() => {
+      moment.locale("ko");
+    });
+
+    it("getMeridiemText: returns translated AM/PM format on available locales.", () => {
+      expect(momentUtils.getMeridiemText("am")).toBe("오전");
+      expect(momentUtils.getMeridiemText("pm")).toBe("오후");
+    });
+  });
+
   describe("English", () => {
     const momentUtils = new MomentUtils({ locale: "en" });
     const date = momentUtils.date(TEST_TIMESTAMP);
@@ -155,19 +168,6 @@ describe("Moment -- localization", () => {
 
     it("is12HourCycleInCurrentLocale: properly determine should use meridiem or not", () => {
       expect(momentUtils.is12HourCycleInCurrentLocale()).toBe(true);
-    });
-  });
-
-  describe("Korean", () => {
-    const momentUtils = new MomentUtils({ locale: "ko" });
-
-    beforeEach(() => {
-      moment.locale("ko");
-    });
-
-    it("getMeridiemText: returns translated AM/PM format on available locales.", () => {
-      expect(momentUtils.getMeridiemText("am")).toBe("오전");
-      expect(momentUtils.getMeridiemText("pm")).toBe("오후");
     });
   });
 });
