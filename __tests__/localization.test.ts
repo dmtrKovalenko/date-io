@@ -1,7 +1,6 @@
 import "dayjs/locale/ru";
 import "dayjs/locale/en";
 import "moment/locale/en-au";
-import "moment/locale/ko";
 import dayjs from "dayjs";
 import advancedDayJsFormat from "dayjs/plugin/advancedFormat";
 import LuxonUtils from "../packages/luxon/src";
