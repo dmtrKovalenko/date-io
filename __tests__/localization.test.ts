@@ -120,12 +120,30 @@ describe("Moment -- localization", () => {
       expect(momentUtils.getCurrentLocaleCode()).toBe("ru");
     });
 
+    it("getMeridiemText: returns translated AM/PM format on available locales.", () => {
+      expect(momentUtils.getMeridiemText("am")).toBe("AM");
+      expect(momentUtils.getMeridiemText("pm")).toBe("PM");
+    });
+
     it("parse: should parse localized dates", () => {
       const format = "ddd-MMMM-DD-YYYY";
       const dateString = "вт-октябрь-30-2018";
       expect(
         momentUtils.formatByString(momentUtils.parse(dateString, format), format)
       ).toBe(dateString);
+    });
+  });
+
+  describe("Korean", () => {
+    const momentUtils = new MomentUtils({ locale: "ko" });
+
+    beforeEach(() => {
+      moment.locale("ko");
+    });
+
+    it("getMeridiemText: returns translated AM/PM format on available locales.", () => {
+      expect(momentUtils.getMeridiemText("am")).toBe("오전");
+      expect(momentUtils.getMeridiemText("pm")).toBe("오후");
     });
   });
 
