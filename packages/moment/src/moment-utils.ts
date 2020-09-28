@@ -251,7 +251,12 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   }
 
   public getMeridiemText(ampm: "am" | "pm") {
-    return this.moment.localeData().meridiem(ampm === "am" ? 0 : 13, 0, false);
+    if (this.is12HourCycleInCurrentLocale()) {
+      // AM/PM translation only possible in those who have 12 hour cycle in locale.
+      return this.moment.localeData().meridiem(ampm === "am" ? 0 : 13, 0, false);
+    }
+
+    return ampm === "am" ? "AM" : "PM"; // fallback for de, ru, ...etc
   }
 
   public startOfMonth(date: Moment) {

@@ -1,6 +1,7 @@
 import "dayjs/locale/ru";
 import "dayjs/locale/en";
 import "moment/locale/en-au";
+import "moment/locale/ko";
 import dayjs from "dayjs";
 import advancedDayJsFormat from "dayjs/plugin/advancedFormat";
 import LuxonUtils from "../packages/luxon/src";
@@ -120,6 +121,11 @@ describe("Moment -- localization", () => {
       expect(momentUtils.getCurrentLocaleCode()).toBe("ru");
     });
 
+    it("getMeridiemText: returns translated AM/PM format on available locales.", () => {
+      expect(momentUtils.getMeridiemText("am")).toBe("AM");
+      expect(momentUtils.getMeridiemText("pm")).toBe("PM");
+    });
+
     it("parse: should parse localized dates", () => {
       const format = "ddd-MMMM-DD-YYYY";
       const dateString = "вт-октябрь-30-2018";
@@ -149,6 +155,19 @@ describe("Moment -- localization", () => {
 
     it("is12HourCycleInCurrentLocale: properly determine should use meridiem or not", () => {
       expect(momentUtils.is12HourCycleInCurrentLocale()).toBe(true);
+    });
+  });
+
+  describe("Korean", () => {
+    const momentUtils = new MomentUtils({ locale: "ko" });
+
+    beforeEach(() => {
+      moment.locale("ko");
+    });
+
+    it("getMeridiemText: returns translated AM/PM format on available locales.", () => {
+      expect(momentUtils.getMeridiemText("am")).toBe("오전");
+      expect(momentUtils.getMeridiemText("pm")).toBe("오후");
     });
   });
 });
