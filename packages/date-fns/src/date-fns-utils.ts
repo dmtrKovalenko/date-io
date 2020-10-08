@@ -94,16 +94,16 @@ export default class DateFnsUtils implements IUtils<Date> {
 
   // Note: date-fns input types are more lenient than this adapter, so we need to expose our more
   // strict signature and delegate to the more lenient signature. Otherwise, we have downstream type errors upon usage.
-  public is12HourCycleInCurrentLocale() {
+  public is12HourCycleInCurrentLocale = () => {
     if (this.locale) {
       return /a/.test(this.locale.formatLong.time());
     }
 
     // By default date-fns is using en-US locale with am/pm enabled
     return true;
-  }
+  };
 
-  public getFormatHelperText(format: string) {
+  public getFormatHelperText = (format: string) => {
     // @see https://github.com/date-fns/date-fns/blob/master/src/format/index.js#L31
     const longFormatRegexp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
     const locale = this.locale || defaultLocale;
@@ -120,41 +120,41 @@ export default class DateFnsUtils implements IUtils<Date> {
       .join("")
       .replace(/(aaa|aa|a)/g, "(a|p)m")
       .toLocaleLowerCase();
-  }
+  };
 
-  public getCurrentLocaleCode() {
+  public getCurrentLocaleCode = () => {
     return this.locale?.code || "en-US";
-  }
+  };
 
-  public addSeconds(value: Date, count: number) {
+  public addSeconds = (value: Date, count: number) => {
     return addSeconds(value, count);
-  }
+  };
 
-  public addMinutes(value: Date, count: number) {
+  public addMinutes = (value: Date, count: number) => {
     return addMinutes(value, count);
-  }
+  };
 
-  public addHours(value: Date, count: number) {
+  public addHours = (value: Date, count: number) => {
     return addHours(value, count);
-  }
+  };
 
-  public addDays(value: Date, count: number) {
+  public addDays = (value: Date, count: number) => {
     return addDays(value, count);
-  }
+  };
 
-  public addWeeks(value: Date, count: number) {
+  public addWeeks = (value: Date, count: number) => {
     return addWeeks(value, count);
-  }
+  };
 
-  public addMonths(value: Date, count: number) {
+  public addMonths = (value: Date, count: number) => {
     return addMonths(value, count);
-  }
+  };
 
-  public isValid(value: any) {
+  public isValid = (value: any) => {
     return isValid(this.date(value));
-  }
+  };
 
-  public getDiff(value: Date, comparing: Date | string, unit?: Unit) {
+  public getDiff = (value: Date, comparing: Date | string, unit?: Unit) => {
     switch (unit) {
       case "years":
         return differenceInYears(value, this.date(comparing));
@@ -176,85 +176,85 @@ export default class DateFnsUtils implements IUtils<Date> {
         return differenceInMilliseconds(value, this.date(comparing));
       }
     }
-  }
+  };
 
-  public isAfter(value: Date, comparing: Date) {
+  public isAfter = (value: Date, comparing: Date) => {
     return isAfter(value, comparing);
-  }
+  };
 
-  public isBefore(value: Date, comparing: Date) {
+  public isBefore = (value: Date, comparing: Date) => {
     return isBefore(value, comparing);
-  }
+  };
 
-  public startOfDay(value: Date) {
+  public startOfDay = (value: Date) => {
     return startOfDay(value);
-  }
+  };
 
-  public endOfDay(value: Date) {
+  public endOfDay = (value: Date) => {
     return endOfDay(value);
-  }
+  };
 
-  public getHours(value: Date) {
+  public getHours = (value: Date) => {
     return getHours(value);
-  }
+  };
 
-  public setHours(value: Date, count: number) {
+  public setHours = (value: Date, count: number) => {
     return setHours(value, count);
-  }
+  };
 
-  public setMinutes(value: Date, count: number) {
+  public setMinutes = (value: Date, count: number) => {
     return setMinutes(value, count);
-  }
+  };
 
-  public getSeconds(value: Date) {
+  public getSeconds = (value: Date) => {
     return getSeconds(value);
-  }
+  };
 
-  public setSeconds(value: Date, count: number) {
+  public setSeconds = (value: Date, count: number) => {
     return setSeconds(value, count);
-  }
+  };
 
-  public isSameDay(value: Date, comparing: Date) {
+  public isSameDay = (value: Date, comparing: Date) => {
     return isSameDay(value, comparing);
-  }
+  };
 
-  public isSameMonth(value: Date, comparing: Date) {
+  public isSameMonth = (value: Date, comparing: Date) => {
     return isSameMonth(value, comparing);
-  }
+  };
 
-  public isSameYear(value: Date, comparing: Date) {
+  public isSameYear = (value: Date, comparing: Date) => {
     return isSameYear(value, comparing);
-  }
+  };
 
-  public isSameHour(value: Date, comparing: Date) {
+  public isSameHour = (value: Date, comparing: Date) => {
     return isSameHour(value, comparing);
-  }
+  };
 
-  public startOfMonth(value: Date) {
+  public startOfMonth = (value: Date) => {
     return startOfMonth(value);
-  }
+  };
 
-  public endOfMonth(value: Date) {
+  public endOfMonth = (value: Date) => {
     return endOfMonth(value);
-  }
+  };
 
-  public startOfWeek(value: Date) {
+  public startOfWeek = (value: Date) => {
     return startOfWeek(value, { locale: this.locale });
-  }
+  };
 
-  public endOfWeek(value: Date) {
+  public endOfWeek = (value: Date) => {
     return endOfWeek(value, { locale: this.locale });
-  }
+  };
 
-  public getYear(value: Date) {
+  public getYear = (value: Date) => {
     return getYear(value);
-  }
+  };
 
-  public setYear(value: Date, count: number) {
+  public setYear = (value: Date, count: number) => {
     return setYear(value, count);
-  }
+  };
 
-  public date(value?: any) {
+  public date = (value?: any) => {
     if (typeof value === "undefined") {
       return new Date();
     }
@@ -264,93 +264,93 @@ export default class DateFnsUtils implements IUtils<Date> {
     }
 
     return new Date(value);
-  }
+  };
 
-  public toJsDate(value: Date) {
+  public toJsDate = (value: Date) => {
     return value;
-  }
+  };
 
-  public parse(value: string, formatString: string) {
+  public parse = (value: string, formatString: string) => {
     if (value === "") {
       return null;
     }
 
     return dateFnsParse(value, formatString, new Date(), { locale: this.locale });
-  }
+  };
 
-  public format(date: Date, formatKey: keyof DateIOFormats) {
+  public format = (date: Date, formatKey: keyof DateIOFormats) => {
     return this.formatByString(date, this.formats[formatKey]);
-  }
+  };
 
-  public formatByString(date: Date, formatString: string) {
+  public formatByString = (date: Date, formatString: string) => {
     return format(date, formatString, { locale: this.locale });
-  }
+  };
 
-  public isEqual(date: any, comparing: any) {
+  public isEqual = (date: any, comparing: any) => {
     if (date === null && comparing === null) {
       return true;
     }
 
     return isEqual(date, comparing);
-  }
+  };
 
-  public isNull(date: Date) {
+  public isNull = (date: Date) => {
     return date === null;
-  }
+  };
 
-  public isAfterDay(date: Date, value: Date) {
+  public isAfterDay = (date: Date, value: Date) => {
     return isAfter(date, endOfDay(value));
-  }
+  };
 
-  public isBeforeDay(date: Date, value: Date) {
+  public isBeforeDay = (date: Date, value: Date) => {
     return isBefore(date, startOfDay(value));
-  }
+  };
 
-  public isBeforeYear(date: Date, value: Date) {
+  public isBeforeYear = (date: Date, value: Date) => {
     return isBefore(date, startOfYear(value));
-  }
+  };
 
-  public isAfterYear(date: Date, value: Date) {
+  public isAfterYear = (date: Date, value: Date) => {
     return isAfter(date, endOfYear(value));
-  }
+  };
 
-  public isWithinRange(date: Date, [start, end]: [Date, Date]) {
+  public isWithinRange = (date: Date, [start, end]: [Date, Date]) => {
     return isWithinInterval(date, { start, end });
-  }
+  };
 
-  public formatNumber(numberToFormat: string) {
+  public formatNumber = (numberToFormat: string) => {
     return numberToFormat;
-  }
+  };
 
-  public getMinutes(date: Date) {
+  public getMinutes = (date: Date) => {
     return date.getMinutes();
-  }
+  };
 
-  public getMonth(date: Date) {
+  public getMonth = (date: Date) => {
     return date.getMonth();
-  }
+  };
 
-  public getDaysInMonth(date: Date) {
+  public getDaysInMonth = (date: Date) => {
     return getDaysInMonth(date);
-  }
+  };
 
-  public setMonth(date: Date, count: number) {
+  public setMonth = (date: Date, count: number) => {
     return setMonth(date, count);
-  }
+  };
 
-  public getMeridiemText(ampm: "am" | "pm") {
+  public getMeridiemText = (ampm: "am" | "pm") => {
     return ampm === "am" ? "AM" : "PM";
-  }
+  };
 
-  public getNextMonth(date: Date) {
+  public getNextMonth = (date: Date) => {
     return addMonths(date, 1);
-  }
+  };
 
-  public getPreviousMonth(date: Date) {
+  public getPreviousMonth = (date: Date) => {
     return addMonths(date, -1);
-  }
+  };
 
-  public getMonthArray(date: Date) {
+  public getMonthArray = (date: Date) => {
     const firstMonth = startOfYear(date);
     const monthArray = [firstMonth];
 
@@ -360,24 +360,24 @@ export default class DateFnsUtils implements IUtils<Date> {
     }
 
     return monthArray;
-  }
+  };
 
-  public mergeDateAndTime(date: Date, time: Date) {
+  public mergeDateAndTime = (date: Date, time: Date) => {
     return this.setSeconds(
       this.setMinutes(this.setHours(date, this.getHours(time)), this.getMinutes(time)),
       this.getSeconds(time)
     );
-  }
+  };
 
-  public getWeekdays() {
+  public getWeekdays = () => {
     const now = new Date();
     return eachDayOfInterval({
       start: startOfWeek(now, { locale: this.locale }),
       end: endOfWeek(now, { locale: this.locale }),
     }).map((day) => this.formatByString(day, "EEEEEE"));
-  }
+  };
 
-  public getWeekArray(date: Date) {
+  public getWeekArray = (date: Date) => {
     const start = startOfWeek(startOfMonth(date), { locale: this.locale });
     const end = endOfWeek(endOfMonth(date), { locale: this.locale });
 
@@ -394,9 +394,9 @@ export default class DateFnsUtils implements IUtils<Date> {
     }
 
     return nestedWeeks;
-  }
+  };
 
-  public getYearRange(start: Date, end: Date) {
+  public getYearRange = (start: Date, end: Date) => {
     const startDate = startOfYear(start);
     const endDate = endOfYear(end);
     const years: Date[] = [];
@@ -408,5 +408,5 @@ export default class DateFnsUtils implements IUtils<Date> {
     }
 
     return years;
-  }
+  };
 }

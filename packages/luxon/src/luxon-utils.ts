@@ -44,7 +44,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     this.formats = Object.assign({}, defaultFormats, formats);
   }
 
-  public date(value?: any) {
+  public date = (value?: any) => {
     if (typeof value === "undefined") {
       return DateTime.local();
     }
@@ -62,22 +62,22 @@ export default class LuxonUtils implements IUtils<DateTime> {
     }
 
     return DateTime.fromJSDate(value, { locale: this.locale });
-  }
+  };
 
-  public toJsDate(value: DateTime) {
+  public toJsDate = (value: DateTime) => {
     return value.toJSDate();
-  }
+  };
 
-  public parse(value: string, formatString: string) {
+  public parse = (value: string, formatString: string) => {
     if (value === "") {
       return null;
     }
 
     return DateTime.fromFormat(value, formatString, { locale: this.locale });
-  }
+  };
 
   /* istanbul ignore next */
-  public is12HourCycleInCurrentLocale() {
+  public is12HourCycleInCurrentLocale = () => {
     if (typeof Intl === "undefined" || typeof Intl.DateTimeFormat === "undefined") {
       return true; // Luxon defaults to en-US if Intl not found
     }
@@ -85,53 +85,53 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return Boolean(
       new Intl.DateTimeFormat(this.locale, { hour: "numeric" })?.resolvedOptions()?.hour12
     );
-  }
+  };
 
-  public getFormatHelperText(format: string) {
+  public getFormatHelperText = (format: string) => {
     // Unfortunately there is no way for luxon to retrieve readable formats from localized format
     return "";
-  }
+  };
 
   /* istanbul ignore next */
-  public getCurrentLocaleCode() {
+  public getCurrentLocaleCode = () => {
     return this.locale || Settings.defaultLocale;
-  }
+  };
 
-  public addSeconds(date: DateTime, count: number) {
+  public addSeconds = (date: DateTime, count: number) => {
     return count < 0
       ? date.minus({ seconds: Math.abs(count) })
       : date.plus({ seconds: count });
-  }
+  };
 
-  public addMinutes(date: DateTime, count: number) {
+  public addMinutes = (date: DateTime, count: number) => {
     return count < 0
       ? date.minus({ minutes: Math.abs(count) })
       : date.plus({ minutes: count });
-  }
+  };
 
-  public addHours(date: DateTime, count: number) {
+  public addHours = (date: DateTime, count: number) => {
     return count < 0
       ? date.minus({ hours: Math.abs(count) })
       : date.plus({ hours: count });
-  }
+  };
 
-  public addDays(date: DateTime, count: number) {
+  public addDays = (date: DateTime, count: number) => {
     return count < 0 ? date.minus({ days: Math.abs(count) }) : date.plus({ days: count });
-  }
+  };
 
-  public addWeeks(date: DateTime, count: number) {
+  public addWeeks = (date: DateTime, count: number) => {
     return count < 0
       ? date.minus({ weeks: Math.abs(count) })
       : date.plus({ weeks: count });
-  }
+  };
 
-  public addMonths(date: DateTime, count: number) {
+  public addMonths = (date: DateTime, count: number) => {
     return count < 0
       ? date.minus({ months: Math.abs(count) })
       : date.plus({ months: count });
-  }
+  };
 
-  public isValid(value: any) {
+  public isValid = (value: any) => {
     if (value instanceof DateTime) {
       return value.isValid;
     }
@@ -141,9 +141,9 @@ export default class LuxonUtils implements IUtils<DateTime> {
     }
 
     return this.date(value).isValid;
-  }
+  };
 
-  public isEqual(value: any, comparing: any) {
+  public isEqual = (value: any, comparing: any) => {
     if (value === null && comparing === null) {
       return true;
     }
@@ -154,53 +154,53 @@ export default class LuxonUtils implements IUtils<DateTime> {
     }
 
     return this.date(value).equals(this.date(comparing));
-  }
+  };
 
-  public isSameDay(date: DateTime, comparing: DateTime) {
+  public isSameDay = (date: DateTime, comparing: DateTime) => {
     return date.hasSame(comparing, "day");
-  }
+  };
 
-  public isSameMonth(date: DateTime, comparing: DateTime) {
+  public isSameMonth = (date: DateTime, comparing: DateTime) => {
     return date.hasSame(comparing, "month");
-  }
+  };
 
-  public isSameYear(date: DateTime, comparing: DateTime) {
+  public isSameYear = (date: DateTime, comparing: DateTime) => {
     return date.hasSame(comparing, "year");
-  }
+  };
 
-  public isSameHour(date: DateTime, comparing: DateTime) {
+  public isSameHour = (date: DateTime, comparing: DateTime) => {
     return date.hasSame(comparing, "hour");
-  }
+  };
 
-  public isAfter(value: DateTime, comparing: DateTime) {
+  public isAfter = (value: DateTime, comparing: DateTime) => {
     return value > comparing;
-  }
+  };
 
-  public isBefore(value: DateTime, comparing: DateTime) {
+  public isBefore = (value: DateTime, comparing: DateTime) => {
     return value < comparing;
-  }
+  };
 
-  public isBeforeDay(value: DateTime, comparing: DateTime) {
+  public isBeforeDay = (value: DateTime, comparing: DateTime) => {
     const diff = value.diff(comparing.startOf("day"), "days").toObject();
     return diff.days! < 0;
-  }
+  };
 
-  public isAfterDay(value: DateTime, comparing: DateTime) {
+  public isAfterDay = (value: DateTime, comparing: DateTime) => {
     const diff = value.diff(comparing.endOf("day"), "days").toObject();
     return diff.days! > 0;
-  }
+  };
 
-  public isBeforeYear(value: DateTime, comparing: DateTime) {
+  public isBeforeYear = (value: DateTime, comparing: DateTime) => {
     const diff = value.diff(comparing.startOf("year"), "years").toObject();
     return diff.years! < 0;
-  }
+  };
 
-  public isAfterYear(value: DateTime, comparing: DateTime) {
+  public isAfterYear = (value: DateTime, comparing: DateTime) => {
     const diff = value.diff(comparing.endOf("year"), "years").toObject();
     return diff.years! > 0;
-  }
+  };
 
-  public getDiff(value: DateTime, comparing: DateTime | string, unit?: Unit) {
+  public getDiff = (value: DateTime, comparing: DateTime | string, unit?: Unit) => {
     if (typeof comparing === "string") {
       comparing = DateTime.fromJSDate(new Date(comparing));
     }
@@ -209,106 +209,106 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return Math.floor(value.diff(comparing).as(unit));
     }
     return value.diff(comparing).as("millisecond");
-  }
+  };
 
-  public startOfDay(value: DateTime) {
+  public startOfDay = (value: DateTime) => {
     return value.startOf("day");
-  }
+  };
 
-  public endOfDay(value: DateTime) {
+  public endOfDay = (value: DateTime) => {
     return value.endOf("day");
-  }
+  };
 
-  public format(date: DateTime, formatKey: keyof DateIOFormats) {
+  public format = (date: DateTime, formatKey: keyof DateIOFormats) => {
     return this.formatByString(date, this.formats[formatKey]);
-  }
+  };
 
-  public formatByString(date: DateTime, format: string) {
+  public formatByString = (date: DateTime, format: string) => {
     return date.setLocale(this.locale).toFormat(format);
-  }
+  };
 
-  public formatNumber(numberToFormat: string) {
+  public formatNumber = (numberToFormat: string) => {
     return numberToFormat;
-  }
+  };
 
-  public getHours(value: DateTime) {
+  public getHours = (value: DateTime) => {
     return value.get("hour");
-  }
+  };
 
-  public setHours(value: DateTime, count: number) {
+  public setHours = (value: DateTime, count: number) => {
     return value.set({ hour: count });
-  }
+  };
 
-  public getMinutes(value: DateTime) {
+  public getMinutes = (value: DateTime) => {
     return value.get("minute");
-  }
+  };
 
-  public setMinutes(value: DateTime, count: number) {
+  public setMinutes = (value: DateTime, count: number) => {
     return value.set({ minute: count });
-  }
+  };
 
-  public getSeconds(value: DateTime) {
+  public getSeconds = (value: DateTime) => {
     return value.get("second");
-  }
+  };
 
-  public setSeconds(value: DateTime, count: number) {
+  public setSeconds = (value: DateTime, count: number) => {
     return value.set({ second: count });
-  }
+  };
 
-  public getMonth(value: DateTime) {
+  public getMonth = (value: DateTime) => {
     // See https://github.com/moment/luxon/blob/master/docs/moment.md#major-functional-differences
     return value.get("month") - 1;
-  }
+  };
 
-  public getDaysInMonth(value: DateTime) {
+  public getDaysInMonth = (value: DateTime) => {
     return value.daysInMonth;
-  }
+  };
 
-  public setMonth(value: DateTime, count: number) {
+  public setMonth = (value: DateTime, count: number) => {
     return value.set({ month: count + 1 });
-  }
+  };
 
-  public getYear(value: DateTime) {
+  public getYear = (value: DateTime) => {
     return value.get("year");
-  }
+  };
 
-  public setYear(value: DateTime, year: number) {
+  public setYear = (value: DateTime, year: number) => {
     return value.set({ year });
-  }
+  };
 
-  public mergeDateAndTime(date: DateTime, time: DateTime) {
+  public mergeDateAndTime = (date: DateTime, time: DateTime) => {
     return date.set({
       second: time.second,
       hour: time.hour,
       minute: time.minute,
     });
-  }
+  };
 
-  public startOfMonth(value: DateTime) {
+  public startOfMonth = (value: DateTime) => {
     return value.startOf("month");
-  }
+  };
 
-  public endOfMonth(value: DateTime) {
+  public endOfMonth = (value: DateTime) => {
     return value.endOf("month");
-  }
+  };
 
-  public startOfWeek(value: DateTime) {
+  public startOfWeek = (value: DateTime) => {
     return value.startOf("week");
-  }
+  };
 
-  public endOfWeek(value: DateTime) {
+  public endOfWeek = (value: DateTime) => {
     return value.endOf("week");
-  }
+  };
 
-  public getNextMonth(value: DateTime) {
+  public getNextMonth = (value: DateTime) => {
     return value.plus({ months: 1 });
-  }
+  };
 
-  public getPreviousMonth(value: DateTime) {
+  public getPreviousMonth = (value: DateTime) => {
     return value.minus({ months: 1 });
-  }
+  };
 
-  public getMonthArray(date: DateTime) {
+  public getMonthArray = (date: DateTime) => {
     const firstMonth = this.date(date).startOf("year");
     const monthArray = [firstMonth];
 
@@ -318,13 +318,13 @@ export default class LuxonUtils implements IUtils<DateTime> {
     }
 
     return monthArray;
-  }
+  };
 
-  public getWeekdays() {
+  public getWeekdays = () => {
     return Info.weekdaysFormat("narrow", { locale: this.locale });
-  }
+  };
 
-  public getWeekArray(date: DateTime) {
+  public getWeekArray = (date: DateTime) => {
     const { days } = date
       .endOf("month")
       .endOf("week")
@@ -346,9 +346,9 @@ export default class LuxonUtils implements IUtils<DateTime> {
       });
 
     return weeks;
-  }
+  };
 
-  public getYearRange(start: DateTime, end: DateTime) {
+  public getYearRange = (start: DateTime, end: DateTime) => {
     const startDate = this.date(start).startOf("year");
     const endDate = this.date(end).endOf("year");
 
@@ -361,23 +361,23 @@ export default class LuxonUtils implements IUtils<DateTime> {
     }
 
     return years;
-  }
+  };
 
-  public getMeridiemText(ampm: "am" | "pm") {
+  public getMeridiemText = (ampm: "am" | "pm") => {
     return Info.meridiems({ locale: this.locale }).find(
       (v) => v.toLowerCase() === ampm.toLowerCase()
     )!;
-  }
+  };
 
-  public isNull(date: DateTime | null) {
+  public isNull = (date: DateTime | null) => {
     return date === null;
-  }
+  };
 
-  public isWithinRange(date: DateTime, [start, end]: [DateTime, DateTime]) {
+  public isWithinRange = (date: DateTime, [start, end]: [DateTime, DateTime]) => {
     return (
       date.equals(start) ||
       date.equals(end) ||
       (this.isAfter(date, start) && this.isBefore(date, end))
     );
-  }
+  };
 }
