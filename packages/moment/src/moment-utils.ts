@@ -51,11 +51,11 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     this.formats = Object.assign({}, defaultFormats, formats);
   }
 
-  public is12HourCycleInCurrentLocale() {
+  public is12HourCycleInCurrentLocale = () => {
     return /A|a/.test(this.moment().localeData().longDateFormat("LT"));
-  }
+  };
 
-  public getFormatHelperText(format: string) {
+  public getFormatHelperText = (format: string) => {
     // @see https://github.com/moment/moment/blob/develop/src/lib/format/format.js#L6
     const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})|./g;
     return format
@@ -71,13 +71,13 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
       .join("")
       .replace(/a/gi, "(a|p)m")
       .toLocaleLowerCase();
-  }
+  };
 
-  public getCurrentLocaleCode() {
+  public getCurrentLocaleCode = () => {
     return this.locale || this.moment.locale();
-  }
+  };
 
-  public parse(value: string, format: string) {
+  public parse = (value: string, format: string) => {
     if (value === "") {
       return null;
     }
@@ -87,9 +87,9 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     }
 
     return this.moment(value, format, true);
-  }
+  };
 
-  public date(value?: any) {
+  public date = (value?: any) => {
     if (value === null) {
       return null;
     }
@@ -98,192 +98,192 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     moment.locale(this.locale);
 
     return moment;
-  }
+  };
 
-  public toJsDate(value: Moment) {
+  public toJsDate = (value: Moment) => {
     return value.toDate();
-  }
+  };
 
-  public isValid(value: any) {
+  public isValid = (value: any) => {
     return this.moment(value).isValid();
-  }
+  };
 
-  public isNull(date: Moment) {
+  public isNull = (date: Moment) => {
     return date === null;
-  }
+  };
 
-  public getDiff(date: Moment, comparing: Moment | string, unit?: Unit) {
+  public getDiff = (date: Moment, comparing: Moment | string, unit?: Unit) => {
     return date.diff(comparing, unit);
-  }
+  };
 
-  public isAfter(date: Moment, value: Moment) {
+  public isAfter = (date: Moment, value: Moment) => {
     return date.isAfter(value);
-  }
+  };
 
-  public isBefore(date: Moment, value: Moment) {
+  public isBefore = (date: Moment, value: Moment) => {
     return date.isBefore(value);
-  }
+  };
 
-  public isAfterDay(date: Moment, value: Moment) {
+  public isAfterDay = (date: Moment, value: Moment) => {
     return date.isAfter(value, "day");
-  }
+  };
 
-  public isBeforeDay(date: Moment, value: Moment) {
+  public isBeforeDay = (date: Moment, value: Moment) => {
     return date.isBefore(value, "day");
-  }
+  };
 
-  public isBeforeYear(date: Moment, value: Moment) {
+  public isBeforeYear = (date: Moment, value: Moment) => {
     return date.isBefore(value, "year");
-  }
+  };
 
-  public isAfterYear(date: Moment, value: Moment) {
+  public isAfterYear = (date: Moment, value: Moment) => {
     return date.isAfter(value, "year");
-  }
+  };
 
-  public startOfDay(date: Moment) {
+  public startOfDay = (date: Moment) => {
     return date.clone().startOf("day");
-  }
+  };
 
-  public endOfDay(date: Moment) {
+  public endOfDay = (date: Moment) => {
     return date.clone().endOf("day");
-  }
+  };
 
-  public format(date: Moment, formatKey: keyof DateIOFormats) {
+  public format = (date: Moment, formatKey: keyof DateIOFormats) => {
     return this.formatByString(date, this.formats[formatKey]);
-  }
+  };
 
-  public formatByString(date: Moment, formatString: string) {
+  public formatByString = (date: Moment, formatString: string) => {
     const clonedDate = date.clone();
     clonedDate.locale(this.locale);
     return clonedDate.format(formatString);
-  }
+  };
 
-  public formatNumber(numberToFormat: string) {
+  public formatNumber = (numberToFormat: string) => {
     return numberToFormat;
-  }
+  };
 
-  public getHours(date: Moment) {
+  public getHours = (date: Moment) => {
     return date.get("hours");
-  }
+  };
 
-  public addSeconds(date: Moment, count: number) {
+  public addSeconds = (date: Moment, count: number) => {
     return count < 0
       ? date.clone().subtract(Math.abs(count), "seconds")
       : date.clone().add(count, "seconds");
-  }
+  };
 
-  public addMinutes(date: Moment, count: number) {
+  public addMinutes = (date: Moment, count: number) => {
     return count < 0
       ? date.clone().subtract(Math.abs(count), "minutes")
       : date.clone().add(count, "minutes");
-  }
+  };
 
-  public addHours(date: Moment, count: number) {
+  public addHours = (date: Moment, count: number) => {
     return count < 0
       ? date.clone().subtract(Math.abs(count), "hours")
       : date.clone().add(count, "hours");
-  }
+  };
 
-  public addDays(date: Moment, count: number) {
+  public addDays = (date: Moment, count: number) => {
     return count < 0
       ? date.clone().subtract(Math.abs(count), "days")
       : date.clone().add(count, "days");
-  }
+  };
 
-  public addWeeks(date: Moment, count: number) {
+  public addWeeks = (date: Moment, count: number) => {
     return count < 0
       ? date.clone().subtract(Math.abs(count), "weeks")
       : date.clone().add(count, "weeks");
-  }
+  };
 
-  public addMonths(date: Moment, count: number) {
+  public addMonths = (date: Moment, count: number) => {
     return count < 0
       ? date.clone().subtract(Math.abs(count), "months")
       : date.clone().add(count, "months");
-  }
+  };
 
-  public setHours(date: Moment, count: number) {
+  public setHours = (date: Moment, count: number) => {
     return date.clone().hours(count);
-  }
+  };
 
-  public getMinutes(date: Moment) {
+  public getMinutes = (date: Moment) => {
     return date.get("minutes");
-  }
+  };
 
-  public setMinutes(date: Moment, count: number) {
+  public setMinutes = (date: Moment, count: number) => {
     return date.clone().minutes(count);
-  }
+  };
 
-  public getSeconds(date: Moment) {
+  public getSeconds = (date: Moment) => {
     return date.get("seconds");
-  }
+  };
 
-  public setSeconds(date: Moment, count: number) {
+  public setSeconds = (date: Moment, count: number) => {
     return date.clone().seconds(count);
-  }
+  };
 
-  public getMonth(date: Moment) {
+  public getMonth = (date: Moment) => {
     return date.get("month");
-  }
+  };
 
-  public getDaysInMonth(date: Moment) {
+  public getDaysInMonth = (date: Moment) => {
     return date.daysInMonth();
-  }
+  };
 
-  public isSameDay(date: Moment, comparing: Moment) {
+  public isSameDay = (date: Moment, comparing: Moment) => {
     return date.isSame(comparing, "day");
-  }
+  };
 
-  public isSameMonth(date: Moment, comparing: Moment) {
+  public isSameMonth = (date: Moment, comparing: Moment) => {
     return date.isSame(comparing, "month");
-  }
+  };
 
-  public isSameYear(date: Moment, comparing: Moment) {
+  public isSameYear = (date: Moment, comparing: Moment) => {
     return date.isSame(comparing, "year");
-  }
+  };
 
-  public isSameHour(date: Moment, comparing: Moment) {
+  public isSameHour = (date: Moment, comparing: Moment) => {
     return date.isSame(comparing, "hour");
-  }
+  };
 
-  public setMonth(date: Moment, count: number) {
+  public setMonth = (date: Moment, count: number) => {
     return date.clone().month(count);
-  }
+  };
 
-  public getMeridiemText(ampm: "am" | "pm") {
+  public getMeridiemText = (ampm: "am" | "pm") => {
     if (this.is12HourCycleInCurrentLocale()) {
       // AM/PM translation only possible in those who have 12 hour cycle in locale.
       return this.moment.localeData().meridiem(ampm === "am" ? 0 : 13, 0, false);
     }
 
     return ampm === "am" ? "AM" : "PM"; // fallback for de, ru, ...etc
-  }
+  };
 
-  public startOfMonth(date: Moment) {
+  public startOfMonth = (date: Moment) => {
     return date.clone().startOf("month");
-  }
+  };
 
-  public endOfMonth(date: Moment) {
+  public endOfMonth = (date: Moment) => {
     return date.clone().endOf("month");
-  }
+  };
 
-  public startOfWeek(date: Moment) {
+  public startOfWeek = (date: Moment) => {
     return date.clone().startOf("week");
-  }
+  };
 
-  public endOfWeek(date: Moment) {
+  public endOfWeek = (date: Moment) => {
     return date.clone().endOf("week");
-  }
+  };
 
-  public getNextMonth(date: Moment) {
+  public getNextMonth = (date: Moment) => {
     return date.clone().add(1, "month");
-  }
+  };
 
-  public getPreviousMonth(date: Moment) {
+  public getPreviousMonth = (date: Moment) => {
     return date.clone().subtract(1, "month");
-  }
+  };
 
-  public getMonthArray(date: Moment) {
+  public getMonthArray = (date: Moment) => {
     const firstMonth = date.clone().startOf("year");
     const monthArray = [firstMonth];
 
@@ -293,33 +293,33 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     }
 
     return monthArray;
-  }
+  };
 
-  public getYear(date: Moment) {
+  public getYear = (date: Moment) => {
     return date.get("year");
-  }
+  };
 
-  public setYear(date: Moment, year: number) {
+  public setYear = (date: Moment, year: number) => {
     return date.clone().set("year", year);
-  }
+  };
 
-  public mergeDateAndTime(date: Moment, time: Moment) {
+  public mergeDateAndTime = (date: Moment, time: Moment) => {
     return date.hour(time.hour()).minute(time.minute()).second(time.second());
-  }
+  };
 
-  public getWeekdays() {
+  public getWeekdays = () => {
     return this.moment.weekdaysShort(true);
-  }
+  };
 
-  public isEqual(value: any, comparing: any) {
+  public isEqual = (value: any, comparing: any) => {
     if (value === null && comparing === null) {
       return true;
     }
 
     return this.moment(value).isSame(comparing);
-  }
+  };
 
-  public getWeekArray(date: Moment) {
+  public getWeekArray = (date: Moment) => {
     const start = date.clone().startOf("month").startOf("week");
     const end = date.clone().endOf("month").endOf("week");
 
@@ -337,9 +337,9 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     }
 
     return nestedWeeks;
-  }
+  };
 
-  public getYearRange(start: Moment, end: Moment) {
+  public getYearRange = (start: Moment, end: Moment) => {
     const startDate = this.moment(start).startOf("year");
     const endDate = this.moment(end).endOf("year");
     const years: Moment[] = [];
@@ -351,9 +351,9 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     }
 
     return years;
-  }
+  };
 
-  public isWithinRange(date: Moment, [start, end]: [Moment, Moment]) {
+  public isWithinRange = (date: Moment, [start, end]: [Moment, Moment]) => {
     return date.isBetween(start, end, null, "[]");
-  }
+  };
 }

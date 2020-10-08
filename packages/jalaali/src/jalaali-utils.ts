@@ -67,91 +67,91 @@ export default class MomentUtils extends DefaultMomentUtils {
     this.formats = Object.assign({}, defaultFormats, formats);
   }
 
-  private toJMoment(date?: any) {
+  private toJMoment = (date?: any) => {
     return this.moment(date ? date.clone() : undefined).locale("fa");
-  }
+  };
 
-  public parse(value: string, format: string) {
+  public parse = (value: string, format: string) => {
     if (value === "") {
       return null;
     }
 
     return this.moment(value, format, true).locale("fa");
-  }
+  };
 
-  public date(value?: any) {
+  public date = (value?: any) => {
     if (value === null) {
       return null;
     }
 
     return this.moment(value).locale("fa");
-  }
+  };
 
-  public isBeforeYear(date: Moment, value: Moment) {
+  public isBeforeYear = (date: Moment, value: Moment) => {
     return date.jYear() < value.jYear();
-  }
+  };
 
-  public isAfterYear(date: Moment, value: Moment) {
+  public isAfterYear = (date: Moment, value: Moment) => {
     return date.jYear() > value.jYear();
-  }
+  };
 
-  public getMonth(date: Moment) {
+  public getMonth = (date: Moment) => {
     return date.jMonth();
-  }
+  };
 
-  public getDaysInMonth(date: Moment) {
+  public getDaysInMonth = (date: Moment) => {
     return date.daysInMonth();
-  }
+  };
 
-  public startOfMonth(date: Moment) {
+  public startOfMonth = (date: Moment) => {
     return date.clone().startOf("jMonth");
-  }
+  };
 
-  public endOfMonth(date: Moment) {
+  public endOfMonth = (date: Moment) => {
     return date.clone().endOf("jMonth");
-  }
+  };
 
-  getNextMonth(date: Moment) {
+  getNextMonth = (date: Moment) => {
     return date.clone().add(1, "jMonth");
-  }
+  };
 
-  getPreviousMonth(date: Moment) {
+  getPreviousMonth = (date: Moment) => {
     return date.clone().subtract(1, "jMonth");
-  }
+  };
 
-  public getYear(date: Moment) {
+  public getYear = (date: Moment) => {
     return date.jYear();
-  }
+  };
 
-  public setYear(date: Moment, year: number) {
+  public setYear = (date: Moment, year: number) => {
     return date.clone().jYear(year);
-  }
+  };
 
-  public getMeridiemText(ampm: "am" | "pm") {
+  public getMeridiemText = (ampm: "am" | "pm") => {
     return ampm === "am"
       ? this.toJMoment().hours(2).format("A")
       : this.toJMoment().hours(14).format("A");
-  }
+  };
 
-  public getWeekdays() {
+  public getWeekdays = () => {
     return [0, 1, 2, 3, 4, 5, 6].map((dayOfWeek) => {
       return this.toJMoment().weekday(dayOfWeek).format("dd");
     });
-  }
+  };
 
-  public isEqual(value: any, comparing: any) {
+  public isEqual = (value: any, comparing: any) => {
     if (value === null && comparing === null) {
       return true;
     }
 
     return this.moment(value).isSame(comparing);
-  }
+  };
 
-  formatNumber(num: string) {
+  formatNumber = (num: string) => {
     return num.replace(/\d/g, (match) => symbolMap[match]).replace(/,/g, "،");
-  }
+  };
 
-  public getWeekArray(date: Moment) {
+  public getWeekArray = (date: Moment) => {
     const start = date.clone().startOf("jMonth").startOf("week");
 
     const end = date.clone().endOf("jMonth").endOf("week");
@@ -170,9 +170,9 @@ export default class MomentUtils extends DefaultMomentUtils {
     }
 
     return nestedWeeks;
-  }
+  };
 
-  public getYearRange(start: Moment, end: Moment) {
+  public getYearRange = (start: Moment, end: Moment) => {
     const startDate = this.moment(start).startOf("jYear");
     const endDate = this.moment(end).endOf("jYear");
     const years: Moment[] = [];
@@ -184,5 +184,5 @@ export default class MomentUtils extends DefaultMomentUtils {
     }
 
     return years;
-  }
+  };
 }
