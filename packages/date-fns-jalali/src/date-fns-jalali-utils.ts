@@ -269,9 +269,7 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
     return setYear(value, count);
   };
 
-  public date(value?: null): null;
-  public date(value?: string | number | Date): Date;
-  public date(value?: any) {
+  public date = (value?: string | number | Date) => {
     if (typeof value === "undefined") {
       return new Date();
     }

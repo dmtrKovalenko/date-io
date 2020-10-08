@@ -4,6 +4,6 @@
     "esModuleInterop": true,
     "emitDeclarationOnly": true,
     "moduleResolution": "node",
-    "skipLibCheck": true
+    "skipLibCheck": true,
   }
 }
