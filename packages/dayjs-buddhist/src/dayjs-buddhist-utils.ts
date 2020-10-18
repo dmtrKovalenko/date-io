@@ -114,8 +114,11 @@ export default class DayjsUtils implements IUtils<defaultDayjs.Dayjs> {
     if (value === null) {
       return null;
     }
-
-    return this.dayjs(value);
+    const isISO8601 = value === this.dayjs(value).toISOString();
+    if (isISO8601) {
+      return this.dayjs(value);
+    }
+    return this.dayjs(value).add(-543, "year");
   }
 
   public toJsDate(value: Dayjs) {

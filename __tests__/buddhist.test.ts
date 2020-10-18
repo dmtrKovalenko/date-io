@@ -13,6 +13,13 @@ describe("Buddhist", () => {
     expect(buddhistUtils.getYear(date)).toBe(2561);
   });
 
+  it("Should properly work with fill buddhist year", () => {
+    const buddhistUtils = new BuddhistUtils();
+    const date = buddhistUtils.date("2563-10-30");
+
+    expect(date.format("DD/MM/BBBB")).toBe("30/10/2563");
+  });
+
   it("Buddhist -- setYear", () => {
     const buddhistUtils = new BuddhistUtils();
     const date = buddhistUtils.date(TEST_TIMESTAMP);
