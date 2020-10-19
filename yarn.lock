@@ -2617,9 +2617,9 @@ dateformat@^3.0.0:
   integrity sha512-jyCETtSl3VMZMWeRo7iY1FL19ges1t55hMo5yaam4Jrsm5EPL89UQkoQRyiI+Yf4k8r2ZpdngkV8hr1lIdjb3Q==
 
 dayjs@^1.8.17:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.9.0.tgz#ec6197d974143f5563913d08af71b3f21e008d5d"
-  integrity sha512-Ym40L4ZN+LUMCbsYXWDh/RxEntfaWChc/M+iD5/tat8jylbwE1sa+7eoHxsZ+NB8al6D8VYBmP6eV6GsZ8i01A==
+  version "1.9.3"
+  resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.9.3.tgz#b7f94b22ad2a136a4ca02a01ab68ae893fe1a268"
+  integrity sha512-V+1SyIvkS+HmNbN1G7A9+ERbFTV9KTXu6Oor98v2xHmzzpp52OIJhQuJSTywWuBY5pyAEmlwbCi1Me87n/SLOw==
 
 debug@3.1.0:
   version "3.1.0"
