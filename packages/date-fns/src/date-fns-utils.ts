@@ -34,6 +34,7 @@ import dateFnsParse from "date-fns/parse";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import setMonth from "date-fns/setMonth";
+import getDay from "date-fns/getDay";
 import getDaysInMonth from "date-fns/getDaysInMonth";
 import setSeconds from "date-fns/setSeconds";
 import setYear from "date-fns/setYear";
@@ -384,15 +385,18 @@ export default class DateFnsUtils implements IUtils<Date> {
     let count = 0;
     let current = start;
     const nestedWeeks: Date[][] = [];
-
+    let lastDay = null;
     while (isBefore(current, end)) {
       const weekNumber = Math.floor(count / 7);
       nestedWeeks[weekNumber] = nestedWeeks[weekNumber] || [];
-      nestedWeeks[weekNumber].push(current);
+      const day = getDay(current);
+      if (lastDay !== day) {
+        lastDay = day;
+        nestedWeeks[weekNumber].push(current);
+        count += 1;
+      }
       current = addDays(current, 1);
-      count += 1;
     }
-
     return nestedWeeks;
   };
 

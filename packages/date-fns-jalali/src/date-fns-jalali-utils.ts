@@ -23,6 +23,7 @@ import getHours from "date-fns-jalali/getHours";
 import getSeconds from "date-fns-jalali/getSeconds";
 import getYear from "date-fns-jalali/getYear";
 import getMonth from "date-fns-jalali/getMonth";
+import getDay from "date-fns-jalali/getDay";
 import getDaysInMonth from "date-fns-jalali/getDaysInMonth";
 import getMinutes from "date-fns-jalali/getMinutes";
 import isAfter from "date-fns-jalali/isAfter";
@@ -279,7 +280,7 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
     }
 
     return new Date(value);
-  }
+  };
 
   public toJsDate = (value: Date) => {
     return value;
@@ -402,15 +403,18 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
     let count = 0;
     let current = start;
     const nestedWeeks: Date[][] = [];
-
+    let lastDay = null;
     while (isBefore(current, end)) {
       const weekNumber = Math.floor(count / 7);
       nestedWeeks[weekNumber] = nestedWeeks[weekNumber] || [];
-      nestedWeeks[weekNumber].push(current);
+      const day = getDay(current);
+      if (lastDay !== day) {
+        lastDay = day;
+        nestedWeeks[weekNumber].push(current);
+        count += 1;
+      }
       current = addDays(current, 1);
-      count += 1;
     }
-
     return nestedWeeks;
   };
 
