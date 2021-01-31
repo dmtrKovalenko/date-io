@@ -221,7 +221,9 @@ If you are a library author that exposes date/time management utils or controls 
 
 First of all it is required to provide the adapters for your users. We do not recommend to install the date-io directly by the end users, cause it may be easy to mismatch the version. The better way will be to reexport them.
 
-Firstly install all the adapters you want to support and lock the version:
+Firstly install all the adapters you want to support and lock the version.
+
+> Yes, you will install all of them as dependencies. But every adapter is 50kb unpacked npm module and relieas to the library as for **optional peer dependency**. It **won't** be included in user bundle until user will choose which library he want's to use. 
 
 ```json
 {
