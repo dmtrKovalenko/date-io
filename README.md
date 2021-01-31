@@ -51,6 +51,8 @@ The implemented interface. If you cannot find the method you require, please let
 Localized output will of course vary based on the locale and date library used. Inline examples here are based on using
 `moment` with the `en-US` locale.
 
+<!--inline-interface-start-->
+
 ```ts
 export interface DateIOFormats<TLibFormatToken = string> {
   /** Localized full date @example "Jan 1, 2019" */
@@ -195,6 +197,8 @@ export interface IUtils<TDate> {
   getMeridiemText(ampm: "am" | "pm"): string;
 }
 ```
+
+<!--inline-interface-end-->
 
 ### For library authors
 
