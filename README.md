@@ -198,15 +198,13 @@ export interface IUtils<TDate> {
 
 ### For library authors
 
-If you are a library author that exposes date/time management utils or controls you may want to use date-io to interop with the most popular libraries.
+If you are a library author that exposes date/time management utils or controls you may want to use date-io to interop with the most popular libraries. Here are some instructions of how to use date-fns as an adapter.
 
-Here are some instructions of how to use date-fns as an adapter:
-
-1. Install the bindings
+#### 1. Install the bindings
 
 First of all it is required to provide the adapters for your users. We do not recommend to install the date-io directly by the end users, cause it may be easy to mismatch the version. The better way will be to reexport them.
 
-Firstly install all the adapters you want to support and lock the version
+Firstly install all the adapters you want to support and lock the version:
 
 ```json
 {
@@ -219,7 +217,7 @@ Firstly install all the adapters you want to support and lock the version
 }
 ```
 
-2. Reexport the bindings
+#### 2. Reexport the bindings
 
 ```js
 // you-awesome-lib/adapters/date-fns
@@ -231,6 +229,7 @@ You can also manually extend the adapter if you need to. Create a custom interfa
 ```ts
 // your-awesome-lib/adapters/CustomAdapter
 import { IUtils } from "@date-io/core";
+
 interface CustomUtils<TDate> extends IUtils<TDate> {
   getDayOfYear(day: TDate): number;
 }
@@ -251,7 +250,7 @@ export class DateFnsAdapter extends DateIODateFnsAdapter implements CustomUtils<
 }
 ```
 
-3. Use it as a root of your application
+#### 3. Use it for date-time management
 
 Register it using your library context. It may be react context, dependency injection container or any other tool that allow user to register the used library **1 time**.
 
