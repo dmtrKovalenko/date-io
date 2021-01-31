@@ -8,6 +8,11 @@
   "peerDependencies": {
     "dayjs": "^1.8.17"
   },
+  "peerDependenciesMeta": {
+    "dayjs": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "@date-io/core": "^2.10.7"
   },

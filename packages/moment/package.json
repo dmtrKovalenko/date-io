@@ -8,6 +8,11 @@
   "peerDependencies": {
     "moment": "^2.24.0"
   },
+  "peerDependenciesMeta": {
+    "moment": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "@date-io/core": "^2.10.7"
   },
