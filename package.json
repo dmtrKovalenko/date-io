@@ -53,12 +53,10 @@
   },
   "lint-staged": {
     "*.{ts,tsx,json,css,md}": [
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ],
     "*.{ts,tsx}": [
-      "yarn build:readme",
-      "git add"
+      "yarn build:readme"
     ]
   },
   "devDependencies": {
