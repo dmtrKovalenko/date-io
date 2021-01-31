@@ -53,7 +53,7 @@ Localized output will of course vary based on the locale and date library used. 
 
 <!--inline-interface-start-->
 
-```ts
+```tsx
 export interface DateIOFormats<TLibFormatToken = string> {
   /** Localized full date @example "Jan 1, 2019" */
   fullDate: TLibFormatToken;
@@ -111,11 +111,24 @@ export interface DateIOFormats<TLibFormatToken = string> {
   keyboardDateTime24h: TLibFormatToken;
 }
 
+export type Unit =
+  | "years"
+  | "quarters"
+  | "months"
+  | "weeks"
+  | "days"
+  | "hours"
+  | "minutes"
+  | "seconds"
+  | "milliseconds";
+
 export interface IUtils<TDate> {
   formats: DateIOFormats<any>;
   locale?: any;
   moment?: any;
   dayjs?: any;
+  /** Name of the library that is used right now */
+  lib: string;
 
   // constructor (options?: { formats?: DateIOFormats, locale?: any, instance?: any });
 

@@ -13,7 +13,8 @@
     "benchmark": "lerna run benchmark",
     "release": "yarn test:coverage && yarn build && lerna publish",
     "build": "lerna run build --parallel",
-    "prettier": "prettier --write './packages/**/*.{js,jsx,ts,tsx,json,css,md,mdx}'"
+    "prettier": "prettier --write './packages/**/*.{js,jsx,ts,tsx,json,css,md,mdx}'",
+    "build:readme": "node scripts/buildReadme.js"
   },
   "keywords": [
     "date",
@@ -53,6 +54,10 @@
   "lint-staged": {
     "*.{ts,tsx,json,css,md}": [
       "prettier --write",
+      "git add"
+    ],
+    "*.{ts,tsx}": [
+      "yarn build:readme",
       "git add"
     ]
   },

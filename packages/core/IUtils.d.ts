@@ -1,7 +1,3 @@
-/**
- * Localized output will of course vary based on the locale and date library used. Inline examples here are based on
- * using `moment` with the `en-US` locale.
- */
 export interface DateIOFormats<TLibFormatToken = string> {
   /** Localized full date @example "Jan 1, 2019" */
   fullDate: TLibFormatToken;
