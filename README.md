@@ -195,3 +195,92 @@ export interface IUtils<TDate> {
   getMeridiemText(ampm: "am" | "pm"): string;
 }
 ```
+
+### For library authors
+
+If you are a library author that exposes date/time management utils or controls you may want to use date-io to interop with the most popular libraries.
+
+Here are some instructions of how to use date-fns as an adapter:
+
+1. Install the bindings
+
+First of all it is required to provide the adapters for your users. We do not recommend to install the date-io directly by the end users, cause it may be easy to mismatch the version. The better way will be to reexport them.
+
+Firstly install all the adapters you want to support and lock the version
+
+```json
+{
+  "dependencies": {
+    "@date-io/date-fns": "x.x.x",
+    "@date-io/dayjs": "x.x.x",
+    "@date-io/luxon": "x.x.x",
+    "@date-io/jalaali": "x.x.x"
+  }
+}
+```
+
+2. Reexport the bindings
+
+```js
+// you-awesome-lib/adapters/date-fns
+export { default } from "@date-io/date-fns";
+```
+
+You can also manually extend the adapter if you need to. Create a custom interface:
+
+```ts
+// your-awesome-lib/adapters/CustomAdapter
+import { IUtils } from "@date-io/core";
+interface CustomUtils<TDate> extends IUtils<TDate> {
+  getDayOfYear(day: TDate): number;
+}
+```
+
+And extend date-io classes implementing your custom interface:
+
+```ts
+// you-awesome-lib/adapters/date-fns
+import { CustomUtils } from "../CustomUtils";
+import getDayOfYear from "date-fns/getDayOfYear";
+import DateIODateFnsAdapter from "@date-io/date-fns";
+
+export class DateFnsAdapter extends DateIODateFnsAdapter implements CustomUtils<Date> {
+  getDayOfYear(date: Date) {
+    return getDayOfYear(date);
+  }
+}
+```
+
+3. Use it as a root of your application
+
+Register it using your library context. It may be react context, dependency injection container or any other tool that allow user to register the used library **1 time**.
+
+```tsx
+// react example
+import { DateFnsAdapter } from "your-awesome-lib/adapters/date-fns";
+
+<DateLibProvider adapter={DateFnsAdapter}>{/* ... */}</DateLibProvider>;
+```
+
+```tsx
+// angular example
+import { Injectable } from "@angular/core";
+import { DateFnsAdapter } from "your-awesome-lib/adapters/date-fns";
+
+@Injectable({
+  providedIn: "root",
+})
+export class DateAdapter extends DateFnsAdapter {}
+```
+
+And use the interface of date-io (or your custom interface).
+
+```ts
+import { IUtils } from "@date-io/core";
+
+function myFunctionInLibrary<TDate>(date: TDate, adapter: IUtils<TDate>) {
+  // ...
+  const weekArray = adapter.getWeekArray(Date);
+  // ...
+}
+```
