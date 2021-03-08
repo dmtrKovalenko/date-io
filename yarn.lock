@@ -1486,9 +1486,9 @@
     pretty-format "^26.0.0"
 
 "@types/luxon@^1.21.0":
-  version "1.25.2"
-  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.25.2.tgz#f0c98a1f8191883b4918d5e096d6a0eab4d66f76"
-  integrity sha512-lMc5+7ynC4+Pu3RR/FvKGx7WHakrPPTtFEZUy1cMXTbH5fQbso+LZjM/G1moOBpCR9XGNa39gXOQu89lpXTeiw==
+  version "1.26.2"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-1.26.2.tgz#656c24c1af3d41b8854700dc94ed556b9b6ce2f8"
+  integrity sha512-2pvzy4LuxBMBBLAbml6PDcJPiIeZQ0Hqj3PE31IxkNI250qeoRMDovTrHXeDkIL4auvtarSdpTkLHs+st43EYQ==
 
 "@types/minimatch@*":
   version "3.0.3"
