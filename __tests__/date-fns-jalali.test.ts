@@ -336,7 +336,7 @@ describe("DateFnsJalali", () => {
     });
 
     it("DateFnsJalali -- getCurrentLocaleCode: ", () => {
-      expect(utils.getCurrentLocaleCode()).toMatch(/fa-jalali-IR/);
+      expect(utils.getCurrentLocaleCode()).toMatch(/fa-IR/);
     });
 
     it("DateFnsJalali -- toJsDate: ", () => {

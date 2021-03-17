@@ -5,15 +5,15 @@ import addDays from "date-fns-jalali/addDays";
 import addWeeks from "date-fns-jalali/addWeeks";
 import addMonths from "date-fns-jalali/addMonths";
 import addYears from "date-fns-jalali/addYears";
-import differenceInYears from "date-fns/differenceInYears";
-import differenceInQuarters from "date-fns/differenceInQuarters";
-import differenceInMonths from "date-fns/differenceInMonths";
-import differenceInWeeks from "date-fns/differenceInWeeks";
-import differenceInDays from "date-fns/differenceInDays";
-import differenceInHours from "date-fns/differenceInHours";
-import differenceInMinutes from "date-fns/differenceInMinutes";
-import differenceInSeconds from "date-fns/differenceInSeconds";
-import differenceInMilliseconds from "date-fns/differenceInMilliseconds";
+import differenceInYears from "date-fns-jalali/differenceInYears";
+import differenceInQuarters from "date-fns-jalali/differenceInQuarters";
+import differenceInMonths from "date-fns-jalali/differenceInMonths";
+import differenceInWeeks from "date-fns-jalali/differenceInWeeks";
+import differenceInDays from "date-fns-jalali/differenceInDays";
+import differenceInHours from "date-fns-jalali/differenceInHours";
+import differenceInMinutes from "date-fns-jalali/differenceInMinutes";
+import differenceInSeconds from "date-fns-jalali/differenceInSeconds";
+import differenceInMilliseconds from "date-fns-jalali/differenceInMilliseconds";
 import eachDayOfInterval from "date-fns-jalali/eachDayOfInterval";
 import endOfDay from "date-fns-jalali/endOfDay";
 import endOfWeek from "date-fns-jalali/endOfWeek";
@@ -48,7 +48,7 @@ import startOfYear from "date-fns-jalali/startOfYear";
 import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 import isWithinInterval from "date-fns-jalali/isWithinInterval";
 import longFormatters from "date-fns-jalali/_lib/format/longFormatters";
-import defaultLocale from "date-fns-jalali/locale/fa-jalali-IR";
+import defaultLocale from "date-fns-jalali/locale/fa-IR";
 
 type Locale = typeof defaultLocale;
 
@@ -115,7 +115,7 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
       return /a/.test(this.locale.formatLong.time());
     }
 
-    // By default date-fns-jalali is using fa-jalali-IR locale with am/pm enabled
+    // By default date-fns-jalali is using fa-IR locale with am/pm enabled
     return true;
   };
 
@@ -139,7 +139,7 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
   };
 
   public getCurrentLocaleCode = () => {
-    return this.locale?.code || "fa-jalali-IR";
+    return this.locale?.code || "fa-IR";
   };
 
   public addSeconds = (value: Date, count: number) => {
