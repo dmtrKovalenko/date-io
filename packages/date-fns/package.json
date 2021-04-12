@@ -41,7 +41,7 @@
     "@date-io/core": "^2.10.7"
   },
   "devDependencies": {
-    "date-fns": "2.16.1",
+    "date-fns": "2.20.1",
     "rollup": "^2.0.2",
     "typescript": "^3.7.2"
   },
