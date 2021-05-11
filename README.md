@@ -16,14 +16,15 @@ It simplifies timezone management, allows your code to return the exact same typ
 
 ### Projects
 
-| Library           |                                                                                                               Downloads |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------: |
-| @date-io/date-fns | [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns.svg)](https://www.npmjs.org/package/@date-io/date-fns) |
-| @date-io/moment   |     [![npm download](https://img.shields.io/npm/dm/@date-io/moment.svg)](https://www.npmjs.org/package/@date-io/moment) |
-| @date-io/luxon    |       [![npm download](https://img.shields.io/npm/dm/@date-io/luxon.svg)](https://www.npmjs.org/package/@date-io/luxon) |
-| @date-io/dayjs    |       [![npm download](https://img.shields.io/npm/dm/@date-io/dayjs.svg)](https://www.npmjs.org/package/@date-io/dayjs) |
-| @date-io/jalaali  |   [![npm download](https://img.shields.io/npm/dm/@date-io/jalaali.svg)](https://www.npmjs.org/package/@date-io/jalaali) |
-| @date-io/hijri    |       [![npm download](https://img.shields.io/npm/dm/@date-io/hijri.svg)](https://www.npmjs.org/package/@date-io/hijri) |
+| Library                  |                                                                                                                             Downloads |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------: |
+| @date-io/date-fns        |               [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns.svg)](https://www.npmjs.org/package/@date-io/date-fns) |
+| @date-io/moment          |                   [![npm download](https://img.shields.io/npm/dm/@date-io/moment.svg)](https://www.npmjs.org/package/@date-io/moment) |
+| @date-io/luxon           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/luxon.svg)](https://www.npmjs.org/package/@date-io/luxon) |
+| @date-io/dayjs           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/dayjs.svg)](https://www.npmjs.org/package/@date-io/dayjs) |
+| @date-io/date-fns-jalali | [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns-jalali.svg)](https://www.npmjs.org/package/@date-io/date-fns-jalali) |
+| @date-io/jalaali         |                 [![npm download](https://img.shields.io/npm/dm/@date-io/jalaali.svg)](https://www.npmjs.org/package/@date-io/jalaali) |
+| @date-io/hijri           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/hijri.svg)](https://www.npmjs.org/package/@date-io/hijri) |
 
 ### Usage example
 
@@ -223,7 +224,7 @@ First of all it is required to provide the adapters for your users. We do not re
 
 Firstly install all the adapters you want to support and lock the version.
 
-> Yes, you will install all of them as dependencies. But every adapter is 50kb unpacked npm module and relieas to the library as for **optional peer dependency**. It **won't** be included in user bundle until user will choose which library he want's to use. 
+> Yes, you will install all of them as dependencies. But every adapter is 50kb unpacked npm module and relieas to the library as for **optional peer dependency**. It **won't** be included in user bundle until user will choose which library he want's to use.
 
 ```json
 {
@@ -231,6 +232,7 @@ Firstly install all the adapters you want to support and lock the version.
     "@date-io/date-fns": "x.x.x",
     "@date-io/dayjs": "x.x.x",
     "@date-io/luxon": "x.x.x",
+    "@date-io/date-fns-jalali": "x.x.x",
     "@date-io/jalaali": "x.x.x"
   }
 }
