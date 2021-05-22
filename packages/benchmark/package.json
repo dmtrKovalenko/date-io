@@ -1,5 +1,5 @@
 {
-  "version": "2.10.8",
+  "version": "2.10.9",
   "private": true,
   "name": "date-io-benchmark",
   "scripts": {
@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@date-io/date-fns": "^2.10.8",
-    "@date-io/dayjs": "^2.10.8",
+    "@date-io/dayjs": "^2.10.9",
     "@date-io/luxon": "^2.10.8",
     "@date-io/moment": "^2.10.8",
     "benchmark": "^2.1.4"
