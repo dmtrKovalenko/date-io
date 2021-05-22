@@ -2609,10 +2609,10 @@ data-urls@^1.1.0:
     whatwg-mimetype "^2.2.0"
     whatwg-url "^7.0.0"
 
-date-fns-jalali@^2.13.0-0:
-  version "2.13.0-0"
-  resolved "https://registry.yarnpkg.com/date-fns-jalali/-/date-fns-jalali-2.13.0-0.tgz#9e9d9d4a63910654aa72a550c55af9a80e89c060"
-  integrity sha512-yjlI9O18Z6ryGNagryrLO8OQ+3rishM3+A0UOX2UX10cWMn2NTlQcQ+ywTEJvF5IJz0FwX/slt2nCcpyQ/c8gw==
+date-fns-jalali@^2.19.0-2:
+  version "2.19.0-2"
+  resolved "https://registry.yarnpkg.com/date-fns-jalali/-/date-fns-jalali-2.19.0-2.tgz#69d35c6505749e9bce485c0e392604936e20cb2a"
+  integrity sha512-ajgQt3lNFKPN7+mkXpWRJP+NyTVyHRJFVXUV8uc7d9pduVrDn/eeRMT5w1PemXqQRoNqQmuHyKWcrmNPmTRoPA==
 
 date-fns@2.16.1:
   version "2.16.1"
