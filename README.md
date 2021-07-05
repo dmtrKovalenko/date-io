@@ -9,40 +9,36 @@ Abstraction over common JavaScript date management libraries.
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lernajs.io/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-The project exposes an abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v2](https://github.com/date-fns/date-fns), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
+The project exposes an abstraction interface over [date-fns v2](https://github.com/date-fns/date-fns) and [moment](https://momentjs.com/).
 It allows you to build any UI date or time components, while utilizing the same date management library in use within your user's project.
 
-It simplifies timezone management, allows your code to return the exact same type that your user expects and works with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar))
+It simplifies timezone management, allows your code to return the exact same type that your user expects and works with specific calendar systems (e.g. [Hijri calendar](https://en.wikipedia.org/wiki/Hijri_calendar))
 
 ### Projects
 
-| Library                  |                                                                                                                             Downloads |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------: |
-| @date-io/date-fns        |               [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns.svg)](https://www.npmjs.org/package/@date-io/date-fns) |
-| @date-io/moment          |                   [![npm download](https://img.shields.io/npm/dm/@date-io/moment.svg)](https://www.npmjs.org/package/@date-io/moment) |
-| @date-io/luxon           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/luxon.svg)](https://www.npmjs.org/package/@date-io/luxon) |
-| @date-io/dayjs           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/dayjs.svg)](https://www.npmjs.org/package/@date-io/dayjs) |
-| @date-io/date-fns-jalali | [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns-jalali.svg)](https://www.npmjs.org/package/@date-io/date-fns-jalali) |
-| @date-io/jalaali         |                 [![npm download](https://img.shields.io/npm/dm/@date-io/jalaali.svg)](https://www.npmjs.org/package/@date-io/jalaali) |
-| @date-io/hijri           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/hijri.svg)](https://www.npmjs.org/package/@date-io/hijri) |
+| Library           |                                                                                                               Downloads |
+| ----------------- | ----------------------------------------------------------------------------------------------------------------------: |
+| @date-io/date-fns | [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns.svg)](https://www.npmjs.org/package/@date-io/date-fns) |
+| @date-io/moment   |     [![npm download](https://img.shields.io/npm/dm/@date-io/moment.svg)](https://www.npmjs.org/package/@date-io/moment) |
+| @date-io/hijri    |       [![npm download](https://img.shields.io/npm/dm/@date-io/hijri.svg)](https://www.npmjs.org/package/@date-io/hijri) |
 
 ### Usage example
 
 ```js
-import LuxonAdapter from "@date-io/luxon";
+import MomentAdapter from "@date-io/moment";
 import DateFnsAdapter from "@date-io/date-fns";
 
 const dateFns = new DateFnsAdapter();
-const luxon = new LuxonAdapter({ locale: "fr" }); // pass french locale
+const moment = new MomentAdapter({ locale: "fr" }); // pass french locale
 
-const initialLuxonDate = luxon.date("2018-10-28T11:44:00.000Z");
+const initialMomentDate = moment.date("2018-10-28T11:44:00.000Z");
 const initialDateFnsDate = dateFns.date("2018-10-28T11:44:00.000Z");
 
-const updatedLuxonDate = luxon.addDays(initialLuxonDate, 2);
+const updatedMomentDate = moment.addDays(initialMomentDate, 2);
 const updatedDateFnsDate = dateFns.addDays(initialDateFnsDate, 2);
 
-luxon.format(updatedLuxonDate, "fullDateTime24h"); // "2018, octobre 30 11:44"
-dateFns.format(updatedLuxonDate, "fullDateTime24h"); // "2018, October 30th 11:44"
+moment.format(updatedMomentDate, "fullDateTime24h"); // "2018, octobre 30 11:44"
+dateFns.format(updatedMomentDate, "fullDateTime24h"); // "2018, October 30th 11:44"
 ```
 
 ### Interface
@@ -230,10 +226,7 @@ Firstly install all the adapters you want to support and lock the version.
 {
   "dependencies": {
     "@date-io/date-fns": "x.x.x",
-    "@date-io/dayjs": "x.x.x",
-    "@date-io/luxon": "x.x.x",
-    "@date-io/date-fns-jalali": "x.x.x",
-    "@date-io/jalaali": "x.x.x"
+    "@date-io/moment": "x.x.x"
   }
 }
 ```

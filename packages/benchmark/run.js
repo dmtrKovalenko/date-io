@@ -1,6 +1,4 @@
 const Benchmark = require("benchmark");
-const DayjsUtils = require("@date-io/dayjs");
-const LuxonUtils = require("@date-io/luxon");
 const MomentUtils = require("@date-io/moment");
 const DateFnsUtils = require("@date-io/date-fns");
 
@@ -11,8 +9,6 @@ module.exports = (name, operation) => {
   });
 
   suite
-    .add("day-js", operation(DayjsUtils))
-    .add("luxon", operation(LuxonUtils))
     .add("moment", operation(MomentUtils))
     .add("date-fns", operation(DateFnsUtils))
     .on("cycle", (event) => {

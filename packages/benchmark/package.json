@@ -10,8 +10,6 @@
   },
   "dependencies": {
     "@date-io/date-fns": "^2.10.11",
-    "@date-io/dayjs": "^2.10.11",
-    "@date-io/luxon": "^2.10.11",
     "@date-io/moment": "^2.10.11",
     "benchmark": "^2.1.4"
   }
