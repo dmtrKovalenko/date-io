@@ -1,4 +1,7 @@
 {
+  "author": "@adamdotai",
+  "repository": "https://github.com/adamdotai/date-io",
+  "registry": "https://npm.pkg.github.com/",
   "name": "date-io",
   "private": true,
   "version": "1.0.0",
@@ -26,10 +29,6 @@
     "luxon",
     "dayjs"
   ],
-  "author": {
-    "name": "Dmitriy Kovalenko",
-    "email": "dmtr.kovalenko@outlook.com"
-  },
   "license": "MIT",
   "dependencies": {
     "@types/jest": "^26.0.0",
