@@ -2,7 +2,7 @@
   "author": "@adamdotai",
   "repository": "https://github.com/adamdotai/date-io",
   "registry": "https://npm.pkg.github.com/",
-  "name": "date-io",
+  "name": "@adamdotai/date-io",
   "private": true,
   "version": "1.0.0",
   "description": "Abstraction over common javascript date management libraries",

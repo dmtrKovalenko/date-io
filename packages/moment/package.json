@@ -1,5 +1,5 @@
 {
-  "name": "@date-io/moment",
+  "name": "@adamdotai/date-moment",
   "version": "2.10.11",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",

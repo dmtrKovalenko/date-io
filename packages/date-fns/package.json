@@ -1,5 +1,5 @@
 {
-  "name": "@date-io/date-fns",
+  "name": "@adamdotai/date-fns",
   "version": "2.10.11",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
