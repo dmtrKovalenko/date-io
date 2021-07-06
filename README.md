@@ -271,17 +271,6 @@ import { DateFnsAdapter } from "your-awesome-lib/adapters/date-fns";
 <DateLibProvider adapter={DateFnsAdapter}>{/* ... */}</DateLibProvider>;
 ```
 
-```tsx
-// angular example
-import { Injectable } from "@angular/core";
-import { DateFnsAdapter } from "your-awesome-lib/adapters/date-fns";
-
-@Injectable({
-  providedIn: "root",
-})
-export class DateAdapter extends DateFnsAdapter {}
-```
-
 And use the interface of date-io (or your custom interface).
 
 ```ts
