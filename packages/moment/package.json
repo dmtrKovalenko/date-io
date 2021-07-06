@@ -1,6 +1,6 @@
 {
   "name": "@adamdotai/date-moment",
-  "version": "2.10.11",
+  "version": "2.10.12",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
