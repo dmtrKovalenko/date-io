@@ -1,6 +1,6 @@
 # Benchmark comparison of all date libs
 
-We have our [internal benchmark](https://github.com/dmtrKovalenko/date-io/tree/master/packages/benchmark/operations) comparing performance of date-libraries. **In node.js environment**.
+We have our [internal benchmark](https://github.com/adamdotai/date-io/tree/master/packages/benchmark/operations) comparing performance of date-libraries. **In node.js environment**.
 
 Here is the latest (I hope) results:
 

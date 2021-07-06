@@ -28,11 +28,11 @@
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
   },
   "bugs": {
-    "url": "https://github.com/dmtrKovalenko/date-io/issues"
+    "url": "https://github.com/adamdotai/date-io/issues"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/dmtrKovalenko/date-io"
+    "url": "https://github.com/adamdotai/date-io"
   },
   "keywords": [
     "date",
@@ -44,10 +44,7 @@
     "luxon",
     "hijri"
   ],
-  "author": {
-    "name": "Dmitriy Kovalenko",
-    "email": "dmtr.kovalenko@outlook.com"
-  },
+  "author": "@adamdotai",
   "license": "MIT",
-  "gitHead": "687eba751bd706e7d704a39a7caa3e0afbfa40aa"
+  "gitHead": "cf52810a1271c54a434a471b3ca7398ac2db85cf"
 }
