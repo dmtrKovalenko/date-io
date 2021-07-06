@@ -24,6 +24,7 @@ coverage
 
 # dotenv environment variables file
 .env.local
+.env
 
 # webstorm
 .idea/
