@@ -249,7 +249,7 @@ You can also manually extend the adapter if you need to. Create a custom interfa
 
 ```ts
 // your-awesome-lib/adapters/CustomAdapter
-import { IUtils } from "@date-io/core";
+import { IUtils } from "@date-io/core/IUtils";
 
 interface CustomUtils<TDate> extends IUtils<TDate> {
   getDayOfYear(day: TDate): number;
@@ -296,7 +296,7 @@ export class DateAdapter extends DateFnsAdapter {}
 And use the interface of date-io (or your custom interface).
 
 ```ts
-import { IUtils } from "@date-io/core";
+import { IUtils } from "@date-io/core/IUtils";
 
 function myFunctionInLibrary<TDate>(date: TDate, adapter: IUtils<TDate>) {
   // ...
