@@ -1,5 +1,5 @@
 {
-  "version": "2.10.13",
+  "version": "3.0.0",
   "private": true,
   "name": "date-io-benchmark",
   "scripts": {

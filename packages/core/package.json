@@ -1,6 +1,6 @@
 {
   "name": "@adamdotai/date-core",
-  "version": "2.10.13",
+  "version": "3.0.0",
   "description": "Abstraction over common javascript date management libraries",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
