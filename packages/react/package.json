@@ -9,7 +9,7 @@
     "react": "^16.0.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rollup -c && tsc -p tsconfig.declaration.json",
     "prepare": "install-peers"
   },
   "keywords": [
