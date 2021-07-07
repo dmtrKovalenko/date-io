@@ -1,7 +1,9 @@
 import React, { createContext, useContext, useState, PropsWithChildren } from "react";
 import { IUtils } from "@date-io/core/IUtils";
 
-const DateUtilsContext = createContext<{ utils: IUtils<any> }>({ utils: null });
+type DateContextInterface = { utils: IUtils<any>, setAdapter: (adapter: IUtils<any>) => void }
+
+const DateUtilsContext = createContext<DateContextInterface>({ utils: null, setAdapter: () => {} });
 
 type DateUtilsProviderProps = {
   adapter: IUtils<any>;
@@ -11,16 +13,16 @@ function DateUtilsProvider({
   children,
   adapter,
 }: PropsWithChildren<DateUtilsProviderProps>) {
-  const [utils, setUtils] = useState(adapter);
+  const [utils, setAdapter] = useState(adapter);
   return (
-    <DateUtilsContext.Provider value={{ utils }}>{children}</DateUtilsContext.Provider>
+    <DateUtilsContext.Provider value={{ utils, setAdapter }}>{children}</DateUtilsContext.Provider>
   );
 }
 
 function useDateUtils() {
-  const { utils } = useContext(DateUtilsContext);
+  const { utils, setAdapter } = useContext(DateUtilsContext);
 
-  return { utils };
+  return { utils, setAdapter };
 }
 
 export { DateUtilsProvider, useDateUtils };
