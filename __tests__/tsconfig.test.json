@@ -2,8 +2,9 @@
   "compilerOptions": {
     "target": "es6",
     "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react"
   },
-  "include": ["./**/*.test.ts"],
+  "include": ["./**/*.test.ts", "./**/*.test.tsx"],
   "exclude": ["./test-utils.ts"]
 }

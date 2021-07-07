@@ -1,0 +1,26 @@
+{
+  "name": "@adamdotai/date-react",
+  "version": "1.0.0",
+  "description": "A react wrapper for date-io utils",
+  "main": "build/index.js",
+  "module": "build/index.esm.js",
+  "typings": "build/index.d.ts",
+  "peerDependencies": {
+    "react": "^16.0.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "install-peers"
+  },
+  "keywords": [
+    "react",
+    "date",
+    "date-io"
+  ],
+  "author": "@adamdotai",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/react": "^17.0.13",
+    "install-peers-cli": "^2.2.0"
+  }
+}

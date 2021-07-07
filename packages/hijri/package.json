@@ -18,7 +18,6 @@
   },
   "devDependencies": {
     "@date-io/core": "^2.10.11",
-    "@date-io/moment": "^2.10.11",
     "moment": "^2.24.0",
     "moment-hijri": "^2.1.2",
     "rollup": "^2.0.2",
