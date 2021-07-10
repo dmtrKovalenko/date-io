@@ -62,11 +62,11 @@ describe("Localized formats", () => {
     ${"fullDate"}            | ${"Feb 1, 2020"}                | ${"1 февр. 2020 г."}
     ${"fullDateWithWeekday"} | ${"Saturday, February 1, 2020"} | ${"суббота, 1 февраля 2020 г."}
     ${"fullDateTime"}        | ${"Feb 1, 2020 11:44 PM"}       | ${"1 февр. 2020 г., 23:44"}
-    ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"}       | ${"1 февр. 2020 г. 11:44 PM"}
+    ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"}       | ${"1 февр. 2020 г. 11:44 вечера"}
     ${"fullDateTime24h"}     | ${"Feb 1, 2020 23:44"}          | ${"1 февр. 2020 г. 23:44"}
     ${"keyboardDate"}        | ${"02/01/2020"}                 | ${"01.02.2020"}
     ${"keyboardDateTime"}    | ${"02/01/2020 11:44 PM"}        | ${"01.02.2020 23:44"}
-    ${"keyboardDateTime12h"} | ${"02/01/2020 11:44 PM"}        | ${"01.02.2020 11:44 PM"}
+    ${"keyboardDateTime12h"} | ${"02/01/2020 11:44 PM"}        | ${"01.02.2020 11:44 вечера"}
     ${"keyboardDateTime24h"} | ${"02/01/2020 23:44"}           | ${"01.02.2020 23:44"}
   `("DayJS localized $format", ({ format, expectedWithEn, expectedWithRu }) => {
     const dayjsUtils = new DayjsUtils({ locale: "en-US" });
