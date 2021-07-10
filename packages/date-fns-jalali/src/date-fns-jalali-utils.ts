@@ -35,6 +35,7 @@ import isSameMonth from "date-fns-jalali/isSameMonth";
 import isSameHour from "date-fns-jalali/isSameHour";
 import isValid from "date-fns-jalali/isValid";
 import dateFnsParse from "date-fns-jalali/parse";
+import parseISO from "date-fns-jalali/parseISO";
 import setHours from "date-fns-jalali/setHours";
 import setMinutes from "date-fns-jalali/setMinutes";
 import setMonth from "date-fns-jalali/setMonth";
@@ -284,6 +285,10 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
 
   public toJsDate = (value: Date) => {
     return value;
+  };
+
+  public parseISO = (isoString: string) => {
+    return parseISO(isoString);
   };
 
   public parse = (value: string, formatString: string) => {

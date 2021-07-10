@@ -298,6 +298,21 @@ describe("DateTime calculations", () => {
     expect(utils.isEqual(null, utils.date(TEST_TIMESTAMP))).toBeFalsy();
   });
 
+  utilsTest("parseISO", (_date, utils, lib) => {
+    const parsedDate = utils.parseISO(TEST_TIMESTAMP);
+    const outputtedISO = utils.toISO(parsedDate);
+
+    if (lib === "DateFns") {
+      // date-fns never suppress useless milliseconds in the end
+      expect(outputtedISO).toEqual(TEST_TIMESTAMP.replace(".000Z", "Z"));
+    } else if (lib === "Luxon") {
+      // luxon does not shorthand +00:00 to Z, which is also valid ISO string
+      expect(outputtedISO).toEqual(TEST_TIMESTAMP.replace("Z", "+00:00"));
+    } else {
+      expect(outputtedISO).toEqual(TEST_TIMESTAMP);
+    }
+  });
+
   utilsTest("parse", (date, utils, lib) => {
     const parsedDate = utils.parse("2018-10-30 11:44", formats.dateTime[lib]);
 

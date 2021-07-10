@@ -97,7 +97,15 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
       .toLocaleLowerCase();
   };
 
-  public parse = (value: any, format: any) => {
+  public parseISO = (isoString: string) => {
+    return this.dayjs(isoString);
+  };
+
+  public toISO = (value: Dayjs) => {
+    return value.toISOString();
+  };
+
+  public parse = (value: any, format: string) => {
     if (value === "") {
       return null;
     }

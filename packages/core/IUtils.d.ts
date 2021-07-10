@@ -78,6 +78,8 @@ export interface IUtils<TDate> {
 
   date(value?: any): TDate | null;
   toJsDate(value: TDate): Date;
+  parseISO(isString: string): TDate;
+  toISO(value: TDate): string;
   parse(value: string, format: string): TDate | null;
 
   getCurrentLocaleCode(): string;
