@@ -43,6 +43,8 @@ import startOfMonth from "date-fns/startOfMonth";
 import endOfMonth from "date-fns/endOfMonth";
 import startOfWeek from "date-fns/startOfWeek";
 import startOfYear from "date-fns/startOfYear";
+import parseISO from "date-fns/parseISO";
+import formatISO from "date-fns/formatISO";
 import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 import isWithinInterval from "date-fns/isWithinInterval";
 import longFormatters from "date-fns/_lib/format/longFormatters";
@@ -121,6 +123,14 @@ export default class DateFnsUtils implements IUtils<Date> {
       .join("")
       .replace(/(aaa|aa|a)/g, "(a|p)m")
       .toLocaleLowerCase();
+  };
+
+  public parseISO = (isoString: string) => {
+    return parseISO(isoString);
+  };
+
+  public toISO = (value: Date) => {
+    return formatISO(value, { format: "extended" });
   };
 
   public getCurrentLocaleCode = () => {

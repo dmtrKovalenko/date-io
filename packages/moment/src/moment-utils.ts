@@ -77,6 +77,14 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return this.locale || this.moment.locale();
   };
 
+  public parseISO = (isoString: string) => {
+    return this.moment(isoString, true);
+  };
+
+  public toISO = (value: Moment) => {
+    return value.toISOString();
+  };
+
   public parse = (value: string, format: string) => {
     if (value === "") {
       return null;

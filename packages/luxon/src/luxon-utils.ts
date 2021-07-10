@@ -68,6 +68,14 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value.toJSDate();
   };
 
+  public parseISO = (isoString: string) => {
+    return DateTime.fromISO(isoString);
+  };
+
+  public toISO = (value: DateTime) => {
+    return value.toISO({ format: "extended" });
+  };
+
   public parse = (value: string, formatString: string) => {
     if (value === "") {
       return null;
