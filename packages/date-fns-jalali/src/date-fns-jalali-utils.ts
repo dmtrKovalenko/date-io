@@ -19,6 +19,7 @@ import endOfDay from "date-fns-jalali/endOfDay";
 import endOfWeek from "date-fns-jalali/endOfWeek";
 import endOfYear from "date-fns-jalali/endOfYear";
 import format from "date-fns-jalali/format";
+import formatISO from "date-fns-jalali/formatISO";
 import getHours from "date-fns-jalali/getHours";
 import getSeconds from "date-fns-jalali/getSeconds";
 import getYear from "date-fns-jalali/getYear";
@@ -289,6 +290,10 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
 
   public parseISO = (isoString: string) => {
     return parseISO(isoString);
+  };
+
+  public toISO = (value: Date) => {
+    return formatISO(value, { format: "extended" });
   };
 
   public parse = (value: string, formatString: string) => {
