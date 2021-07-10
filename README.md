@@ -53,7 +53,6 @@ Localized output will of course vary based on the locale and date library used. 
 `moment` with the `en-US` locale.
 
 <!--inline-interface-start-->
-
 ```tsx
 export interface DateIOFormats<TLibFormatToken = string> {
   /** Localized full date @example "Jan 1, 2019" */
@@ -135,6 +134,8 @@ export interface IUtils<TDate> {
 
   date(value?: any): TDate | null;
   toJsDate(value: TDate): Date;
+  parseISO(isString: string): TDate;
+  toISO(value: TDate): string;
   parse(value: string, format: string): TDate | null;
 
   getCurrentLocaleCode(): string;
@@ -211,7 +212,6 @@ export interface IUtils<TDate> {
   getMeridiemText(ampm: "am" | "pm"): string;
 }
 ```
-
 <!--inline-interface-end-->
 
 ### For library authors
