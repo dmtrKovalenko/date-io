@@ -306,6 +306,12 @@ describe("DateFnsJalali", () => {
       expect(utils.parse("", dateTimeFormat)).toBeNull();
     });
 
+    it("DateFnsJalali -- parseISO", () => {
+      const parsedDate = utils.parseISO(TEST_TIMESTAMP);
+
+      expect(utils.toISO(parsedDate)).toEqual(TEST_TIMESTAMP.replace(".000Z", "Z"))
+    });
+
     it("DateFnsJalali -- isNull", () => {
       expect(utils.isNull(null)).toBeTruthy();
       expect(utils.isNull(date)).toBeFalsy();
