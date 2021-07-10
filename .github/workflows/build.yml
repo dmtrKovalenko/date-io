@@ -1,4 +1,4 @@
-name: build_sourcing_app
+name: build&test
 
 on: [push]
 
