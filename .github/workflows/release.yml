@@ -1,6 +1,6 @@
 name: Release
 
-on: 
+on:
   push:
     branches:
       - master
@@ -35,5 +35,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           yarn install --frozen-lockfile
-          yarn build
           yarn release
