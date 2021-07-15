@@ -22,5 +22,6 @@
   "devDependencies": {
     "@types/react": "^17.0.13",
     "install-peers-cli": "^2.2.0"
-  }
+  },
+  "gitHead": "6a387f5cf8920f136ae0fc3c2f523444e79c3565"
 }
