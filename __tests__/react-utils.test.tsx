@@ -1,5 +1,5 @@
 import { renderHook, act } from "@testing-library/react-hooks";
-import { DateUtilsProvider, useDateUtils } from "../packages/react/src/react-utils";
+import { DateUtilsProvider, useDateUtils } from "../packages/react/src";
 import DateFnsUtils from "../packages/date-fns/src";
 import MomentUtils from "../packages/moment/src";
 import HijriUtils from "../packages/hijri/src";
@@ -39,12 +39,12 @@ test("should be able to switch adapters", () => {
   );
   const { result } = renderHook(() => useDateUtils(), { wrapper });
   expect(result.current.utils.lib).toEqual("date-fns");
-  
-  act(() => result.current.setAdapter(momentUtils))
-  
+
+  act(() => result.current.setAdapter(momentUtils));
+
   expect(result.current.utils.lib).toEqual("moment");
-  
-  act(() => result.current.setAdapter(hijriUtils))
+
+  act(() => result.current.setAdapter(hijriUtils));
 
   expect(result.current.utils.lib).toEqual("moment=hijiri");
 });
