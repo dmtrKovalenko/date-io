@@ -15,6 +15,7 @@ It simplifies timezone management, allows your code to return the exact same typ
 | Library                  |
 | ------------------------ |
 | @adamdotai/date-core     |
+| @adamdotai/date-fns      |
 | @adamdotai/date-moment   |
 | @adamdotai/date-hijri    |
 | @adamdotai/date-react    |
