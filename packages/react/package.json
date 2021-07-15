@@ -1,5 +1,7 @@
 {
   "name": "@adamdotai/date-react",
+  "repository": "https://github.com/adamdotai/date-io",
+  "registry": "https://npm.pkg.github.com/",
   "version": "3.0.3",
   "description": "A react wrapper for date-io utils",
   "main": "build/index.js",
@@ -23,5 +25,5 @@
     "@types/react": "^17.0.13",
     "install-peers-cli": "^2.2.0"
   },
-  "gitHead": "6a387f5cf8920f136ae0fc3c2f523444e79c3565"
+  "gitHead": "d9e4b57e5707d0071b8c3be75064ba64b1f26081"
 }
