@@ -1,6 +1,6 @@
 {
   "name": "@adamdotai/date-react",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "A react wrapper for date-io utils",
   "main": "build/index.js",
   "module": "build/index.esm.js",
