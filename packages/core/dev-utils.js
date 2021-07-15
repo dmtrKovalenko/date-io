@@ -14,7 +14,7 @@ exports.createRollupConfig = (typescript) => {
       output: {
         file: `build/index.esm.js`,
         format: "esm",
-        exports: "auto"
+        exports: "auto",
       },
       plugins: [nodeResolve({ extensions }), typescriptPlugin({ typescript })],
     },
@@ -24,7 +24,7 @@ exports.createRollupConfig = (typescript) => {
       output: {
         file: `build/index.js`,
         format: "cjs",
-        exports: "auto"
+        exports: "auto",
       },
       plugins: [nodeResolve({ extensions }), typescriptPlugin({ typescript })],
     },

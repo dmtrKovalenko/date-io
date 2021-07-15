@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, PropsWithChildren } from "react";
 import { IUtils } from "@date-io/core/IUtils";
+import "../type/index";
 
 type DateContextInterface = {
   utils: IUtils<any>;

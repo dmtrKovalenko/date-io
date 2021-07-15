@@ -1,12 +1,14 @@
 {
   "extends": "../../tsconfig.declaration.base.json",
   "compilerOptions": {
+    "outDir": "build",
     "declarationDir": "build",
+    "emitDeclarationOnly": false,
     "jsx": "react",
     "rootDir": "src"
   },
   "include": [
-    "src/*.ts",
-    "src/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
   ]
 }
