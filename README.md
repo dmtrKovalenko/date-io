@@ -12,11 +12,12 @@ It simplifies timezone management, allows your code to return the exact same typ
 
 ### Projects
 
-| Library           |                                                                                                               Downloads |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------: |
-| @date-io/date-fns | [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns.svg)](https://www.npmjs.org/package/@date-io/date-fns) |
-| @date-io/moment   |     [![npm download](https://img.shields.io/npm/dm/@date-io/moment.svg)](https://www.npmjs.org/package/@date-io/moment) |
-| @date-io/hijri    |       [![npm download](https://img.shields.io/npm/dm/@date-io/hijri.svg)](https://www.npmjs.org/package/@date-io/hijri) |
+| Library                  |
+| ------------------------ |
+| @adamdotai/date-core     |
+| @adamdotai/date-moment   |
+| @adamdotai/date-hijri    |
+| @adamdotai/date-react    |
 
 ### Usage example
 
