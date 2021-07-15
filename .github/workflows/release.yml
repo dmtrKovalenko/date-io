@@ -35,4 +35,4 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
         run: |
           yarn install --frozen-lockfile
-          yarn release
+          yarn release --yes
