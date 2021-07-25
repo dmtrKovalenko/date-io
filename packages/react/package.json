@@ -2,7 +2,7 @@
   "name": "@adamdotai/date-react",
   "repository": "https://github.com/adamdotai/date-io",
   "registry": "https://npm.pkg.github.com/",
-  "version": "3.1.1",
+  "version": "3.1.3",
   "description": "A react wrapper for date-io utils",
   "main": "build/index.js",
   "module": "build/index.esm.js",
