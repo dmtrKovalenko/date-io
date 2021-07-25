@@ -40,9 +40,14 @@ function withDateUtils(Component) {
       const props = this.props;
       return (
         <DateUtilsContext.Consumer>
-          {({ utils }) => {
+          {({ utils, setAdapter }) => {
             return (
-              <Component ref={this.props?.forwardedRef} {...props} dateUtils={utils} />
+              <Component
+                ref={this.props?.forwardedRef}
+                {...props}
+                dateUtils={utils}
+                setAdapter={setAdapter}
+              />
             );
           }}
         </DateUtilsContext.Consumer>
