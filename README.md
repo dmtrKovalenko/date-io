@@ -1,3 +1,7 @@
+# Fork Changes
+- Added `date-react` library that has a provider and a hook to easily switch between date libraries
+- Removed unused date management libraries
+
 # date-io
 
 Abstraction over common JavaScript date management libraries.
