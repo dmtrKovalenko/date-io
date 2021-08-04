@@ -14,7 +14,7 @@ test("should work with date-fns adapter", () => {
     <DateUtilsProvider adapter={dateFnsUtils}>{children}</DateUtilsProvider>
   );
   const { result } = renderHook(() => useDateUtils(), { wrapper });
-  expect(result.current.utils.lib).toEqual("date-fns");
+  expect(result.current.dateUtils.lib).toEqual("date-fns");
 });
 
 test("should work with moment adapter", () => {
@@ -22,7 +22,7 @@ test("should work with moment adapter", () => {
     <DateUtilsProvider adapter={momentUtils}>{children}</DateUtilsProvider>
   );
   const { result } = renderHook(() => useDateUtils(), { wrapper });
-  expect(result.current.utils.lib).toEqual("moment");
+  expect(result.current.dateUtils.lib).toEqual("moment");
 });
 
 test("should work with hijri adapter", () => {
@@ -30,7 +30,7 @@ test("should work with hijri adapter", () => {
     <DateUtilsProvider adapter={hijriUtils}>{children}</DateUtilsProvider>
   );
   const { result } = renderHook(() => useDateUtils(), { wrapper });
-  expect(result.current.utils.lib).toEqual("moment=hijiri");
+  expect(result.current.dateUtils.lib).toEqual("moment=hijiri");
 });
 
 test("should be able to switch adapters", () => {
@@ -38,13 +38,13 @@ test("should be able to switch adapters", () => {
     <DateUtilsProvider adapter={dateFnsUtils}>{children}</DateUtilsProvider>
   );
   const { result } = renderHook(() => useDateUtils(), { wrapper });
-  expect(result.current.utils.lib).toEqual("date-fns");
+  expect(result.current.dateUtils.lib).toEqual("date-fns");
 
   act(() => result.current.setAdapter(momentUtils));
 
-  expect(result.current.utils.lib).toEqual("moment");
+  expect(result.current.dateUtils.lib).toEqual("moment");
 
   act(() => result.current.setAdapter(hijriUtils));
 
-  expect(result.current.utils.lib).toEqual("moment=hijiri");
+  expect(result.current.dateUtils.lib).toEqual("moment=hijiri");
 });

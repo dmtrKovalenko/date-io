@@ -3,12 +3,12 @@ import { IUtils } from "@date-io/core/IUtils";
 import "../type/index";
 
 type DateContextInterface = {
-  utils: IUtils<any>;
+  dateUtils: IUtils<any>;
   setAdapter: (adapter: IUtils<any>) => void;
 };
 
 const DateUtilsContext = createContext<DateContextInterface>({
-  utils: null,
+  dateUtils: null,
   setAdapter: () => {},
 });
 
@@ -20,18 +20,18 @@ function DateUtilsProvider({
   children,
   adapter,
 }: PropsWithChildren<DateUtilsProviderProps>) {
-  const [utils, setAdapter] = useState(adapter);
+  const [dateUtils, setAdapter] = useState(adapter);
   return (
-    <DateUtilsContext.Provider value={{ utils, setAdapter }}>
+    <DateUtilsContext.Provider value={{ dateUtils, setAdapter }}>
       {children}
     </DateUtilsContext.Provider>
   );
 }
 
 function useDateUtils() {
-  const { utils, setAdapter } = useContext(DateUtilsContext);
+  const { dateUtils, setAdapter } = useContext(DateUtilsContext);
 
-  return { utils, setAdapter };
+  return { dateUtils, setAdapter };
 }
 
 function withDateUtils(Component) {
@@ -40,12 +40,12 @@ function withDateUtils(Component) {
       const props = this.props;
       return (
         <DateUtilsContext.Consumer>
-          {({ utils, setAdapter }) => {
+          {({ dateUtils, setAdapter }) => {
             return (
               <Component
                 ref={this.props?.forwardedRef}
                 {...props}
-                dateUtils={utils}
+                dateUtils={dateUtils}
                 setAdapter={setAdapter}
               />
             );
