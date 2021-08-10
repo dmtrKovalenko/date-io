@@ -9,7 +9,7 @@
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
   },
   "peerDependencies": {
-    "luxon": "^1.21.3 || ^2"
+    "luxon": "^1.21.3 || ^2.x"
   },
   "peerDependenciesMeta": {
     "luxon": {
