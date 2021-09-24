@@ -134,7 +134,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
           && parsed_assessor.isSupported(ChronoField.SECOND_OF_MINUTE)) {
           return LocalDateTime.from(parsed_assessor)
         } else {
-          return LocalDate.from(parsed_assessor)
+          return LocalDate.from(parsed_assessor).atStartOfDay()
         }
       }else {
         return null;
