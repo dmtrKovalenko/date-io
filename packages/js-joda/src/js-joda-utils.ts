@@ -140,7 +140,9 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     if (value === null) {
       return null;
     }
-
+    if (value instanceof Error) {
+      return null;
+    }
     if (typeof value === "undefined") {
       return LocalDateTime.now();
     }
