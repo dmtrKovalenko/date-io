@@ -205,7 +205,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return !isNaN(new Date(value).valueOf());
     }
 
-    if (value instanceof LocalDateTime) {
+    if (value instanceof Temporal) {
       return true;
     }
 
