@@ -125,8 +125,20 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     let formatter = DateTimeFormatter.ofPattern(format).withLocale(this.locale);
 
     try {
-      //return formatter.parse(value);
-      return LocalDateTime.parse(value, formatter);
+      let parsed_assessor = formatter.parse(value);
+      if (parsed_assessor.isSupported(ChronoField.YEAR)
+        && parsed_assessor.isSupported(ChronoField.MONTH_OF_YEAR)
+        && parsed_assessor.isSupported(ChronoField.DAY_OF_MONTH)) {
+        if (parsed_assessor.isSupported(ChronoField.HOUR_OF_DAY)
+          && parsed_assessor.isSupported(ChronoField.MINUTE_OF_HOUR)
+          && parsed_assessor.isSupported(ChronoField.SECOND_OF_MINUTE)) {
+          return LocalDateTime.from(parsed_assessor)
+        } else {
+          return LocalDate.from(parsed_assessor)
+        }
+      }else {
+        return null;
+      }
     } catch (ex) {
       if (ex instanceof DateTimeParseException) {
         return <Temporal><unknown>ex;
