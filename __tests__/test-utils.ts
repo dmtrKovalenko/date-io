@@ -27,7 +27,7 @@ export const utilsTest = (
 };
 
 export const formats: Record<string, Record<TestLib, string>> = {
-  day: { Luxon: "dd", DateFns: "dd", Moment: "DD", Dayjs: "DD",JSJoda: "DD" },
+  day: { Luxon: "dd", DateFns: "dd", Moment: "DD", Dayjs: "DD",JSJoda: "dd" },
   dateTime: {
     Luxon: "yyyy-MM-dd HH:mm",
     DateFns: "yyyy-MM-dd HH:mm",
