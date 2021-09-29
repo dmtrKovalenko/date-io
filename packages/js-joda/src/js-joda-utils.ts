@@ -33,9 +33,6 @@ import {DateIOFormats, IUtils, Unit} from "@date-io/core/IUtils";
 
 type CalendarType = LocalDateTime | LocalDate | ZonedDateTime;
 
-function isTemporalAdjuster(object: unknown): object is TemporalAdjuster {
-  return true; //Object.prototype.hasOwnProperty.call(object, "adjustInto");
-}
 
 const testformatter = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME).appendLiteral(".").appendValue(ChronoField.MICRO_OF_SECOND, 3).appendLiteral("Z").toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology['INSTANCE']);
 
@@ -132,14 +129,11 @@ export default class JsJodaUtils implements IUtils<Temporal> {
         } else {
           return LocalDate.from(parsed_assessor).atStartOfDay()
         }
-      }else {
-        return null;
       }
     } catch (ex) {
       if (ex instanceof DateTimeParseException) {
         return <Temporal><unknown>ex;
       }
-      throw ex;
     }
 
   }
@@ -148,10 +142,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     if (value === null) {
       return null;
     }
-    if (value instanceof Error) {
-      return null;
-    }
-    if (typeof value === "undefined") {
+    if (value === undefined) {
       return LocalDateTime.now();
     }
 
@@ -173,7 +164,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
     }
 
-    throw new Error(`Unknown Date value in function date(): ${value}`);
+    // throw new Error(`Unknown Date value in function date(): ${value}`);
   }
 
   public isNull(date: Temporal | null): boolean {
@@ -189,13 +180,13 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return false;
     }
 
-    if (typeof value === "undefined") {
+    if (value === undefined) {
       return true;
     }
 
-    if (value instanceof Date) {
-      return !isNaN(value.valueOf());
-    }
+    // if (value instanceof Date) {
+    //   return !isNaN(value.valueOf());
+    // }
 
     if (typeof value === "string") {
       return !isNaN(new Date(value).valueOf());
@@ -205,10 +196,10 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return true;
     }
 
-    throw new Error(`Unknown Date value in function isValid(): ${value}`);
+    // throw new Error(`Unknown Date value in function isValid(): ${value}`);
   }
 
-  public getDiff = (value: LocalDateTime, comparing: LocalDateTime | string, unit?: Unit) => {
+  public getDiff = (value: CalendarType, comparing: CalendarType | string, unit?: Unit) => {
     let chronoUnit = getChronoUnit(unit);
     if (chronoUnit === null) {
       switch (unit) {
@@ -229,16 +220,16 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     if (first === null || second === null) {
       return false;
     }
-    if (first instanceof Error || second instanceof Error) {
-      throw first || second;
-    }
+    // if (first instanceof Error || second instanceof Error) {
+    //   throw first || second;
+    // }
     if (first instanceof LocalDateTime && second instanceof LocalDateTime) {
       return first.isEqual(second);
     }
     if (first instanceof LocalDate && second instanceof LocalDate) {
       return first.isEqual(second);
     }
-    return false;
+    // return false;
   }
 
   public isSameDay(date: Temporal, comparing: Temporal): boolean {
@@ -412,9 +403,9 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   }
 
   public getWeekArray(date: Temporal) {
-    if (!this.locale) {
-      throw new Error("Function getWeekArray() requires a locale to be set.");
-    }
+    // if (!this.locale) {
+    //   throw new Error("Function getWeekArray() requires a locale to be set.");
+    // }
     let startOfMonth = LocalDate.from(this.startOfMonth(date));
     let endOfMonth = LocalDate.from(this.endOfMonth(date));
     const start = LocalDate.from(this.startOfWeek(startOfMonth));
@@ -514,17 +505,11 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   }
 
   addHours(value: Temporal, count: number): Temporal {
-    if (isTemporalAdjuster(value)) {
-      return value.plus(count, ChronoUnit.HOURS);
-    }
+    return value.plus(count, ChronoUnit.HOURS);
   }
 
   addMinutes(value: Temporal, count: number): Temporal {
-    if (isTemporalAdjuster(value)) {
-      return value.plus(count, ChronoUnit.MINUTES);
-    } else {
-      throw Error(value.toString());
-    }
+    return value.plus(count, ChronoUnit.MINUTES);
   }
 
   addMonths(value: Temporal, count: number): Temporal {
@@ -534,15 +519,11 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   }
 
   addSeconds(value: Temporal, count: number): Temporal {
-    if (isTemporalAdjuster(value)) {
-      return value.plus(count, ChronoUnit.SECONDS);
-    }
+    return value.plus(count, ChronoUnit.SECONDS);
   }
 
   addWeeks(value: Temporal, count: number): Temporal {
-    if (isTemporalAdjuster(value)) {
-      return value.plus(count, ChronoUnit.WEEKS);
-    }
+    return value.plus(count, ChronoUnit.WEEKS);
   }
 
   getCurrentLocaleCode(): string {
@@ -578,20 +559,10 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   }
 
   toISO(value: Temporal): string {
-
-    if (value instanceof LocalDateTime) {
-      return testformatter.format(value);
-    } else if (value instanceof LocalDate) {
-      return testformatter.format(value.atStartOfDay());
-    }
+    return isoformatter.format(value);
   }
 
-  toJsDate(value: Temporal): Date {
-
-    if (value instanceof LocalDateTime) {
-      return convert(value).toDate()
-    } else if (value instanceof LocalDate) {
-      return convert(value).toDate()
-    }
+  toJsDate(value: CalendarType): Date {
+    return convert(value).toDate()
   }
 }
