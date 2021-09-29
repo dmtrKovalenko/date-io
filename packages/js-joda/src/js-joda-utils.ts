@@ -24,7 +24,8 @@ import {
   TemporalAdjuster,
   Month,
   Year,
-  TemporalUnit
+  TemporalUnit,
+  TemporalQueries
 } from "@js-joda/core";
 import {
   Locale
@@ -36,6 +37,19 @@ type CalendarType = LocalDateTime | LocalDate | ZonedDateTime;
 
 const testformatter = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME).appendLiteral(".").appendValue(ChronoField.MICRO_OF_SECOND, 3).appendLiteral("Z").toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology['INSTANCE']);
 
+const OPTIONAL_FORMATTER = DateTimeFormatter.ofPattern(
+  "yyyy-MM-dd['T'HH:mm[:ss[.SSS['Z']]]"
+);
+const ampmregex =new RegExp('.*a.*');
+// create a temporal query that create a new Temporal depending on the existing fields
+const dateOrDateTimeQuery = {
+  queryFrom: function(temporal) {
+    var date = temporal.query(TemporalQueries.localDate());
+    var time = temporal.query(TemporalQueries.localTime());
+    if (time == null) return date;
+    else return date.atTime(time);
+  }
+};
 // v2.0.0
 //
 interface Opts {
@@ -147,12 +161,13 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     }
 
     if (typeof value === "string") {
-      const date = new Date(value);
-      if (isNaN(date.valueOf())) {
-        return null;
+      try {
+        return  OPTIONAL_FORMATTER.parse(value, dateOrDateTimeQuery);
+      } catch (ex) {
+        if (ex instanceof DateTimeParseException) {
+          return <Temporal><unknown>ex;
+        }
       }
-      const instant = Instant.ofEpochMilli(date.valueOf());
-      return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
     }
 
     if (value instanceof Temporal) {
