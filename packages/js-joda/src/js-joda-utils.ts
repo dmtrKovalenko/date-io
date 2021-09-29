@@ -87,8 +87,6 @@ const defaultFormats: DateIOFormats = {
   year: "yyyy",
 };
 
-// @ts-ignore
-const Quarters = new ChronoUnit('Quarters', Duration.ofSeconds(31556952 / 4));
 
 function getChronoUnit(unit?: Unit): ChronoUnit {
   switch (unit) {
