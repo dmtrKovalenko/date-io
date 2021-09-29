@@ -90,6 +90,19 @@ describe("DateTime calculations", () => {
     );
   });
 
+  utilsTest("startOfWeekNonISO", (date, utils, lib) => {
+    expect(utils.formatByString(utils.startOfWeek(utils.date("2018-10-28T00:00:00.000Z")), formats.dateTime[lib])).toBe(
+      lib === "Luxon" ? "2018-10-22 00:00" : "2018-10-28 00:00"
+    );
+  });
+
+  utilsTest("endOfWeekNonISO", (date, utils, lib) => {
+    expect(utils.formatByString(utils.endOfWeek(utils.date("2018-10-28T00:00:00.000Z")), formats.dateTime[lib])).toBe(
+      lib === "Luxon" ? "2018-10-28 23:59" : "2018-11-03 23:59"
+    );
+  });
+
+
   utilsTest("getPreviousMonth", (date, utils, lib) => {
     expect(
       utils.formatByString(utils.getPreviousMonth(date), formats.dateTime[lib])
