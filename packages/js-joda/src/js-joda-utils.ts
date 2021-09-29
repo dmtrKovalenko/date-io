@@ -35,7 +35,7 @@ import {DateIOFormats, IUtils, Unit} from "@date-io/core/IUtils";
 type CalendarType = LocalDateTime | LocalDate | ZonedDateTime;
 
 
-const testformatter = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME).appendLiteral(".").appendValue(ChronoField.MICRO_OF_SECOND, 3).appendLiteral("Z").toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology['INSTANCE']);
+const isoformatter = new DateTimeFormatterBuilder().parseCaseInsensitive().append(DateTimeFormatter.ISO_LOCAL_DATE).appendLiteral('T').append(DateTimeFormatter.ISO_LOCAL_TIME).appendLiteral(".").appendValue(ChronoField.MICRO_OF_SECOND, 3).appendLiteral("Z").toFormatter(ResolverStyle.STRICT).withChronology(IsoChronology['INSTANCE']);
 
 const OPTIONAL_FORMATTER = DateTimeFormatter.ofPattern(
   "yyyy-MM-dd['T'HH:mm[:ss[.SSS['Z']]]"
@@ -248,12 +248,6 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   }
 
   public isSameDay(date: Temporal, comparing: Temporal): boolean {
-    if (date === null && comparing === null) {
-      return true;
-    }
-    if (date === null || comparing === null) {
-      return false;
-    }
     return LocalDate.from(date).isEqual(LocalDate.from(comparing));
   }
 
