@@ -31,11 +31,7 @@ import {
 } from "@js-joda/locale_en-us";
 import {DateIOFormats, IUtils, Unit} from "@date-io/core/IUtils";
 
-type CalendarType = LocalDateTime | LocalDate;
-
-function assumeType<T>(x: unknown): asserts x is T {
-  return;
-}
+type CalendarType = LocalDateTime | LocalDate | ZonedDateTime;
 
 function isTemporalAdjuster(object: unknown): object is TemporalAdjuster {
   return true; //Object.prototype.hasOwnProperty.call(object, "adjustInto");
