@@ -442,36 +442,12 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   }
 
   public getYearRange(start: Temporal, end: Temporal) {
-    if (start instanceof Error || end instanceof Error) {
-      throw new Error("getYearRange(): Invalid type for parameter start and/or end.");
-    }
-    const years: CalendarType[] = [];
-
-    let startDate: CalendarType;
-    let endDate: CalendarType;
-    if (start instanceof LocalDateTime && end instanceof LocalDateTime) {
-      startDate = start
-        .withDayOfYear(1)
-        .withHour(0)
-        .withMinute(0)
-        .withSecond(0)
-        .withNano(0);
-
-      endDate = end
-        .plusYears(1)
-        .withDayOfYear(1)
-        .withHour(0)
-        .withMinute(0)
-        .withSecond(0)
-        .withNano(0);
-    } else if (start instanceof LocalDate && end instanceof LocalDate) {
-      startDate = start.withDayOfYear(1);
-      endDate = end.plusYears(1).withDayOfYear(1);
-    }
-
-    while (this.isBefore(startDate, endDate)) {
-      years.push(startDate);
-      startDate = startDate.plusYears(1);
+    const years: Temporal[] = [];
+    let startYear = Year.from(start);
+    let endYear= Year.from(end).plusYears(1);
+    while (this.isBefore(startYear, endYear)) {
+      years.push(startYear.atDay(1).atStartOfDay());
+      startYear = startYear.plusYears(1);
     }
     return years;
   }
@@ -528,9 +504,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   }
 
   addMonths(value: Temporal, count: number): Temporal {
-    if (isTemporalAdjuster(value)) {
-      return value.plus(count, ChronoUnit.MONTHS);
-    }
+    return value.plus(count, ChronoUnit.MONTHS);
   }
 
   addSeconds(value: Temporal, count: number): Temporal {
@@ -557,7 +531,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   };
 
   is12HourCycleInCurrentLocale(): boolean {
-    return false;
+    return ampmregex.test(this.formats.fullDateTime);
   }
 
   isWithinRange(value: Temporal, range: [Temporal, Temporal]): boolean {
