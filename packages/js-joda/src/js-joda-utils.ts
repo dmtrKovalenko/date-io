@@ -32,6 +32,7 @@ import {
 } from "@js-joda/locale_en-us";
 import {DateIOFormats, IUtils, Unit} from "@date-io/core/IUtils";
 
+
 type CalendarType = LocalDateTime | LocalDate | ZonedDateTime;
 
 
@@ -438,7 +439,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     const years: Temporal[] = [];
     let startYear = Year.from(start);
     let endYear= Year.from(end).plusYears(1);
-    while (this.isBefore(startYear, endYear)) {
+    while (startYear.isBefore(endYear)) {
       years.push(startYear.atDay(1).atStartOfDay());
       startYear = startYear.plusYears(1);
     }
