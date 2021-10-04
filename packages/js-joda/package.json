@@ -1,0 +1,58 @@
+{
+  "name": "@date-io/js-joda",
+  "version": "2.11.0",
+  "description": "Abstraction over common javascript date management libraries",
+  "main": "build/index.js",
+  "module": "build/index.esm.js",
+  "typings": "build/index.d.ts",
+  "peerDependencies": {
+    "@js-joda/core": "^3.2.0",
+    "@js-joda/locale": "^3.2.2",
+    "@js-joda/locale_en-us": "^3.2.2"
+  },
+  "peerDependenciesMeta": {
+    "@js-joda/core": {
+      "optional": true
+    },
+    "@js-joda/locale": {
+      "optional": true
+    },
+    "@js-joda/locale_en-us": {
+      "optional": true
+    }
+  },
+  "dependencies": {
+    "@date-io/core": "^2.11.0"
+  },
+  "devDependencies": {
+    "@js-joda/core": "^3.2.0",
+    "@js-joda/locale_en-us": "^3.2.2",
+    "rollup": "^2.0.2",
+    "typescript": "^3.7.2"
+  },
+  "scripts": {
+    "build": "rollup -c && tsc -p tsconfig.declaration.json"
+  },
+  "bugs": {
+    "url": "https://github.com/dmtrKovalenko/date-io/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dmtrKovalenko/date-io"
+  },
+  "keywords": [
+    "date",
+    "time",
+    "date-io",
+    "picker",
+    "date-fns",
+    "moment",
+    "luxon"
+  ],
+  "author": {
+    "name": "Dmitriy Kovalenko",
+    "email": "dmtr.kovalenko@outlook.com"
+  },
+  "license": "MIT",
+  "gitHead": "687eba751bd706e7d704a39a7caa3e0afbfa40aa"
+}

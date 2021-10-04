@@ -3,9 +3,14 @@ import LuxonUtils from "../packages/luxon/src";
 import DateFnsUtils from "../packages/date-fns/src";
 import MomentUtils from "../packages/moment/src";
 import DayjsUtils from "../packages/dayjs/src";
+import JsJodaUtils from "../packages/js-joda/src";
 import { allUtils } from "./test-utils";
 import moment from "moment";
 import "dayjs/locale/ru";
+import {
+  Locale
+} from "@js-joda/locale";
+import {DateIOFormats} from "@date-io/core/IUtils";
 
 test.each`
   format                     | expectedWithEn
@@ -115,5 +120,55 @@ describe("Localized formats", () => {
 
     expect(luxonUtils.format(date, format)).toBe(expectedWithEn);
     expect(luxonRuUtils.format(date, format)).toBe(expectedWithRu);
+  });
+  test.each`
+    format                   | expectedWithEn                  | expectedWithRu
+    ${"fullDate"}            | ${"Feb 1, 2020"}                | ${"1 февр. 2020 г."}
+    ${"fullDateWithWeekday"} | ${"Saturday, February 1, 2020"} | ${"суббота, 1 февраля 2020 г."}
+    ${"fullDateTime"}        | ${"Feb 1, 2020 11:44 PM"}       | ${"1 февр. 2020 г., 23:44"}
+    ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"}       | ${"1 февр. 2020 г., 11:44 PM"}
+    ${"fullDateTime24h"}     | ${"Feb 1, 2020 23:44"}          | ${"1 февр. 2020 г., 23:44"}
+    ${"keyboardDate"}        | ${"02/01/2020"}                 | ${"01.02.2020"}
+    ${"keyboardDateTime"}    | ${"02/01/2020 11:44 PM"}        | ${"01.02.2020 23:44"}
+    ${"keyboardDateTime12h"} | ${"02/01/2020 11:44 PM"}        | ${"01.02.2020 11:44 PM"}
+    ${"keyboardDateTime24h"} | ${"02/01/2020 23:44"}           | ${"01.02.2020 23:44"}
+  `("JsJoda localized $format", ({ format, expectedWithEn, expectedWithRu }) => {
+    const russianFormats: DateIOFormats = {
+      dayOfMonth: "d",
+      fullDate: "d LLL yyyy 'г.'",
+      fullDateWithWeekday: "EEEE, d LLLL yyyy 'г.'",
+      fullDateTime: "d LLL yyyy 'г.', HH:mm",
+      fullDateTime12h: "d LLL yyyy 'г.', hh:mm a",
+      fullDateTime24h: "d LLL yyyy 'г.', HH:mm",
+      fullTime: "",
+      fullTime12h: "hh:mm a",
+      fullTime24h: "HH:mm",
+      hours12h: "hh",
+      hours24h: "HH",
+      keyboardDate: "dd.MM.yyyy",
+      keyboardDateTime: "dd.MM.yyyy HH:mm",
+      keyboardDateTime12h: "dd.MM.yyyy hh:mm a",
+      keyboardDateTime24h: "dd.MM.yyyy HH:mm",
+      minutes: "mm",
+      month: "LLLL",
+      monthAndDate: "LLLL d",
+      monthAndYear: "LLLL yyyy",
+      monthShort: "LLL",
+      weekday: "EEEE",
+      weekdayShort: "EEE",
+      normalDate: "d MMMM",
+      normalDateWithWeekday: "EEE, MMM d",
+      seconds: "ss",
+      shortDate: "MMM d",
+      year: "yyyy",
+    };
+    const jsJodaEnUtils = new JsJodaUtils({});
+    const jsJodaRuUtils = new JsJodaUtils(
+      {locale: new Locale("ru"),
+        formats : russianFormats});
+    const date = jsJodaEnUtils.date("2020-02-01T23:44:00.000Z");
+
+    expect(jsJodaEnUtils.format(date, format)).toBe(expectedWithEn);
+    expect(jsJodaRuUtils.format(date, format)).toBe(expectedWithRu);
   });
 });
