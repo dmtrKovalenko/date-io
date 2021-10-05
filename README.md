@@ -22,6 +22,7 @@ It simplifies timezone management, allows your code to return the exact same typ
 | @date-io/moment          |                   [![npm download](https://img.shields.io/npm/dm/@date-io/moment.svg)](https://www.npmjs.org/package/@date-io/moment) |
 | @date-io/luxon           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/luxon.svg)](https://www.npmjs.org/package/@date-io/luxon) |
 | @date-io/dayjs           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/dayjs.svg)](https://www.npmjs.org/package/@date-io/dayjs) |
+| @date-io/js-joda           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/js-joda.svg)](https://www.npmjs.org/package/@date-io/js-joda) |
 | @date-io/date-fns-jalali | [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns-jalali.svg)](https://www.npmjs.org/package/@date-io/date-fns-jalali) |
 | @date-io/jalaali         |                 [![npm download](https://img.shields.io/npm/dm/@date-io/jalaali.svg)](https://www.npmjs.org/package/@date-io/jalaali) |
 | @date-io/hijri           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/hijri.svg)](https://www.npmjs.org/package/@date-io/hijri) |
