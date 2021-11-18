@@ -13,6 +13,7 @@
   "scripts": {
     "test": "cross-env TZ='UTC' NODE_ICU_DATA='./node_modules/full-icu' jest --watch",
     "test:coverage": "cross-env TZ='UTC' NODE_ICU_DATA='./node_modules/full-icu' jest --coverage",
+    "test:windows": "test.cmd",
     "benchmark": "lerna run benchmark",
     "release": "yarn test:coverage && yarn build && lerna publish",
     "build": "lerna run build --parallel",
