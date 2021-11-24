@@ -106,37 +106,27 @@ export default class LuxonUtils implements IUtils<DateTime> {
   };
 
   public addSeconds = (date: DateTime, count: number) => {
-    return count < 0
-      ? date.minus({ seconds: Math.abs(count) })
-      : date.plus({ seconds: count });
+    return date.plus({ seconds: count });
   };
 
   public addMinutes = (date: DateTime, count: number) => {
-    return count < 0
-      ? date.minus({ minutes: Math.abs(count) })
-      : date.plus({ minutes: count });
+    return date.plus({ minutes: count });
   };
 
   public addHours = (date: DateTime, count: number) => {
-    return count < 0
-      ? date.minus({ hours: Math.abs(count) })
-      : date.plus({ hours: count });
+    return date.plus({ hours: count });
   };
 
   public addDays = (date: DateTime, count: number) => {
-    return count < 0 ? date.minus({ days: Math.abs(count) }) : date.plus({ days: count });
+    return date.plus({ days: count });
   };
 
   public addWeeks = (date: DateTime, count: number) => {
-    return count < 0
-      ? date.minus({ weeks: Math.abs(count) })
-      : date.plus({ weeks: count });
+    return date.plus({ weeks: count });
   };
 
   public addMonths = (date: DateTime, count: number) => {
-    return count < 0
-      ? date.minus({ months: Math.abs(count) })
-      : date.plus({ months: count });
+    return date.plus({ months: count });
   };
 
   public isValid = (value: any) => {
