@@ -110,7 +110,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
       return null;
     }
 
-    return this.dayjs(value, format, this.locale);
+    return this.dayjs(value, format, this.locale, true);
   };
 
   public date = (value?: any) => {
