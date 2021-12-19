@@ -129,7 +129,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
     return this.dayjs(value).isValid();
   };
 
-  public isNull = (date: Dayjs) => {
+  public isNull = (date: Dayjs | null) => {
     return date === null;
   };
 
