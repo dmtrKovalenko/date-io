@@ -66,9 +66,9 @@ export type Unit =
   | "seconds"
   | "milliseconds";
 
-export interface DateType {}
+export interface ExtendableDateType {}
 
-export interface IUtils<TDate extends DateType> {
+export interface IUtils<TDate extends ExtendableDateType> {
   formats: DateIOFormats<any>;
   locale?: any;
   moment?: any;
