@@ -265,10 +265,22 @@ import { CustomUtils } from "../CustomUtils";
 import getDayOfYear from "date-fns/getDayOfYear";
 import DateIODateFnsAdapter from "@date-io/date-fns";
 
-export class DateFnsAdapter extends DateIODateFnsAdapter implements CustomUtils<Date> {
-  getDayOfYear(date: Date) {
-    return getDayOfYear(date);
+export const createMyAdapter(options) {
+  const dateFns = new DateFnsUtils(options)
+
+  const adapter = {
+    ...dateFns,
+
+    getWeekArray() {
+      const startDate = endOfWeek(adapter.endOfMonth(date), { locale: adapter.locale })
+      const extraWeek = adapter.getWeekdays().map((day, index) => adapter.addDays(startDate, index + 1))
+      return [...dateFns.getWeekArray(date), extraWeek]
+    },
+
+    // ...
   }
+
+  return adapter
 }
 ```
 
@@ -278,20 +290,9 @@ Register it using your library context. It may be react context, dependency inje
 
 ```tsx
 // react example
-import { DateFnsAdapter } from "your-awesome-lib/adapters/date-fns";
+import { createMyAdapter } from "your-awesome-lib/adapters/date-fns";
 
-<DateLibProvider adapter={DateFnsAdapter}>{/* ... */}</DateLibProvider>;
-```
-
-```tsx
-// angular example
-import { Injectable } from "@angular/core";
-import { DateFnsAdapter } from "your-awesome-lib/adapters/date-fns";
-
-@Injectable({
-  providedIn: "root",
-})
-export class DateAdapter extends DateFnsAdapter {}
+<DateLibProvider adapter={createMyAdapter({ locale: "fr" })}>{/* ... */}</DateLibProvider>;
 ```
 
 And use the interface of date-io (or your custom interface).
