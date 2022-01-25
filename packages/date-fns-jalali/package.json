@@ -1,6 +1,6 @@
 {
   "name": "@date-io/date-fns-jalali",
-  "version": "2.13.0",
+  "version": "2.13.1",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -40,7 +40,7 @@
     }
   },
   "dependencies": {
-    "@date-io/core": "^2.13.0"
+    "@date-io/core": "^2.13.1"
   },
   "devDependencies": {
     "date-fns-jalali": "^2.19.0-2",
