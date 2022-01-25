@@ -4,7 +4,7 @@
   ],
   "npmClient": "yarn",
   "useWorkspaces": true,
-  "version": "2.12.1",
+  "version": "2.13.0",
   "publishConfig": {
     "access": "public"
   }
