@@ -9,7 +9,7 @@ defaultDayjs.extend(localizedFormatPlugin);
 defaultDayjs.extend(isBetweenPlugin);
 
 interface Opts {
-  locale?: string;
+  locale?: ILocale;
   /** Make sure that your dayjs instance extends customParseFormat and advancedFormat */
   instance?: typeof defaultDayjs;
   formats?: Partial<DateIOFormats>;
@@ -59,12 +59,12 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   public rawDayJsInstance: typeof defaultDayjs;
   public lib = "dayjs";
   public dayjs: Constructor<TDate>;
-  public locale?: string;
+  public locale?: ILocale;
   public formats: DateIOFormats;
 
   constructor({ locale, formats, instance }: Opts = {}) {
     this.rawDayJsInstance = instance || defaultDayjs;
-    this.dayjs = withLocale(this.rawDayJsInstance, locale);
+    this.dayjs = withLocale(this.rawDayJsInstance, locale.name);
     this.locale = locale;
 
     this.formats = Object.assign({}, defaultFormats, formats);
@@ -72,11 +72,11 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
 
   public is12HourCycleInCurrentLocale = () => {
     /* istanbul ignore next */
-    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale || "en"]?.formats?.LT);
+    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale.name || "en"]?.formats?.LT);
   };
 
   public getCurrentLocaleCode = () => {
-    return this.locale || "en";
+    return this.locale.name || "en";
   };
 
   public getFormatHelperText = (format: string) => {
@@ -88,7 +88,9 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
         var firstCharacter = token[0];
         if (firstCharacter === "L") {
           /* istanbul ignore next */
-          return this.rawDayJsInstance.Ls[this.locale || "en"]?.formats[token] ?? token;
+          return (
+            this.rawDayJsInstance.Ls[this.locale.name || "en"]?.formats[token] ?? token
+          );
         }
         return token;
       })
@@ -110,7 +112,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
       return null;
     }
 
-    return this.dayjs(value, format, this.locale);
+    return this.dayjs(value, format, this.locale?.name, true);
   };
 
   public date = (value?: any) => {
