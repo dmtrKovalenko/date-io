@@ -9,7 +9,7 @@ defaultDayjs.extend(localizedFormatPlugin);
 defaultDayjs.extend(isBetweenPlugin);
 
 interface Opts {
-  locale?: ILocale;
+  locale?: string;
   /** Make sure that your dayjs instance extends customParseFormat and advancedFormat */
   instance?: typeof defaultDayjs;
   formats?: Partial<DateIOFormats>;
@@ -57,40 +57,42 @@ const defaultFormats: DateIOFormats = {
 
 export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<TDate> {
   public rawDayJsInstance: typeof defaultDayjs;
+
   public lib = "dayjs";
+
   public dayjs: Constructor<TDate>;
-  public locale?: ILocale;
+
+  public locale?: string;
+
   public formats: DateIOFormats;
 
   constructor({ locale, formats, instance }: Opts = {}) {
     this.rawDayJsInstance = instance || defaultDayjs;
-    this.dayjs = withLocale(this.rawDayJsInstance, locale.name);
+    this.dayjs = withLocale(this.rawDayJsInstance, locale);
     this.locale = locale;
 
-    this.formats = Object.assign({}, defaultFormats, formats);
+    this.formats = { ...defaultFormats, ...formats };
   }
 
   public is12HourCycleInCurrentLocale = () => {
     /* istanbul ignore next */
-    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale.name || "en"]?.formats?.LT);
+    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale || "en"]?.formats?.LT);
   };
 
   public getCurrentLocaleCode = () => {
-    return this.locale.name || "en";
+    return this.locale || "en";
   };
 
   public getFormatHelperText = (format: string) => {
     // @see https://github.com/iamkun/dayjs/blob/dev/src/plugin/localizedFormat/index.js
-    var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?)|./g;
+    const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?)|./g;
     return format
       .match(localFormattingTokens)
       .map((token) => {
-        var firstCharacter = token[0];
+        const firstCharacter = token[0];
         if (firstCharacter === "L") {
           /* istanbul ignore next */
-          return (
-            this.rawDayJsInstance.Ls[this.locale.name || "en"]?.formats[token] ?? token
-          );
+          return this.rawDayJsInstance.Ls[this.locale || "en"]?.formats[token] ?? token;
         }
         return token;
       })
@@ -112,7 +114,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
       return null;
     }
 
-    return this.dayjs(value, format, this.locale?.name, true);
+    return this.dayjs(value, format, this.locale, true);
   };
 
   public date = (value?: any) => {
