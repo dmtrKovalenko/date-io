@@ -57,13 +57,9 @@ const defaultFormats: DateIOFormats = {
 
 export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<TDate> {
   public rawDayJsInstance: typeof defaultDayjs;
-
   public lib = "dayjs";
-
   public dayjs: Constructor<TDate>;
-
   public locale?: string;
-
   public formats: DateIOFormats;
 
   constructor({ locale, formats, instance }: Opts = {}) {
@@ -71,7 +67,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
     this.dayjs = withLocale(this.rawDayJsInstance, locale);
     this.locale = locale;
 
-    this.formats = { ...defaultFormats, ...formats };
+    this.formats = Object.assign({}, defaultFormats, formats);
   }
 
   public is12HourCycleInCurrentLocale = () => {
@@ -85,11 +81,11 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
 
   public getFormatHelperText = (format: string) => {
     // @see https://github.com/iamkun/dayjs/blob/dev/src/plugin/localizedFormat/index.js
-    const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?)|./g;
+    var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?)|./g;
     return format
       .match(localFormattingTokens)
       .map((token) => {
-        const firstCharacter = token[0];
+        var firstCharacter = token[0];
         if (firstCharacter === "L") {
           /* istanbul ignore next */
           return this.rawDayJsInstance.Ls[this.locale || "en"]?.formats[token] ?? token;
