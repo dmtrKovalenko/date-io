@@ -15,7 +15,7 @@ export interface DateIOFormats<TLibFormatToken = string> {
   month: TLibFormatToken;
   /** Short month format string @example "Jan" */
   monthShort: TLibFormatToken;
-  /** Short month format string @example "January 2018" */
+  /** Month with year format string @example "January 2018" */
   monthAndYear: TLibFormatToken;
   /** Month with date format string @example "January 1" */
   monthAndDate: TLibFormatToken;
