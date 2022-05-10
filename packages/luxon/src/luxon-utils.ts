@@ -282,6 +282,14 @@ export default class LuxonUtils implements IUtils<DateTime> {
     });
   };
 
+  public startOfYear = (value: DateTime) => {
+    return value.startOf("year");
+  };
+
+  public endOfYear = (value: DateTime) => {
+    return value.endOf("year");
+  };
+
   public startOfMonth = (value: DateTime) => {
     return value.startOf("month");
   };

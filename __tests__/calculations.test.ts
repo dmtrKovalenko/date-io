@@ -66,6 +66,18 @@ describe("DateTime calculations", () => {
     );
   });
 
+  utilsTest("startOfYear", (date, utils, lib) => {
+    expect(utils.formatByString(utils.startOfYear(date), formats.dateTime[lib])).toBe(
+      "2018-01-01 00:00"
+    );
+  });
+
+  utilsTest("endOfYear", (date, utils, lib) => {
+    expect(utils.formatByString(utils.endOfYear(date), formats.dateTime[lib])).toBe(
+      "2018-12-31 23:59"
+    );
+  });
+
   utilsTest("startOfMonth", (date, utils, lib) => {
     expect(utils.formatByString(utils.startOfMonth(date), formats.dateTime[lib])).toBe(
       "2018-10-01 00:00"

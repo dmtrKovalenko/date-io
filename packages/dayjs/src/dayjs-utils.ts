@@ -273,6 +273,14 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
     return ampm === "am" ? "AM" : "PM";
   };
 
+  public startOfYear = (date: Dayjs) => {
+    return date.clone().startOf("year") as TDate;
+  };
+
+  public endOfYear = (date: Dayjs) => {
+    return date.clone().endOf("year") as TDate;
+  };
+
   public startOfMonth = (date: Dayjs) => {
     return date.clone().startOf("month") as TDate;
   };

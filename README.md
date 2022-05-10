@@ -166,6 +166,8 @@ export interface IUtils<TDate> {
 
   isWithinRange(value: TDate, range: [TDate, TDate]): boolean;
 
+  startOfYear(value: TDate): TDate;
+  endOfYear(value: TDate): TDate;
   startOfMonth(value: TDate): TDate;
   endOfMonth(value: TDate): TDate;
   startOfWeek(value: TDate): TDate;

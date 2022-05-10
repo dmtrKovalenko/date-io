@@ -49,6 +49,22 @@ describe("Jalaali", () => {
     expect(jalaaliUtils.getWeekdays()).toEqual(["ش", "ی", "د", "س", "چ", "پ", "ج"]);
   });
 
+  it("Jalaali -- endOfYear", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.endOfYear(date).toISOString()).toEqual(
+      "2018-11-21T23:59:59.999Z"
+    );
+  });
+
+  it("Jalaali -- startOfYear", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.startOfYear(date).toISOString()).toEqual(
+      "2018-10-23T00:00:00.000Z"
+    );
+  });
+
   it("Jalaali -- endOfMonth", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 

@@ -301,6 +301,14 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     return datedate.isBefore(valuedate);
   }
 
+  startOfYear(date: Temporal) {
+    return Year.from(date).atMonth(1).atDay(1).atStartOfDay();
+  }
+
+  endOfYear(date: Temporal) {
+    return Year.from(date).atMonth(12).atEndOfMonth().atTime(LocalTime.MAX);
+  }
+
   startOfMonth(date: Temporal) {
     return YearMonth.from(date).atDay(1).atStartOfDay();
   }

@@ -103,6 +103,14 @@ export default class MomentUtils extends DefaultMomentUtils {
     return date.daysInMonth();
   };
 
+  public startOfYear = (date: Moment) => {
+    return date.clone().startOf("jYear");
+  };
+
+  public endOfYear = (date: Moment) => {
+    return date.clone().endOf("jYear");
+  };
+
   public startOfMonth = (date: Moment) => {
     return date.clone().startOf("jMonth");
   };
