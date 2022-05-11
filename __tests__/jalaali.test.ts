@@ -53,7 +53,7 @@ describe("Jalaali", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 
     expect(jalaaliUtils.endOfYear(date).toISOString()).toEqual(
-      "2018-11-21T23:59:59.999Z"
+      "2018-03-20T23:59:59.999Z"
     );
   });
 
@@ -61,7 +61,7 @@ describe("Jalaali", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 
     expect(jalaaliUtils.startOfYear(date).toISOString()).toEqual(
-      "2018-10-23T00:00:00.000Z"
+      "2018-03-21T00:00:00.000Z"
     );
   });
 
