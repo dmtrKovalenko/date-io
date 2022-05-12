@@ -267,6 +267,14 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return ampm === "am" ? "AM" : "PM"; // fallback for de, ru, ...etc
   };
 
+  public startOfYear = (date: Moment) => {
+    return date.clone().startOf("year");
+  };
+
+  public endOfYear = (date: Moment) => {
+    return date.clone().endOf("year");
+  };
+
   public startOfMonth = (date: Moment) => {
     return date.clone().startOf("month");
   };

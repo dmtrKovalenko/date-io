@@ -46,6 +46,22 @@ describe("Hijri", () => {
     expect(hijriiUtils.getWeekdays()).toEqual(["ح", "ن", "ث", "ر", "خ", "ج", "س"]);
   });
 
+  it("Hijri -- endOfYear", () => {
+    const date = hijriiUtils.date(TEST_TIMESTAMP);
+
+    expect(hijriiUtils.endOfYear(date).toISOString()).toEqual(
+      "2019-08-30T23:59:59.999Z"
+    );
+  });
+
+  it("Hijri -- startOfYear", () => {
+    const date = hijriiUtils.date(TEST_TIMESTAMP);
+
+    expect(hijriiUtils.startOfYear(date).toISOString()).toEqual(
+      "2018-09-11T00:00:00.000Z"
+    );
+  });
+
   it("Hijri -- endOfMonth", () => {
     const date = hijriiUtils.date(TEST_TIMESTAMP);
 

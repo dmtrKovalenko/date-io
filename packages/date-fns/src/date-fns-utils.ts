@@ -241,6 +241,14 @@ export default class DateFnsUtils implements IUtils<Date> {
     return isSameHour(value, comparing);
   };
 
+  public startOfYear = (value: Date) => {
+    return startOfYear(value);
+  };
+
+  public endOfYear = (value: Date) => {
+    return endOfYear(value);
+  };
+
   public startOfMonth = (value: Date) => {
     return startOfMonth(value);
   };
