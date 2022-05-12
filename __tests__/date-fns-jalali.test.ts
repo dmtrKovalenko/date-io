@@ -74,6 +74,18 @@ describe("DateFnsJalali", () => {
       );
     });
 
+    it("DateFnsJalali -- startOfYear", () => {
+      expect(utils.formatByString(utils.startOfYear(date), dateTimeFormat)).toBe(
+        "1397/01/01 00:00"
+      );
+    });
+
+    it("DateFnsJalali -- endOfYear", () => {
+      expect(utils.formatByString(utils.endOfYear(date), dateTimeFormat)).toBe(
+        "1397/12/29 23:59"
+      );
+    });
+
     it("DateFnsJalali -- startOfMonth", () => {
       expect(utils.formatByString(utils.startOfMonth(date), dateTimeFormat)).toBe(
         "1397/08/01 00:00"
