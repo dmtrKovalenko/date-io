@@ -162,11 +162,11 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   };
 
   public startOfDay = (date: TDate) => {
-    return date.clone().startOf("day") as TDate;
+    return date.startOf("day") as TDate;
   };
 
   public endOfDay = (date: TDate) => {
-    return date.clone().endOf("day") as TDate;
+    return date.endOf("day") as TDate;
   };
 
   public format = (date: Dayjs, formatKey: keyof DateIOFormats) => {
@@ -234,7 +234,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   };
 
   public setMinutes = (date: Dayjs, count: number) => {
-    return date.clone().set("minute", count) as TDate;
+    return date.set("minute", count) as TDate;
   };
 
   public getSeconds = (date: Dayjs) => {
@@ -242,7 +242,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   };
 
   public setSeconds = (date: Dayjs, count: number) => {
-    return date.clone().set("second", count) as TDate;
+    return date.set("second", count) as TDate;
   };
 
   public getMonth = (date: Dayjs) => {
@@ -282,31 +282,31 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   };
 
   public startOfMonth = (date: Dayjs) => {
-    return date.clone().startOf("month") as TDate;
+    return date.startOf("month") as TDate;
   };
 
   public endOfMonth = (date: Dayjs) => {
-    return date.clone().endOf("month") as TDate;
+    return date.endOf("month") as TDate;
   };
 
   public startOfWeek = (date: Dayjs) => {
-    return date.clone().startOf("week") as TDate;
+    return date.startOf("week") as TDate;
   };
 
   public endOfWeek = (date: Dayjs) => {
-    return date.clone().endOf("week") as TDate;
+    return date.endOf("week") as TDate;
   };
 
   public getNextMonth = (date: Dayjs) => {
-    return date.clone().add(1, "month") as TDate;
+    return date.add(1, "month") as TDate;
   };
 
   public getPreviousMonth = (date: Dayjs) => {
-    return date.clone().subtract(1, "month") as TDate;
+    return date.subtract(1, "month") as TDate;
   };
 
   public getMonthArray = (date: TDate) => {
-    const firstMonth = date.clone().startOf("year") as TDate;
+    const firstMonth = date.startOf("year") as TDate;
     const monthArray = [firstMonth];
 
     while (monthArray.length < 12) {
@@ -322,7 +322,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   };
 
   public setYear = (date: Dayjs, year: number) => {
-    return date.clone().set("year", year) as TDate;
+    return date.set("year", year) as TDate;
   };
 
   public mergeDateAndTime = (date: TDate, time: TDate) => {
@@ -345,8 +345,8 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   };
 
   public getWeekArray = (date: TDate) => {
-    const start = this.dayjs(date).clone().startOf("month").startOf("week") as TDate;
-    const end = this.dayjs(date).clone().endOf("month").endOf("week") as TDate;
+    const start = this.dayjs(date).startOf("month").startOf("week") as TDate;
+    const end = this.dayjs(date).endOf("month").endOf("week") as TDate;
 
     let count = 0;
     let current = start;
@@ -357,7 +357,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
       nestedWeeks[weekNumber] = nestedWeeks[weekNumber] || [];
       nestedWeeks[weekNumber].push(current);
 
-      current = current.clone().add(1, "day") as TDate;
+      current = current.add(1, "day") as TDate;
       count += 1;
     }
 
@@ -372,7 +372,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
     let current = startDate;
     while (current.isBefore(endDate)) {
       years.push(current as TDate);
-      current = current.clone().add(1, "year");
+      current = current.add(1, "year");
     }
 
     return years;
