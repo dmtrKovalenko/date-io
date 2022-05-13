@@ -1,6 +1,6 @@
 {
   "name": "@date-io/js-joda",
-  "version": "2.13.2",
+  "version": "2.14.0",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -22,7 +22,7 @@
     }
   },
   "dependencies": {
-    "@date-io/core": "^2.13.2"
+    "@date-io/core": "^2.14.0"
   },
   "devDependencies": {
     "@js-joda/core": "^3.2.0",
