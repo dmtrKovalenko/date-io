@@ -221,6 +221,12 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
       : (date.add(count, "month") as TDate);
   };
 
+  public addYears = (date: Dayjs, count: number) => {
+    return count < 0
+      ? (date.subtract(Math.abs(count), "year") as TDate)
+      : (date.add(count, "year") as TDate);
+  };
+
   public setMonth = (date: Dayjs, count: number) => {
     return date.set("month", count) as TDate;
   };

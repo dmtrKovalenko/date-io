@@ -54,6 +54,11 @@ describe("DateTime calculations", () => {
     expect(utils.format(utils.addMonths(date, -2), "monthAndYear")).toBe("August 2018");
   });
 
+  utilsTest("addYears", (date, utils, lib) => {
+    expect(utils.format(utils.addYears(date, 2), "year")).toBe("2020");
+    expect(utils.format(utils.addYears(date, -2), "year")).toBe("2016");
+  });
+
   utilsTest("startOfDay", (date, utils, lib) => {
     expect(utils.formatByString(utils.startOfDay(date), formats.dateTime[lib])).toBe(
       "2018-10-30 00:00"

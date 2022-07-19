@@ -161,6 +161,10 @@ export default class DateFnsUtils implements IUtils<Date> {
     return addMonths(value, count);
   };
 
+  public addYears = (value: Date, count: number) => {
+    return addYears(value, count);
+  };
+
   public isValid = (value: any) => {
     return isValid(this.date(value));
   };

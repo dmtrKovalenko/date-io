@@ -129,6 +129,10 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return date.plus({ months: count });
   };
 
+  public addYears = (date: DateTime, count: number) => {
+    return date.plus({ years: count });
+  };
+
   public isValid = (value: any) => {
     if (value instanceof DateTime) {
       return value.isValid;

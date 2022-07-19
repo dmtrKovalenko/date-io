@@ -62,6 +62,11 @@ describe("DateFnsJalali", () => {
       expect(utils.format(utils.addMonths(date, -2), "monthAndYear")).toBe("شهریور 1397");
     });
 
+    it("DateFnsJalali -- addYears", () => {
+      expect(utils.format(utils.addYears(date, 2), "year")).toBe("1399");
+      expect(utils.format(utils.addYears(date, -2), "year")).toBe("1395");
+    });
+
     it("DateFnsJalali -- startOfDay", () => {
       expect(utils.formatByString(utils.startOfDay(date), dateTimeFormat)).toBe(
         "1397/08/08 00:00"
