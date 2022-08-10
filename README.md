@@ -179,6 +179,7 @@ export interface IUtils<TDate> {
   addDays(value: TDate, count: number): TDate;
   addWeeks(value: TDate, count: number): TDate;
   addMonths(value: TDate, count: number): TDate;
+  addYears(value: TDate, count: number): TDate;
 
   startOfDay(value: TDate): TDate;
   endOfDay(value: TDate): TDate;

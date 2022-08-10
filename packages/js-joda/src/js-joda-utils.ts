@@ -509,6 +509,10 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     return value.plus(count, ChronoUnit.MONTHS);
   }
 
+  addYears(value: Temporal, count: number): Temporal {
+    return value.plus(count, ChronoUnit.YEARS);
+  }
+
   addSeconds(value: Temporal, count: number): Temporal {
     return value.plus(count, ChronoUnit.SECONDS);
   }
