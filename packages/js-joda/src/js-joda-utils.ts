@@ -397,6 +397,14 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     return months;
   }
 
+  getDate(date: Temporal): number {
+    return date.get(ChronoField.DAY_OF_MONTH);
+  }
+
+  setDate(date: Temporal, count: number): Temporal {
+    return date.with(ChronoField.DAY_OF_MONTH, count);
+  }
+
   getYear(date: Temporal): number {
     return date.get(ChronoField.YEAR);
   }

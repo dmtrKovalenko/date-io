@@ -325,6 +325,14 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.clone().set("year", year);
   };
 
+  public getDate = (date: Moment) => {
+    return date.get("date");
+  };
+
+  public setDate = (date: Moment, year: number) => {
+    return date.clone().set("date", year);
+  };
+
   public mergeDateAndTime = (date: Moment, time: Moment) => {
     return date.hour(time.hour()).minute(time.minute()).second(time.second());
   };

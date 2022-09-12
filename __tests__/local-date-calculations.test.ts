@@ -123,9 +123,12 @@ describe("DateTime calculations", () => {
     );
   });
 
-
   localDateutilsTest("getYear", (date, utils) => {
     expect(utils.getYear(date)).toBe(2018);
+  });
+
+  localDateutilsTest("getDate", (date, utils) => {
+    expect(utils.getDate(date)).toBe(30);
   });
 
   localDateutilsTest("getMonth", (date, utils) => {
@@ -150,6 +153,14 @@ describe("DateTime calculations", () => {
       formats.date[lib]
     );
     expect(updatedTime).toBe("2011-10-30");
+  });
+
+  localDateutilsTest("setYear", (date, utils, lib) => {
+    const updatedTime = utils.formatByString(
+      utils.setDate(date, 15),
+      formats.date[lib]
+    );
+    expect(updatedTime).toBe("2018-10-15");
   });
 
   localDateutilsTest("isAfter", (date, utils, lib) => {

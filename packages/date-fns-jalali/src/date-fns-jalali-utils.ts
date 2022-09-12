@@ -24,6 +24,7 @@ import getHours from "date-fns-jalali/getHours";
 import getSeconds from "date-fns-jalali/getSeconds";
 import getYear from "date-fns-jalali/getYear";
 import getMonth from "date-fns-jalali/getMonth";
+import getDate from "date-fns-jalali/getDate";
 import getDay from "date-fns-jalali/getDay";
 import getDaysInMonth from "date-fns-jalali/getDaysInMonth";
 import getMinutes from "date-fns-jalali/getMinutes";
@@ -37,6 +38,7 @@ import isSameHour from "date-fns-jalali/isSameHour";
 import isValid from "date-fns-jalali/isValid";
 import dateFnsParse from "date-fns-jalali/parse";
 import parseISO from "date-fns-jalali/parseISO";
+import setDate from "date-fns-jalali/setDate";
 import setHours from "date-fns-jalali/setHours";
 import setMinutes from "date-fns-jalali/setMinutes";
 import setMonth from "date-fns-jalali/setMonth";
@@ -282,6 +284,14 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
 
   public setYear = (value: Date, count: number) => {
     return setYear(value, count);
+  };
+
+  public getDate = (value: Date) => {
+    return getDate(value);
+  };
+
+  public setDate = (value: Date, count: number) => {
+    return setDate(value, count);
   };
 
   public date = (value?: string | number | Date) => {

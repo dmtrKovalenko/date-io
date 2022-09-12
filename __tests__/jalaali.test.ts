@@ -28,6 +28,12 @@ describe("Jalaali", () => {
     expect(jalaaliUtils.getYear(date)).toBe(1397);
   });
 
+  it("Should proper work with jalaali day in month", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.getDate(date)).toBe(8);
+  });
+
   it("Should proper work with jalaali month", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 

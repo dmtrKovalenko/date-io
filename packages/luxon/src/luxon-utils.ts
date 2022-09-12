@@ -278,6 +278,14 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return value.set({ year });
   };
 
+  public getDate = (value: DateTime) => {
+    return value.get("day");
+  };
+
+  public setDate = (value: DateTime, day: number) => {
+    return value.set({ day });
+  };
+
   public mergeDateAndTime = (date: DateTime, time: DateTime) => {
     return date.set({
       second: time.second,

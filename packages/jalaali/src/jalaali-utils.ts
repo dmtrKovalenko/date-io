@@ -135,6 +135,14 @@ export default class MomentUtils extends DefaultMomentUtils {
     return date.clone().jYear(year);
   };
 
+  public getDate = (date: Moment) => {
+    return date.jDate();
+  };
+
+  public setDate = (date: Moment, count: number) => {
+    return date.clone().jDate(count);
+  };
+
   public getMeridiemText = (ampm: "am" | "pm") => {
     return ampm === "am"
       ? this.toJMoment().hours(2).format("A")

@@ -140,6 +140,9 @@ export interface IUtils<TDate extends ExtendableDateType> {
   getSeconds(value: TDate): number;
   setSeconds(value: TDate, count: number): TDate;
 
+  getDate(value: TDate): number;
+  setDate(value: TDate, count: number): TDate;
+
   getMonth(value: TDate): number;
   getDaysInMonth(value: TDate): number;
   setMonth(value: TDate, count: number): TDate;
