@@ -164,6 +164,10 @@ describe("DateFnsJalali", () => {
       expect(utils.getYear(date)).toBe(1397);
     });
 
+    it("DateFnsJalali -- getDate", () => {
+      expect(utils.getDate(date)).toBe(8);
+    });
+
     it("DateFnsJalali -- getMonth", () => {
       expect(utils.getMonth(date)).toBe(7);
     });
@@ -201,6 +205,11 @@ describe("DateFnsJalali", () => {
     it("DateFnsJalali -- setYear", () => {
       const updatedTime = utils.formatByString(utils.setYear(date, 1399), dateTimeFormat);
       expect(updatedTime).toBe("1399/08/08 11:44");
+    });
+
+    it("DateFnsJalali -- setDate", () => {
+      const updatedTime = utils.formatByString(utils.setDate(date, 12), dateTimeFormat);
+      expect(updatedTime).toBe("1397/08/12 11:44");
     });
 
     it("DateFnsJalali -- setSeconds", () => {

@@ -19,7 +19,12 @@ import endOfDay from "date-fns/endOfDay";
 import endOfWeek from "date-fns/endOfWeek";
 import endOfYear from "date-fns/endOfYear";
 import format from "date-fns/format";
+import getDate from "date-fns/getDate";
+import getDay from "date-fns/getDay";
+import getDaysInMonth from "date-fns/getDaysInMonth";
 import getHours from "date-fns/getHours";
+import getMinutes from "date-fns/getMinutes";
+import getMonth from "date-fns/getMonth";
 import getSeconds from "date-fns/getSeconds";
 import getYear from "date-fns/getYear";
 import isAfter from "date-fns/isAfter";
@@ -31,11 +36,10 @@ import isSameMonth from "date-fns/isSameMonth";
 import isSameHour from "date-fns/isSameHour";
 import isValid from "date-fns/isValid";
 import dateFnsParse from "date-fns/parse";
+import setDate from "date-fns/setDate";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
 import setMonth from "date-fns/setMonth";
-import getDay from "date-fns/getDay";
-import getDaysInMonth from "date-fns/getDaysInMonth";
 import setSeconds from "date-fns/setSeconds";
 import setYear from "date-fns/setYear";
 import startOfDay from "date-fns/startOfDay";
@@ -346,11 +350,19 @@ export default class DateFnsUtils implements IUtils<Date> {
   };
 
   public getMinutes = (date: Date) => {
-    return date.getMinutes();
+    return getMinutes(date);
+  };
+
+  public getDate = (date: Date) => {
+    return getDate(date);
+  };
+
+  public setDate = (date: Date, count: number) => {
+    return setDate(date, count);
   };
 
   public getMonth = (date: Date) => {
-    return date.getMonth();
+    return getMonth(date);
   };
 
   public getDaysInMonth = (date: Date) => {

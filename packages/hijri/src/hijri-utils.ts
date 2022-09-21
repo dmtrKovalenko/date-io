@@ -136,6 +136,14 @@ export default class MomentUtils extends DefaultMomentUtils {
     return date.clone().iYear(year);
   };
 
+  public getDate = (date: Moment) => {
+    return date.iDate();
+  };
+
+  public setDate = (date: Moment, year: number) => {
+    return date.clone().iDate(year);
+  };
+
   public getMeridiemText = (ampm: "am" | "pm") => {
     return ampm === "am"
       ? this.toIMoment().hours(2).format("A")

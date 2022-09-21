@@ -165,6 +165,10 @@ describe("DateTime calculations", () => {
     expect(utils.getSeconds(date)).toBe(0);
   });
 
+  utilsTest("getDate", (date, utils) => {
+    expect(utils.getDate(date)).toBe(30);
+  });
+
   utilsTest("getYear", (date, utils) => {
     expect(utils.getYear(date)).toBe(2018);
   });
@@ -215,6 +219,14 @@ describe("DateTime calculations", () => {
       formats.dateTime[lib]
     );
     expect(updatedTime).toBe("2011-10-30 11:44");
+  });
+
+  utilsTest("setDate", (date, utils, lib) => {
+    const updatedTime = utils.formatByString(
+      utils.setDate(date, 15),
+      formats.dateTime[lib]
+    );
+    expect(updatedTime).toBe("2018-10-15 11:44");
   });
 
   utilsTest("setSeconds", (date, utils) => {

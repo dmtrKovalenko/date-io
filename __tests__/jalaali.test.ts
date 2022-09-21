@@ -28,6 +28,12 @@ describe("Jalaali", () => {
     expect(jalaaliUtils.getYear(date)).toBe(1397);
   });
 
+  it("Should proper work with jalaali day in month", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.getDate(date)).toBe(8);
+  });
+
   it("Should proper work with jalaali month", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 
@@ -47,6 +53,46 @@ describe("Jalaali", () => {
 
   it("Should render weekdays", () => {
     expect(jalaaliUtils.getWeekdays()).toEqual(["ش", "ی", "د", "س", "چ", "پ", "ج"]);
+  });
+
+  it("Jalaali -- getYear", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.getYear(date)).toEqual(
+      1397
+    );
+  });
+
+  it("Jalaali -- setYear", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.setYear(date, 1398).toISOString()).toEqual(
+      "2019-10-30T11:44:00.000Z"
+    );
+  });
+
+  it("Jalaali -- getDate", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.getDate(date)).toEqual(
+      8
+    );
+  });
+
+  it("Jalaali -- setDate", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.setDate(date, 9).toISOString()).toEqual(
+      "2018-10-31T11:44:00.000Z"
+    );
+  });
+
+  it("Jalaali -- getYear", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.getYear(date)).toEqual(
+      1397
+    );
   });
 
   it("Jalaali -- endOfYear", () => {
