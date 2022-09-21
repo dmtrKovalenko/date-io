@@ -1,6 +1,6 @@
 {
   "name": "@date-io/luxon",
-  "version": "2.15.0",
+  "version": "2.16.0",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
@@ -17,7 +17,7 @@
     }
   },
   "dependencies": {
-    "@date-io/core": "^2.15.0"
+    "@date-io/core": "^2.16.0"
   },
   "devDependencies": {
     "@types/luxon": "^1.27.1",
