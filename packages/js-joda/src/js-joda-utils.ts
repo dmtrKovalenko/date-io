@@ -414,7 +414,9 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   }
 
   mergeDateAndTime(date: Temporal, time: Temporal): Temporal {
-    return LocalDate.from(date).atTime(LocalTime.from(time));
+    var qtime = time.query(TemporalQueries.localTime());
+    if (qtime == null) return date;
+    else return LocalDate.from(date).atTime(LocalTime.from(time));
   }
 
   getWeekdays(): string[] {
