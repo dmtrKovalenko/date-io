@@ -229,6 +229,7 @@ describe("Jalaali", () => {
 
   test.each`
     format                   | expected
+    ${"keyboardDate"}        | ${"۱۳۹۸/۱۰/۱۱"}
     ${"fullDate"}            | ${"۱۳۹۸، دی ۱م"}
     ${"fullDateWithWeekday"} | ${"چهارشنبه ۱م دی ۱۳۹۸"}
     ${"normalDate"}          | ${"چهارشنبه، ۱۱ دی"}
