@@ -34,7 +34,7 @@ const defaultFormats: DateIOFormats = {
   fullTime24h: "HH:mm",
   hours12h: "hh",
   hours24h: "HH",
-  keyboardDate: "jYYYY/jMM/dd",
+  keyboardDate: "jYYYY/jMM/jDD",
   keyboardDateTime: "jYYYY/jMM/jDD LT",
   keyboardDateTime12h: "jYYYY/jMM/jDD hh:mm A",
   keyboardDateTime24h: "jYYYY/jMM/jDD HH:mm",

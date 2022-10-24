@@ -222,6 +222,7 @@ describe("Hijri", () => {
 
   test.each`
     format                   | expected
+    ${"keyboardDate"}        | ${"١٤٤١/٠٥/٠٦"}
     ${"fullDate"}            | ${"١٤٤١، جمادى الأولى ١"}
     ${"fullDateWithWeekday"} | ${"١٤٤١، جمادى الأولى ١، الأربعاء"}
     ${"normalDate"}          | ${"الأربعاء، ٦ جمادى ١"}
