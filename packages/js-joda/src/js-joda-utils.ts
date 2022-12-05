@@ -231,6 +231,10 @@ export default class JsJodaUtils implements IUtils<Temporal> {
         case "quarters":
           return Math.floor(ChronoUnit.MONTHS.between(comparingDate, value) / 4);
       }
+    } else if (value instanceof LocalDate && comparingDate instanceof LocalDate && !chronoUnit.isDateBased()) {
+      // Convert days using the estimated duration of one day.
+      const days = ChronoUnit.DAYS.between(comparingDate, value);
+      return days * ChronoUnit.DAYS.duration().get(chronoUnit);
     } else {
       return chronoUnit.between(comparingDate, value);
     }
