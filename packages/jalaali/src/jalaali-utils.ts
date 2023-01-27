@@ -112,7 +112,7 @@ export default class MomentUtils extends DefaultMomentUtils {
   };
 
   public getDaysInMonth = (date: Moment) => {
-    return date.daysInMonth();
+    return this.moment.jDaysInMonth(date.jYear(), date.jMonth());
   };
 
   public startOfYear = (date: Moment) => {
@@ -217,5 +217,40 @@ export default class MomentUtils extends DefaultMomentUtils {
     }
 
     return years;
+  };
+  public addMonths = (date: Moment, count: number) => {
+    return count < 0
+      ? date.clone().subtract(Math.abs(count), "jMonth")
+      : date.clone().add(count, "jMonth");
+  };
+
+  public addYears = (date: Moment, count: number) => {
+    return count < 0
+      ? date.clone().subtract(Math.abs(count), "jYear")
+      : date.clone().add(count, "jYear");
+  };
+
+  public isSameMonth = (date: Moment, comparing: Moment) => {
+    return date.jYear() === comparing.jYear() && date.jMonth() === comparing.jMonth();
+  };
+
+  public isSameYear = (date: Moment, comparing: Moment) => {
+    return date.jYear() === comparing.jYear();
+  };
+
+  public setMonth = (date: Moment, count: number) => {
+    return date.clone().jMonth(count);
+  };
+
+  public getMonthArray = (date: Moment) => {
+    const firstMonth = date.clone().startOf("jYear");
+    const monthArray = [firstMonth];
+
+    while (monthArray.length < 12) {
+      const prevMonth = monthArray[monthArray.length - 1];
+      monthArray.push(this.getNextMonth(prevMonth));
+    }
+
+    return monthArray;
   };
 }
