@@ -57,7 +57,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return DateTime.fromJSDate(new Date(value), { locale: this.locale });
     }
 
-    if (value instanceof DateTime) {
+    if (DateTime.isDateTime(value)) {
       return value;
     }
 
@@ -134,7 +134,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
   };
 
   public isValid = (value: any) => {
-    if (value instanceof DateTime) {
+    if (DateTime.isDateTime(value)) {
       return value.isValid;
     }
 
