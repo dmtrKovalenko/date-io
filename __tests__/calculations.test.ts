@@ -348,6 +348,9 @@ describe("DateTime calculations", () => {
     expect(utils.getDiff(utils.date("2018-10-30"), "2018-10-29", "seconds")).toBe(
       24 * 3600
     );
+    expect(utils.getDiff(utils.date("2018-10-30"), "2018-10-29", "milliseconds")).toBe(
+      24 * 3600 * 1000
+    );
   });
 
   utilsTest("mergeDateAndTime", (date, utils, lib) => {
