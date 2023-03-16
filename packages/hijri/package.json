@@ -6,7 +6,8 @@
   "module": "build/index.esm.js",
   "typings": "build/index.d.ts",
   "peerDependencies": {
-    "moment-hijri": "^2.1.2"
+    "moment-hijri": "^2.1.2",
+    "tslib": "^2.5.0"
   },
   "peerDependenciesMeta": {
     "moment-hijri": {
