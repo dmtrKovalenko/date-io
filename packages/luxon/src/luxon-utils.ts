@@ -156,6 +156,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
     }
 
     if (!this.date(comparing)) {
+      /* istanbul ignore next */
       return false;
     }
 

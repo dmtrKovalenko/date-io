@@ -61,14 +61,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     // @see https://github.com/moment/moment/blob/develop/src/lib/format/format.js#L6
     const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})|./g;
 
-    let localFormat = format.match(localFormattingTokens);
-    if (!localFormat) {
-      return "";
-    }
-
     return (
-      localFormat
-        .map((token) => {
+      format
+        .match(localFormattingTokens)
+        ?.map((token) => {
           const firstCharacter = token[0];
           if (firstCharacter === "L" || firstCharacter === ";") {
             return this.moment
@@ -80,7 +76,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
         })
         .join("")
         .replace(/a/gi, "(a|p)m")
-        .toLocaleLowerCase() ?? ""
+        .toLocaleLowerCase() ?? format
     );
   };
 

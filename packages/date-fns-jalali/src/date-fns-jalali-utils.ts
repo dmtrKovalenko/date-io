@@ -129,13 +129,10 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
     const longFormatRegexp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
     const locale = this.locale || defaultLocale;
 
-    let localFormat = format.match(longFormatRegexp);
-    if (!localFormat) {
-      return "";
-    }
     return (
-      localFormat
-        .map((token) => {
+      format
+        .match(longFormatRegexp)
+        ?.map((token) => {
           const firstCharacter = token[0];
           if (firstCharacter === "p" || firstCharacter === "P") {
             const longFormatter = longFormatters[firstCharacter];
@@ -145,7 +142,7 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
         })
         .join("")
         .replace(/(aaa|aa|a)/g, "(a|p)m")
-        .toLocaleLowerCase() ?? ""
+        .toLocaleLowerCase() ?? format
     );
   };
 

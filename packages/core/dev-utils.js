@@ -16,7 +16,10 @@ exports.createRollupConfig = (typescript) => {
         format: "esm",
         exports: "auto",
       },
-      plugins: [nodeResolve({ extensions }), typescriptPlugin({ typescript, target: 'ES6', })],
+      plugins: [
+        nodeResolve({ extensions }),
+        typescriptPlugin({ typescript, target: "ES6" }),
+      ],
     },
     {
       external,
@@ -26,7 +29,10 @@ exports.createRollupConfig = (typescript) => {
         format: "cjs",
         exports: "auto",
       },
-      plugins: [nodeResolve({ extensions }), typescriptPlugin({ typescript, target: 'ES6', })],
+      plugins: [
+        nodeResolve({ extensions }),
+        typescriptPlugin({ typescript, target: "ES6" }),
+      ],
     },
   ];
 };

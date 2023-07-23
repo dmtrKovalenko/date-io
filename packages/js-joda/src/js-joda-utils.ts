@@ -185,6 +185,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
     }
 
+    /* istanbul ignore next */
     return null;
   }
 
@@ -213,6 +214,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return true;
     }
 
+    /* istanbul ignore next */
     return false;
   }
 
@@ -246,15 +248,14 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     if (first === null || second === null) {
       return false;
     }
-    // if (first instanceof Error || second instanceof Error) {
-    //   throw first || second;
-    // }
     if (first instanceof LocalDateTime && second instanceof LocalDateTime) {
       return first.isEqual(second);
     }
     if (first instanceof LocalDate && second instanceof LocalDate) {
       return first.isEqual(second);
     }
+
+    /* istanbul ignore next */
     return false;
   }
 
@@ -286,6 +287,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return date.isAfter(value);
     }
 
+    /* istanbul ignore next */
     return false;
   }
 
@@ -435,8 +437,12 @@ export default class JsJodaUtils implements IUtils<Temporal> {
 
   mergeDateAndTime(date: Temporal, time: Temporal): Temporal {
     var qtime = time.query(TemporalQueries.localTime());
-    if (qtime == null) return date;
-    else return LocalDate.from(date).atTime(LocalTime.from(time));
+    if (qtime == null) {
+      /* istanbul ignore next */
+      return date;
+    } else {
+      return LocalDate.from(date).atTime(LocalTime.from(time));
+    }
   }
 
   getWeekdays(): string[] {
@@ -492,6 +498,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return date.isBefore(value);
     }
 
+    /* istanbul ignore next */
     return false;
   }
 

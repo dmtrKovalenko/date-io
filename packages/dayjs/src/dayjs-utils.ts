@@ -82,14 +82,10 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
     // @see https://github.com/iamkun/dayjs/blob/dev/src/plugin/localizedFormat/index.js
     var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?)|./g;
 
-    let localFormat = format.match(localFormattingTokens);
-    if (!localFormat) {
-      return "";
-    }
-
     return (
-      localFormat
-        .map((token) => {
+      format
+        .match(localFormattingTokens)
+        ?.map((token) => {
           var firstCharacter = token[0];
           if (firstCharacter === "L") {
             /* istanbul ignore next */
@@ -103,7 +99,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
         })
         .join("")
         .replace(/a/gi, "(a|p)m")
-        .toLocaleLowerCase() ?? ""
+        .toLocaleLowerCase() ?? format
     );
   };
 
