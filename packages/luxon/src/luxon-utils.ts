@@ -349,7 +349,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
   };
 
   public getWeekdays = () => {
-    return Info.weekdaysFormat("narrow", { locale: this.locale });
+    return Info.weekdaysFormat("short", { locale: this.locale });
   };
 
   public getWeekArray = (date: DateTime) => {
