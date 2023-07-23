@@ -60,21 +60,24 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   public getFormatHelperText = (format: string) => {
     // @see https://github.com/moment/moment/blob/develop/src/lib/format/format.js#L6
     const localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})|./g;
-    return format
-      .match(localFormattingTokens)
-      .map((token) => {
-        const firstCharacter = token[0];
-        if (firstCharacter === "L" || firstCharacter === ";") {
-          return this.moment
-            .localeData(this.getCurrentLocaleCode())
-            .longDateFormat(token as LongDateFormatKey);
-        }
 
-        return token;
-      })
-      .join("")
-      .replace(/a/gi, "(a|p)m")
-      .toLocaleLowerCase();
+    return (
+      format
+        .match(localFormattingTokens)
+        ?.map((token) => {
+          const firstCharacter = token[0];
+          if (firstCharacter === "L" || firstCharacter === ";") {
+            return this.moment
+              .localeData(this.getCurrentLocaleCode())
+              .longDateFormat(token as LongDateFormatKey);
+          }
+
+          return token;
+        })
+        .join("")
+        .replace(/a/gi, "(a|p)m")
+        .toLocaleLowerCase() ?? format
+    );
   };
 
   public getCurrentLocaleCode = () => {
@@ -107,7 +110,9 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     }
 
     const moment = this.moment(value);
-    moment.locale(this.locale);
+    if (this.locale) {
+      moment.locale(this.locale);
+    }
 
     return moment;
   };
@@ -125,6 +130,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   };
 
   public getDiff = (date: Moment, comparing: Moment | string, unit?: Unit) => {
+    if (!this.moment(comparing).isValid()) {
+      return 0;
+    }
+
     return date.diff(comparing, unit);
   };
 
@@ -174,7 +183,9 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
   public formatByString = (date: Moment, formatString: string) => {
     const clonedDate = date.clone();
-    clonedDate.locale(this.locale);
+    if (this.locale) {
+      clonedDate.locale(this.locale);
+    }
     return clonedDate.format(formatString);
   };
 

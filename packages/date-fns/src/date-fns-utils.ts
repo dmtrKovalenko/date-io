@@ -51,6 +51,7 @@ import parseISO from "date-fns/parseISO";
 import formatISO from "date-fns/formatISO";
 import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 import isWithinInterval from "date-fns/isWithinInterval";
+// @ts-ignore
 import longFormatters from "date-fns/_lib/format/longFormatters";
 import defaultLocale from "date-fns/locale/en-US";
 
@@ -103,7 +104,7 @@ export default class DateFnsUtils implements IUtils<Date> {
   // strict signature and delegate to the more lenient signature. Otherwise, we have downstream type errors upon usage.
   public is12HourCycleInCurrentLocale = () => {
     if (this.locale) {
-      return /a/.test(this.locale.formatLong.time());
+      return /a/.test(this.locale.formatLong?.time());
     }
 
     // By default date-fns is using en-US locale with am/pm enabled
@@ -114,19 +115,22 @@ export default class DateFnsUtils implements IUtils<Date> {
     // @see https://github.com/date-fns/date-fns/blob/master/src/format/index.js#L31
     const longFormatRegexp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
     const locale = this.locale || defaultLocale;
-    return format
-      .match(longFormatRegexp)
-      .map((token) => {
-        const firstCharacter = token[0];
-        if (firstCharacter === "p" || firstCharacter === "P") {
-          const longFormatter = longFormatters[firstCharacter];
-          return longFormatter(token, locale.formatLong, {});
-        }
-        return token;
-      })
-      .join("")
-      .replace(/(aaa|aa|a)/g, "(a|p)m")
-      .toLocaleLowerCase();
+
+    return (
+      format
+        .match(longFormatRegexp)
+        ?.map((token) => {
+          const firstCharacter = token[0];
+          if (firstCharacter === "p" || firstCharacter === "P") {
+            const longFormatter = longFormatters[firstCharacter];
+            return longFormatter(token, locale.formatLong, {});
+          }
+          return token;
+        })
+        .join("")
+        .replace(/(aaa|aa|a)/g, "(a|p)m")
+        .toLocaleLowerCase() ?? format
+    );
   };
 
   public parseISO = (isoString: string) => {
@@ -174,25 +178,30 @@ export default class DateFnsUtils implements IUtils<Date> {
   };
 
   public getDiff = (value: Date, comparing: Date | string, unit?: Unit) => {
+    // we output 0 if the compare date is string and parsing is not valid
+    const dateToCompare = this.date(comparing) ?? value;
+    if (!this.isValid(dateToCompare)) {
+      return 0;
+    }
     switch (unit) {
       case "years":
-        return differenceInYears(value, this.date(comparing));
+        return differenceInYears(value, dateToCompare);
       case "quarters":
-        return differenceInQuarters(value, this.date(comparing));
+        return differenceInQuarters(value, dateToCompare);
       case "months":
-        return differenceInMonths(value, this.date(comparing));
+        return differenceInMonths(value, dateToCompare);
       case "weeks":
-        return differenceInWeeks(value, this.date(comparing));
+        return differenceInWeeks(value, dateToCompare);
       case "days":
-        return differenceInDays(value, this.date(comparing));
+        return differenceInDays(value, dateToCompare);
       case "hours":
-        return differenceInHours(value, this.date(comparing));
+        return differenceInHours(value, dateToCompare);
       case "minutes":
-        return differenceInMinutes(value, this.date(comparing));
+        return differenceInMinutes(value, dateToCompare);
       case "seconds":
-        return differenceInSeconds(value, this.date(comparing));
+        return differenceInSeconds(value, dateToCompare);
       default: {
-        return differenceInMilliseconds(value, this.date(comparing));
+        return differenceInMilliseconds(value, dateToCompare);
       }
     }
   };

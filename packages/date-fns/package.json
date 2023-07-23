@@ -43,7 +43,7 @@
   "devDependencies": {
     "date-fns": "2.16.1",
     "rollup": "^2.0.2",
-    "typescript": "^3.7.2"
+    "typescript": "^5.0.0"
   },
   "gitHead": "687eba751bd706e7d704a39a7caa3e0afbfa40aa"
 }

@@ -1,5 +1,6 @@
 import Moment from "moment";
 import jMoment from "moment-jalaali";
+// @ts-ignore
 import DefaultMomentUtils from "@date-io/moment";
 import { DateIOFormats } from "@date-io/core/IUtils";
 
@@ -164,7 +165,12 @@ export default class MomentUtils extends DefaultMomentUtils {
   };
 
   formatNumber = (num: string) => {
-    return num.replace(/\d/g, (match) => symbolMap[match]).replace(/,/g, "،");
+    return (
+      num
+        // safe cast because we are matching only digits
+        .replace(/\d/g, (match) => symbolMap[match as unknown as keyof typeof symbolMap])
+        .replace(/,/g, "،")
+    );
   };
 
   public getWeekArray = (date: Moment) => {

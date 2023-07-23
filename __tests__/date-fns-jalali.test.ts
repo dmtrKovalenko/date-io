@@ -517,6 +517,8 @@ describe("DateFnsJalali", () => {
       expect(utils.getFormatHelperText(utils.formats.keyboardDateTime12h)).toBe(
         "yyyy/mm/dd hh:mm (a|p)m"
       );
+
+      expect(utils.getFormatHelperText("testtest")).toBe("testtest");
     });
   });
 });
