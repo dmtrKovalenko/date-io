@@ -144,6 +144,14 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return date.isBefore(value, "day");
   };
 
+  public isBeforeMonth = (date: Moment, value: Moment) => {
+    return date.isBefore(value, "month");
+  };
+
+  public isAfterMonth = (date: Moment, value: Moment) => {
+    return date.isAfter(value, "month");
+  };
+
   public isBeforeYear = (date: Moment, value: Moment) => {
     return date.isBefore(value, "year");
   };

@@ -234,6 +234,20 @@ describe("DateFnsJalali", () => {
     });
 
     it("DateFnsJalali -- isBeforeDay", () => {
+      const previousMonth = utils.addMonths(date, -1);
+
+      expect(utils.isBeforeMonth(date, previousMonth)).toBeFalsy();
+      expect(utils.isBeforeMonth(previousMonth, date)).toBeTruthy();
+    });
+
+    it("DateFnsJalali -- isAfterMonth", () => {
+      const nextMonth = utils.addMonths(date, 1);
+
+      expect(utils.isAfterMonth(nextMonth, date)).toBeTruthy();
+      expect(utils.isAfterMonth(date, nextMonth)).toBeFalsy();
+    });
+
+    it("DateFnsJalali -- isBeforeMonth", () => {
       const previousDay = utils.addDays(date, -1);
 
       expect(utils.isBeforeDay(date, previousDay)).toBeFalsy();
@@ -335,7 +349,7 @@ describe("DateFnsJalali", () => {
     it("DateFnsJalali -- parseISO", () => {
       const parsedDate = utils.parseISO(TEST_TIMESTAMP);
 
-      expect(utils.toISO(parsedDate)).toEqual(TEST_TIMESTAMP.replace(".000Z", "Z"))
+      expect(utils.toISO(parsedDate)).toEqual(TEST_TIMESTAMP.replace(".000Z", "Z"));
     });
 
     it("DateFnsJalali -- isNull", () => {

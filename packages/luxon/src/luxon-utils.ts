@@ -192,6 +192,16 @@ export default class LuxonUtils implements IUtils<DateTime> {
     return diff.days! > 0;
   };
 
+  public isBeforeMonth = (value: DateTime, comparing: DateTime) => {
+    const diff = value.diff(comparing.startOf("month"), "months").toObject();
+    return diff.months! < 0;
+  };
+
+  public isAfterMonth = (value: DateTime, comparing: DateTime) => {
+    const diff = value.diff(comparing.startOf("month"), "months").toObject();
+    return diff.months! > 0;
+  };
+
   public isBeforeYear = (value: DateTime, comparing: DateTime) => {
     const diff = value.diff(comparing.startOf("year"), "years").toObject();
     return diff.years! < 0;
@@ -339,7 +349,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
   };
 
   public getWeekdays = () => {
-    return Info.weekdaysFormat("narrow", { locale: this.locale });
+    return Info.weekdaysFormat("short", { locale: this.locale });
   };
 
   public getWeekArray = (date: DateTime) => {

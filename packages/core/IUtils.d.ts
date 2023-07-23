@@ -101,11 +101,13 @@ export interface IUtils<TDate extends ExtendableDateType> {
 
   isAfter(value: TDate, comparing: TDate): boolean;
   isAfterDay(value: TDate, comparing: TDate): boolean;
+  isAfterMonth(value: TDate, comparing: TDate): boolean;
   isAfterYear(value: TDate, comparing: TDate): boolean;
 
-  isBeforeDay(value: TDate, comparing: TDate): boolean;
-  isBeforeYear(value: TDate, comparing: TDate): boolean;
   isBefore(value: TDate, comparing: TDate): boolean;
+  isBeforeDay(value: TDate, comparing: TDate): boolean;
+  isBeforeMonth(value: TDate, comparing: TDate): boolean;
+  isBeforeYear(value: TDate, comparing: TDate): boolean;
 
   isWithinRange(value: TDate, range: [TDate, TDate]): boolean;
 

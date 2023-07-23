@@ -108,17 +108,22 @@ describe("DateTime calculations", () => {
   });
 
   utilsTest("startOfWeekNonISO", (date, utils, lib) => {
-    expect(utils.formatByString(utils.startOfWeek(utils.date("2018-10-28T00:00:00.000Z")), formats.dateTime[lib])).toBe(
-      lib === "Luxon" ? "2018-10-22 00:00" : "2018-10-28 00:00"
-    );
+    expect(
+      utils.formatByString(
+        utils.startOfWeek(utils.date("2018-10-28T00:00:00.000Z")),
+        formats.dateTime[lib]
+      )
+    ).toBe(lib === "Luxon" ? "2018-10-22 00:00" : "2018-10-28 00:00");
   });
 
   utilsTest("endOfWeekNonISO", (date, utils, lib) => {
-    expect(utils.formatByString(utils.endOfWeek(utils.date("2018-10-28T00:00:00.000Z")), formats.dateTime[lib])).toBe(
-      lib === "Luxon" ? "2018-10-28 23:59" : "2018-11-03 23:59"
-    );
+    expect(
+      utils.formatByString(
+        utils.endOfWeek(utils.date("2018-10-28T00:00:00.000Z")),
+        formats.dateTime[lib]
+      )
+    ).toBe(lib === "Luxon" ? "2018-10-28 23:59" : "2018-11-03 23:59");
   });
-
 
   utilsTest("getPreviousMonth", (date, utils, lib) => {
     expect(
@@ -243,6 +248,13 @@ describe("DateTime calculations", () => {
     expect(utils.isBefore(utils.date(), date)).toBeFalsy();
   });
 
+  utilsTest("isBeforeDay", (date, utils, lib) => {
+    const previousDay = utils.addDays(date, -1);
+
+    expect(utils.isBeforeDay(date, previousDay)).toBeFalsy();
+    expect(utils.isBeforeDay(previousDay, date)).toBeTruthy();
+  });
+
   utilsTest("isAfterDay", (date, utils, lib) => {
     const nextDay = utils.addDays(date, 1);
 
@@ -250,11 +262,18 @@ describe("DateTime calculations", () => {
     expect(utils.isAfterDay(date, nextDay)).toBeFalsy();
   });
 
-  utilsTest("isBeforeDay", (date, utils, lib) => {
-    const previousDay = utils.addDays(date, -1);
+  utilsTest("isBeforeMonth", (date, utils, lib) => {
+    const previousMonth = utils.addMonths(date, -1);
 
-    expect(utils.isBeforeDay(date, previousDay)).toBeFalsy();
-    expect(utils.isBeforeDay(previousDay, date)).toBeTruthy();
+    expect(utils.isBeforeMonth(date, previousMonth)).toBeFalsy();
+    expect(utils.isBeforeMonth(previousMonth, date)).toBeTruthy();
+  });
+
+  utilsTest("isAfterMonth", (date, utils, lib) => {
+    const next = utils.addMonths(date, 1);
+
+    expect(utils.isAfterMonth(date, next)).toBeFalsy();
+    expect(utils.isAfterMonth(next, date)).toBeTruthy();
   });
 
   utilsTest("isAfterYear", (date, utils, lib) => {

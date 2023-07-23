@@ -295,6 +295,14 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     return datedate.isBefore(valuedate);
   }
 
+  isBeforeMonth(value: Temporal, comparing: Temporal): boolean {
+    return YearMonth.from(value).isBefore(YearMonth.from(comparing));
+  }
+
+  isAfterMonth(value: Temporal, comparing: Temporal): boolean {
+    return YearMonth.from(value).isAfter(YearMonth.from(comparing));
+  }
+
   isBeforeYear(date: Temporal, value: Temporal): boolean {
     let datedate = Year.from(date);
     let valuedate = Year.from(value);

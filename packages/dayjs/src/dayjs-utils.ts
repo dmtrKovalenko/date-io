@@ -153,6 +153,14 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
     return date.isBefore(value, "day");
   };
 
+  public isAfterMonth = (date: Dayjs, value: Dayjs) => {
+    return date.isAfter(value, "month");
+  };
+
+  public isBeforeMonth = (date: Dayjs, value: Dayjs) => {
+    return date.isBefore(value, "month");
+  };
+
   public isBeforeYear = (date: Dayjs, value: Dayjs) => {
     return date.isBefore(value, "year");
   };
