@@ -256,6 +256,31 @@ Firstly install all the adapters you want to support and lock the version.
 export { default } from "@date-io/date-fns";
 ```
 
+#### 3. Use it for date-time management
+
+Register it using your library context. It may be react context, dependency injection container or any other tool that allows the user to register the used library **1 time**.
+
+```tsx
+// react example
+import { createMyAdapter } from "your-awesome-lib/adapters/date-fns";
+
+<DateLibProvider adapter={createMyAdapter({ locale: "fr" })}>
+  {/* ... */}
+</DateLibProvider>;
+```
+
+And use the interface of date-io (or your custom interface).
+
+```ts
+import { IUtils } from "@date-io/core/IUtils";
+
+function myFunctionInLibrary<TDate>(date: TDate, adapter: IUtils<TDate>) {
+  // ...
+  const weekArray = adapter.getWeekArray(Date);
+  // ...
+}
+```
+
 ### Overriding behavior
 
 It is possible to change or extend the behavior of any adapter by simply inheriting and overriding the base class of utils while saving the same interface.
@@ -319,30 +344,5 @@ export const createMyAdapter(options) {
   }
 
   return adapter
-}
-```
-
-#### 3. Use it for date-time management
-
-Register it using your library context. It may be react context, dependency injection container or any other tool that allows the user to register the used library **1 time**.
-
-```tsx
-// react example
-import { createMyAdapter } from "your-awesome-lib/adapters/date-fns";
-
-<DateLibProvider adapter={createMyAdapter({ locale: "fr" })}>
-  {/* ... */}
-</DateLibProvider>;
-```
-
-And use the interface of date-io (or your custom interface).
-
-```ts
-import { IUtils } from "@date-io/core/IUtils";
-
-function myFunctionInLibrary<TDate>(date: TDate, adapter: IUtils<TDate>) {
-  // ...
-  const weekArray = adapter.getWeekArray(Date);
-  // ...
 }
 ```
