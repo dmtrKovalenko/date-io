@@ -17,9 +17,7 @@ interface Opts {
 
 type Dayjs = defaultDayjs.Dayjs;
 type Constructor<TDate extends Dayjs> = (
-  ...args: Parameters<typeof defaultDayjs>
-) => TDate;
-
+  ...args: Parameters<typeof defaultDayjs>) => TDate;
 const withLocale = <TDate extends Dayjs>(
   dayjs: any,
   locale?: string
