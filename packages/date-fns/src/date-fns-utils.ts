@@ -118,7 +118,7 @@ export default class DateFnsUtils implements IUtils<Date> {
 
     let localFormat = format.match(longFormatRegexp);
     if (!localFormat) {
-      return "";
+      return format;
     }
     return (
       localFormat

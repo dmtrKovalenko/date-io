@@ -63,7 +63,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
     let localFormat = format.match(localFormattingTokens);
     if (!localFormat) {
-      return "";
+      return format;
     }
 
     return (

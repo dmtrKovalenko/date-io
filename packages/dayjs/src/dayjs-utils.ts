@@ -84,7 +84,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
 
     let localFormat = format.match(localFormattingTokens);
     if (!localFormat) {
-      return "";
+      return format;
     }
 
     return (
