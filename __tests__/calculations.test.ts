@@ -262,11 +262,11 @@ describe("DateTime calculations", () => {
     expect(utils.isBeforeMonth(previousMonth, date)).toBeTruthy();
   });
 
-  utilsTest("isBeforeMonth", (date, utils, lib) => {
-    const previousMonth = utils.addMonths(date, -1);
+  utilsTest("isAfterMonth", (date, utils, lib) => {
+    const next = utils.addMonths(date, 1);
 
-    expect(utils.isBeforeMonth(date, previousMonth)).toBeFalsy();
-    expect(utils.isBeforeMonth(previousMonth, date)).toBeTruthy();
+    expect(utils.isAfterMonth(date, next)).toBeFalsy();
+    expect(utils.isAfterMonth(next, date)).toBeTruthy();
   });
 
   utilsTest("isAfterYear", (date, utils, lib) => {
