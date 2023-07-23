@@ -12,7 +12,7 @@ Abstraction over common JavaScript date management libraries.
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 The project exposes an abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v2](https://github.com/date-fns/date-fns), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
-It allows you to build any UI date or time components, while utilizing the same date management library in use within your user's project.
+It allows you to build any UI date or time components while utilizing the same date management library in use within your user's project.
 
 It simplifies timezone management, allows your code to return the exact same type that your user expects and works with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar))
 
@@ -24,7 +24,7 @@ It simplifies timezone management, allows your code to return the exact same typ
 | @date-io/moment          |                   [![npm download](https://img.shields.io/npm/dm/@date-io/moment.svg)](https://www.npmjs.org/package/@date-io/moment) |
 | @date-io/luxon           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/luxon.svg)](https://www.npmjs.org/package/@date-io/luxon) |
 | @date-io/dayjs           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/dayjs.svg)](https://www.npmjs.org/package/@date-io/dayjs) |
-| @date-io/js-joda           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/js-joda.svg)](https://www.npmjs.org/package/@date-io/js-joda) |
+| @date-io/js-joda         |                 [![npm download](https://img.shields.io/npm/dm/@date-io/js-joda.svg)](https://www.npmjs.org/package/@date-io/js-joda) |
 | @date-io/date-fns-jalali | [![npm download](https://img.shields.io/npm/dm/@date-io/date-fns-jalali.svg)](https://www.npmjs.org/package/@date-io/date-fns-jalali) |
 | @date-io/jalaali         |                 [![npm download](https://img.shields.io/npm/dm/@date-io/jalaali.svg)](https://www.npmjs.org/package/@date-io/jalaali) |
 | @date-io/hijri           |                     [![npm download](https://img.shields.io/npm/dm/@date-io/hijri.svg)](https://www.npmjs.org/package/@date-io/hijri) |
@@ -56,6 +56,7 @@ Localized output will of course vary based on the locale and date library used. 
 `moment` with the `en-US` locale.
 
 <!--inline-interface-start-->
+
 ```tsx
 export interface DateIOFormats<TLibFormatToken = string> {
   /** Localized full date @example "Jan 1, 2019" */
@@ -221,15 +222,16 @@ export interface IUtils<TDate> {
   getMeridiemText(ampm: "am" | "pm"): string;
 }
 ```
+
 <!--inline-interface-end-->
 
 ### For library authors
 
-If you are a library author that exposes date/time management utils or controls you may want to use date-io to interop with the most popular libraries. Here are some instructions of how to use date-fns as an adapter.
+If you are a library author that exposes date/time management utils or controls you may want to use date-io to interop with the most popular libraries. Here are some instructions on how to use date-fns as an adapter.
 
 #### 1. Install the bindings
 
-First of all it is required to provide the adapters for your users. We do not recommend to install the date-io directly by the end users, cause it may be easy to mismatch the version. The better way will be to reexport them.
+First of all, it is required to provide the adapters for your users. We do not recommend installing the date-io directly by the end users, cause it may be easy to mismatch the version. The better way will be to reexport them.
 
 Firstly install all the adapters you want to support and lock the version.
 
@@ -254,18 +256,46 @@ Firstly install all the adapters you want to support and lock the version.
 export { default } from "@date-io/date-fns";
 ```
 
-You can also manually extend the adapter if you need to. Create a custom interface:
+### Overriding behavior
+
+It is possible to change or extend the behavior of any adapter by simply inheriting and overriding the base class of utils while saving the same interface.
+
+Let's say you want to override `getYear` to always return 2007 and `getWeekdays` to contain only 2 weekends (let's admit that this is what we all desire) you can do the following:
+
+```ts
+class CustomDateTime extends DayjsUtils implements IUtils<Dayjs> {
+  getWeekdays = () => {
+    const start = this.dayjs().startOf("week");
+    return [0, 1].map((diff) => this.formatByString(start.add(diff, "day"), "dd"));
+  };
+}
+```
+
+Note: that you will need to do this with every adapter you want to support to be in sync.
+
+### Extending behavior
+
+It is possible also to add custom functionality to the adapter, in case the author of date-io doesn't want to add it. To do this create **your custom interface that extends IUtils** and inherit your adapters both from the base adapter and your custom interface.
 
 ```ts
 // your-awesome-lib/adapters/CustomAdapter
 import { IUtils } from "@date-io/core/IUtils";
+import DateIODateFnsAdapter from "@date-io/date-fns";
 
-interface CustomUtils<TDate> extends IUtils<TDate> {
+interface CustomUtils<TDate> extends  IUtils<TDate> {
   getDayOfYear(day: TDate): number;
+}
+
+interface CustomDateFnsUtils extends DateIODateFnsAdapter implements CustomUtils<Date> {
+  getDayOfYear(day: Date): number {
+    return getDayOfYear(day);
+  }
 }
 ```
 
-And extend date-io classes implementing your custom interface:
+### Build system
+
+In some build systems (hello babel) it may be impossible to extend the methods because they are defined as class properties. While it should be standardized already there are still some issues with it. In this case you can use the following workaround:
 
 ```ts
 // you-awesome-lib/adapters/date-fns
@@ -294,13 +324,15 @@ export const createMyAdapter(options) {
 
 #### 3. Use it for date-time management
 
-Register it using your library context. It may be react context, dependency injection container or any other tool that allow user to register the used library **1 time**.
+Register it using your library context. It may be react context, dependency injection container or any other tool that allows the user to register the used library **1 time**.
 
 ```tsx
 // react example
 import { createMyAdapter } from "your-awesome-lib/adapters/date-fns";
 
-<DateLibProvider adapter={createMyAdapter({ locale: "fr" })}>{/* ... */}</DateLibProvider>;
+<DateLibProvider adapter={createMyAdapter({ locale: "fr" })}>
+  {/* ... */}
+</DateLibProvider>;
 ```
 
 And use the interface of date-io (or your custom interface).
