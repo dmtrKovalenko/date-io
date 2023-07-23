@@ -221,9 +221,14 @@ export default class LuxonUtils implements IUtils<DateTime> {
       comparing = DateTime.fromJSDate(new Date(comparing));
     }
 
+    if (!comparing.isValid) {
+      return 0;
+    }
+
     if (unit) {
       return Math.floor(value.diff(comparing).as(unit));
     }
+
     return value.diff(comparing).as("millisecond");
   };
 

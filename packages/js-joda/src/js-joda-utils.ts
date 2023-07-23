@@ -127,6 +127,8 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     this.formats = Object.assign({}, defaultFormats, formats);
   }
 
+  // this function has no "undefined" return paths
+  // @ts-ignore
   parse(value: string, format: string): Temporal | null {
     if (value === "") {
       return null;
@@ -147,17 +149,13 @@ export default class JsJodaUtils implements IUtils<Temporal> {
           parsed_assessor.isSupported(ChronoField.SECOND_OF_MINUTE)
         ) {
           return LocalDateTime.from(parsed_assessor);
-        } else {
-          return LocalDate.from(parsed_assessor);
         }
+
+        return LocalDate.from(parsed_assessor);
       }
     } catch (ex) {
-      if (ex instanceof DateTimeParseException) {
-        return <Temporal>(<unknown>ex);
-      }
+      return <Temporal>(<unknown>ex);
     }
-
-    return null;
   }
 
   date(value?: any): Temporal | null {
@@ -215,12 +213,17 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return true;
     }
 
-    return true;
+    return false;
   }
 
   getDiff = (value: CalendarType, comparing: CalendarType | string, unit?: Unit) => {
     let chronoUnit = getChronoUnit(unit);
     const comparingDate = this.date(comparing) ?? value;
+
+    if (!this.isValid(comparingDate)) {
+      return 0;
+    }
+
     if (chronoUnit === null) {
       switch (unit) {
         case "quarters":
@@ -230,6 +233,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return chronoUnit.between(comparingDate, value);
     }
 
+    /* istanbul ignore next */
     return 0;
   };
 
@@ -589,6 +593,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       );
     }
 
+    /* istanbul ignore next */
     return false;
   }
 

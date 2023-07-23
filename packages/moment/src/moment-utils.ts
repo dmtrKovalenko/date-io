@@ -63,7 +63,7 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
 
     let localFormat = format.match(localFormattingTokens);
     if (!localFormat) {
-      return format;
+      return "";
     }
 
     return (
@@ -134,6 +134,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
   };
 
   public getDiff = (date: Moment, comparing: Moment | string, unit?: Unit) => {
+    if (!this.moment(comparing).isValid()) {
+      return 0;
+    }
+
     return date.diff(comparing, unit);
   };
 

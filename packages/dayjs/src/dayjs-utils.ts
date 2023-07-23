@@ -84,7 +84,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
 
     let localFormat = format.match(localFormattingTokens);
     if (!localFormat) {
-      return format;
+      return "";
     }
 
     return (
@@ -143,7 +143,15 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
     return date === null;
   };
 
-  public getDiff = (date: TDate, comparing: TDate, units?: Unit) => {
+  public getDiff = (date: TDate, comparing: TDate | string, units?: Unit) => {
+    if (typeof comparing === "string") {
+      comparing = this.dayjs(comparing);
+    }
+
+    if (!comparing.isValid()) {
+      return 0;
+    }
+
     return date.diff(comparing, units as QUnitType);
   };
 

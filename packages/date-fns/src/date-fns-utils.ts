@@ -118,7 +118,7 @@ export default class DateFnsUtils implements IUtils<Date> {
 
     let localFormat = format.match(longFormatRegexp);
     if (!localFormat) {
-      return format;
+      return "";
     }
     return (
       localFormat
@@ -183,6 +183,9 @@ export default class DateFnsUtils implements IUtils<Date> {
   public getDiff = (value: Date, comparing: Date | string, unit?: Unit) => {
     // we output 0 if the compare date is string and parsing is not valid
     const dateToCompare = this.date(comparing) ?? value;
+    if (!this.isValid(dateToCompare)) {
+      return 0;
+    }
     switch (unit) {
       case "years":
         return differenceInYears(value, dateToCompare);

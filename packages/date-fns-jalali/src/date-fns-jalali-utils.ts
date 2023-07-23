@@ -131,7 +131,7 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
 
     let localFormat = format.match(longFormatRegexp);
     if (!localFormat) {
-      return format;
+      return "";
     }
     return (
       localFormat
