@@ -72,7 +72,7 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
 
   public is12HourCycleInCurrentLocale = () => {
     /* istanbul ignore next */
-    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale || "en"]?.formats?.LT);
+    return /A|a/.test(this.rawDayJsInstance.Ls[this.locale || "en"]?.formats?.LT ?? "");
   };
 
   public getCurrentLocaleCode = () => {
@@ -82,19 +82,25 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   public getFormatHelperText = (format: string) => {
     // @see https://github.com/iamkun/dayjs/blob/dev/src/plugin/localizedFormat/index.js
     var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?)|./g;
-    return format
-      .match(localFormattingTokens)
-      .map((token) => {
-        var firstCharacter = token[0];
-        if (firstCharacter === "L") {
-          /* istanbul ignore next */
-          return this.rawDayJsInstance.Ls[this.locale || "en"]?.formats[token] ?? token;
-        }
-        return token;
-      })
-      .join("")
-      .replace(/a/gi, "(a|p)m")
-      .toLocaleLowerCase();
+    return (
+      format
+        .match(localFormattingTokens)
+        ?.map((token) => {
+          var firstCharacter = token[0];
+          if (firstCharacter === "L") {
+            /* istanbul ignore next */
+            return (
+              this.rawDayJsInstance.Ls[this.locale || "en"]?.formats[
+                token as keyof ILocale["formats"]
+              ] ?? token
+            );
+          }
+          return token;
+        })
+        .join("")
+        .replace(/a/gi, "(a|p)m")
+        .toLocaleLowerCase() ?? ""
+    );
   };
 
   public parseISO = (isoString: string) => {

@@ -18,6 +18,7 @@ import {
   Year,
   TemporalQueries,
 } from "@js-joda/core";
+// @ts-ignore
 import { Locale } from "@js-joda/locale_en-us";
 import { DateIOFormats, IUtils, Unit } from "@date-io/core/IUtils";
 
@@ -32,20 +33,23 @@ const isoformatter = new DateTimeFormatterBuilder()
   .appendValue(ChronoField.MICRO_OF_SECOND, 3)
   .appendLiteral("Z")
   .toFormatter(ResolverStyle.STRICT)
+  // likely the issue with the js-joda typings
+  // @ts-ignore
   .withChronology(IsoChronology["INSTANCE"]);
 
 const OPTIONAL_FORMATTER = DateTimeFormatter.ofPattern(
   "yyyy-MM-dd['T'HH:mm[:ss[.SSS['Z']]]"
 );
 
-const ampmregex = new RegExp(".*a.*");
+const ampmRegex = new RegExp(".*a.*");
 // create a temporal query that create a new Temporal depending on the existing fields
 const dateOrDateTimeQuery = {
-  queryFrom: function (temporal) {
+  queryFrom: function (temporal: Temporal) {
     var date = temporal.query(TemporalQueries.localDate());
     var time = temporal.query(TemporalQueries.localTime());
     if (time == null) return date;
-    else return date.atTime(time);
+
+    return date?.atTime(time);
   },
 };
 // v2.0.0
@@ -85,7 +89,7 @@ const defaultFormats: DateIOFormats = {
   year: "yyyy",
 };
 
-function getChronoUnit(unit?: Unit): ChronoUnit {
+function getChronoUnit(unit?: Unit): ChronoUnit | null {
   switch (unit) {
     case "years":
       return ChronoUnit.YEARS;
@@ -118,6 +122,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     locale,
     formats,
   }: { formats?: Partial<DateIOFormats>; locale?: Locale } = {}) {
+    this.lib = "js-joda";
     this.locale = locale || Locale.US;
     this.formats = Object.assign({}, defaultFormats, formats);
   }
@@ -151,6 +156,8 @@ export default class JsJodaUtils implements IUtils<Temporal> {
         return <Temporal>(<unknown>ex);
       }
     }
+
+    return null;
   }
 
   date(value?: any): Temporal | null {
@@ -163,7 +170,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
 
     if (typeof value === "string") {
       try {
-        return OPTIONAL_FORMATTER.parse(value, dateOrDateTimeQuery);
+        return OPTIONAL_FORMATTER.parse(value, dateOrDateTimeQuery) ?? null;
       } catch (ex) {
         if (ex instanceof DateTimeParseException) {
           return <Temporal>(<unknown>ex);
@@ -180,7 +187,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
     }
 
-    // throw new Error(`Unknown Date value in function date(): ${value}`);
+    return null;
   }
 
   isNull(date: Temporal | null): boolean {
@@ -200,10 +207,6 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return true;
     }
 
-    // if (value instanceof Date) {
-    //   return !isNaN(value.valueOf());
-    // }
-
     if (typeof value === "string") {
       return !isNaN(new Date(value).valueOf());
     }
@@ -212,19 +215,22 @@ export default class JsJodaUtils implements IUtils<Temporal> {
       return true;
     }
 
-    // throw new Error(`Unknown Date value in function isValid(): ${value}`);
+    return true;
   }
 
   getDiff = (value: CalendarType, comparing: CalendarType | string, unit?: Unit) => {
     let chronoUnit = getChronoUnit(unit);
+    const comparingDate = this.date(comparing) ?? value;
     if (chronoUnit === null) {
       switch (unit) {
         case "quarters":
-          return Math.floor(ChronoUnit.MONTHS.between(this.date(comparing), value) / 4);
+          return Math.floor(ChronoUnit.MONTHS.between(comparingDate, value) / 4);
       }
     } else {
-      return chronoUnit.between(this.date(comparing), value);
+      return chronoUnit.between(comparingDate, value);
     }
+
+    return 0;
   };
 
   isEqual(value: any, comparing: any): boolean {
@@ -245,7 +251,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     if (first instanceof LocalDate && second instanceof LocalDate) {
       return first.isEqual(second);
     }
-    // return false;
+    return false;
   }
 
   isSameDay(date: Temporal, comparing: Temporal): boolean {
@@ -275,6 +281,8 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     } else if (date instanceof LocalDate && value instanceof LocalDate) {
       return date.isAfter(value);
     }
+
+    return false;
   }
 
   isAfterDay(date: Temporal, value: Temporal): boolean {
@@ -431,7 +439,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     const today = LocalDate.now();
     const startOfWeek = LocalDate.from(this.startOfWeek(today));
 
-    const weekdays = [];
+    const weekdays: string[] = [];
     const formatter = DateTimeFormatter.ofPattern("eee").withLocale(this.locale);
     for (let i = 0; i < 7; i++) {
       weekdays.push(startOfWeek.plus(i, ChronoUnit.DAYS).format(formatter));
@@ -479,6 +487,8 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     } else if (date instanceof LocalDate && value instanceof LocalDate) {
       return date.isBefore(value);
     }
+
+    return false;
   }
 
   getMeridiemText(ampm: "am" | "pm"): string {
@@ -552,7 +562,7 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   };
 
   is12HourCycleInCurrentLocale(): boolean {
-    return ampmregex.test(this.formats.fullDateTime);
+    return ampmRegex.test(this.formats.fullDateTime);
   }
 
   isWithinRange(value: Temporal, range: [Temporal, Temporal]): boolean {
@@ -566,7 +576,9 @@ export default class JsJodaUtils implements IUtils<Temporal> {
         (value.isAfter(start) || value.isEqual(start)) &&
         (value.isBefore(end) || value.isEqual(end))
       );
-    } else if (
+    }
+
+    if (
       value instanceof LocalDate &&
       start instanceof LocalDate &&
       end instanceof LocalDate
@@ -576,6 +588,8 @@ export default class JsJodaUtils implements IUtils<Temporal> {
         (value.isBefore(end) || value.isEqual(end))
       );
     }
+
+    return false;
   }
 
   parseISO(isString: string): Temporal {

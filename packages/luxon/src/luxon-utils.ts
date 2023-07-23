@@ -142,7 +142,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return false;
     }
 
-    return this.date(value).isValid;
+    return this.date(value)?.isValid ?? false;
   };
 
   public isEqual = (value: any, comparing: any) => {
@@ -155,7 +155,11 @@ export default class LuxonUtils implements IUtils<DateTime> {
       return false;
     }
 
-    return this.date(value).equals(this.date(comparing));
+    if (!this.date(comparing)) {
+      return false;
+    }
+
+    return this.date(value)?.equals(this.date(comparing) as DateTime) ?? false;
   };
 
   public isSameDay = (date: DateTime, comparing: DateTime) => {
@@ -337,7 +341,7 @@ export default class LuxonUtils implements IUtils<DateTime> {
   };
 
   public getMonthArray = (date: DateTime) => {
-    const firstMonth = this.date(date).startOf("year");
+    const firstMonth = date.startOf("year");
     const monthArray = [firstMonth];
 
     while (monthArray.length < 12) {
@@ -377,8 +381,8 @@ export default class LuxonUtils implements IUtils<DateTime> {
   };
 
   public getYearRange = (start: DateTime, end: DateTime) => {
-    const startDate = this.date(start).startOf("year");
-    const endDate = this.date(end).endOf("year");
+    const startDate = start.startOf("year");
+    const endDate = end.endOf("year");
 
     let current = startDate;
     const years: DateTime[] = [];

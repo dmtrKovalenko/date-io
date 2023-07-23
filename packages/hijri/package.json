@@ -18,10 +18,11 @@
   },
   "devDependencies": {
     "@date-io/core": "^2.16.0",
+    "@types/moment-hijri": "^2.1.0",
     "moment": "^2.24.0",
     "moment-hijri": "^2.1.2",
     "rollup": "^2.0.2",
-    "typescript": "^3.7.2"
+    "typescript": "^5.0.0"
   },
   "scripts": {
     "build": "rollup -c && tsc -p tsconfig.declaration.json"
