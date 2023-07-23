@@ -17,7 +17,8 @@ interface Opts {
 
 type Dayjs = defaultDayjs.Dayjs;
 type Constructor<TDate extends Dayjs> = (
-  ...args: Parameters<typeof defaultDayjs>) => TDate;
+  ...args: Parameters<typeof defaultDayjs>
+) => TDate;
 const withLocale = <TDate extends Dayjs>(
   dayjs: any,
   locale?: string
@@ -80,10 +81,15 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   public getFormatHelperText = (format: string) => {
     // @see https://github.com/iamkun/dayjs/blob/dev/src/plugin/localizedFormat/index.js
     var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?)|./g;
+
+    let localFormat = format.match(localFormattingTokens);
+    if (!localFormat) {
+      return "";
+    }
+
     return (
-      format
-        .match(localFormattingTokens)
-        ?.map((token) => {
+      localFormat
+        .map((token) => {
           var firstCharacter = token[0];
           if (firstCharacter === "L") {
             /* istanbul ignore next */

@@ -115,10 +115,14 @@ export default class DateFnsUtils implements IUtils<Date> {
     // @see https://github.com/date-fns/date-fns/blob/master/src/format/index.js#L31
     const longFormatRegexp = /P+p+|P+|p+|''|'(''|[^'])+('|$)|./g;
     const locale = this.locale || defaultLocale;
+
+    let localFormat = format.match(longFormatRegexp);
+    if (!localFormat) {
+      return "";
+    }
     return (
-      format
-        .match(longFormatRegexp)
-        ?.map((token) => {
+      localFormat
+        .map((token) => {
           const firstCharacter = token[0];
           if (firstCharacter === "p" || firstCharacter === "P") {
             const longFormatter = longFormatters[firstCharacter];
