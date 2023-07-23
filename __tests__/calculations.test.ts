@@ -248,6 +248,13 @@ describe("DateTime calculations", () => {
     expect(utils.isBefore(utils.date(), date)).toBeFalsy();
   });
 
+  utilsTest("isBeforeDay", (date, utils, lib) => {
+    const previousDay = utils.addDays(date, -1);
+
+    expect(utils.isBeforeDay(date, previousDay)).toBeFalsy();
+    expect(utils.isBeforeDay(previousDay, date)).toBeTruthy();
+  });
+
   utilsTest("isAfterDay", (date, utils, lib) => {
     const nextDay = utils.addDays(date, 1);
 
