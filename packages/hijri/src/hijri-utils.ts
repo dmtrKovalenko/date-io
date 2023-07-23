@@ -1,5 +1,6 @@
 import Moment from "moment";
 import iMoment from "moment-hijri";
+// @ts-ignore
 import DefaultMomentUtils from "@date-io/moment";
 import { DateIOFormats } from "@date-io/core/IUtils";
 
