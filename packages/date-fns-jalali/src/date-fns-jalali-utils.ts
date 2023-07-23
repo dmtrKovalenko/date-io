@@ -358,6 +358,14 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
     return isBefore(date, startOfYear(value));
   };
 
+  public isBeforeMonth(value: Date, comparing: Date): boolean {
+    return isBefore(value, startOfMonth(comparing));
+  }
+
+  public isAfterMonth(value: Date, comparing: Date): boolean {
+    return isAfter(value, startOfMonth(comparing));
+  }
+
   public isAfterYear = (date: Date, value: Date) => {
     return isAfter(date, endOfYear(value));
   };

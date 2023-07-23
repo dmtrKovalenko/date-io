@@ -82,19 +82,21 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
   public getFormatHelperText = (format: string) => {
     // @see https://github.com/iamkun/dayjs/blob/dev/src/plugin/localizedFormat/index.js
     var localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?)|./g;
-    return format
-      .match(localFormattingTokens)
-      .map((token) => {
-        var firstCharacter = token[0];
-        if (firstCharacter === "L") {
-          /* istanbul ignore next */
-          return this.rawDayJsInstance.Ls[this.locale || "en"]?.formats[token] ?? token;
-        }
-        return token;
-      })
-      .join("")
-      .replace(/a/gi, "(a|p)m")
-      .toLocaleLowerCase();
+    return (
+      format
+        .match(localFormattingTokens)
+        ?.map((token) => {
+          var firstCharacter = token[0];
+          if (firstCharacter === "L") {
+            /* istanbul ignore next */
+            return this.rawDayJsInstance.Ls[this.locale || "en"]?.formats[token] ?? token;
+          }
+          return token;
+        })
+        .join("")
+        .replace(/a/gi, "(a|p)m")
+        .toLocaleLowerCase() ?? this.formats.keyboardDate
+    );
   };
 
   public parseISO = (isoString: string) => {
@@ -151,6 +153,14 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
 
   public isBeforeDay = (date: Dayjs, value: Dayjs) => {
     return date.isBefore(value, "day");
+  };
+
+  public isAfterMonth = (date: Dayjs, value: Dayjs) => {
+    return date.isAfter(value, "month");
+  };
+
+  public isBeforeMonth = (date: Dayjs, value: Dayjs) => {
+    return date.isBefore(value, "month");
   };
 
   public isBeforeYear = (date: Dayjs, value: Dayjs) => {
