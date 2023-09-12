@@ -443,12 +443,9 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     } else if (!qdate) {
       // A time merged with a non-date gives the original time.
       return time;
-    } else if (!qtime) {
-      // A date merged with a non-time gives the original date.
-      return date;
     } else {
-      // Fallback / error behavior
-      /* istanbul ignore next */
+      // A date merged with a non-time gives the original date.  We also use
+      // this as the fallback / error behavior.
       return date;
     }
   }
