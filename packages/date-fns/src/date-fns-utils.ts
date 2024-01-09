@@ -104,7 +104,7 @@ export default class DateFnsUtils implements IUtils<Date> {
   // strict signature and delegate to the more lenient signature. Otherwise, we have downstream type errors upon usage.
   public is12HourCycleInCurrentLocale = () => {
     if (this.locale) {
-      return /a/.test(this.locale.formatLong?.time());
+      return /a/.test(this.locale.formatLong?.time({}));
     }
 
     // By default date-fns is using en-US locale with am/pm enabled
@@ -123,7 +123,7 @@ export default class DateFnsUtils implements IUtils<Date> {
           const firstCharacter = token[0];
           if (firstCharacter === "p" || firstCharacter === "P") {
             const longFormatter = longFormatters[firstCharacter];
-            return longFormatter(token, locale.formatLong, {});
+            return longFormatter(token, locale.formatLong);
           }
           return token;
         })
@@ -436,7 +436,7 @@ export default class DateFnsUtils implements IUtils<Date> {
     let count = 0;
     let current = start;
     const nestedWeeks: Date[][] = [];
-    let lastDay = null;
+    let lastDay = null as null | number;
     while (isBefore(current, end)) {
       const weekNumber = Math.floor(count / 7);
       nestedWeeks[weekNumber] = nestedWeeks[weekNumber] || [];
