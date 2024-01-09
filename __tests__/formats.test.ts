@@ -1,4 +1,4 @@
-import ruDateFnsLocale from "date-fns/locale/ru";
+import { ru as ruDateFnsLocale } from "date-fns/locale/ru";
 import LuxonUtils from "../packages/luxon/src";
 import DateFnsUtils from "../packages/date-fns/src";
 import MomentUtils from "../packages/moment/src";
