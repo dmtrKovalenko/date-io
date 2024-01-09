@@ -35,7 +35,7 @@ import { isSameYear } from "date-fns/isSameYear";
 import { isSameMonth } from "date-fns/isSameMonth";
 import { isSameHour } from "date-fns/isSameHour";
 import { isValid } from "date-fns/isValid";
-import { dateFnsParse } from "date-fns/parse";
+import { parse as dateFnsParse } from "date-fns/parse";
 import { setDate } from "date-fns/setDate";
 import { setHours } from "date-fns/setHours";
 import { setMinutes } from "date-fns/setMinutes";
@@ -53,7 +53,7 @@ import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 import { isWithinInterval } from "date-fns/isWithinInterval";
 // @ts-ignore
 import { longFormatters } from "date-fns/_lib/format/longFormatters";
-import { enUs as defaultLocale } from "date-fns/locale/en-US";
+import { enUS as defaultLocale } from "date-fns/locale/en-US";
 
 type Locale = typeof defaultLocale;
 
