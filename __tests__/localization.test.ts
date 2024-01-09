@@ -7,7 +7,7 @@ import LuxonUtils from "../packages/luxon/src";
 import { TEST_TIMESTAMP, utilsTest } from "./test-utils";
 import DayjsUtils from "../packages/dayjs/src";
 import { ru as ruLocale } from "date-fns/locale/ru";
-import { enAu as enAuLocale } from "date-fns/locale/en-AU";
+import { enAU as enAuLocale } from "date-fns/locale/en-AU";
 import DateFnsUtils from "../packages/date-fns/src";
 import MomentUtils from "../packages/moment/src";
 import JsJodaUtils from "../packages/js-joda/src";

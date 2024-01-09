@@ -51,8 +51,7 @@ import { parseISO } from "date-fns/parseISO";
 import { formatISO } from "date-fns/formatISO";
 import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 import { isWithinInterval } from "date-fns/isWithinInterval";
-// @ts-ignore
-import { longFormatters } from "date-fns/_lib/format/longFormatters";
+import { longFormatters } from "date-fns/format";
 import { enUS as defaultLocale } from "date-fns/locale/en-US";
 
 type Locale = typeof defaultLocale;
