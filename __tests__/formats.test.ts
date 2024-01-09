@@ -85,7 +85,7 @@ describe("Localized formats", () => {
   test.each`
     format                   | expectedWithEn                    | expectedWithRu
     ${"fullDate"}            | ${"Feb 1, 2020"}                  | ${"1 фев. 2020 г."}
-    ${"fullDateWithWeekday"} | ${"Saturday, February 1st, 2020"} | ${"суббота, 1-е февраля 2020 г."}
+    ${"fullDateWithWeekday"} | ${"Saturday, February 1st, 2020"} | ${"суббота, 1 февраля 2020 г."}
     ${"fullDateTime"}        | ${"Feb 1, 2020 11:44 PM"}         | ${"1 фев. 2020 г. 23:44"}
     ${"fullDateTime12h"}     | ${"Feb 1, 2020 11:44 PM"}         | ${"1 фев. 2020 г. 11:44 ПП"}
     ${"fullDateTime24h"}     | ${"Feb 1, 2020 23:44"}            | ${"1 фев. 2020 г. 23:44"}

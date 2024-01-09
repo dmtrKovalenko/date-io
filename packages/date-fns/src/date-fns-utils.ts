@@ -18,7 +18,7 @@ import { eachDayOfInterval } from "date-fns/eachDayOfInterval";
 import { endOfDay } from "date-fns/endOfDay";
 import { endOfWeek } from "date-fns/endOfWeek";
 import { endOfYear } from "date-fns/endOfYear";
-import { format } from "date-fns/format";
+import { format, longFormatters } from "date-fns/format";
 import { getDate } from "date-fns/getDate";
 import { getDay } from "date-fns/getDay";
 import { getDaysInMonth } from "date-fns/getDaysInMonth";
@@ -51,7 +51,6 @@ import { parseISO } from "date-fns/parseISO";
 import { formatISO } from "date-fns/formatISO";
 import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 import { isWithinInterval } from "date-fns/isWithinInterval";
-import { longFormatters } from "date-fns/format";
 import { enUS as defaultLocale } from "date-fns/locale/en-US";
 
 type Locale = typeof defaultLocale;
@@ -61,16 +60,16 @@ const defaultFormats: DateIOFormats = {
   fullDate: "PP",
   fullDateWithWeekday: "PPPP",
   fullDateTime: "PP p",
-  fullDateTime12h: "PP hh:mm aaa",
+  fullDateTime12h: "PP hh:mm aa",
   fullDateTime24h: "PP HH:mm",
   fullTime: "p",
-  fullTime12h: "hh:mm aaa",
+  fullTime12h: "hh:mm aa",
   fullTime24h: "HH:mm",
   hours12h: "hh",
   hours24h: "HH",
   keyboardDate: "P",
   keyboardDateTime: "P p",
-  keyboardDateTime12h: "P hh:mm aaa",
+  keyboardDateTime12h: "P hh:mm aa",
   keyboardDateTime24h: "P HH:mm",
   minutes: "mm",
   month: "LLLL",
