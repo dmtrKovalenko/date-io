@@ -1,12 +1,6 @@
 import defaultMoment, { LongDateFormatKey } from "moment";
 import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 
-interface Opts {
-  locale?: string;
-  instance?: typeof defaultMoment;
-  formats?: Partial<DateIOFormats>;
-}
-
 type Moment = defaultMoment.Moment;
 const defaultFormats: DateIOFormats = {
   normalDateWithWeekday: "ddd, MMM D",
@@ -38,13 +32,21 @@ const defaultFormats: DateIOFormats = {
   keyboardDateTime24h: "L HH:mm",
 };
 
-export default class MomentUtils implements IUtils<defaultMoment.Moment> {
+export default class MomentUtils implements IUtils<defaultMoment.Moment, string> {
   public moment: typeof defaultMoment;
   public lib = "moment";
   public locale?: string;
   public formats: DateIOFormats;
 
-  constructor({ locale, formats, instance }: Opts = {}) {
+  constructor({
+    locale,
+    formats,
+    instance,
+  }: {
+    formats?: Partial<DateIOFormats>;
+    locale?: string;
+    instance?: any;
+  } = {}) {
     this.moment = instance || defaultMoment;
     this.locale = locale;
 
@@ -104,9 +106,16 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
     return this.moment(value, format, true);
   };
 
-  public date = (value?: any) => {
+  date<
+    TArg extends unknown = undefined,
+    TRes extends unknown = TArg extends null
+      ? null
+      : TArg extends undefined
+      ? defaultMoment.Moment
+      : defaultMoment.Moment | null
+  >(value?: TArg): TRes {
     if (value === null) {
-      return null;
+      return null as TRes;
     }
 
     const moment = this.moment(value);
@@ -114,8 +123,8 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment> {
       moment.locale(this.locale);
     }
 
-    return moment;
-  };
+    return moment as TRes;
+  }
 
   public toJsDate = (value: Moment) => {
     return value.toDate();

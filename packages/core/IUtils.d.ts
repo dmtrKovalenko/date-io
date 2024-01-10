@@ -66,19 +66,44 @@ export type Unit =
   | "seconds"
   | "milliseconds";
 
-export interface ExtendableDateType {}
+type ConstructorOptions<TLocale> = {
+  formats?: Partial<DateIOFormats>;
+  locale?: TLocale;
+  instance?: any;
+};
 
-export interface IUtils<TDate extends ExtendableDateType> {
+export interface IUtils<TDate, TLocale> {
   formats: DateIOFormats<any>;
-  locale?: any;
+  locale?: TLocale;
   moment?: any;
   dayjs?: any;
   /** Name of the library that is used right now */
   lib: string;
 
-  // constructor (options?: { formats?: DateIOFormats, locale?: any, instance?: any });
+  // Constructor type
+  // new (options?: {
+  //   formats?: Partial<DateIOFormats>;
+  //   locale?: TLocale;
+  //   instance?: any;
+  // }): IUtils<TDate, TLocale>;
 
-  date(value?: any): TDate | null;
+  /**
+   * Creates a date object. Use `utils.date()` to create a new date object of the underlying library.`
+   * Supports some of the standard input sources like ISO strings so you can pass the string directly
+   * as `utils.date("2024-01-10T14:30:00Z"), and javascript `Date` objects `utils.date(new Date())`.
+   *
+   * if `null` is passed `null` will be returned.
+   */
+  date<
+    TArg extends unknown = undefined,
+    TResultingDate extends unknown = TArg extends null
+      ? null
+      : TArg extends undefined
+      ? TDate
+      : TDate | null
+  >(
+    value?: TArg
+  ): TResultingDate;
   toJsDate(value: TDate): Date;
   parseISO(isString: string): TDate;
   toISO(value: TDate): string;

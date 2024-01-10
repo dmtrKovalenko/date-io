@@ -80,13 +80,20 @@ export default class MomentUtils extends DefaultMomentUtils {
     return this.moment(value, format, true).locale("fa");
   };
 
-  public date = (value?: any) => {
+  date<
+    TArg extends unknown = undefined,
+    TResultingDate extends unknown = TArg extends null
+      ? null
+      : TArg extends undefined
+      ? Moment
+      : Moment | null
+  >(value?: TArg): TResultingDate {
     if (value === null) {
-      return null;
+      return null as TResultingDate;
     }
 
-    return this.moment(value).locale("fa");
-  };
+    return this.moment(value).locale("fa") as TResultingDate;
+  }
 
   public isBeforeYear = (date: Moment, value: Moment) => {
     return date.jYear() < value.jYear();

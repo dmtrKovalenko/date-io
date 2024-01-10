@@ -85,7 +85,7 @@ const defaultFormats: DateIOFormats = {
   year: "yyyy",
 };
 
-export default class DateFnsUtils implements IUtils<Date> {
+export default class DateFnsUtils implements IUtils<Date, Locale> {
   public lib = "date-fns";
   public locale?: Locale;
   public formats: DateIOFormats;
@@ -93,7 +93,7 @@ export default class DateFnsUtils implements IUtils<Date> {
   constructor({
     locale,
     formats,
-  }: { formats?: Partial<DateIOFormats>; locale?: Locale } = {}) {
+  }: { formats?: Partial<DateIOFormats>; locale?: Locale; instance?: any } = {}) {
     this.locale = locale;
     this.formats = Object.assign({}, defaultFormats, formats);
   }
@@ -288,17 +288,24 @@ export default class DateFnsUtils implements IUtils<Date> {
     return setYear(value, count);
   };
 
-  public date = (value?: any) => {
+  date<
+    TArg extends unknown = undefined,
+    TRes extends unknown = TArg extends null
+      ? null
+      : TArg extends undefined
+      ? Date
+      : Date | null
+  >(value?: TArg): TRes {
     if (typeof value === "undefined") {
-      return new Date();
+      return new Date() as TRes;
     }
 
     if (value === null) {
-      return null;
+      return null as TRes;
     }
 
-    return new Date(value);
-  };
+    return new Date(value as string | number) as TRes;
+  }
 
   public toJsDate = (value: Date) => {
     return value;

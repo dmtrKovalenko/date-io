@@ -20,7 +20,7 @@ export const allUtils = [
 
 export const utilsTest = (
   name: string,
-  innerFn: (date: any, utils: IUtils<any>, currentLib: TestLib) => void
+  innerFn: (date: any, utils: IUtils<any, any>, currentLib: TestLib) => void
 ) => {
   test.each(allUtils)(`%s -- ${name}`, (name, utils) =>
     innerFn(utils.date(TEST_TIMESTAMP), utils, name)
@@ -33,7 +33,7 @@ export const localDateAllUtils = [
 
 export const localDateutilsTest = (
   name: string,
-  innerFn: (date: any, utils: IUtils<any>, currentLib: TestLib) => void
+  innerFn: (date: any, utils: IUtils<any, any>, currentLib: TestLib) => void
 ) => {
   test.each(localDateAllUtils)(`%s -- ${name}`, (name, utils) =>
     innerFn(utils.date(LOCALDATE_TEST_TIMESTAMP), utils, name)
