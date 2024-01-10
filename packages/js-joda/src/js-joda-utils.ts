@@ -436,12 +436,17 @@ export default class JsJodaUtils implements IUtils<Temporal> {
   }
 
   mergeDateAndTime(date: Temporal, time: Temporal): Temporal {
-    var qtime = time.query(TemporalQueries.localTime());
-    if (qtime == null) {
-      /* istanbul ignore next */
-      return date;
+    const qdate = date.query(TemporalQueries.localDate());
+    const qtime = time.query(TemporalQueries.localTime());
+    if (qdate && qtime) {
+      return qdate.atTime(qtime);
+    } else if (!qdate) {
+      // A time merged with a non-date gives the original time.
+      return time;
     } else {
-      return LocalDate.from(date).atTime(LocalTime.from(time));
+      // A date merged with a non-time gives the original date.  We also use
+      // this as the fallback / error behavior.
+      return date;
     }
   }
 
