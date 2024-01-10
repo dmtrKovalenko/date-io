@@ -31,7 +31,7 @@ const defaultFormats: DateIOFormats = {
   year: "yyyy",
 };
 
-export default class LuxonUtils implements IUtils<DateTime> {
+export default class LuxonUtils implements IUtils<DateTime, string> {
   public lib = "luxon";
   public locale: string;
   public formats: DateIOFormats;
@@ -44,25 +44,36 @@ export default class LuxonUtils implements IUtils<DateTime> {
     this.formats = Object.assign({}, defaultFormats, formats);
   }
 
-  public date = (value?: any) => {
+  date<
+    TArg extends unknown = undefined,
+    TRes extends unknown = TArg extends null
+      ? null
+      : TArg extends undefined
+      ? DateTime
+      : DateTime | null
+  >(value?: TArg): TRes {
     if (typeof value === "undefined") {
-      return DateTime.local();
+      return DateTime.local() as TRes;
     }
 
     if (value === null) {
-      return null;
+      return null as TRes;
     }
 
     if (typeof value === "string") {
-      return DateTime.fromJSDate(new Date(value), { locale: this.locale });
+      return DateTime.fromJSDate(new Date(value), { locale: this.locale }) as TRes;
     }
 
     if (DateTime.isDateTime(value)) {
-      return value;
+      return value as TRes;
     }
 
-    return DateTime.fromJSDate(value, { locale: this.locale });
-  };
+    if (value instanceof Date) {
+      return DateTime.fromJSDate(value, { locale: this.locale }) as TRes;
+    }
+
+    return DateTime.local() as TRes;
+  }
 
   public toJsDate = (value: DateTime) => {
     return value.toJSDate();

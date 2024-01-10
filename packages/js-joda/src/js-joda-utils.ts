@@ -113,7 +113,7 @@ function getChronoUnit(unit?: Unit): ChronoUnit | null {
   }
 }
 
-export default class JsJodaUtils implements IUtils<Temporal> {
+export default class JsJodaUtils implements IUtils<Temporal, Locale> {
   lib: "js-joda";
   locale?: Locale;
   formats: DateIOFormats;
@@ -158,35 +158,43 @@ export default class JsJodaUtils implements IUtils<Temporal> {
     }
   }
 
-  date(value?: any): Temporal | null {
+  date<
+    TArg extends unknown = undefined,
+    TResultingDate extends unknown = TArg extends null
+      ? null
+      : TArg extends undefined
+      ? Temporal
+      : Temporal | null
+  >(value?: TArg): TResultingDate {
     if (value === null) {
-      return null;
+      return null as TResultingDate;
     }
     if (value === undefined) {
-      return LocalDateTime.now();
+      return LocalDateTime.now() as TResultingDate;
     }
 
     if (typeof value === "string") {
       try {
-        return OPTIONAL_FORMATTER.parse(value, dateOrDateTimeQuery) ?? null;
+        return (OPTIONAL_FORMATTER.parse(value, dateOrDateTimeQuery) ??
+          null) as TResultingDate;
       } catch (ex) {
         if (ex instanceof DateTimeParseException) {
-          return <Temporal>(<unknown>ex);
+          return (<Temporal>(<unknown>ex)) as TResultingDate;
         }
       }
     }
 
     if (value instanceof Temporal) {
-      return value;
+      return value as TResultingDate;
     }
 
     if (value instanceof Date) {
       const instant = Instant.ofEpochMilli(value.valueOf());
-      return LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+      return LocalDateTime.ofInstant(instant, ZoneId.systemDefault()) as TResultingDate;
     }
 
     /* istanbul ignore next */
-    return null;
+    return LocalDateTime.now() as TResultingDate;
   }
 
   isNull(date: Temporal | null): boolean {

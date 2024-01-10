@@ -49,9 +49,7 @@ describe("Hijri", () => {
   it("Hijri -- getYear", () => {
     const date = hijriiUtils.date(TEST_TIMESTAMP);
 
-    expect(hijriiUtils.getYear(date)).toEqual(
-      1440
-    );
+    expect(hijriiUtils.getYear(date)).toEqual(1440);
   });
 
   it("Hijri -- setYear", () => {
@@ -65,9 +63,7 @@ describe("Hijri", () => {
   it("Hijri -- getDate", () => {
     const date = hijriiUtils.date(TEST_TIMESTAMP);
 
-    expect(hijriiUtils.getDate(date)).toEqual(
-      21
-    );
+    expect(hijriiUtils.getDate(date)).toEqual(21);
   });
 
   it("Hijri -- setDate", () => {
@@ -81,9 +77,7 @@ describe("Hijri", () => {
   it("Hijri -- endOfYear", () => {
     const date = hijriiUtils.date(TEST_TIMESTAMP);
 
-    expect(hijriiUtils.endOfYear(date).toISOString()).toEqual(
-      "2019-08-30T23:59:59.999Z"
-    );
+    expect(hijriiUtils.endOfYear(date).toISOString()).toEqual("2019-08-30T23:59:59.999Z");
   });
 
   it("Hijri -- startOfYear", () => {

@@ -100,7 +100,7 @@ var symbolMap = {
   0: "۰",
 };
 
-export default class DateFnsJalaliUtils implements IUtils<Date> {
+export default class DateFnsJalaliUtils implements IUtils<Date, Locale> {
   public lib = "date-fns-jalali";
   public locale?: Locale;
   public formats: DateIOFormats;
@@ -300,17 +300,24 @@ export default class DateFnsJalaliUtils implements IUtils<Date> {
     return setDate(value, count);
   };
 
-  public date = (value?: string | number | Date) => {
+  date<
+    TArg extends unknown = undefined,
+    TRes extends unknown = TArg extends null
+      ? null
+      : TArg extends undefined
+      ? Date
+      : Date | null
+  >(value?: TArg): TRes {
     if (typeof value === "undefined") {
-      return new Date();
+      return new Date() as TRes;
     }
 
     if (value === null) {
-      return null;
+      return null as TRes;
     }
 
-    return new Date(value);
-  };
+    return new Date(value as any) as TRes;
+  }
 
   public toJsDate = (value: Date) => {
     return value;

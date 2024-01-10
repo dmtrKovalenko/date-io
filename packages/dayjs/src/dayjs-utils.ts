@@ -54,7 +54,9 @@ const defaultFormats: DateIOFormats = {
   keyboardDateTime24h: "L HH:mm",
 };
 
-export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<TDate> {
+export default class DayjsUtils<TDate extends Dayjs = Dayjs> 
+  implements IUtils<TDate, string>
+{
   public rawDayJsInstance: typeof defaultDayjs;
   public lib = "dayjs";
   public dayjs: Constructor<TDate>;
@@ -119,13 +121,20 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs> implements IUtils<T
     return this.dayjs(value, format, this.locale, true);
   };
 
-  public date = (value?: any) => {
+  date<
+    TArg extends unknown = undefined,
+    TRes extends unknown = TArg extends null
+      ? null
+      : TArg extends undefined
+      ? TDate
+      : TDate | null
+  >(value?: TArg): TRes {
     if (value === null) {
-      return null;
+      return null as TRes;
     }
 
-    return this.dayjs(value);
-  };
+    return this.dayjs(value as any) as unknown as TRes;
+  }
 
   public toJsDate = (value: Dayjs) => {
     return value.toDate();
