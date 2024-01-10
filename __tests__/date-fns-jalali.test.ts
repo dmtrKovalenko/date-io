@@ -1,6 +1,6 @@
 import DateFnsJalaliUtils from "../packages/date-fns-jalali/src";
 import { TEST_TIMESTAMP } from "./test-utils";
-import ruLocale from "date-fns/locale/ru";
+import { ru as ruLocale } from "date-fns/locale/ru";
 
 const date = new Date(TEST_TIMESTAMP); /* 1397/08/08  سه‌شنبه*/
 const dateTimeFormat = "yyyy/MM/dd HH:mm";

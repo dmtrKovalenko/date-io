@@ -30,7 +30,7 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "date-fns": "^2.0.0"
+    "date-fns": "^3.2.0"
   },
   "peerDependenciesMeta": {
     "date-fns": {
@@ -41,7 +41,7 @@
     "@date-io/core": "^2.17.0"
   },
   "devDependencies": {
-    "date-fns": "2.16.1",
+    "date-fns": "^3.2.0",
     "rollup": "^2.0.2",
     "typescript": "^5.0.0"
   },
