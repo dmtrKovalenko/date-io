@@ -107,10 +107,6 @@ export default class MomentUtils extends DefaultMomentUtils {
     return date.jMonth();
   };
 
-  public setMonth = (date: Moment, month: number) => {
-    return date.clone().jMonth(month);
-  };
-
   public getDaysInMonth = (date: Moment) => {
     return this.moment.jDaysInMonth(date.jYear(), date.jMonth());
   };

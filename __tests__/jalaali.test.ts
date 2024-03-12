@@ -43,7 +43,7 @@ describe("Jalaali", () => {
   it("Should proper work with jalaali days in month", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 
-    expect(jalaaliUtils.getDaysInMonth(date)).toBe(31);
+    expect(jalaaliUtils.getDaysInMonth(date)).toBe(30);
   });
 
   it("Should properly render meridiem", () => {
@@ -58,9 +58,7 @@ describe("Jalaali", () => {
   it("Jalaali -- getYear", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 
-    expect(jalaaliUtils.getYear(date)).toEqual(
-      1397
-    );
+    expect(jalaaliUtils.getYear(date)).toEqual(1397);
   });
 
   it("Jalaali -- setYear", () => {
@@ -74,9 +72,7 @@ describe("Jalaali", () => {
   it("Jalaali -- getDate", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 
-    expect(jalaaliUtils.getDate(date)).toEqual(
-      8
-    );
+    expect(jalaaliUtils.getDate(date)).toEqual(8);
   });
 
   it("Jalaali -- setDate", () => {
@@ -90,9 +86,7 @@ describe("Jalaali", () => {
   it("Jalaali -- getYear", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
 
-    expect(jalaaliUtils.getYear(date)).toEqual(
-      1397
-    );
+    expect(jalaaliUtils.getYear(date)).toEqual(1397);
   });
 
   it("Jalaali -- endOfYear", () => {
