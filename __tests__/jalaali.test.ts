@@ -227,6 +227,12 @@ describe("Jalaali", () => {
     expect(yearRange).toHaveLength(4);
   });
 
+  it("Jalaali -- setMonth", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+    const newDate = jalaaliUtils.setMonth(date, 0);
+    expect(jalaaliUtils.getMonth(newDate)).toBe(0);
+  });
+
   test.each`
     format                   | expected
     ${"keyboardDate"}        | ${"۱۳۹۸/۱۰/۱۱"}
