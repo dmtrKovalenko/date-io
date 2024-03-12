@@ -1,6 +1,6 @@
 {
   "name": "@date-io/hijri",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
