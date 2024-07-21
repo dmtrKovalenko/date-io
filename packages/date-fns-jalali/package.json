@@ -32,7 +32,7 @@
   },
   "license": "MIT",
   "peerDependencies": {
-    "date-fns-jalali": "^2.13.0-0"
+    "date-fns-jalali": "^3.2.0-0"
   },
   "peerDependenciesMeta": {
     "date-fns-jalali": {
@@ -43,7 +43,7 @@
     "@date-io/core": "^3.0.0"
   },
   "devDependencies": {
-    "date-fns-jalali": "^2.19.0-2",
+    "date-fns-jalali": "^3.2.0-0",
     "rollup": "^2.0.2",
     "typescript": "^5.0.0"
   },

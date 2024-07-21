@@ -1,59 +1,57 @@
-import addSeconds from "date-fns-jalali/addSeconds";
-import addMinutes from "date-fns-jalali/addMinutes";
-import addHours from "date-fns-jalali/addHours";
-import addDays from "date-fns-jalali/addDays";
-import addWeeks from "date-fns-jalali/addWeeks";
-import addMonths from "date-fns-jalali/addMonths";
-import addYears from "date-fns-jalali/addYears";
-import differenceInYears from "date-fns-jalali/differenceInYears";
-import differenceInQuarters from "date-fns-jalali/differenceInQuarters";
-import differenceInMonths from "date-fns-jalali/differenceInMonths";
-import differenceInWeeks from "date-fns-jalali/differenceInWeeks";
-import differenceInDays from "date-fns-jalali/differenceInDays";
-import differenceInHours from "date-fns-jalali/differenceInHours";
-import differenceInMinutes from "date-fns-jalali/differenceInMinutes";
-import differenceInSeconds from "date-fns-jalali/differenceInSeconds";
-import differenceInMilliseconds from "date-fns-jalali/differenceInMilliseconds";
-import eachDayOfInterval from "date-fns-jalali/eachDayOfInterval";
-import endOfDay from "date-fns-jalali/endOfDay";
-import endOfWeek from "date-fns-jalali/endOfWeek";
-import endOfYear from "date-fns-jalali/endOfYear";
-import format from "date-fns-jalali/format";
-import formatISO from "date-fns-jalali/formatISO";
-import getHours from "date-fns-jalali/getHours";
-import getSeconds from "date-fns-jalali/getSeconds";
-import getYear from "date-fns-jalali/getYear";
-import getMonth from "date-fns-jalali/getMonth";
-import getDate from "date-fns-jalali/getDate";
-import getDay from "date-fns-jalali/getDay";
-import getDaysInMonth from "date-fns-jalali/getDaysInMonth";
-import getMinutes from "date-fns-jalali/getMinutes";
-import isAfter from "date-fns-jalali/isAfter";
-import isBefore from "date-fns-jalali/isBefore";
-import isEqual from "date-fns-jalali/isEqual";
-import isSameDay from "date-fns-jalali/isSameDay";
-import isSameYear from "date-fns-jalali/isSameYear";
-import isSameMonth from "date-fns-jalali/isSameMonth";
-import isSameHour from "date-fns-jalali/isSameHour";
-import isValid from "date-fns-jalali/isValid";
-import dateFnsParse from "date-fns-jalali/parse";
-import parseISO from "date-fns-jalali/parseISO";
-import setDate from "date-fns-jalali/setDate";
-import setHours from "date-fns-jalali/setHours";
-import setMinutes from "date-fns-jalali/setMinutes";
-import setMonth from "date-fns-jalali/setMonth";
-import setSeconds from "date-fns-jalali/setSeconds";
-import setYear from "date-fns-jalali/setYear";
-import startOfDay from "date-fns-jalali/startOfDay";
-import startOfMonth from "date-fns-jalali/startOfMonth";
-import endOfMonth from "date-fns-jalali/endOfMonth";
-import startOfWeek from "date-fns-jalali/startOfWeek";
-import startOfYear from "date-fns-jalali/startOfYear";
+import { addSeconds } from "date-fns-jalali/addSeconds";
+import { addMinutes } from "date-fns-jalali/addMinutes";
+import { addHours } from "date-fns-jalali/addHours";
+import { addDays } from "date-fns-jalali/addDays";
+import { addWeeks } from "date-fns-jalali/addWeeks";
+import { addMonths } from "date-fns-jalali/addMonths";
+import { addYears } from "date-fns-jalali/addYears";
+import { differenceInYears } from "date-fns-jalali/differenceInYears";
+import { differenceInQuarters } from "date-fns-jalali/differenceInQuarters";
+import { differenceInMonths } from "date-fns-jalali/differenceInMonths";
+import { differenceInWeeks } from "date-fns-jalali/differenceInWeeks";
+import { differenceInDays } from "date-fns-jalali/differenceInDays";
+import { differenceInHours } from "date-fns-jalali/differenceInHours";
+import { differenceInMinutes } from "date-fns-jalali/differenceInMinutes";
+import { differenceInSeconds } from "date-fns-jalali/differenceInSeconds";
+import { differenceInMilliseconds } from "date-fns-jalali/differenceInMilliseconds";
+import { eachDayOfInterval } from "date-fns-jalali/eachDayOfInterval";
+import { endOfDay } from "date-fns-jalali/endOfDay";
+import { endOfWeek } from "date-fns-jalali/endOfWeek";
+import { endOfYear } from "date-fns-jalali/endOfYear";
+import { format, longFormatters } from "date-fns-jalali/format";
+import { formatISO } from "date-fns-jalali/formatISO";
+import { getHours } from "date-fns-jalali/getHours";
+import { getSeconds } from "date-fns-jalali/getSeconds";
+import { getYear } from "date-fns-jalali/getYear";
+import { getMonth } from "date-fns-jalali/getMonth";
+import { getDate } from "date-fns-jalali/getDate";
+import { getDay } from "date-fns-jalali/getDay";
+import { getDaysInMonth } from "date-fns-jalali/getDaysInMonth";
+import { getMinutes } from "date-fns-jalali/getMinutes";
+import { isAfter } from "date-fns-jalali/isAfter";
+import { isBefore } from "date-fns-jalali/isBefore";
+import { isEqual } from "date-fns-jalali/isEqual";
+import { isSameDay } from "date-fns-jalali/isSameDay";
+import { isSameYear } from "date-fns-jalali/isSameYear";
+import { isSameMonth } from "date-fns-jalali/isSameMonth";
+import { isSameHour } from "date-fns-jalali/isSameHour";
+import { isValid } from "date-fns-jalali/isValid";
+import { parse as dateFnsParse } from "date-fns-jalali/parse";
+import { parseISO } from "date-fns-jalali/parseISO";
+import { setDate } from "date-fns-jalali/setDate";
+import { setHours } from "date-fns-jalali/setHours";
+import { setMinutes } from "date-fns-jalali/setMinutes";
+import { setMonth } from "date-fns-jalali/setMonth";
+import { setSeconds } from "date-fns-jalali/setSeconds";
+import { setYear } from "date-fns-jalali/setYear";
+import { startOfDay } from "date-fns-jalali/startOfDay";
+import { startOfMonth } from "date-fns-jalali/startOfMonth";
+import { endOfMonth } from "date-fns-jalali/endOfMonth";
+import { startOfWeek } from "date-fns-jalali/startOfWeek";
+import { startOfYear } from "date-fns-jalali/startOfYear";
 import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
-import isWithinInterval from "date-fns-jalali/isWithinInterval";
-// @ts-ignore
-import longFormatters from "date-fns-jalali/_lib/format/longFormatters";
-import defaultLocale from "date-fns-jalali/locale/fa-IR";
+import { isWithinInterval } from "date-fns-jalali/isWithinInterval";
+import { faIR as defaultLocale } from "date-fns-jalali/locale/fa-IR";
 
 type Locale = typeof defaultLocale;
 
@@ -117,7 +115,7 @@ export default class DateFnsJalaliUtils implements IUtils<Date, Locale> {
   // strict signature and delegate to the more lenient signature. Otherwise, we have downstream type errors upon usage.
   public is12HourCycleInCurrentLocale = () => {
     if (this.locale) {
-      return /a/.test(this.locale.formatLong?.time());
+      return /a/.test(this.locale.formatLong?.time({}));
     }
 
     // By default date-fns-jalali is using fa-IR locale with am/pm enabled
@@ -136,7 +134,7 @@ export default class DateFnsJalaliUtils implements IUtils<Date, Locale> {
           const firstCharacter = token[0];
           if (firstCharacter === "p" || firstCharacter === "P") {
             const longFormatter = longFormatters[firstCharacter];
-            return longFormatter(token, locale.formatLong, {});
+            return longFormatter(token, locale.formatLong);
           }
           return token;
         })
