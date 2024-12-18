@@ -103,6 +103,10 @@ export default class MomentUtils extends DefaultMomentUtils {
     return date.jYear() > value.jYear();
   };
 
+  public getWeek = (date: Moment) => {
+    return date.get("week");
+  };
+
   public getMonth = (date: Moment) => {
     return date.jMonth();
   };

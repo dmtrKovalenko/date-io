@@ -268,6 +268,10 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment, string>
     return date.clone().seconds(count);
   };
 
+  public getWeek = (date: Moment) => {
+    return date.get("week");
+  };
+
   public getMonth = (date: Moment) => {
     return date.get("month");
   };

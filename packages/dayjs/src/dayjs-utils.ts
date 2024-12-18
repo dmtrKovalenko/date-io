@@ -2,11 +2,13 @@ import defaultDayjs, { QUnitType } from "dayjs";
 import customParseFormatPlugin from "dayjs/plugin/customParseFormat";
 import localizedFormatPlugin from "dayjs/plugin/localizedFormat";
 import isBetweenPlugin from "dayjs/plugin/isBetween";
+import weekOfYear from "dayjs/plugin/weekOfYear";
 import { IUtils, DateIOFormats, Unit } from "@date-io/core/IUtils";
 
 defaultDayjs.extend(customParseFormatPlugin);
 defaultDayjs.extend(localizedFormatPlugin);
 defaultDayjs.extend(isBetweenPlugin);
+defaultDayjs.extend(weekOfYear);
 
 interface Opts {
   locale?: string;
@@ -280,6 +282,10 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs>
 
   public setSeconds = (date: Dayjs, count: number) => {
     return date.set("second", count) as TDate;
+  };
+
+  public getWeek = (date: Dayjs) => {
+    return date.week();
   };
 
   public getMonth = (date: Dayjs) => {

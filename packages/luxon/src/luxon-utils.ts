@@ -288,6 +288,10 @@ export default class LuxonUtils implements IUtils<DateTime, string> {
     return value.set({ second: count });
   };
 
+  public getWeek = (value: DateTime) => {
+    return value.get("weekNumber");
+  };
+
   public getMonth = (value: DateTime) => {
     // See https://github.com/moment/luxon/blob/master/docs/moment.md#major-functional-differences
     return value.get("month") - 1;
