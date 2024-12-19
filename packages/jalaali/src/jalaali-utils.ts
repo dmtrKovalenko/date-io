@@ -218,6 +218,7 @@ export default class MomentUtils extends DefaultMomentUtils {
 
     return years;
   };
+
   public addMonths = (date: Moment, count: number) => {
     return count < 0
       ? date.clone().subtract(Math.abs(count), "jMonth")

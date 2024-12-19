@@ -72,6 +72,7 @@ export default class LuxonUtils implements IUtils<DateTime, string> {
       return DateTime.fromJSDate(value, { locale: this.locale }) as TRes;
     }
 
+    /* istanbul ignore next */
     return DateTime.local() as TRes;
   }
 
