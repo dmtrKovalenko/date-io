@@ -178,6 +178,10 @@ describe("DateTime calculations", () => {
     expect(utils.getYear(date)).toBe(2018);
   });
 
+  utilsTest("getWeek", (date, utils) => {
+    expect(utils.getWeek(date)).toBe(44);
+  });
+
   utilsTest("getMonth", (date, utils) => {
     expect(utils.getMonth(date)).toBe(9);
   });

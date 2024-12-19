@@ -213,6 +213,54 @@ describe("Jalaali", () => {
     ]);
   });
 
+  it("Jalaali --  getWeek", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.getWeek(date)).toEqual(44);
+  });
+
+  it("Jalaali -- addMonths", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+    const newDate = jalaaliUtils.addMonths(date, 2);
+
+    expect(jalaaliUtils.getMonth(newDate)).toBe(9);
+  });
+
+  it("Jalaali -- addYears", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+    const newDate = jalaaliUtils.addYears(date, 2);
+
+    expect(jalaaliUtils.getYear(newDate)).toBe(1399);
+  });
+
+  it("Jalaali -- isSameMonth", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+    const anotherDate = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.isSameMonth(date, anotherDate)).toBeTruthy();
+  });
+
+  it("Jalaali -- isSameYear", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+    const anotherDate = jalaaliUtils.date(TEST_TIMESTAMP);
+
+    expect(jalaaliUtils.isSameYear(date, anotherDate)).toBeTruthy();
+  });
+
+  it("Jalaali -- setMonth", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+    const newDate = jalaaliUtils.setMonth(date, 0);
+
+    expect(jalaaliUtils.getMonth(newDate)).toBe(0);
+  });
+
+  it("Jalaali -- getMonthArray", () => {
+    const date = jalaaliUtils.date(TEST_TIMESTAMP);
+    const array = jalaaliUtils.getMonthArray(date);
+
+    expect(array.map((dt) => dt.month())).toEqual([2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 0, 1]);
+  });
+
   it("Jalaali -- getYearRange", () => {
     const date = jalaaliUtils.date(TEST_TIMESTAMP);
     const anotherYear = jalaaliUtils.setYear(date, 1400);

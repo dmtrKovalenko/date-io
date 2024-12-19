@@ -399,6 +399,10 @@ export default class JsJodaUtils implements IUtils<Temporal, Locale> {
     return date.with(ChronoField.SECOND_OF_MINUTE, count);
   }
 
+  getWeek(date: Temporal): number {
+    return date.get(ChronoField.ALIGNED_WEEK_OF_YEAR);
+  }
+
   getMonth(date: Temporal): number {
     return date.get(ChronoField.MONTH_OF_YEAR) - 1;
   }

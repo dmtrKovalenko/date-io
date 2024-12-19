@@ -28,5 +28,8 @@ jobs:
         run: yarn build
       - name: Test
         run: yarn test:coverage
-      - name: Upload codecov
-        run: npx codecov
+      - uses: codecov/codecov-action@v5
+        with:
+          fail_ci_if_error: true
+          flags: unittests
+          token: ${{ secrets.CODECOV_TOKEN }}

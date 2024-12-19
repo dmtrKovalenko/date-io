@@ -72,6 +72,7 @@ export default class LuxonUtils implements IUtils<DateTime, string> {
       return DateTime.fromJSDate(value, { locale: this.locale }) as TRes;
     }
 
+    /* istanbul ignore next */
     return DateTime.local() as TRes;
   }
 
@@ -286,6 +287,10 @@ export default class LuxonUtils implements IUtils<DateTime, string> {
 
   public setSeconds = (value: DateTime, count: number) => {
     return value.set({ second: count });
+  };
+
+  public getWeek = (value: DateTime) => {
+    return value.get("weekNumber");
   };
 
   public getMonth = (value: DateTime) => {

@@ -103,6 +103,10 @@ export default class MomentUtils extends DefaultMomentUtils {
     return date.jYear() > value.jYear();
   };
 
+  public getWeek = (date: Moment) => {
+    return date.get("week");
+  };
+
   public getMonth = (date: Moment) => {
     return date.jMonth();
   };
@@ -214,6 +218,7 @@ export default class MomentUtils extends DefaultMomentUtils {
 
     return years;
   };
+
   public addMonths = (date: Moment, count: number) => {
     return count < 0
       ? date.clone().subtract(Math.abs(count), "jMonth")

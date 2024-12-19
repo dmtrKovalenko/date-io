@@ -23,6 +23,7 @@ import { formatISO } from "date-fns-jalali/formatISO";
 import { getHours } from "date-fns-jalali/getHours";
 import { getSeconds } from "date-fns-jalali/getSeconds";
 import { getYear } from "date-fns-jalali/getYear";
+import { getWeek } from "date-fns-jalali/getWeek";
 import { getMonth } from "date-fns-jalali/getMonth";
 import { getDate } from "date-fns-jalali/getDate";
 import { getDay } from "date-fns-jalali/getDay";
@@ -396,6 +397,10 @@ export default class DateFnsJalaliUtils implements IUtils<Date, Locale> {
 
   public getMinutes = (date: Date) => {
     return getMinutes(date);
+  };
+
+  public getWeek = (date: Date) => {
+    return getWeek(date);
   };
 
   public getMonth = (date: Date) => {

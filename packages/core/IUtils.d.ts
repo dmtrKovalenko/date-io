@@ -173,6 +173,7 @@ export interface IUtils<TDate, TLocale> {
   getDate(value: TDate): number;
   setDate(value: TDate, count: number): TDate;
 
+  getWeek(value: TDate): number;
   getMonth(value: TDate): number;
   getDaysInMonth(value: TDate): number;
   setMonth(value: TDate, count: number): TDate;

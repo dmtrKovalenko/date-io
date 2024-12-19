@@ -277,6 +277,10 @@ describe("DateFnsJalali", () => {
       }
     });
 
+    it("DateFnsJalali -- getWeek", () => {
+      expect(utils.getWeek(date)).toBe(33);
+    });
+
     it("DateFnsJalali -- getYearRange", () => {
       const yearRange = utils.getYearRange(date, utils.setYear(date, 1503));
 

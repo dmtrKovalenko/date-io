@@ -214,6 +214,12 @@ describe("Hijri", () => {
     );
   });
 
+  it("Hijiri -- getWeek", () => {
+    const date = hijriiUtils.date(TEST_TIMESTAMP);
+
+    expect(hijriiUtils.getWeek(date)).toBe(44);
+  });
+
   test.each`
     format                   | expected
     ${"keyboardDate"}        | ${"١٤٤١/٠٥/٠٦"}

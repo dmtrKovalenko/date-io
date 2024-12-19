@@ -24,6 +24,7 @@ import { getDay } from "date-fns/getDay";
 import { getDaysInMonth } from "date-fns/getDaysInMonth";
 import { getHours } from "date-fns/getHours";
 import { getMinutes } from "date-fns/getMinutes";
+import { getWeek } from "date-fns/getWeek";
 import { getMonth } from "date-fns/getMonth";
 import { getSeconds } from "date-fns/getSeconds";
 import { getYear } from "date-fns/getYear";
@@ -381,6 +382,10 @@ export default class DateFnsUtils implements IUtils<Date, Locale> {
 
   public setDate = (date: Date, count: number) => {
     return setDate(date, count);
+  };
+
+  public getWeek = (date: Date) => {
+    return getWeek(date);
   };
 
   public getMonth = (date: Date) => {
