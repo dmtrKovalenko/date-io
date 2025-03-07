@@ -9,7 +9,7 @@ Abstraction over common JavaScript date management libraries.
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
-The project exposes an abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v3](https://github.com/date-fns/date-fns), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
+The project exposes an abstraction interface over [luxon](https://moment.github.io/luxon/), [date-fns v4](https://github.com/date-fns/date-fns), [dayjs](https://github.com/iamkun/dayjs) and [moment](https://momentjs.com/).
 It allows you to build any UI date or time components while utilizing the same date management library in use within your user's project.
 
 It simplifies timezone management, allows your code to return the exact same type that your user expects and works with specific calendar systems (e.g. [Jalali calendar](https://en.wikipedia.org/wiki/Jalali_calendar))
