@@ -1,6 +1,6 @@
 {
   "name": "@date-io/date-fns",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "Abstraction over common javascript date management libraries",
   "main": "build/index.js",
   "module": "build/index.esm.js",
