@@ -346,6 +346,15 @@ describe("DateTime calculations", () => {
     expect(
       utils.getDiff(date, utils.date("2018-10-30T10:44:00.000Z"), "milliseconds")
     ).toBe(3600000);
+
+    // Test time differences between two bare dates.  This affects libraries
+    // like js-joda that have separate "date" and "date time" data types.
+    expect(utils.getDiff(utils.date("2018-10-30"), "2018-10-29", "seconds")).toBe(
+      24 * 3600
+    );
+    expect(utils.getDiff(utils.date("2018-10-30"), "2018-10-29", "milliseconds")).toBe(
+      24 * 3600 * 1000
+    );
   });
 
   utilsTest("mergeDateAndTime", (date, utils, lib) => {
