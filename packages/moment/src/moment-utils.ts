@@ -375,8 +375,30 @@ export default class MomentUtils implements IUtils<defaultMoment.Moment, string>
     return date.hour(time.hour()).minute(time.minute()).second(time.second());
   };
 
-  public getWeekdays = () => {
-    return this.moment.weekdaysShort(true);
+  public getWeekdays = (firstDayOfWeek?: number | string, weekdayFormat?: 'long' | 'short' | 'narrow') => {
+    let days: string[]
+    switch (weekdayFormat) {
+      case "long":
+        days = this.moment.weekdays(true);
+        break;
+      case "narrow":
+        days = this.moment.weekdaysMin(true);
+        break;
+      default:
+        days = this.moment.weekdaysShort(true);
+        break;
+    }
+
+    if (firstDayOfWeek == null) {
+      return days;
+    }
+
+    const firstDayFromLocale = this.moment.localeData().firstDayOfWeek();
+    const offset = (7 + Number(firstDayOfWeek) - firstDayFromLocale) % 7;
+    return [
+      ...days.slice(offset),
+      ...days.slice(0, offset),
+    ];
   };
 
   public isEqual = (value: any, comparing: any) => {

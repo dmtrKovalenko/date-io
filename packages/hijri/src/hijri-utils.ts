@@ -162,9 +162,15 @@ export default class MomentUtils extends DefaultMomentUtils {
       : this.toIMoment().hours(14).format("A");
   };
 
-  public getWeekdays = () => {
+  public getWeekdays = (firstDayOfWeek?: number | string, weekdayFormat?: 'long' | 'short' | 'narrow') => {
+    const format = new Map([
+      ['long', 'dddd'],
+      ['short', 'ddd'],
+      ['narrow', 'dd'],
+    ]).get(weekdayFormat ?? 'narrow') ?? 'dd'
+    const offset = firstDayOfWeek != null ? Number(firstDayOfWeek) : 0
     return [0, 1, 2, 3, 4, 5, 6].map((dayOfWeek) => {
-      return this.toIMoment().weekday(dayOfWeek).format("dd");
+      return this.toIMoment().weekday((offset + dayOfWeek) % 7).format(format);
     });
   };
 
