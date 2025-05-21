@@ -1,3 +1,4 @@
+import type { Day } from "date-fns";
 import { addDays } from "date-fns/addDays";
 import { addSeconds } from "date-fns/addSeconds";
 import { addMinutes } from "date-fns/addMinutes";
@@ -431,12 +432,15 @@ export default class DateFnsUtils implements IUtils<Date, Locale> {
     );
   };
 
-  public getWeekdays = () => {
-    const now = new Date();
-    return eachDayOfInterval({
-      start: startOfWeek(now, { locale: this.locale }),
-      end: endOfWeek(now, { locale: this.locale }),
-    }).map((day) => this.formatByString(day, "EEEEEE"));
+  public getWeekdays = (firstDayOfWeek?: Day, weekdayFormat?: 'long' | 'short' | 'narrow') => {
+    const format = new Map([
+      ['long', 'EEEE'],
+      ['short', 'EEEEEE'],
+      ['narrow', 'EEEEE'],
+    ]).get(weekdayFormat ?? 'short') ?? 'EEEEEE'
+    const start = startOfWeek(new Date(), { locale: this.locale, weekStartsOn: firstDayOfWeek })
+    return eachDayOfInterval({ start, end: addDays(start, 6) })
+      .map((day) => this.formatByString(day, format));
   };
 
   public getWeekArray = (date: Date) => {

@@ -56,7 +56,7 @@ const defaultFormats: DateIOFormats = {
   keyboardDateTime24h: "L HH:mm",
 };
 
-export default class DayjsUtils<TDate extends Dayjs = Dayjs> 
+export default class DayjsUtils<TDate extends Dayjs = Dayjs>
   implements IUtils<TDate, string>
 {
   public rawDayJsInstance: typeof defaultDayjs;
@@ -380,11 +380,27 @@ export default class DayjsUtils<TDate extends Dayjs = Dayjs>
     return date.hour(time.hour()).minute(time.minute()).second(time.second()) as TDate;
   };
 
-  public getWeekdays = () => {
-    const start = this.dayjs().startOf("week");
-    return [0, 1, 2, 3, 4, 5, 6].map((diff) =>
-      this.formatByString(start.add(diff, "day"), "dd")
+  public getWeekdays = (firstDayOfWeek?: number | string, weekdayFormat?: 'long' | 'short' | 'narrow') => {
+    const format = new Map([
+      ['long', 'dddd'],
+      ['short', 'ddd'],
+      ['narrow', 'dd'],
+    ]).get(weekdayFormat ?? 'narrow') ?? 'dd'
+    const start = this.startOfWeek(this.date());
+    const days = [0, 1, 2, 3, 4, 5, 6].map((diff) =>
+      this.formatByString(start.add(diff, "day"), format)
     );
+
+    if (firstDayOfWeek == null) {
+      return days;
+    }
+
+    const firstDayFromLocale = start.get('day');
+    const offset = (7 + Number(firstDayOfWeek) - firstDayFromLocale) % 7;
+    return [
+      ...days.slice(offset),
+      ...days.slice(0, offset),
+    ];
   };
 
   public isEqual = (value: any, comparing: any) => {
