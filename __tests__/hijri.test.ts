@@ -3,6 +3,8 @@ import { TEST_TIMESTAMP } from "./test-utils";
 
 describe("Hijri", () => {
   const hijriiUtils = new HijriUtils();
+  // Hijri date as y/m/d with western digits, regardless of locale
+  const ymd = (date: any) => `${date.iYear()}/${date.iMonth() + 1}/${date.iDate()}`;
 
   it("Should properly render digits", () => {
     expect(hijriiUtils.formatNumber("1")).toBe("١");
@@ -34,7 +36,8 @@ describe("Hijri", () => {
   it("Should properly work with hijri days in month", () => {
     const date = hijriiUtils.date(TEST_TIMESTAMP);
 
-    expect(hijriiUtils.getDaysInMonth(date)).toBe(31);
+    // Safar 1440 runs from 2018-10-10 to 2018-11-08
+    expect(hijriiUtils.getDaysInMonth(date)).toBe(30);
   });
 
   it("Should properly render meridiem", () => {
@@ -245,5 +248,68 @@ describe("Hijri", () => {
     const date = hijriiUtils.date("2020-01-01T23:44:00.000Z");
 
     expect(hijriiUtils.format(date as any, format)).toBe(expected);
+  });
+
+  it("Hijri -- isSameMonth compares hijri months", () => {
+    // https://github.com/dmtrKovalenko/date-io/issues/481
+    const date = hijriiUtils.date("2020-10-06T00:00:00.000Z"); // 1442/2/19
+    const later = date.clone().add(13, "days"); // 1442/3/2, same gregorian month
+
+    expect(hijriiUtils.isSameMonth(date, later)).toBeFalsy();
+    // 1 and 30 Safar 1440 fall in different gregorian months
+    expect(
+      hijriiUtils.isSameMonth(
+        hijriiUtils.date("2018-10-10T12:00:00.000Z"),
+        hijriiUtils.date("2018-11-08T12:00:00.000Z")
+      )
+    ).toBeTruthy();
+  });
+
+  it("Hijri -- isSameYear compares hijri years", () => {
+    const lastDayOf1439 = hijriiUtils.date("2018-09-10T12:00:00.000Z");
+    const firstDayOf1440 = hijriiUtils.date("2018-09-11T12:00:00.000Z");
+    const lastDayOf1440 = hijriiUtils.date("2019-08-30T12:00:00.000Z");
+
+    expect(hijriiUtils.isSameYear(lastDayOf1439, firstDayOf1440)).toBeFalsy();
+    expect(hijriiUtils.isSameYear(firstDayOf1440, lastDayOf1440)).toBeTruthy();
+  });
+
+  it("Hijri -- isBeforeMonth / isAfterMonth compare hijri months", () => {
+    const lastDayOfMuharram = hijriiUtils.date("2018-10-09T12:00:00.000Z"); // 1440/1/29
+    const firstDayOfSafar = hijriiUtils.date("2018-10-10T12:00:00.000Z"); // 1440/2/1
+    const lastDayOfSafar = hijriiUtils.date("2018-11-08T12:00:00.000Z"); // 1440/2/30
+
+    expect(hijriiUtils.isBeforeMonth(lastDayOfMuharram, firstDayOfSafar)).toBeTruthy();
+    expect(hijriiUtils.isAfterMonth(firstDayOfSafar, lastDayOfMuharram)).toBeTruthy();
+    expect(hijriiUtils.isBeforeMonth(firstDayOfSafar, lastDayOfSafar)).toBeFalsy();
+    expect(hijriiUtils.isAfterMonth(lastDayOfSafar, firstDayOfSafar)).toBeFalsy();
+  });
+
+  it("Hijri -- addMonths / addYears", () => {
+    const date = hijriiUtils.date(TEST_TIMESTAMP); // 1440/2/21
+
+    expect(ymd(hijriiUtils.addMonths(date, 2))).toBe("1440/4/21");
+    expect(ymd(hijriiUtils.addMonths(date, -2))).toBe("1439/12/21");
+    expect(ymd(hijriiUtils.addYears(date, 1))).toBe("1441/2/21");
+    expect(ymd(hijriiUtils.addYears(date, -1))).toBe("1439/2/21");
+  });
+
+  it("Hijri -- setMonth sets the hijri month", () => {
+    const date = hijriiUtils.date(TEST_TIMESTAMP); // 1440/2/21
+    const ramadan = hijriiUtils.setMonth(date, 8);
+
+    expect(hijriiUtils.getMonth(ramadan)).toBe(8);
+    expect(ymd(ramadan)).toBe("1440/9/21");
+  });
+
+  it("Hijri -- getMonthArray returns the months of the hijri year", () => {
+    const date = hijriiUtils.date(TEST_TIMESTAMP);
+    const months = hijriiUtils.getMonthArray(date);
+
+    expect(months).toHaveLength(12);
+    expect(months[0].toISOString()).toBe("2018-09-11T00:00:00.000Z");
+    expect(months.map(ymd)).toEqual(
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12].map((month) => `1440/${month}/1`)
+    );
   });
 });

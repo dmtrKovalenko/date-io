@@ -104,6 +104,40 @@ export default class MomentUtils extends DefaultMomentUtils {
     return date.iYear() > value.iYear();
   };
 
+  public isSameYear = (date: Moment, comparing: Moment) => {
+    return date.iYear() === comparing.iYear();
+  };
+
+  public isSameMonth = (date: Moment, comparing: Moment) => {
+    return date.iYear() === comparing.iYear() && date.iMonth() === comparing.iMonth();
+  };
+
+  public isBeforeMonth = (date: Moment, value: Moment) => {
+    return (
+      date.iYear() < value.iYear() ||
+      (date.iYear() === value.iYear() && date.iMonth() < value.iMonth())
+    );
+  };
+
+  public isAfterMonth = (date: Moment, value: Moment) => {
+    return (
+      date.iYear() > value.iYear() ||
+      (date.iYear() === value.iYear() && date.iMonth() > value.iMonth())
+    );
+  };
+
+  public addMonths = (date: Moment, count: number) => {
+    return count < 0
+      ? date.clone().subtract(Math.abs(count), "iMonth")
+      : date.clone().add(count, "iMonth");
+  };
+
+  public addYears = (date: Moment, count: number) => {
+    return count < 0
+      ? date.clone().subtract(Math.abs(count), "iYear")
+      : date.clone().add(count, "iYear");
+  };
+
   public getWeek = (date: Moment) => {
     return date.get("week");
   };
@@ -112,8 +146,26 @@ export default class MomentUtils extends DefaultMomentUtils {
     return date.iMonth();
   };
 
+  public setMonth = (date: Moment, count: number) => {
+    return date.clone().iMonth(count);
+  };
+
   public getDaysInMonth = (date: Moment) => {
-    return date.daysInMonth();
+    // iDaysInMonth() returns NaN when the locale uses Arabic-Indic digits
+    // (as ar-SA does), so read the last day of the month instead.
+    return date.clone().endOf("iMonth").iDate();
+  };
+
+  public getMonthArray = (date: Moment) => {
+    const firstMonth = date.clone().startOf("iYear");
+    const monthArray = [firstMonth];
+
+    while (monthArray.length < 12) {
+      const prevMonth = monthArray[monthArray.length - 1];
+      monthArray.push(this.getNextMonth(prevMonth));
+    }
+
+    return monthArray;
   };
 
   public startOfYear = (date: Moment) => {
